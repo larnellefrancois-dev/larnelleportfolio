@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCB Mortgage — Redesigned Journey</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; background: #fafafa; color: #111; margin: 0; }
+    .tab-btn { padding: 8px 20px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid #ddd; background: transparent; color: #888; cursor: pointer; transition: all 0.2s; }
+    .tab-btn.active { background: #1B2A4A; color: #fff; border-color: #1B2A4A; }
+    .section-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: #999; margin-bottom: 16px; display: block; }
+    .product-card { background: #fff; padding: 32px; border: 1px solid #eee; cursor: pointer; transition: all 0.2s; }
+    .product-card:hover { border-color: #1B2A4A; }
+    .product-card.selected { border-color: #1B2A4A; border-width: 2px; }
+    .range-input { -webkit-appearance: none; width: 100%; height: 2px; background: #ddd; outline: none; }
+    .range-input::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; background: #1B2A4A; border-radius: 50%; cursor: pointer; }
+    .step-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; flex-shrink: 0; transition: background 0.3s; }
+    .step-dot.done { background: #1B2A4A; }
+    .step-dot.active { background: #1B2A4A; box-shadow: 0 0 0 3px rgba(27,42,74,0.2); }
+    .faq-item { border-bottom: 1px solid #eee; }
+    .faq-q { padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 15px; font-weight: 400; color: #111; }
+    .faq-a { padding: 0 0 20px; font-size: 14px; color: #666; font-weight: 300; line-height: 1.7; display: none; }
+    .faq-a.open { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header style="background:#1B2A4A; padding:0 48px; height:64px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <div style="width:32px; height:32px; background:#C8A84B; display:flex; align-items:center; justify-content:center;">
+        <span style="font-size:11px; font-weight:700; color:#fff; letter-spacing:-0.02em;">NCB</span>
+      </div>
+      <div>
+        <p style="font-size:10px; color:#4a6a9a; letter-spacing:0.08em; text-transform:uppercase; font-family:'Courier New',monospace;">MORTGAGE JOURNEYS</p>
+        <p style="font-size:12px; color:#8a9ab5; font-weight:300;">Redesigned Customer Experience</p>
+      </div>
+    </div>
+    <nav style="display:flex; gap:4px;" id="mainNav">
+      <button class="tab-btn active" onclick="showView('overview', this)">Overview</button>
+      <button class="tab-btn" onclick="showView('products', this)">Products</button>
+      <button class="tab-btn" onclick="showView('calculator', this)">Calculator</button>
+      <button class="tab-btn" onclick="showView('journey', this)">Journey</button>
+      <button class="tab-btn" onclick="showView('faq', this)">FAQ</button>
+    </nav>
+  </header>
+
+  <!-- Overview -->
+  <div id="view-overview">
+    <div style="background:#1B2A4A; padding:80px 48px; position:relative; overflow:hidden;">
+      <div style="position:absolute; right:0; top:0; bottom:0; width:35%; background:linear-gradient(to left, rgba(200,168,75,0.08), transparent);"></div>
+      <div style="max-width:1200px; margin:0 auto; position:relative; z-index:1;">
+        <span style="display:inline-block; padding:4px 12px; background:rgba(200,168,75,0.2); color:#C8A84B; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:24px;">Mortgage · Redesigned</span>
+        <h1 style="font-size:clamp(36px, 5vw, 72px); font-weight:200; color:#fff; letter-spacing:-0.04em; line-height:1.05; margin-bottom:24px; max-width:800px;">Your home. Your terms.<br>A clearer path to ownership.</h1>
+        <p style="font-size:16px; color:#8a9ab5; font-weight:300; max-width:560px; line-height:1.7; margin-bottom:40px;">We redesigned the mortgage experience to reduce confusion, surface the right information at the right time, and make every next step feel obvious.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <button onclick="showView('products', document.querySelectorAll('#mainNav .tab-btn')[1])" style="background:#C8A84B; color:#fff; padding:14px 32px; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; border:none; cursor:pointer;">EXPLORE PRODUCTS</button>
+          <button onclick="showView('calculator', document.querySelectorAll('#mainNav .tab-btn')[2])" style="background:transparent; color:#fff; padding:14px 32px; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; border:1px solid rgba(255,255,255,0.2); cursor:pointer;">CALCULATE REPAYMENTS</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:2px; background:#eee;">
+      <div style="background:#fff; padding:32px 40px;"><p style="font-size:40px; font-weight:200; color:#111; line-height:1;">From 7.5%</p><p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#999; margin-top:8px;">Annual Interest Rate</p></div>
+      <div style="background:#fff; padding:32px 40px;"><p style="font-size:40px; font-weight:200; color:#111; line-height:1;">Up to 30 yrs</p><p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#999; margin-top:8px;">Repayment Term</p></div>
+      <div style="background:#fff; padding:32px 40px;"><p style="font-size:40px; font-weight:200; color:#111; line-height:1;">$50M+</p><p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#999; margin-top:8px;">Maximum Loan Amount</p></div>
+      <div style="background:#fff; padding:32px 40px;"><p style="font-size:40px; font-weight:200; color:#111; line-height:1;">5 days</p><p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#999; margin-top:8px;">Average Decision Time</p></div>
+    </div>
+
+    <div style="padding:64px 48px; background:#fff; max-width:1296px; margin:0 auto;">
+      <span class="section-label">What changed in the redesign</span>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:2px;">
+        <div style="background:#f9f9f9; padding:32px;">
+          <div style="width:40px; height:40px; background:#1B2A4A; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+            <span style="color:#C8A84B; font-size:18px;">↓</span>
+          </div>
+          <h3 style="font-size:16px; font-weight:400; color:#111; margin-bottom:12px;">Reduced cognitive load</h3>
+          <p style="font-size:13px; color:#888; font-weight:300; line-height:1.7;">Restructured content so customers encounter only what they need at each stage — not everything at once.</p>
+        </div>
+        <div style="background:#f9f9f9; padding:32px;">
+          <div style="width:40px; height:40px; background:#1B2A4A; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+            <span style="color:#C8A84B; font-size:18px;">→</span>
+          </div>
+          <h3 style="font-size:16px; font-weight:400; color:#111; margin-bottom:12px;">Clearer next steps</h3>
+          <p style="font-size:13px; color:#888; font-weight:300; line-height:1.7;">Every page now ends with a clear, singular action — removing ambiguity about what to do next.</p>
+        </div>
+        <div style="background:#f9f9f9; padding:32px;">
+          <div style="width:40px; height:40px; background:#1B2A4A; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+            <span style="color:#C8A84B; font-size:18px;">✓</span>
+          </div>
+          <h3 style="font-size:16px; font-weight:400; color:#111; margin-bottom:12px;">Trustworthy hierarchy</h3>
+          <p style="font-size:13px; color:#888; font-weight:300; line-height:1.7;">Key rates, terms, and eligibility criteria are surfaced prominently — not buried in fine print.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products -->
+  <div id="view-products" style="display:none; padding:64px 48px; max-width:1296px; margin:0 auto;">
+    <span class="section-label">Mortgage Products</span>
+    <h2 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:8px; color:#111;">Choose the right mortgage for you.</h2>
+    <p style="font-size:15px; color:#888; font-weight:300; margin-bottom:48px;">Three clear options — each designed to suit a different stage of homeownership.</p>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:2px; margin-bottom:48px;">
+      <div class="product-card selected" onclick="selectProduct(this)">
+        <span style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#1B2A4A; display:block; margin-bottom:16px; font-weight:600;">First-Time Buyer</span>
+        <p style="font-size:32px; font-weight:200; color:#111; margin-bottom:4px;">From 7.5%</p>
+        <p style="font-size:11px; color:#999; margin-bottom:24px;">p.a. · Up to 30 years</p>
+        <ul style="list-style:none; padding:0; margin:0 0 24px;">
+          <li style="font-size:13px; color:#666; padding:8px 0; border-bottom:1px solid #f0f0f0; font-weight:300;">✓ Up to 95% loan-to-value</li>
+          <li style="font-size:13px; color:#666; padding:8px 0; border-bottom:1px solid #f0f0f0; font-weight:300;">✓ No early repayment penalty</li>
+          <li style="font-size:13px; color:#666; padding:8px 0; font-weight:300;">✓ Fixed rate for first 5 years</li>
+        </ul>
+        <button onclick="showView('calculator', document.querySelectorAll('#mainNav .tab-btn')[2])" style="background:#1B2A4A; color:#fff; padding:12px 24px; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; width:100%; font-family:inherit;">CALCULATE →</button>
+      </div>
+      <div class="product-card" onclick="selectProduct(this)">
+        <span style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#1B2A4A; display:block; margin-bottom:16px; font-weight:600;">Home Mover</span>
+        <p style="font-size:32px; font-weight:200; color:#111; margin-bottom:4px;">From 8.0%</p>
+        <p style="font-size:11px; color:#999; margin-bottom:24px;">p.a. · Up to 25 years</p>
+        <ul style="list-style:none; padding:0; margin:0 0 24px;">
+          <li style="font-size:13px; color:#666; padding:8px 0; border-bottom:1px solid #f0f0f0; font-weight:300;">✓ Port your existing mortgage</li>
+          <li style="font-size:13px; color:#666; padding:8px 0; border-bottom:1px solid #f0f0f0; font-weight:300;">✓ Flexible overpayment options</li>
+          <li style="font-size:13px; color:#666; padding:8px 0; font-weight:300;">✓ Up to 90% loan-to-value</li>
+        </ul>
+        <button onclick="showView('calculator', document.querySelectorAll('#mainNav .tab-btn')[2])" style="background:#1B2A4A; color:#fff; padding:12px 24px; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; width:100%; font-family:inherit;">CALCULATE →</button>
+      </div>
+      <div class="product-card" onclick="selectProduct(this)">
+        <span style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#C8A84B; display:block; margin-bottom:16px; font-weight:600;">Remortgage</span>
+        <p style="font-size:32px; font-weight:200; color:#111; margin-bottom:4px;">From 7.75%</p>
+        <p style="font-size:11px; color:#999; margin-bottom:24px;">p.a. · Up to 20 years</p>
+        <ul style="list-style:none; padding:0; margin:0 0 24px;">
+          <li style="font-size:13px; color:#666; padding:8px 0; border-bottom:1px solid #f0f0f0; font-weight:300;">✓ Switch to a better rate</li>
+          <li style="font-size:13px; color:#666; padding:8px 0; border-bottom:1px solid #f0f0f0; font-weight:300;">✓ Release equity from your home</li>
+          <li style="font-size:13px; color:#666; padding:8px 0; font-weight:300;">✓ Free valuation included</li>
+        </ul>
+        <button onclick="showView('calculator', document.querySelectorAll('#mainNav .tab-btn')[2])" style="background:#1B2A4A; color:#fff; padding:12px 24px; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; width:100%; font-family:inherit;">CALCULATE →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calculator -->
+  <div id="view-calculator" style="display:none; padding:64px 48px; max-width:1296px; margin:0 auto;">
+    <span class="section-label">Mortgage Calculator</span>
+    <h2 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:48px; color:#111;">Estimate your monthly repayment.</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;">
+      <div style="background:#fff; padding:48px; border:1px solid #eee;">
+        <div style="margin-bottom:40px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px;">
+            <label style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#999;">Property Value</label>
+            <span id="propDisplay" style="font-size:24px; font-weight:200; color:#111;">$25,000,000</span>
+          </div>
+          <input type="range" class="range-input" min="5000000" max="100000000" step="1000000" value="25000000" oninput="updateMortgageCalc()" id="propSlider">
+          <div style="display:flex; justify-content:space-between; margin-top:8px;"><span style="font-size:10px; color:#bbb;">$5M</span><span style="font-size:10px; color:#bbb;">$100M</span></div>
+        </div>
+        <div style="margin-bottom:40px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px;">
+            <label style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#999;">Deposit</label>
+            <span id="depositDisplay" style="font-size:24px; font-weight:200; color:#111;">20%</span>
+          </div>
+          <input type="range" class="range-input" min="5" max="50" step="5" value="20" oninput="updateMortgageCalc()" id="depositSlider">
+          <div style="display:flex; justify-content:space-between; margin-top:8px;"><span style="font-size:10px; color:#bbb;">5%</span><span style="font-size:10px; color:#bbb;">50%</span></div>
+        </div>
+        <div style="margin-bottom:40px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px;">
+            <label style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#999;">Term</label>
+            <span id="mortTermDisplay" style="font-size:24px; font-weight:200; color:#111;">25 years</span>
+          </div>
+          <input type="range" class="range-input" min="5" max="30" step="5" value="25" oninput="updateMortgageCalc()" id="mortTermSlider">
+          <div style="display:flex; justify-content:space-between; margin-top:8px;"><span style="font-size:10px; color:#bbb;">5 yrs</span><span style="font-size:10px; color:#bbb;">30 yrs</span></div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px;">
+            <label style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#999;">Interest Rate</label>
+            <span id="mortRateDisplay" style="font-size:24px; font-weight:200; color:#111;">7.5%</span>
+          </div>
+          <input type="range" class="range-input" min="75" max="150" step="25" value="75" oninput="updateMortgageCalc()" id="mortRateSlider">
+          <div style="display:flex; justify-content:space-between; margin-top:8px;"><span style="font-size:10px; color:#bbb;">7.5%</span><span style="font-size:10px; color:#bbb;">15%</span></div>
+        </div>
+      </div>
+      <div style="background:#1B2A4A; padding:48px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="section-label" style="color:#4a6a9a;">Your Estimate</span>
+          <p style="font-size:11px; color:#4a6a9a; margin-bottom:32px;">Indicative only. Final rate subject to full assessment.</p>
+          <div style="margin-bottom:32px;">
+            <p style="font-size:11px; color:#4a6a9a; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Monthly Repayment</p>
+            <p id="mortMonthly" style="font-size:clamp(40px, 6vw, 72px); font-weight:200; color:#fff; line-height:1; letter-spacing:-0.03em;">$148,500</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; padding-top:32px; border-top:1px solid rgba(255,255,255,0.1);">
+            <div><p style="font-size:9px; color:#4a6a9a; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Mortgage Amount</p><p id="mortAmount" style="font-size:24px; font-weight:200; color:#fff;">$20,000,000</p></div>
+            <div><p style="font-size:9px; color:#4a6a9a; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Total Repayable</p><p id="mortTotal" style="font-size:24px; font-weight:200; color:#fff;">$44,550,000</p></div>
+            <div><p style="font-size:9px; color:#4a6a9a; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Total Interest</p><p id="mortInterest" style="font-size:24px; font-weight:200; color:#fff;">$24,550,000</p></div>
+            <div><p style="font-size:9px; color:#4a6a9a; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Deposit Required</p><p id="mortDeposit" style="font-size:24px; font-weight:200; color:#fff;">$5,000,000</p></div>
+          </div>
+        </div>
+        <button onclick="showView('journey', document.querySelectorAll('#mainNav .tab-btn')[3])" style="background:#C8A84B; color:#fff; padding:16px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; margin-top:40px; width:100%; font-family:inherit;">START APPLICATION →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Journey -->
+  <div id="view-journey" style="display:none; padding:64px 48px; max-width:1296px; margin:0 auto;">
+    <span class="section-label">Application Journey</span>
+    <h2 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:8px; color:#111;">A guided path to your mortgage.</h2>
+    <p style="font-size:15px; color:#888; font-weight:300; margin-bottom:48px;">Redesigned to surface the right information at each step — no surprises, no dead ends.</p>
+    <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:2px; margin-bottom:48px;">
+      <div style="background:#1B2A4A; padding:24px; text-align:center;">
+        <div style="width:32px; height:32px; background:#C8A84B; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:12px; font-weight:600; color:#fff;">1</div>
+        <p style="font-size:13px; font-weight:400; color:#fff; margin-bottom:8px;">Explore</p>
+        <p style="font-size:11px; color:#4a6a9a; font-weight:300; line-height:1.5;">Browse products and understand your options</p>
+      </div>
+      <div style="background:#f9f9f9; padding:24px; text-align:center; border:1px solid #eee;">
+        <div style="width:32px; height:32px; background:#eee; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:12px; font-weight:600; color:#999;">2</div>
+        <p style="font-size:13px; font-weight:400; color:#111; margin-bottom:8px;">Calculate</p>
+        <p style="font-size:11px; color:#999; font-weight:300; line-height:1.5;">Estimate your repayments and check affordability</p>
+      </div>
+      <div style="background:#f9f9f9; padding:24px; text-align:center; border:1px solid #eee;">
+        <div style="width:32px; height:32px; background:#eee; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:12px; font-weight:600; color:#999;">3</div>
+        <p style="font-size:13px; font-weight:400; color:#111; margin-bottom:8px;">Apply</p>
+        <p style="font-size:11px; color:#999; font-weight:300; line-height:1.5;">Complete your application with guided form steps</p>
+      </div>
+      <div style="background:#f9f9f9; padding:24px; text-align:center; border:1px solid #eee;">
+        <div style="width:32px; height:32px; background:#eee; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:12px; font-weight:600; color:#999;">4</div>
+        <p style="font-size:13px; font-weight:400; color:#111; margin-bottom:8px;">Decision</p>
+        <p style="font-size:11px; color:#999; font-weight:300; line-height:1.5;">Receive a decision within 5 working days</p>
+      </div>
+      <div style="background:#f9f9f9; padding:24px; text-align:center; border:1px solid #eee;">
+        <div style="width:32px; height:32px; background:#eee; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:12px; font-weight:600; color:#999;">5</div>
+        <p style="font-size:13px; font-weight:400; color:#111; margin-bottom:8px;">Completion</p>
+        <p style="font-size:11px; color:#999; font-weight:300; line-height:1.5;">Finalise with your solicitor and receive your funds</p>
+      </div>
+    </div>
+    <div style="background:#fff; padding:48px; border:1px solid #eee;">
+      <span class="section-label">Checklist — What you'll need to apply</span>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+        <div>
+          <p style="font-size:13px; font-weight:500; color:#111; margin-bottom:16px;">Identity & Residency</p>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li style="font-size:13px; color:#666; padding:10px 0; border-bottom:1px solid #f0f0f0; font-weight:300; display:flex; gap:12px; align-items:center;"><span style="color:#1B2A4A; font-size:16px;">□</span> Valid passport or national ID</li>
+            <li style="font-size:13px; color:#666; padding:10px 0; border-bottom:1px solid #f0f0f0; font-weight:300; display:flex; gap:12px; align-items:center;"><span style="color:#1B2A4A; font-size:16px;">□</span> Proof of address (utility bill, 3 months)</li>
+            <li style="font-size:13px; color:#666; padding:10px 0; font-weight:300; display:flex; gap:12px; align-items:center;"><span style="color:#1B2A4A; font-size:16px;">□</span> Tax Registration Number (TRN)</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:13px; font-weight:500; color:#111; margin-bottom:16px;">Financial Documents</p>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li style="font-size:13px; color:#666; padding:10px 0; border-bottom:1px solid #f0f0f0; font-weight:300; display:flex; gap:12px; align-items:center;"><span style="color:#1B2A4A; font-size:16px;">□</span> Last 3 months' payslips</li>
+            <li style="font-size:13px; color:#666; padding:10px 0; border-bottom:1px solid #f0f0f0; font-weight:300; display:flex; gap:12px; align-items:center;"><span style="color:#1B2A4A; font-size:16px;">□</span> Last 6 months' bank statements</li>
+            <li style="font-size:13px; color:#666; padding:10px 0; font-weight:300; display:flex; gap:12px; align-items:center;"><span style="color:#1B2A4A; font-size:16px;">□</span> Property valuation report</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div id="view-faq" style="display:none; padding:64px 48px; max-width:1296px; margin:0 auto;">
+    <span class="section-label">Frequently Asked Questions</span>
+    <h2 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:48px; color:#111;">Common questions, clear answers.</h2>
+    <div style="max-width:800px;">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>How much can I borrow?</span><span>+</span></div><div class="faq-a">Your borrowing limit depends on your income, existing financial commitments, and the property value. As a general guide, most applicants can borrow up to 4.5 times their gross annual income. Use our calculator to get a personalised estimate.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>What is the minimum deposit required?</span><span>+</span></div><div class="faq-a">For first-time buyers, the minimum deposit is 5% of the property value. For home movers and remortgage applicants, a minimum of 10% is required. A larger deposit typically means access to better interest rates.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>How long does the application process take?</span><span>+</span></div><div class="faq-a">Once we receive your completed application and all required documents, we aim to provide a decision within 5 working days. The full process from application to completion typically takes 4–8 weeks, depending on the complexity of your situation.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Can I make overpayments?</span><span>+</span></div><div class="faq-a">Yes. Most of our mortgage products allow overpayments of up to 10% of the outstanding balance per year without penalty. This can significantly reduce the total interest you pay over the life of the mortgage.</div></div>
+      <div class="faq-item" style="border-bottom:none;"><div class="faq-q" onclick="toggleFaq(this)"><span>What happens if I miss a payment?</span><span>+</span></div><div class="faq-a">If you think you may miss a payment, contact us as early as possible. We have a dedicated support team who can discuss your options, including payment deferrals or restructuring your repayment plan. Missing payments without notice can affect your credit rating and may result in additional charges.</div></div>
+    </div>
+  </div>
+
+  <script>
+    function showView(id, btn) {
+      ['overview','products','calculator','journey','faq'].forEach(v => {
+        document.getElementById('view-' + v).style.display = 'none';
+      });
+      document.getElementById('view-' + id).style.display = 'block';
+      document.querySelectorAll('#mainNav .tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+
+    function selectProduct(el) {
+      document.querySelectorAll('.product-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    function formatJMD(n) { return '$' + Math.round(n).toLocaleString(); }
+
+    function updateMortgageCalc() {
+      const prop = parseInt(document.getElementById('propSlider').value);
+      const dep = parseInt(document.getElementById('depositSlider').value);
+      const term = parseInt(document.getElementById('mortTermSlider').value);
+      const rate = parseInt(document.getElementById('mortRateSlider').value) / 10;
+
+      document.getElementById('propDisplay').textContent = formatJMD(prop);
+      document.getElementById('depositDisplay').textContent = dep + '%';
+      document.getElementById('mortTermDisplay').textContent = term + ' years';
+      document.getElementById('mortRateDisplay').textContent = rate.toFixed(1) + '%';
+
+      const loanAmt = prop * (1 - dep / 100);
+      const monthlyRate = rate / 100 / 12;
+      const n = term * 12;
+      const monthly = loanAmt * (monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+      const total = monthly * n;
+
+      document.getElementById('mortMonthly').textContent = formatJMD(monthly);
+      document.getElementById('mortAmount').textContent = formatJMD(loanAmt);
+      document.getElementById('mortTotal').textContent = formatJMD(total);
+      document.getElementById('mortInterest').textContent = formatJMD(total - loanAmt);
+      document.getElementById('mortDeposit').textContent = formatJMD(prop * dep / 100);
+    }
+
+    function toggleFaq(el) {
+      const answer = el.nextElementSibling;
+      const icon = el.querySelector('span:last-child');
+      answer.classList.toggle('open');
+      icon.textContent = answer.classList.contains('open') ? '−' : '+';
+    }
+
+    updateMortgageCalc();
+  </script>
+</body>
+</html>

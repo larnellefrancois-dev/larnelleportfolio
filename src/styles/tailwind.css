@@ -1,0 +1,990 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   Existing Design System Variables
+   ============================================ */
+:root {
+  --canvas-white: #ffffff;
+  --card-light: #F7F7F7;
+  --card-hover: #F0F0F0;
+  --ink-black: #111111;
+  --ink-gray: #666666;
+  --ink-light: #999999;
+  --grid-gap: 4px;
+  --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  /* ============================================
+     Portal / Realm Design Tokens
+     ============================================ */
+  --void-dark: #05060f;
+  --void-light: #0a0b1c;
+  --crimson-dark: #5e0d16;
+  --crimson-main: #8a1c2a;
+  --crimson-bright: #b32435;
+  --gold-muted: #d4b271;
+  --gold-bright: #e8d099;
+  --gold-glow: #f7e6b7;
+  --cyan-muted: #4a6b8c;
+  --cyan-bright: #7da7d9;
+  --silver-glow: #a3c4eb;
+
+  --font-display: 'Cinzel', serif;
+  --font-body-serif: 'Cormorant Garamond', serif;
+  --font-mono-portal: 'Space Mono', monospace;
+
+  --card-width: 320px;
+  --card-height: 540px;
+  --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+body {
+  background-color: var(--canvas-white);
+  color: var(--ink-black);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Portal Homepage Styles
+   ============================================ */
+
+.portal-body {
+  background-color: var(--void-dark);
+  color: var(--gold-bright);
+  overflow-x: hidden;
+}
+
+.portal-page-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-brand {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.4em;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  font-weight: 400;
+  text-shadow: 0 0 20px rgba(232, 208, 153, 0.3);
+  margin-bottom: 8px;
+}
+
+.brand-subtitle {
+  font-family: var(--font-mono-portal);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan-bright);
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.footer-meta {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 60px;
+  z-index: 10;
+  font-family: var(--font-mono-portal);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: rgba(232, 208, 153, 0.4);
+  text-transform: uppercase;
+}
+
+.universe-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: radial-gradient(circle at 50% 50%, var(--void-light) 0%, var(--void-dark) 70%);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.3) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 80% 30%, rgba(232, 208, 153, 0.5) 100%, transparent),
+    radial-gradient(1px 1px at 40% 70%, rgba(125, 167, 217, 0.4) 100%, transparent),
+    radial-gradient(2px 2px at 90% 85%, rgba(255, 255, 255, 0.2) 100%, transparent),
+    radial-gradient(1px 1px at 25% 55%, rgba(255, 255, 255, 0.25) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 65% 15%, rgba(232, 208, 153, 0.35) 100%, transparent),
+    radial-gradient(1px 1px at 50% 90%, rgba(125, 167, 217, 0.3) 100%, transparent),
+    radial-gradient(2px 2px at 15% 80%, rgba(255, 255, 255, 0.15) 100%, transparent);
+  background-size: 200px 200px;
+  opacity: 0.6;
+  animation: drift 100s linear infinite;
+}
+
+.astrolabe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140vw;
+  height: 140vw;
+  max-width: 2000px;
+  max-height: 2000px;
+  pointer-events: none;
+  opacity: 0.4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 178, 113, 0.2);
+}
+
+.ring-1 {
+  width: 40%;
+  height: 40%;
+  border-color: rgba(138, 28, 42, 0.4);
+  animation: spin 120s linear infinite;
+}
+
+.ring-2 {
+  width: 60%;
+  height: 60%;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: rgba(125, 167, 217, 0.2);
+  animation: spin-reverse 180s linear infinite;
+}
+
+.ring-3 {
+  width: 80%;
+  height: 80%;
+  border-color: rgba(212, 178, 113, 0.3);
+  box-shadow: 0 0 40px rgba(212, 178, 113, 0.05) inset;
+  animation: spin 240s linear infinite;
+}
+
+.ribbon-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.ribbon-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   Portal Card Styles
+   ============================================ */
+
+.portal-stage {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  transform-style: preserve-3d;
+}
+
+.card-wrapper {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  perspective: 1000px;
+  flex-shrink: 0;
+}
+
+.card-wrapper::before,
+.card-wrapper::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(212, 178, 113, 0.3), transparent);
+  z-index: -1;
+  transition: var(--transition-slow);
+}
+
+.card-wrapper::before {
+  top: -200px;
+  height: 200px;
+}
+
+.card-wrapper::after {
+  bottom: -200px;
+  height: 200px;
+}
+
+.tarot-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform var(--transition-slow), box-shadow var(--transition-slow), filter var(--transition-slow);
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: var(--void-dark);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(212, 178, 113, 0.1);
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.portal-stage:hover .tarot-card {
+  filter: brightness(0.5) contrast(1.2);
+  transform: scale(0.95) translateZ(-50px);
+}
+
+.card-wrapper:hover .tarot-card,
+.card-wrapper:focus-within .tarot-card {
+  transform: scale(1.05) translateY(-15px) translateZ(50px);
+  filter: brightness(1.1) contrast(1.1);
+  box-shadow:
+    0 40px 80px rgba(0,0,0,0.9),
+    0 0 0 1px rgba(232, 208, 153, 0.4),
+    0 0 40px rgba(212, 178, 113, 0.2);
+}
+
+.card-wrapper:hover::before,
+.card-wrapper:focus-within::before {
+  top: -220px;
+  opacity: 0.8;
+}
+
+.card-wrapper:hover::after,
+.card-wrapper:focus-within::after {
+  bottom: -220px;
+  opacity: 0.8;
+}
+
+.card-inner {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.card-frame {
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(232, 208, 153, 0.3);
+  border-radius: 2px;
+  z-index: 10;
+  pointer-events: none;
+  transition: border-color var(--transition-fast);
+}
+
+.card-frame::before,
+.card-frame::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px solid transparent;
+  transition: border-color var(--transition-fast);
+}
+
+.card-wrapper:hover .card-frame,
+.card-wrapper:focus-within .card-frame {
+  border-color: rgba(232, 208, 153, 0.8);
+}
+
+.card-wrapper:hover .card-frame::before,
+.card-wrapper:focus-within .card-frame::before {
+  border-color: rgba(232, 208, 153, 0.2);
+}
+
+.card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--transition-slow);
+  transform: scale(1.05);
+}
+
+.card-wrapper:hover .card-bg,
+.card-wrapper:focus-within .card-bg {
+  transform: scale(1.1);
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+.card-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to bottom, rgba(5,6,15,0.2) 0%, rgba(5,6,15,0.8) 60%, rgba(5,6,15,1) 100%);
+}
+
+.card-art .card-bg {
+  background-image: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=800&auto=format&fit=crop');
+}
+
+.card-art .card-overlay {
+  background-color: var(--gold-muted);
+  mix-blend-mode: color;
+  opacity: 0.5;
+}
+
+.card-product .card-bg {
+  background-image: url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?q=80&w=800&auto=format&fit=crop');
+}
+
+.card-product .card-overlay {
+  background-color: var(--cyan-muted);
+  mix-blend-mode: color;
+  opacity: 0.6;
+}
+
+.card-literature .card-bg {
+  background-image: url('https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?q=80&w=800&auto=format&fit=crop');
+}
+
+.card-literature .card-overlay {
+  background-color: var(--crimson-main);
+  mix-blend-mode: color;
+  opacity: 0.5;
+}
+
+.card-content {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.arcane-index {
+  font-family: var(--font-mono-portal);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: rgba(232, 208, 153, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.arcane-index::before,
+.arcane-index::after {
+  content: '';
+  width: 12px;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.5;
+}
+
+.card-typography {
+  transform: translateY(10px);
+  transition: transform var(--transition-fast);
+}
+
+.card-wrapper:hover .card-typography,
+.card-wrapper:focus-within .card-typography {
+  transform: translateY(0);
+}
+
+.card-discipline {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  color: rgba(232, 208, 153, 0.5);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--gold-glow);
+  margin-bottom: 12px;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+}
+
+.card-desc {
+  font-family: var(--font-body-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(232, 208, 153, 0.7);
+  line-height: 1.4;
+  max-width: 80%;
+  margin: 0 auto 20px auto;
+}
+
+.action-rune {
+  font-family: var(--font-mono-portal);
+  font-size: 0.55rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--cyan-bright);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all var(--transition-fast);
+  display: inline-block;
+  border-bottom: 1px solid rgba(125, 167, 217, 0.4);
+  padding-bottom: 4px;
+}
+
+.card-wrapper:hover .action-rune,
+.card-wrapper:focus-within .action-rune {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Always visible CTA for accessibility */
+.action-rune-visible {
+  font-family: var(--font-mono-portal);
+  font-size: 0.55rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--cyan-bright);
+  display: inline-block;
+  border-bottom: 1px solid rgba(125, 167, 217, 0.4);
+  padding-bottom: 4px;
+  opacity: 0.6;
+  transition: opacity var(--transition-fast);
+}
+
+.card-wrapper:hover .action-rune-visible,
+.card-wrapper:focus-within .action-rune-visible {
+  opacity: 1;
+}
+
+.glass-glare {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 40%);
+  z-index: 20;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Focus ring for keyboard nav */
+.tarot-card:focus {
+  outline: 2px solid rgba(232, 208, 153, 0.8);
+  outline-offset: 4px;
+}
+
+/* ============================================
+   Global Realm Header
+   ============================================ */
+
+.realm-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--realm-header-border, rgba(255,255,255,0.08));
+  background-color: var(--realm-header-bg, rgba(5, 6, 15, 0.85));
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.realm-header-art {
+  background-color: rgba(13, 9, 5, 0.85);
+  border-bottom-color: rgba(212, 178, 113, 0.12);
+}
+
+.realm-header-product {
+  background-color: rgba(7, 12, 20, 0.9);
+  border-bottom-color: rgba(125, 167, 217, 0.1);
+}
+
+.realm-header-literature {
+  background-color: rgba(8, 4, 8, 0.88);
+  border-bottom-color: rgba(179, 36, 53, 0.12);
+}
+
+/* ============================================
+   Realm Switcher
+   ============================================ */
+
+.realm-switcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  padding: 3px;
+}
+
+.realm-tab {
+  font-family: var(--font-mono-portal);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.realm-tab:hover {
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.realm-tab-art.active {
+  background: rgba(212, 178, 113, 0.12);
+  border-color: rgba(212, 178, 113, 0.35);
+  color: #f7e6b7;
+}
+
+.realm-tab-product.active {
+  background: rgba(125, 167, 217, 0.1);
+  border-color: rgba(125, 167, 217, 0.3);
+  color: #a3c4eb;
+}
+
+.realm-tab-literature.active {
+  background: rgba(179, 36, 53, 0.1);
+  border-color: rgba(179, 36, 53, 0.3);
+  color: #e05a6a;
+}
+
+/* ============================================
+   Sub-site Section Styles
+   ============================================ */
+
+/* Art Realm */
+.art-realm {
+  background-color: #0d0804;
+  color: #f0e6d3;
+  min-height: 100vh;
+}
+
+/* Product Realm */
+.product-realm {
+  background-color: #f8f8f6;
+  color: #111111;
+  min-height: 100vh;
+}
+
+/* Literature Realm */
+.literature-realm {
+  background-color: #080508;
+  color: #d4c5b5;
+  min-height: 100vh;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse {
+  100% { transform: rotate(-360deg); }
+}
+
+@keyframes drift {
+  0% { background-position: 0 0; }
+  100% { background-position: -1000px 1000px; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+/* ============================================
+   Existing Styles (Preserved)
+   ============================================ */
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 6px;
+  height: 14px;
+  background-color: #ffffff;
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+.cursor-blink-dark {
+  display: inline-block;
+  width: 6px;
+  height: 14px;
+  background-color: #111111;
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+.card-img {
+  filter: grayscale(100%) contrast(1.1);
+  transition: filter 0.4s ease, transform 0.6s ease;
+}
+
+.card-img-wrapper:hover .card-img {
+  filter: grayscale(0%) contrast(1);
+  transform: scale(1.02);
+}
+
+.arrow-hover {
+  transition: transform 0.3s var(--ease-out);
+}
+
+.group:hover .arrow-hover {
+  transform: translate(4px, -4px);
+}
+
+.nav-pill-hover {
+  transition: transform 0.3s var(--ease-out);
+}
+
+.nav-pill-hover:hover {
+  transform: scale(1.05);
+}
+
+.menu-link {
+  transition: border-color 0.2s ease;
+  border: 1px solid #E5E5E5;
+}
+
+.menu-link:hover {
+  border-color: #111111;
+}
+
+.footer-link-hover {
+  transition: color 0.2s ease;
+}
+
+.footer-link-hover:hover {
+  color: var(--ink-light);
+}
+
+.card-base {
+  transition: background-color 0.4s var(--ease-out);
+  background-color: var(--card-light);
+}
+
+.card-base:hover {
+  background-color: var(--card-hover);
+}
+
+.card-dark {
+  transition: background-color 0.4s var(--ease-out);
+  background-color: #111111;
+}
+
+.card-dark:hover {
+  background-color: #000000;
+}
+
+.case-study-back-link:active {
+  background-color: rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+}
+
+.case-study-cta-btn:active {
+  border-color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .stars {
+    animation: none;
+  }
+
+  .ring-1, .ring-2, .ring-3 {
+    animation: none;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease both;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.215, 0.61, 0.355, 1),
+              transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-reveal.reveal-delay-1 { transition-delay: 0.05s; }
+.scroll-reveal.reveal-delay-2 { transition-delay: 0.12s; }
+.scroll-reveal.reveal-delay-3 { transition-delay: 0.19s; }
+.scroll-reveal.reveal-delay-4 { transition-delay: 0.26s; }
+.scroll-reveal.reveal-delay-5 { transition-delay: 0.33s; }
+.scroll-reveal.reveal-delay-6 { transition-delay: 0.40s; }
+
+/* ============================================
+   Responsive Portal
+   ============================================ */
+
+@media (max-width: 1100px) {
+  .portal-stage {
+    transform: scale(0.85);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 800px) {
+  .portal-page-root {
+    min-height: auto;
+    overflow-y: auto;
+    padding: 120px 0;
+    align-items: flex-start;
+  }
+
+  .portal-stage {
+    flex-direction: column;
+    transform: scale(1);
+    gap: 60px;
+    padding: 0 20px;
+  }
+
+  .card-wrapper {
+    width: min(var(--card-width), 90vw);
+  }
+
+  .card-wrapper::before,
+  .card-wrapper::after {
+    display: none;
+  }
+
+  .astrolabe {
+    display: none;
+  }
+
+  .ribbon-container {
+    opacity: 0.3;
+  }
+
+  .footer-meta {
+    display: none;
+  }
+}
+
+/* ============================================
+   Realm Theming via data-realm attribute
+   ============================================ */
+
+/* Art Realm — Gold / Warm */
+[data-realm="art"] {
+  --realm-bg: #0d0905;
+  --realm-bg-secondary: #130c06;
+  --realm-accent: #d4b271;
+  --realm-accent-bright: #f7e6b7;
+  --realm-accent-glow: rgba(212, 178, 113, 0.25);
+  --realm-accent-subtle: rgba(212, 178, 113, 0.08);
+  --realm-accent-border: rgba(212, 178, 113, 0.2);
+  --realm-text-primary: #f0e6d1;
+  --realm-text-secondary: rgba(240, 230, 209, 0.65);
+  --realm-text-muted: rgba(212, 178, 113, 0.45);
+  --realm-cta: #d4b271;
+  --realm-cta-hover: #f7e6b7;
+  --realm-header-bg: rgba(13, 9, 5, 0.85);
+  --realm-header-border: rgba(212, 178, 113, 0.12);
+  --realm-switcher-active-bg: rgba(212, 178, 113, 0.12);
+  --realm-switcher-active-color: #f7e6b7;
+  --realm-switcher-active-border: rgba(212, 178, 113, 0.4);
+  --realm-gradient-hero: radial-gradient(ellipse at 50% 60%, rgba(139, 90, 43, 0.18) 0%, rgba(13, 9, 5, 0) 70%);
+  --realm-gradient-card: linear-gradient(to top, rgba(13, 9, 5, 0.95) 0%, rgba(80, 50, 20, 0.3) 60%, transparent 100%);
+}
+
+/* Product Design Realm — Cyan / Clean */
+[data-realm="product"] {
+  --realm-bg: #070c14;
+  --realm-bg-secondary: #0a1020;
+  --realm-accent: #7da7d9;
+  --realm-accent-bright: #a3c4eb;
+  --realm-accent-glow: rgba(125, 167, 217, 0.2);
+  --realm-accent-subtle: rgba(125, 167, 217, 0.06);
+  --realm-accent-border: rgba(125, 167, 217, 0.18);
+  --realm-text-primary: #dce8f5;
+  --realm-text-secondary: rgba(200, 220, 240, 0.65);
+  --realm-text-muted: rgba(125, 167, 217, 0.45);
+  --realm-cta: #7da7d9;
+  --realm-cta-hover: #a3c4eb;
+  --realm-header-bg: rgba(7, 12, 20, 0.9);
+  --realm-header-border: rgba(125, 167, 217, 0.1);
+  --realm-switcher-active-bg: rgba(125, 167, 217, 0.1);
+  --realm-switcher-active-color: #a3c4eb;
+  --realm-switcher-active-border: rgba(125, 167, 217, 0.35);
+  --realm-gradient-hero: radial-gradient(ellipse at 50% 40%, rgba(74, 107, 140, 0.15) 0%, rgba(7, 12, 20, 0) 70%);
+  --realm-gradient-card: linear-gradient(to top, rgba(7, 12, 20, 0.95) 0%, rgba(30, 60, 90, 0.3) 60%, transparent 100%);
+}
+
+/* Literature Realm — Crimson / Atmospheric */
+[data-realm="literature"] {
+  --realm-bg: #080408;
+  --realm-bg-secondary: #0f060a;
+  --realm-accent: #b32435;
+  --realm-accent-bright: #e05a6a;
+  --realm-accent-glow: rgba(179, 36, 53, 0.2);
+  --realm-accent-subtle: rgba(179, 36, 53, 0.07);
+  --realm-accent-border: rgba(179, 36, 53, 0.2);
+  --realm-text-primary: #f0e0d8;
+  --realm-text-secondary: rgba(220, 195, 185, 0.65);
+  --realm-text-muted: rgba(179, 100, 110, 0.5);
+  --realm-cta: #b32435;
+  --realm-cta-hover: #e05a6a;
+  --realm-header-bg: rgba(8, 4, 8, 0.88);
+  --realm-header-border: rgba(179, 36, 53, 0.12);
+  --realm-switcher-active-bg: rgba(179, 36, 53, 0.1);
+  --realm-switcher-active-color: #e05a6a;
+  --realm-switcher-active-border: rgba(179, 36, 53, 0.35);
+  --realm-gradient-hero: radial-gradient(ellipse at 50% 50%, rgba(94, 13, 22, 0.2) 0%, rgba(8, 4, 8, 0) 70%);
+  --realm-gradient-card: linear-gradient(to top, rgba(8, 4, 8, 0.95) 0%, rgba(60, 10, 20, 0.3) 60%, transparent 100%);
+}
+
+/* ============================================
+   Art Realm Page Styles
+   ============================================ */
+
+.art-realm-page {
+  background-color: #0d0905;
+  color: #f0e6d1;
+  min-height: 100vh;
+}
+
+.art-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: 3px;
+}
+
+.art-gallery-hero-cell {
+  grid-column: span 8;
+  grid-row: span 2;
+  aspect-ratio: unset;
+  min-height: 480px;
+}
+
+.art-gallery-side-cell {
+  grid-column: span 4;
+  min-height: 235px;
+}
+
+@media (max-width: 900px) {
+  .art-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .art-gallery-hero-cell {
+    grid-column: span 2;
+    min-height: 320px;
+  }
+  .art-gallery-side-cell {
+    grid-column: span 1;
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 600px) {
+  .art-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  .art-gallery-hero-cell,
+  .art-gallery-side-cell {
+    grid-column: span 1;
+    min-height: 260px;
+  }
+}

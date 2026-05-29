@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCB Auto Loans — Redesigned Experience</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; background: #f5f5f5; color: #111; margin: 0; }
+    .tab-btn { padding: 8px 20px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid #ddd; background: transparent; color: #888; cursor: pointer; transition: all 0.2s; }
+    .tab-btn.active { background: #111; color: #fff; border-color: #111; }
+    .range-input { -webkit-appearance: none; width: 100%; height: 2px; background: #ddd; outline: none; }
+    .range-input::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; background: #111; border-radius: 50%; cursor: pointer; }
+    .step-item { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid #eee; align-items: flex-start; }
+    .step-num { width: 28px; height: 28px; background: #111; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
+    .step-num.done { background: #4CAF50; }
+    .step-num.active { background: #111; box-shadow: 0 0 0 3px rgba(0,0,0,0.15); }
+    .car-card { background: #fff; padding: 24px; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; }
+    .car-card:hover { border-color: #111; }
+    .car-card.selected { border-color: #111; background: #fafafa; }
+    .section-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: #999; margin-bottom: 16px; display: block; }
+    .badge { display: inline-block; padding: 3px 10px; font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+    .badge-green { background: #e8f5e9; color: #2e7d32; }
+    .badge-dark { background: #111; color: #fff; }
+    .progress-bar { height: 3px; background: #eee; }
+    .progress-fill { height: 100%; background: #111; transition: width 0.5s ease; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header style="background:#fff; border-bottom:1px solid #eee; padding:0 48px; height:64px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <div style="width:32px; height:32px; background:#111; display:flex; align-items:center; justify-content:center;">
+        <span style="font-size:11px; font-weight:700; color:#fff; letter-spacing:-0.02em;">NCB</span>
+      </div>
+      <div>
+        <p style="font-size:10px; color:#999; letter-spacing:0.08em; text-transform:uppercase; font-family:'Courier New',monospace;">AUTO LOANS</p>
+        <p style="font-size:12px; color:#666; font-weight:300;">Redesigned Customer Experience</p>
+      </div>
+    </div>
+    <nav style="display:flex; gap:4px;" id="mainNav">
+      <button class="tab-btn active" onclick="showView('overview', this)">Overview</button>
+      <button class="tab-btn" onclick="showView('calculator', this)">Calculator</button>
+      <button class="tab-btn" onclick="showView('journey', this)">Journey</button>
+      <button class="tab-btn" onclick="showView('compare', this)">Before / After</button>
+    </nav>
+  </header>
+
+  <!-- Overview -->
+  <div id="view-overview">
+    <!-- Hero -->
+    <div style="background:#111; padding:80px 48px; position:relative; overflow:hidden;">
+      <div style="position:absolute; right:0; top:0; bottom:0; width:40%; background:linear-gradient(to left, rgba(255,255,255,0.03), transparent);"></div>
+      <div style="max-width:1200px; margin:0 auto; position:relative; z-index:1;">
+        <span class="badge badge-green" style="margin-bottom:24px;">Auto Loans · Redesigned</span>
+        <h1 style="font-size:clamp(36px, 5vw, 72px); font-weight:200; color:#fff; letter-spacing:-0.04em; line-height:1.05; margin-bottom:24px; max-width:800px;">Drive your next vehicle with a loan built around your life.</h1>
+        <p style="font-size:16px; color:#888; font-weight:300; max-width:560px; line-height:1.7; margin-bottom:40px;">Competitive rates, flexible terms, and a straightforward application process — designed to get you moving faster.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <button onclick="showView('calculator', document.querySelectorAll('#mainNav .tab-btn')[1])" style="background:#fff; color:#111; padding:14px 32px; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; border:none; cursor:pointer;">CALCULATE MY RATE</button>
+          <button onclick="showView('journey', document.querySelectorAll('#mainNav .tab-btn')[2])" style="background:transparent; color:#fff; padding:14px 32px; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; border:1px solid #333; cursor:pointer;">START APPLICATION</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key stats -->
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:2px; background:#eee;">
+      <div style="background:#fff; padding:32px 40px;">
+        <p style="font-size:40px; font-weight:200; color:#111; line-height:1;">From 8.5%</p>
+        <p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#999; margin-top:8px;">Annual Interest Rate</p>
+      </div>
+      <div style="background:#fff; padding:32px 40px;">
+        <p style="font-size:40px; font-weight:200; color:#111; line-height:1;">Up to 7 yrs</p>
+        <p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#999; margin-top:8px;">Repayment Term</p>
+      </div>
+      <div style="background:#fff; padding:32px 40px;">
+        <p style="font-size:40px; font-weight:200; color:#111; line-height:1;">$5M+</p>
+        <p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#999; margin-top:8px;">Maximum Loan Amount</p>
+      </div>
+      <div style="background:#fff; padding:32px 40px;">
+        <p style="font-size:40px; font-weight:200; color:#111; line-height:1;">48 hrs</p>
+        <p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#999; margin-top:8px;">Average Approval Time</p>
+      </div>
+    </div>
+
+    <!-- Vehicle types -->
+    <div style="padding:64px 48px; background:#fff; max-width:1296px; margin:0 auto;">
+      <span class="section-label">What can you finance?</span>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:2px;">
+        <div class="car-card" onclick="selectCard(this)">
+          <div style="height:120px; background:#f5f5f5; margin-bottom:20px; display:flex; align-items:center; justify-content:center;">
+            <span style="font-size:48px;">🚗</span>
+          </div>
+          <p style="font-size:16px; font-weight:400; color:#111; margin-bottom:8px;">New Vehicles</p>
+          <p style="font-size:13px; color:#888; font-weight:300; line-height:1.6;">Finance a brand-new vehicle from any authorised dealer. Rates from 8.5% p.a.</p>
+          <p style="font-size:11px; color:#111; margin-top:16px; font-weight:500;">From 8.5% p.a. →</p>
+        </div>
+        <div class="car-card" onclick="selectCard(this)">
+          <div style="height:120px; background:#f5f5f5; margin-bottom:20px; display:flex; align-items:center; justify-content:center;">
+            <span style="font-size:48px;">🚙</span>
+          </div>
+          <p style="font-size:16px; font-weight:400; color:#111; margin-bottom:8px;">Used Vehicles</p>
+          <p style="font-size:13px; color:#888; font-weight:300; line-height:1.6;">Purchase a pre-owned vehicle up to 10 years old. Competitive rates available.</p>
+          <p style="font-size:11px; color:#111; margin-top:16px; font-weight:500;">From 10.5% p.a. →</p>
+        </div>
+        <div class="car-card" onclick="selectCard(this)">
+          <div style="height:120px; background:#f5f5f5; margin-bottom:20px; display:flex; align-items:center; justify-content:center;">
+            <span style="font-size:48px;">🚐</span>
+          </div>
+          <p style="font-size:16px; font-weight:400; color:#111; margin-bottom:8px;">Commercial Vehicles</p>
+          <p style="font-size:13px; color:#888; font-weight:300; line-height:1.6;">Vans, trucks, and commercial fleet financing for business owners.</p>
+          <p style="font-size:11px; color:#111; margin-top:16px; font-weight:500;">From 9.5% p.a. →</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calculator -->
+  <div id="view-calculator" style="display:none; padding:64px 48px; max-width:1296px; margin:0 auto;">
+    <span class="section-label">Loan Calculator</span>
+    <h2 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:48px; color:#111;">Estimate your monthly payment.</h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;">
+      <div style="background:#fff; padding:48px;">
+        <div style="margin-bottom:40px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px;">
+            <label style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#999;">Vehicle Price</label>
+            <span id="priceDisplay" style="font-size:24px; font-weight:200; color:#111;">$2,500,000</span>
+          </div>
+          <input type="range" class="range-input" min="500000" max="10000000" step="100000" value="2500000" oninput="updateCalc()" id="priceSlider">
+          <div style="display:flex; justify-content:space-between; margin-top:8px;">
+            <span style="font-size:10px; color:#bbb;">$500K</span>
+            <span style="font-size:10px; color:#bbb;">$10M</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px;">
+            <label style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#999;">Down Payment</label>
+            <span id="downDisplay" style="font-size:24px; font-weight:200; color:#111;">20%</span>
+          </div>
+          <input type="range" class="range-input" min="10" max="50" step="5" value="20" oninput="updateCalc()" id="downSlider">
+          <div style="display:flex; justify-content:space-between; margin-top:8px;">
+            <span style="font-size:10px; color:#bbb;">10%</span>
+            <span style="font-size:10px; color:#bbb;">50%</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px;">
+            <label style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#999;">Loan Term</label>
+            <span id="termDisplay" style="font-size:24px; font-weight:200; color:#111;">5 years</span>
+          </div>
+          <input type="range" class="range-input" min="1" max="7" step="1" value="5" oninput="updateCalc()" id="termSlider">
+          <div style="display:flex; justify-content:space-between; margin-top:8px;">
+            <span style="font-size:10px; color:#bbb;">1 yr</span>
+            <span style="font-size:10px; color:#bbb;">7 yrs</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px;">
+            <label style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#999;">Interest Rate</label>
+            <span id="rateDisplay" style="font-size:24px; font-weight:200; color:#111;">8.5%</span>
+          </div>
+          <input type="range" class="range-input" min="85" max="150" step="5" value="85" oninput="updateCalc()" id="rateSlider">
+          <div style="display:flex; justify-content:space-between; margin-top:8px;">
+            <span style="font-size:10px; color:#bbb;">8.5%</span>
+            <span style="font-size:10px; color:#bbb;">15%</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#111; padding:48px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="section-label" style="color:#555;">Your Estimate</span>
+          <p style="font-size:11px; color:#555; margin-bottom:32px;">Based on your inputs. Final rate subject to credit assessment.</p>
+          <div style="margin-bottom:32px;">
+            <p style="font-size:11px; color:#555; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Monthly Payment</p>
+            <p id="monthlyPayment" style="font-size:clamp(40px, 6vw, 72px); font-weight:200; color:#fff; line-height:1; letter-spacing:-0.03em;">$38,450</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; padding-top:32px; border-top:1px solid #1e1e1e;">
+            <div>
+              <p style="font-size:9px; color:#555; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Loan Amount</p>
+              <p id="loanAmount" style="font-size:24px; font-weight:200; color:#fff;">$2,000,000</p>
+            </div>
+            <div>
+              <p style="font-size:9px; color:#555; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Total Repayable</p>
+              <p id="totalRepay" style="font-size:24px; font-weight:200; color:#fff;">$2,307,000</p>
+            </div>
+            <div>
+              <p style="font-size:9px; color:#555; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Total Interest</p>
+              <p id="totalInterest" style="font-size:24px; font-weight:200; color:#fff;">$307,000</p>
+            </div>
+            <div>
+              <p style="font-size:9px; color:#555; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Down Payment</p>
+              <p id="downAmount" style="font-size:24px; font-weight:200; color:#fff;">$500,000</p>
+            </div>
+          </div>
+        </div>
+        <button onclick="showView('journey', document.querySelectorAll('#mainNav .tab-btn')[2])" style="background:#fff; color:#111; padding:16px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; margin-top:40px; width:100%;">APPLY WITH THESE TERMS →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Journey -->
+  <div id="view-journey" style="display:none; padding:64px 48px; max-width:1296px; margin:0 auto;">
+    <span class="section-label">Application Journey</span>
+    <h2 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:8px; color:#111;">Four steps to your new vehicle.</h2>
+    <p style="font-size:15px; color:#888; font-weight:300; margin-bottom:48px;">A streamlined process designed to reduce friction and get you a decision faster.</p>
+
+    <div style="display:grid; grid-template-columns:1fr 2fr; gap:2px;">
+      <div style="background:#fff; padding:40px;">
+        <span class="section-label">Progress</span>
+        <div id="stepList">
+          <div class="step-item" onclick="setStep(1)">
+            <div class="step-num done">✓</div>
+            <div>
+              <p style="font-size:14px; font-weight:400; color:#111; margin-bottom:4px;">Vehicle Details</p>
+              <p style="font-size:12px; color:#888; font-weight:300;">New vehicle · $2.5M</p>
+            </div>
+          </div>
+          <div class="step-item" onclick="setStep(2)">
+            <div class="step-num active" id="step2num">2</div>
+            <div>
+              <p style="font-size:14px; font-weight:400; color:#111; margin-bottom:4px;">Personal Information</p>
+              <p style="font-size:12px; color:#888; font-weight:300;">Identity & employment</p>
+            </div>
+          </div>
+          <div class="step-item" onclick="setStep(3)">
+            <div class="step-num" id="step3num">3</div>
+            <div>
+              <p style="font-size:14px; font-weight:400; color:#111; margin-bottom:4px;">Financial Profile</p>
+              <p style="font-size:12px; color:#888; font-weight:300;">Income & liabilities</p>
+            </div>
+          </div>
+          <div class="step-item" style="border-bottom:none;" onclick="setStep(4)">
+            <div class="step-num" id="step4num">4</div>
+            <div>
+              <p style="font-size:14px; font-weight:400; color:#111; margin-bottom:4px;">Review & Submit</p>
+              <p style="font-size:12px; color:#888; font-weight:300;">Confirm and send</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="stepContent" style="background:#fff; padding:48px;">
+        <div id="stepPanel2">
+          <span class="section-label">Step 2 of 4 — Personal Information</span>
+          <div class="progress-bar" style="margin-bottom:40px;"><div class="progress-fill" style="width:50%;"></div></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+            <div>
+              <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#999; display:block; margin-bottom:8px;">First Name</label>
+              <input type="text" placeholder="Marcus" style="width:100%; padding:12px 16px; border:1px solid #eee; font-size:14px; font-weight:300; outline:none; font-family:inherit;">
+            </div>
+            <div>
+              <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#999; display:block; margin-bottom:8px;">Last Name</label>
+              <input type="text" placeholder="Williams" style="width:100%; padding:12px 16px; border:1px solid #eee; font-size:14px; font-weight:300; outline:none; font-family:inherit;">
+            </div>
+            <div>
+              <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#999; display:block; margin-bottom:8px;">TRN / National ID</label>
+              <input type="text" placeholder="123-456-789" style="width:100%; padding:12px 16px; border:1px solid #eee; font-size:14px; font-weight:300; outline:none; font-family:inherit;">
+            </div>
+            <div>
+              <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#999; display:block; margin-bottom:8px;">Date of Birth</label>
+              <input type="text" placeholder="DD / MM / YYYY" style="width:100%; padding:12px 16px; border:1px solid #eee; font-size:14px; font-weight:300; outline:none; font-family:inherit;">
+            </div>
+            <div style="grid-column:span 2;">
+              <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#999; display:block; margin-bottom:8px;">Employment Status</label>
+              <select style="width:100%; padding:12px 16px; border:1px solid #eee; font-size:14px; font-weight:300; outline:none; font-family:inherit; background:#fff; appearance:none;">
+                <option>Employed — Full Time</option>
+                <option>Employed — Part Time</option>
+                <option>Self Employed</option>
+                <option>Business Owner</option>
+              </select>
+            </div>
+          </div>
+          <button onclick="setStep(3)" style="background:#111; color:#fff; padding:14px 32px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer;">CONTINUE →</button>
+        </div>
+        <div id="stepPanel3" style="display:none;">
+          <span class="section-label">Step 3 of 4 — Financial Profile</span>
+          <div class="progress-bar" style="margin-bottom:40px;"><div class="progress-fill" style="width:75%;"></div></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+            <div>
+              <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#999; display:block; margin-bottom:8px;">Monthly Income (JMD)</label>
+              <input type="text" placeholder="$350,000" style="width:100%; padding:12px 16px; border:1px solid #eee; font-size:14px; font-weight:300; outline:none; font-family:inherit;">
+            </div>
+            <div>
+              <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#999; display:block; margin-bottom:8px;">Other Monthly Income</label>
+              <input type="text" placeholder="$0" style="width:100%; padding:12px 16px; border:1px solid #eee; font-size:14px; font-weight:300; outline:none; font-family:inherit;">
+            </div>
+            <div>
+              <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#999; display:block; margin-bottom:8px;">Existing Loan Payments</label>
+              <input type="text" placeholder="$0" style="width:100%; padding:12px 16px; border:1px solid #eee; font-size:14px; font-weight:300; outline:none; font-family:inherit;">
+            </div>
+            <div>
+              <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#999; display:block; margin-bottom:8px;">Monthly Rent / Mortgage</label>
+              <input type="text" placeholder="$85,000" style="width:100%; padding:12px 16px; border:1px solid #eee; font-size:14px; font-weight:300; outline:none; font-family:inherit;">
+            </div>
+          </div>
+          <div style="background:#f9f9f9; padding:20px; margin-bottom:24px; border-left:3px solid #111;">
+            <p style="font-size:12px; color:#666; font-weight:300; line-height:1.6;">Based on the income you've entered, your estimated debt-to-income ratio is <strong style="color:#111;">32%</strong> — within the acceptable range for this loan amount.</p>
+          </div>
+          <button onclick="setStep(4)" style="background:#111; color:#fff; padding:14px 32px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer;">CONTINUE →</button>
+        </div>
+        <div id="stepPanel4" style="display:none;">
+          <span class="section-label">Step 4 of 4 — Review & Submit</span>
+          <div class="progress-bar" style="margin-bottom:40px;"><div class="progress-fill" style="width:100%;"></div></div>
+          <div style="background:#f9f9f9; padding:32px; margin-bottom:24px;">
+            <p style="font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:#999; margin-bottom:20px;">Application Summary</p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+              <div><p style="font-size:11px; color:#999;">Vehicle Type</p><p style="font-size:14px; font-weight:400; color:#111; margin-top:4px;">New Vehicle</p></div>
+              <div><p style="font-size:11px; color:#999;">Loan Amount</p><p style="font-size:14px; font-weight:400; color:#111; margin-top:4px;">$2,000,000</p></div>
+              <div><p style="font-size:11px; color:#999;">Term</p><p style="font-size:14px; font-weight:400; color:#111; margin-top:4px;">5 Years</p></div>
+              <div><p style="font-size:11px; color:#999;">Est. Monthly Payment</p><p style="font-size:14px; font-weight:400; color:#111; margin-top:4px;">$38,450</p></div>
+            </div>
+          </div>
+          <button style="background:#111; color:#fff; padding:14px 32px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; width:100%;">SUBMIT APPLICATION →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Before / After Compare -->
+  <div id="view-compare" style="display:none; padding:64px 48px; max-width:1296px; margin:0 auto;">
+    <span class="section-label">Design Evolution</span>
+    <h2 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:8px; color:#111;">Before and after the redesign.</h2>
+    <p style="font-size:15px; color:#888; font-weight:300; margin-bottom:48px;">Key improvements in hierarchy, CTA clarity, and journey structure.</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;">
+      <!-- Before -->
+      <div style="background:#fff; padding:40px;">
+        <span class="badge" style="background:#fee2e2; color:#991b1b; margin-bottom:24px; display:inline-block;">Before</span>
+        <div style="background:#f5f5f5; padding:24px; margin-bottom:16px;">
+          <div style="background:#ddd; height:12px; width:60%; margin-bottom:8px;"></div>
+          <div style="background:#ddd; height:8px; width:90%; margin-bottom:4px;"></div>
+          <div style="background:#ddd; height:8px; width:75%; margin-bottom:4px;"></div>
+          <div style="background:#ddd; height:8px; width:80%; margin-bottom:20px;"></div>
+          <div style="background:#ddd; height:8px; width:55%; margin-bottom:4px;"></div>
+          <div style="background:#ddd; height:8px; width:70%; margin-bottom:4px;"></div>
+          <div style="background:#ddd; height:8px; width:65%; margin-bottom:20px;"></div>
+          <div style="display:flex; gap:8px;">
+            <div style="background:#bbb; height:32px; width:100px;"></div>
+            <div style="background:#ddd; height:32px; width:80px;"></div>
+            <div style="background:#ddd; height:32px; width:80px;"></div>
+          </div>
+        </div>
+        <ul style="list-style:none; padding:0; margin:0;">
+          <li style="font-size:12px; color:#999; padding:8px 0; border-bottom:1px solid #f0f0f0; display:flex; gap:8px; align-items:center;"><span style="color:#E53935;">✕</span> Weak visual hierarchy — all text appears equal weight</li>
+          <li style="font-size:12px; color:#999; padding:8px 0; border-bottom:1px solid #f0f0f0; display:flex; gap:8px; align-items:center;"><span style="color:#E53935;">✕</span> Primary CTA buried among secondary actions</li>
+          <li style="font-size:12px; color:#999; padding:8px 0; border-bottom:1px solid #f0f0f0; display:flex; gap:8px; align-items:center;"><span style="color:#E53935;">✕</span> No clear next step after reading product info</li>
+          <li style="font-size:12px; color:#999; padding:8px 0; display:flex; gap:8px; align-items:center;"><span style="color:#E53935;">✕</span> Rate information hard to find and compare</li>
+        </ul>
+      </div>
+      <!-- After -->
+      <div style="background:#fff; padding:40px;">
+        <span class="badge badge-green" style="margin-bottom:24px; display:inline-block;">After</span>
+        <div style="background:#111; padding:24px; margin-bottom:16px;">
+          <div style="background:#333; height:8px; width:40%; margin-bottom:12px;"></div>
+          <div style="background:#fff; height:20px; width:80%; margin-bottom:8px;"></div>
+          <div style="background:#555; height:8px; width:65%; margin-bottom:24px;"></div>
+          <div style="display:flex; gap:8px; margin-bottom:24px;">
+            <div style="background:#fff; height:36px; width:140px;"></div>
+            <div style="background:#333; height:36px; width:120px; border:1px solid #555;"></div>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-bottom:16px;">
+          <div style="background:#f9f9f9; padding:16px;"><div style="background:#ddd; height:24px; width:60%; margin-bottom:8px;"></div><div style="background:#eee; height:8px; width:80%;"></div></div>
+          <div style="background:#f9f9f9; padding:16px;"><div style="background:#ddd; height:24px; width:60%; margin-bottom:8px;"></div><div style="background:#eee; height:8px; width:80%;"></div></div>
+        </div>
+        <ul style="list-style:none; padding:0; margin:0;">
+          <li style="font-size:12px; color:#666; padding:8px 0; border-bottom:1px solid #f0f0f0; display:flex; gap:8px; align-items:center;"><span style="color:#4CAF50;">✓</span> Clear headline hierarchy — product benefit leads</li>
+          <li style="font-size:12px; color:#666; padding:8px 0; border-bottom:1px solid #f0f0f0; display:flex; gap:8px; align-items:center;"><span style="color:#4CAF50;">✓</span> Primary CTA prominent and visually distinct</li>
+          <li style="font-size:12px; color:#666; padding:8px 0; border-bottom:1px solid #f0f0f0; display:flex; gap:8px; align-items:center;"><span style="color:#4CAF50;">✓</span> Rate metrics surfaced immediately above the fold</li>
+          <li style="font-size:12px; color:#666; padding:8px 0; display:flex; gap:8px; align-items:center;"><span style="color:#4CAF50;">✓</span> Journey steps clearly communicated upfront</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showView(id, btn) {
+      ['overview','calculator','journey','compare'].forEach(v => {
+        document.getElementById('view-' + v).style.display = 'none';
+      });
+      document.getElementById('view-' + id).style.display = 'block';
+      document.querySelectorAll('#mainNav .tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+
+    function selectCard(el) {
+      document.querySelectorAll('.car-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    function formatJMD(n) {
+      return '$' + Math.round(n).toLocaleString();
+    }
+
+    function updateCalc() {
+      const price = parseInt(document.getElementById('priceSlider').value);
+      const down = parseInt(document.getElementById('downSlider').value);
+      const term = parseInt(document.getElementById('termSlider').value);
+      const rate = parseInt(document.getElementById('rateSlider').value) / 10;
+
+      document.getElementById('priceDisplay').textContent = formatJMD(price);
+      document.getElementById('downDisplay').textContent = down + '%';
+      document.getElementById('termDisplay').textContent = term + (term === 1 ? ' year' : ' years');
+      document.getElementById('rateDisplay').textContent = rate.toFixed(1) + '%';
+
+      const loanAmt = price * (1 - down / 100);
+      const monthlyRate = rate / 100 / 12;
+      const n = term * 12;
+      const monthly = loanAmt * (monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+      const total = monthly * n;
+      const interest = total - loanAmt;
+
+      document.getElementById('monthlyPayment').textContent = formatJMD(monthly);
+      document.getElementById('loanAmount').textContent = formatJMD(loanAmt);
+      document.getElementById('totalRepay').textContent = formatJMD(total);
+      document.getElementById('totalInterest').textContent = formatJMD(interest);
+      document.getElementById('downAmount').textContent = formatJMD(price * down / 100);
+    }
+
+    function setStep(n) {
+      [2,3,4].forEach(i => {
+        const panel = document.getElementById('stepPanel' + i);
+        if (panel) panel.style.display = i === n ? 'block' : 'none';
+        const num = document.getElementById('step' + i + 'num');
+        if (num) {
+          num.className = 'step-num';
+          if (i < n) { num.className = 'step-num done'; num.textContent = '✓'; }
+          else if (i === n) { num.className = 'step-num active'; num.textContent = i; }
+          else { num.textContent = i; }
+        }
+      });
+    }
+
+    updateCalc();
+  </script>
+</body>
+</html>

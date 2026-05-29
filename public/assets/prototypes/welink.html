@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeLink - Find Skilled Local Pros</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#4CAF50',
+                            greenHover: '#43a047',
+                            red: '#E53935',
+                            dark: '#2c313c',
+                            darker: '#22262e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-white">
+    
+    <header class="bg-white sticky top-0 z-50 border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2">
+                <div class="text-brand-red text-4xl font-black tracking-tighter flex items-center">
+                    <svg class="w-8 h-8 mr-1 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4h3.5l3.5 12 3.5-12h3.5l-5.5 16h-3z" transform="translate(1)"></path><path d="M8.5 4h3.5l3.5 12 3.5-12h3.5l-5.5 16h-3z" opacity="0.5" transform="translate(-1)"></path></svg>
+                    WE LINK
+                </div>
+                <div class="flex flex-col mt-1">
+                    <span class="text-[0.65rem] uppercase tracking-widest text-gray-500 font-bold leading-none">Caribbean</span>
+                </div>
+            </a>
+            
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#" class="text-brand-green font-bold text-sm tracking-wide">HOME</a>
+                <a href="#" class="text-gray-500 hover:text-gray-900 font-bold text-sm tracking-wide transition-colors">FIND WORKERS</a>
+                <a href="#" class="text-gray-500 hover:text-gray-900 font-bold text-sm tracking-wide transition-colors">RESOURCES</a>
+                <a href="#" class="text-brand-green hover:text-brand-greenHover font-bold text-sm tracking-wide transition-colors">EXPLORE WELINK</a>
+            </nav>
+            
+            <div class="hidden md:flex items-center gap-6">
+                <a href="#" class="bg-brand-green hover:bg-brand-greenHover text-white px-6 py-2.5 rounded font-bold text-sm tracking-wide transition-colors shadow-sm">POST A JOB</a>
+                <div class="flex items-center gap-4 border-l border-gray-200 pl-6">
+                    <a href="#" class="text-brand-green font-bold text-sm tracking-wide hover:underline">SIGN UP</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-900 font-bold text-sm tracking-wide transition-colors">LOG IN</a>
+                </div>
+            </div>
+            
+            <button class="md:hidden text-gray-500">
+                <i class="ph ph-list text-3xl"></i>
+            </button>
+        </div>
+    </header>
+    
+    <section class="relative h-[600px] flex items-center justify-start bg-gray-900">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2831&q=80" alt="Construction Workers" class="w-full h-full object-cover opacity-60 mix-blend-overlay">
+            <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+            <div class="max-w-2xl">
+                <h1 class="text-5xl md:text-6xl lg:text-[4rem] font-bold text-white leading-tight mb-8 tracking-tight">
+                    Find skilled local <span class="block text-brand-green">pros for any</span> project.
+                </h1>
+                <div class="bg-white p-2 rounded flex flex-col sm:flex-row gap-2 shadow-2xl">
+                    <div class="flex-1 flex items-center px-4 bg-white rounded">
+                        <i class="ph ph-magnifying-glass text-gray-400 text-xl mr-3"></i>
+                        <input type="text" placeholder="What service do you need?" class="w-full py-3 outline-none text-gray-700 text-lg placeholder-gray-400">
+                    </div>
+                    <button class="bg-brand-green hover:bg-brand-greenHover text-white px-8 py-4 rounded font-bold text-sm uppercase tracking-wide transition-colors whitespace-nowrap">
+                        FIND WORKERS NOW
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="bg-gray-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 tracking-tight whitespace-nowrap">
+                Hear it from our customers
+            </h2>
+            <div class="flex-1 flex flex-col md:flex-row items-center gap-6 justify-end w-full">
+                <div class="flex flex-col items-center md:items-start">
+                    <span class="font-bold text-lg text-gray-900">Angella S.</span>
+                    <div class="flex items-center gap-1 text-brand-green my-1">
+                        <i class="ph-fill ph-star text-xl"></i>
+                        <i class="ph-fill ph-star text-xl"></i>
+                        <i class="ph-fill ph-star text-xl"></i>
+                        <i class="ph-fill ph-star text-xl"></i>
+                        <i class="ph-fill ph-star-half text-xl"></i>
+                    </div>
+                    <span class="text-sm font-semibold text-gray-500 uppercase tracking-widest">Rating | 4.5/5</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1bf32c?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80" alt="Angella S." class="w-20 h-20 rounded-full object-cover shadow-md border-2 border-white">
+                <p class="text-gray-600 text-sm max-w-sm italic border-l-2 border-gray-200 pl-6 py-2">
+                    "WeLink made it so easy to find a reliable plumber the same day. I had three quotes within an hour and the job was done by evening."
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mb-4">Find the right professional every time</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-full h-64 bg-gray-100 rounded-lg mb-8 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tell us what you need" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-brand-green font-bold text-sm tracking-widest uppercase mb-4">TELL US WHAT YOU NEED</h3>
+                    <p class="text-gray-900 font-bold text-xl px-4">Take advantage of a quick and easy search tool</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-full h-64 bg-gray-100 rounded-lg mb-8 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Get quotes" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-brand-green font-bold text-sm tracking-widests uppercase mb-4">GET QUOTES</h3>
+                    <p class="text-gray-900 font-bold text-xl px-4">Browse a selection of curated workers in every trade and compare quotes instantly</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-full h-64 bg-gray-100 rounded-lg mb-8 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Choose with confidence" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-brand-green font-bold text-sm tracking-widest uppercase mb-4">CHOOSE WITH CONFIDENCE</h3>
+                    <p class="text-gray-900 font-bold text-xl px-4">Read reviews and choose the right person for the job</p>
+                </div>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-6">
+                <a href="#" class="bg-brand-green hover:bg-brand-greenHover text-white px-10 py-4 rounded font-bold text-sm uppercase tracking-wide transition-colors shadow-md">POST A JOB</a>
+                <p class="text-gray-900 font-bold">Not ready yet? <a href="#" class="text-brand-green hover:underline">See how it works</a></p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-24 bg-white border-t border-gray-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-5/12">
+                    <span class="text-brand-green font-bold text-sm tracking-widest uppercase mb-4 block">WELINK FEATURE</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-6">Marcus &amp; Sons Construction</h2>
+                    <p class="text-xl text-gray-800 font-semibold mb-10 leading-relaxed">
+                        A family-run construction firm based in Kingston, Jamaica, specialising in residential builds, renovations, and commercial fit-outs across the Caribbean.
+                    </p>
+                    <a href="#" class="inline-block bg-brand-green hover:bg-brand-greenHover text-white px-10 py-4 rounded font-bold text-sm uppercase tracking-wide transition-colors shadow-md">POST A JOB</a>
+                </div>
+                <div class="w-full lg:w-7/12 relative h-[500px]">
+                    <div class="grid grid-cols-2 grid-rows-2 gap-4 h-full transform rotate-3 scale-105">
+                        <div class="col-span-1 row-span-2 overflow-hidden rounded-lg shadow-lg">
+                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356f27?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Worker" class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                        </div>
+                        <div class="col-span-1 row-span-1 overflow-hidden rounded-lg shadow-lg">
+                            <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Plans" class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                        </div>
+                        <div class="col-span-1 row-span-1 overflow-hidden rounded-lg shadow-lg">
+                            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Professional" class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-green tracking-tight mb-4">Popular trades and projects</h2>
+                <p class="text-gray-500 font-medium">Browse hundreds of skilled professionals across the Caribbean — from builders and electricians to photographers and landscapers. Whatever your project, we have the right person for the job.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="#" class="relative group h-64 overflow-hidden rounded-sm block">
+                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Photographers" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition duration-500"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h3 class="text-white font-bold text-xl tracking-wide">Photographers</h3>
+                    </div>
+                </a>
+                <a href="#" class="relative group h-64 overflow-hidden rounded-sm block">
+                    <img src="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Construction" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition duration-500"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h3 class="text-white font-bold text-xl tracking-wide">Construction</h3>
+                    </div>
+                </a>
+                <a href="#" class="relative group h-64 overflow-hidden rounded-sm block">
+                    <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Builders" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition duration-500"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h3 class="text-white font-bold text-xl tracking-wide">Builders</h3>
+                    </div>
+                </a>
+                <a href="#" class="relative group h-64 overflow-hidden rounded-sm block">
+                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Moving" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition duration-500"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h3 class="text-white font-bold text-xl tracking-wide">Moving</h3>
+                    </div>
+                </a>
+                <a href="#" class="relative group h-64 overflow-hidden rounded-sm block">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Retail" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition duration-500"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h3 class="text-white font-bold text-xl tracking-wide">Retail</h3>
+                    </div>
+                </a>
+                <a href="#" class="relative group h-64 overflow-hidden rounded-sm block">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Home" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition duration-500"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h3 class="text-white font-bold text-xl tracking-wide">Home</h3>
+                    </div>
+                </a>
+                <a href="#" class="relative group h-64 overflow-hidden rounded-sm block">
+                    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cleaning" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition duration-500"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h3 class="text-white font-bold text-xl tracking-wide">Cleaning</h3>
+                    </div>
+                </a>
+                <a href="#" class="relative group h-64 overflow-hidden rounded-sm block">
+                    <img src="https://images.unsplash.com/photo-1558904541-efa843a96f09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Landscaping" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition duration-500"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h3 class="text-white font-bold text-xl tracking-wide">Landscaping</h3>
+                    </div>
+                </a>
+                <a href="#" class="relative group h-64 overflow-hidden rounded-sm block">
+                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Restaurant" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition duration-500"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h3 class="text-white font-bold text-xl tracking-wide">Restaurant</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-gray-900 tracking-tight mb-12 text-center md:text-left">Skilled Workers for any job</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-4">
+                <div class="space-y-3">
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Architectural Designers</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Bathroom Fitters</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Bricklayers</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Builders</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Carpenters &amp; Joiners</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Carpet &amp; Lino Fitters</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Chimney &amp; Fireplace Specialists</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Conservatory Installers</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Conversion Specialists</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Damp Proofing Specialists</a>
+                </div>
+                <div class="space-y-3">
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Decking Specialists</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Demolition Specialists</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Driveway Pavers</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Electricians</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Extension Builders</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Fascias &amp; Soffits Specialists</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Fencers</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Flooring Fitters</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Gardeners</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Gas Engineers</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Groundworkers</a>
+                </div>
+                <div class="space-y-3">
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Guttering Installers</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Handymen</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Heating Engineers</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Insulation Installers</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Kitchen Fitters</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Landscape Gardeners</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Locksmiths</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Loft Conversion Specialists</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">New Home Builders</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Painters &amp; Decorators</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Plumbers</a>
+                </div>
+                <div class="space-y-3">
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Repointing Specialists</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Restoration &amp; Refurb Specialists</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Roofers</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Security System Installers</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Stonemasons</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Tarmac Driveway Specialists</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Tilers</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Tradesmen</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Waste Clearance Specialists</a>
+                    <a href="#" class="block text-[15px] font-bold text-[#1a73e8] hover:underline">Window &amp; Door Fitters</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="bg-gray-200 py-16">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 tracking-tight">Start your next project today</h2>
+            <a href="#" class="bg-brand-green hover:bg-brand-greenHover text-white px-10 py-4 rounded font-bold text-sm uppercase tracking-wide transition-colors shadow-md">FIND A WORKER</a>
+        </div>
+    </section>
+    
+    <section class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-16">
+            <div class="w-full md:w-1/2">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mb-8 uppercase">DOWNLOAD THE WELINK APP</h2>
+                <div class="flex items-center gap-6 mb-8">
+                    <div class="w-20 h-20 bg-brand-red rounded-2xl flex items-center justify-center shadow-lg transform -rotate-3">
+                        <svg class="w-12 h-12 text-white fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4h3.5l3.5 12 3.5-12h3.5l-5.5 16h-3z" transform="translate(1)"></path><path d="M8.5 4h3.5l3.5 12 3.5-12h3.5l-5.5 16h-3z" opacity="0.5" transform="translate(-1)"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 leading-tight">WeLink<br>Mobile App</h3>
+                    </div>
+                </div>
+                <p class="text-lg text-gray-600 font-medium mb-10 max-w-md">
+                    Get instant access to thousands of skilled workers, right at your fingertips. WeLink provides a fast, simple, and reliable way to hire workers on the fly.
+                </p>
+                <a href="#" class="inline-block bg-brand-green hover:bg-brand-greenHover text-white px-10 py-4 rounded font-bold text-sm uppercase tracking-wide transition-colors shadow-md">DOWNLOAD WELINK</a>
+            </div>
+            <div class="w-full md:w-1/2 relative h-[600px] flex justify-center items-center">
+                <div class="absolute right-0 md:right-10 top-0 w-[260px] h-[540px] bg-white rounded-[2.5rem] shadow-2xl border-[10px] border-gray-100 overflow-hidden transform rotate-6 translate-x-10 opacity-80">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="App Screen Background" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute left-0 md:left-20 top-10 w-[280px] h-[580px] bg-gradient-to-br from-pink-100 to-orange-100 rounded-[2.5rem] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] border-[12px] border-gray-800 overflow-hidden z-10">
+                    <div class="absolute top-0 inset-x-0 h-6 flex justify-center">
+                        <div class="w-32 h-6 bg-gray-800 rounded-b-2xl"></div>
+                    </div>
+                    <div class="w-full h-full flex flex-col items-center justify-center pt-10">
+                        <div class="w-24 h-24 bg-white rounded-2xl flex items-center justify-center shadow-lg mb-8">
+                            <svg class="w-14 h-14 text-brand-red fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4h3.5l3.5 12 3.5-12h3.5l-5.5 16h-3z" transform="translate(1)"></path><path d="M8.5 4h3.5l3.5 12 3.5-12h3.5l-5.5 16h-3z" opacity="0.5" transform="translate(-1)"></path></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="bg-brand-dark pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <a href="#" class="flex items-center gap-2 mb-6">
+                        <div class="text-white text-4xl font-black tracking-tighter flex items-center">
+                            <svg class="w-8 h-8 mr-1 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4h3.5l3.5 12 3.5-12h3.5l-5.5 16h-3z" transform="translate(1)"></path><path d="M8.5 4h3.5l3.5 12 3.5-12h3.5l-5.5 16h-3z" opacity="0.5" transform="translate(-1)"></path></svg>
+                            WE LINK
+                        </div>
+                        <div class="flex flex-col mt-1">
+                            <span class="text-[0.65rem] uppercase tracking-widest text-gray-400 font-bold leading-none">Caribbean</span>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <h4 class="text-brand-green font-bold mb-6 tracking-wide uppercase">QUICK LINKS</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors">Blog &amp; Resources</a></li>
+                        <li><a href="#" class="text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors">Help Center &amp; FAQs</a></li>
+                        <li><a href="#" class="text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors">News</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-brand-green font-bold mb-6 tracking-wide uppercase">CONNECT</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors">Careers</a></li>
+                        <li><a href="mailto:hello@welink.caribbean" class="text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors">hello@welink.caribbean</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-brand-green font-bold mb-6 tracking-wide uppercase">DOWNLOAD</h4>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-brand-red rounded-lg flex items-center justify-center">
+                           <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4h3.5l3.5 12 3.5-12h3.5l-5.5 16h-3z" transform="translate(1)"></path><path d="M8.5 4h3.5l3.5 12 3.5-12h3.5l-5.5 16h-3z" opacity="0.5" transform="translate(-1)"></path></svg>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-gray-400">Get the WeLink App</span>
+                            <span class="block text-sm font-bold text-white">WeLink Caribbean</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="#" class="bg-black border border-gray-700 rounded-md px-3 py-1 flex items-center gap-2 hover:bg-gray-900 transition">
+                            <i class="ph-fill ph-apple-logo text-xl text-white"></i>
+                            <div class="flex flex-col">
+                                <span class="text-[0.6rem] text-gray-400 leading-none">Download on the</span>
+                                <span class="text-xs font-semibold text-white leading-tight">App Store</span>
+                            </div>
+                        </a>
+                        <a href="#" class="bg-black border border-gray-700 rounded-md px-3 py-1 flex items-center gap-2 hover:bg-gray-900 transition">
+                            <i class="ph-fill ph-google-play-logo text-xl text-white"></i>
+                            <div class="flex flex-col">
+                                <span class="text-[0.6rem] text-gray-400 leading-none">GET IT ON</span>
+                                <span class="text-xs font-semibold text-white leading-tight">Google Play</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-brand-darker pt-8 mb-12 flex flex-col items-center">
+                <span class="text-blue-400 font-semibold text-sm mb-4">WeLink Caribbean</span>
+                <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-bold text-white">
+                    <a href="#" class="hover:text-brand-green transition">How it works</a>
+                    <span class="text-gray-600">|</span>
+                    <a href="#" class="hover:text-brand-green transition">Post a Job</a>
+                    <span class="text-gray-600">|</span>
+                    <a href="#" class="hover:text-brand-green transition">Work with Us</a>
+                    <span class="text-gray-600">|</span>
+                    <a href="#" class="hover:text-brand-green transition">WeLink Mobile</a>
+                    <span class="text-gray-600">|</span>
+                    <a href="#" class="hover:text-brand-green transition">Support</a>
+                    <span class="text-gray-600">|</span>
+                    <a href="#" class="hover:text-brand-green transition">Contact Us</a>
+                </nav>
+            </div>
+            
+            <div class="border-t border-brand-darker pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-xs">
+                    &copy; 2020–2026 WeLink Limited. <a href="#" class="text-blue-400 hover:underline">Terms and conditions</a> <a href="#" class="text-blue-400 hover:underline">Privacy notice</a> <a href="#" class="text-blue-400 hover:underline">Cookies &amp; Sitemap</a><br>
+                    Registered in Jamaica
+                </p>
+                <div class="flex gap-3">
+                    <a href="#" class="w-8 h-8 rounded-full bg-[#E53935] text-white flex items-center justify-center hover:bg-red-700 transition">
+                        <i class="ph-fill ph-facebook-logo text-lg"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-[#E53935] text-white flex items-center justify-center hover:bg-red-700 transition">
+                        <i class="ph-fill ph-twitter-logo text-lg"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-[#E53935] text-white flex items-center justify-center hover:bg-red-700 transition">
+                        <i class="ph-fill ph-instagram-logo text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

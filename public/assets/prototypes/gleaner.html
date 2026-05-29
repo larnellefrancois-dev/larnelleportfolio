@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Gleaner — Editorial Design System</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; background: #fff; color: #111; margin: 0; }
+    .serif { font-family: 'Playfair Display', serif; }
+    .tab-btn { padding: 8px 20px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid #ddd; background: transparent; color: #888; cursor: pointer; transition: all 0.2s; }
+    .tab-btn.active { background: #111; color: #fff; border-color: #111; }
+    .section-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: #999; margin-bottom: 16px; display: block; }
+    .article-card { border-bottom: 1px solid #eee; padding: 24px 0; cursor: pointer; transition: background 0.2s; }
+    .article-card:hover { background: #fafafa; }
+    .category-tag { display: inline-block; padding: 3px 10px; font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+    .pattern-block { background: #f9f9f9; padding: 24px; border: 1px solid #eee; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header style="background:#fff; border-bottom:2px solid #111; padding:0 48px; position:sticky; top:0; z-index:50;">
+    <div style="height:56px; display:flex; align-items:center; justify-content:space-between;">
+      <div style="display:flex; align-items:center; gap:24px;">
+        <div>
+          <p class="serif" style="font-size:22px; font-weight:700; color:#111; letter-spacing:-0.02em; line-height:1;">The Gleaner</p>
+          <p style="font-size:8px; text-transform:uppercase; letter-spacing:0.15em; color:#999; margin-top:1px;">Jamaica's National Newspaper</p>
+        </div>
+        <div style="width:1px; height:32px; background:#eee;"></div>
+        <p style="font-size:10px; color:#999; font-family:'Courier New',monospace; letter-spacing:0.06em; text-transform:uppercase;">Design System · Prototype</p>
+      </div>
+      <nav style="display:flex; gap:4px;" id="mainNav">
+        <button class="tab-btn active" onclick="showView('homepage', this)">Homepage</button>
+        <button class="tab-btn" onclick="showView('article', this)">Article</button>
+        <button class="tab-btn" onclick="showView('patterns', this)">Patterns</button>
+        <button class="tab-btn" onclick="showView('templates', this)">Templates</button>
+      </nav>
+    </div>
+    <!-- Nav bar -->
+    <div style="height:40px; display:flex; align-items:center; gap:0; border-top:1px solid #eee; overflow-x:auto;">
+      <a href="#" style="padding:0 16px; font-size:11px; font-weight:600; color:#111; text-decoration:none; text-transform:uppercase; letter-spacing:0.06em; height:40px; display:flex; align-items:center; border-right:1px solid #eee; white-space:nowrap; background:#111; color:#fff;">News</a>
+      <a href="#" style="padding:0 16px; font-size:11px; font-weight:600; color:#666; text-decoration:none; text-transform:uppercase; letter-spacing:0.06em; height:40px; display:flex; align-items:center; border-right:1px solid #eee; white-space:nowrap;">Business</a>
+      <a href="#" style="padding:0 16px; font-size:11px; font-weight:600; color:#666; text-decoration:none; text-transform:uppercase; letter-spacing:0.06em; height:40px; display:flex; align-items:center; border-right:1px solid #eee; white-space:nowrap;">Sports</a>
+      <a href="#" style="padding:0 16px; font-size:11px; font-weight:600; color:#666; text-decoration:none; text-transform:uppercase; letter-spacing:0.06em; height:40px; display:flex; align-items:center; border-right:1px solid #eee; white-space:nowrap;">Entertainment</a>
+      <a href="#" style="padding:0 16px; font-size:11px; font-weight:600; color:#666; text-decoration:none; text-transform:uppercase; letter-spacing:0.06em; height:40px; display:flex; align-items:center; border-right:1px solid #eee; white-space:nowrap;">Opinion</a>
+      <a href="#" style="padding:0 16px; font-size:11px; font-weight:600; color:#666; text-decoration:none; text-transform:uppercase; letter-spacing:0.06em; height:40px; display:flex; align-items:center; border-right:1px solid #eee; white-space:nowrap;">Caribbean</a>
+      <a href="#" style="padding:0 16px; font-size:11px; font-weight:600; color:#666; text-decoration:none; text-transform:uppercase; letter-spacing:0.06em; height:40px; display:flex; align-items:center; white-space:nowrap;">Lifestyle</a>
+    </div>
+  </header>
+
+  <!-- Homepage -->
+  <div id="view-homepage" style="padding:32px 48px; max-width:1296px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:2fr 1fr; gap:32px; margin-bottom:32px;">
+      <!-- Lead story -->
+      <div>
+        <div style="background:#f0f0f0; height:360px; margin-bottom:20px; display:flex; align-items:flex-end; padding:24px; position:relative; overflow:hidden;">
+          <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);"></div>
+          <div style="position:relative; z-index:1;">
+            <span class="category-tag" style="background:#E53935; color:#fff; margin-bottom:12px; display:inline-block;">Breaking News</span>
+            <h2 class="serif" style="font-size:clamp(22px, 3vw, 32px); font-weight:700; color:#fff; line-height:1.2; margin-bottom:8px;">Jamaica records strongest economic growth in a decade as tourism and exports surge</h2>
+            <p style="font-size:12px; color:rgba(255,255,255,0.7);">By Staff Reporter · 3 hours ago</p>
+          </div>
+        </div>
+        <p style="font-size:15px; color:#555; font-weight:300; line-height:1.7;">The Statistical Institute of Jamaica reported GDP growth of 4.8% for the first quarter of 2026, driven by record visitor arrivals and a 22% increase in agricultural exports. Economists say the figures signal a sustained recovery following years of post-pandemic restructuring.</p>
+      </div>
+
+      <!-- Secondary stories -->
+      <div style="display:flex; flex-direction:column; gap:0;">
+        <div class="article-card">
+          <span class="category-tag" style="background:#1565C0; color:#fff; margin-bottom:10px; display:inline-block;">Business</span>
+          <h3 class="serif" style="font-size:17px; font-weight:700; color:#111; line-height:1.3; margin-bottom:8px;">NCB reports record profits as digital banking adoption climbs to 68%</h3>
+          <p style="font-size:12px; color:#999;">2 hours ago · 4 min read</p>
+        </div>
+        <div class="article-card">
+          <span class="category-tag" style="background:#2E7D32; color:#fff; margin-bottom:10px; display:inline-block;">Sports</span>
+          <h3 class="serif" style="font-size:17px; font-weight:700; color:#111; line-height:1.3; margin-bottom:8px;">Reggae Boyz secure World Cup qualification with dominant display in Kingston</h3>
+          <p style="font-size:12px; color:#999;">5 hours ago · 3 min read</p>
+        </div>
+        <div class="article-card" style="border-bottom:none;">
+          <span class="category-tag" style="background:#6A1B9A; color:#fff; margin-bottom:10px; display:inline-block;">Opinion</span>
+          <h3 class="serif" style="font-size:17px; font-weight:700; color:#111; line-height:1.3; margin-bottom:8px;">The case for investing in Jamaica's creative economy — a generational opportunity</h3>
+          <p style="font-size:12px; color:#999;">Yesterday · 6 min read</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section divider -->
+    <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+      <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#111;">Latest Stories</span>
+      <div style="flex:1; height:1px; background:#eee;"></div>
+    </div>
+
+    <!-- Grid of stories -->
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:24px;">
+      <div>
+        <div style="background:#f5f5f5; height:160px; margin-bottom:12px;"></div>
+        <span class="category-tag" style="background:#E65100; color:#fff; margin-bottom:8px; display:inline-block;">Caribbean</span>
+        <h4 class="serif" style="font-size:15px; font-weight:700; color:#111; line-height:1.3; margin-bottom:6px;">Trinidad and Tobago launches new digital ID system for Caribbean nationals</h4>
+        <p style="font-size:11px; color:#999;">1 hour ago</p>
+      </div>
+      <div>
+        <div style="background:#f5f5f5; height:160px; margin-bottom:12px;"></div>
+        <span class="category-tag" style="background:#1565C0; color:#fff; margin-bottom:8px; display:inline-block;">Business</span>
+        <h4 class="serif" style="font-size:15px; font-weight:700; color:#111; line-height:1.3; margin-bottom:6px;">Digicel Jamaica expands 5G coverage to rural parishes ahead of schedule</h4>
+        <p style="font-size:11px; color:#999;">3 hours ago</p>
+      </div>
+      <div>
+        <div style="background:#f5f5f5; height:160px; margin-bottom:12px;"></div>
+        <span class="category-tag" style="background:#2E7D32; color:#fff; margin-bottom:8px; display:inline-block;">Lifestyle</span>
+        <h4 class="serif" style="font-size:15px; font-weight:700; color:#111; line-height:1.3; margin-bottom:6px;">Kingston's food scene earns international recognition in new culinary guide</h4>
+        <p style="font-size:11px; color:#999;">6 hours ago</p>
+      </div>
+      <div>
+        <div style="background:#f5f5f5; height:160px; margin-bottom:12px;"></div>
+        <span class="category-tag" style="background:#6A1B9A; color:#fff; margin-bottom:8px; display:inline-block;">Education</span>
+        <h4 class="serif" style="font-size:15px; font-weight:700; color:#111; line-height:1.3; margin-bottom:6px;">UWI Mona announces new scholarship programme for STEM graduates</h4>
+        <p style="font-size:11px; color:#999;">8 hours ago</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article -->
+  <div id="view-article" style="display:none; padding:32px 48px; max-width:1296px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:2fr 1fr; gap:48px;">
+      <article>
+        <span class="category-tag" style="background:#E53935; color:#fff; margin-bottom:16px; display:inline-block;">Breaking News</span>
+        <h1 class="serif" style="font-size:clamp(28px, 4vw, 48px); font-weight:700; color:#111; line-height:1.15; margin-bottom:16px; letter-spacing:-0.01em;">Jamaica records strongest economic growth in a decade as tourism and exports surge</h1>
+        <div style="display:flex; align-items:center; gap:16px; padding:16px 0; border-top:1px solid #eee; border-bottom:1px solid #eee; margin-bottom:32px;">
+          <div style="width:36px; height:36px; background:#ddd; border-radius:50%;"></div>
+          <div>
+            <p style="font-size:13px; font-weight:500; color:#111;">Staff Reporter</p>
+            <p style="font-size:11px; color:#999;">April 3, 2026 · 4 min read</p>
+          </div>
+          <div style="margin-left:auto; display:flex; gap:8px;">
+            <button style="padding:6px 14px; font-size:10px; text-transform:uppercase; letter-spacing:0.08em; border:1px solid #ddd; background:transparent; cursor:pointer; font-family:inherit; font-weight:600;">Share</button>
+            <button style="padding:6px 14px; font-size:10px; text-transform:uppercase; letter-spacing:0.08em; border:1px solid #ddd; background:transparent; cursor:pointer; font-family:inherit; font-weight:600;">Save</button>
+          </div>
+        </div>
+        <div style="background:#f5f5f5; height:320px; margin-bottom:12px;"></div>
+        <p style="font-size:11px; color:#999; font-style:italic; margin-bottom:32px;">The Kingston waterfront, where new commercial developments have contributed to the economic upturn. Photo: Gleaner Archive</p>
+        <p style="font-size:17px; color:#111; font-weight:300; line-height:1.8; margin-bottom:24px;">The Statistical Institute of Jamaica reported GDP growth of 4.8% for the first quarter of 2026, driven by record visitor arrivals and a 22% increase in agricultural exports. Economists say the figures signal a sustained recovery following years of post-pandemic restructuring.</p>
+        <p style="font-size:17px; color:#111; font-weight:300; line-height:1.8; margin-bottom:24px;">Tourism arrivals reached 1.2 million in the first quarter alone, surpassing pre-pandemic highs for the first time. The Ministry of Tourism attributed the growth to aggressive marketing campaigns in North America and Europe, as well as improved airlift capacity from major carriers.</p>
+        <blockquote style="border-left:3px solid #111; padding:16px 24px; margin:32px 0; background:#f9f9f9;">
+          <p class="serif" style="font-size:20px; font-style:italic; color:#111; line-height:1.5; margin-bottom:12px;">"These figures confirm what we have long believed — Jamaica's fundamentals are strong, and the economy is well-positioned for sustained growth over the next decade."</p>
+          <p style="font-size:12px; color:#999; font-weight:500;">— Minister of Finance, Dr. Nigel Clarke</p>
+        </blockquote>
+        <p style="font-size:17px; color:#111; font-weight:300; line-height:1.8;">Agricultural exports, particularly coffee, cocoa, and pimento, saw a 22% year-on-year increase, benefiting from favourable weather conditions and new trade agreements with European markets. The bauxite sector also contributed positively, with production volumes up 14% compared to the same period last year.</p>
+      </article>
+
+      <!-- Sidebar -->
+      <aside>
+        <div style="background:#f9f9f9; padding:24px; margin-bottom:24px;">
+          <span class="section-label">Most Read</span>
+          <div style="display:flex; flex-direction:column; gap:0;">
+            <div class="article-card" style="padding:16px 0;">
+              <p style="font-size:9px; font-weight:700; color:#E53935; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">01 · Business</p>
+              <p class="serif" style="font-size:14px; font-weight:700; color:#111; line-height:1.3;">NCB reports record profits as digital banking adoption climbs</p>
+            </div>
+            <div class="article-card" style="padding:16px 0;">
+              <p style="font-size:9px; font-weight:700; color:#2E7D32; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">02 · Sports</p>
+              <p class="serif" style="font-size:14px; font-weight:700; color:#111; line-height:1.3;">Reggae Boyz secure World Cup qualification</p>
+            </div>
+            <div class="article-card" style="padding:16px 0; border-bottom:none;">
+              <p style="font-size:9px; font-weight:700; color:#6A1B9A; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">03 · Opinion</p>
+              <p class="serif" style="font-size:14px; font-weight:700; color:#111; line-height:1.3;">The case for investing in Jamaica's creative economy</p>
+            </div>
+          </div>
+        </div>
+        <div style="background:#111; padding:24px;">
+          <p style="font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:#555; margin-bottom:12px;">Newsletter</p>
+          <p class="serif" style="font-size:18px; font-weight:700; color:#fff; line-height:1.3; margin-bottom:12px;">Get the morning briefing</p>
+          <p style="font-size:13px; color:#888; font-weight:300; line-height:1.6; margin-bottom:20px;">Top stories delivered to your inbox every weekday at 7am.</p>
+          <input type="email" placeholder="Your email address" style="width:100%; padding:10px 14px; background:#1a1a1a; border:1px solid #2a2a2a; color:#fff; font-size:13px; outline:none; font-family:inherit; margin-bottom:10px;">
+          <button style="width:100%; background:#fff; color:#111; padding:12px; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; font-family:inherit;">SUBSCRIBE FREE</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Patterns -->
+  <div id="view-patterns" style="display:none; padding:48px; max-width:1296px; margin:0 auto;">
+    <span class="section-label">Design System / Reusable Patterns</span>
+    <h2 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:8px; color:#111;">40+ reusable patterns.</h2>
+    <p style="font-size:15px; color:#888; font-weight:300; margin-bottom:48px;">Documented components that ensure consistency across all editorial contexts.</p>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:2px;">
+      <div class="pattern-block">
+        <span class="section-label">Category Tag</span>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <span class="category-tag" style="background:#E53935; color:#fff;">Breaking</span>
+          <span class="category-tag" style="background:#1565C0; color:#fff;">Business</span>
+          <span class="category-tag" style="background:#2E7D32; color:#fff;">Sports</span>
+          <span class="category-tag" style="background:#6A1B9A; color:#fff;">Opinion</span>
+          <span class="category-tag" style="background:#E65100; color:#fff;">Caribbean</span>
+        </div>
+      </div>
+      <div class="pattern-block">
+        <span class="section-label">Byline Pattern</span>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:32px; height:32px; background:#ddd; border-radius:50%;"></div>
+          <div>
+            <p style="font-size:13px; font-weight:500; color:#111; margin-bottom:2px;">Staff Reporter</p>
+            <p style="font-size:11px; color:#999;">April 3, 2026 · 4 min read</p>
+          </div>
+        </div>
+      </div>
+      <div class="pattern-block">
+        <span class="section-label">Pull Quote</span>
+        <blockquote style="border-left:3px solid #111; padding:8px 16px;">
+          <p class="serif" style="font-size:15px; font-style:italic; color:#111; line-height:1.5;">"Jamaica's fundamentals are strong."</p>
+          <p style="font-size:10px; color:#999; margin-top:8px;">— Minister of Finance</p>
+        </blockquote>
+      </div>
+      <div class="pattern-block">
+        <span class="section-label">Article Card — Compact</span>
+        <div style="display:flex; gap:12px;">
+          <div style="width:80px; height:64px; background:#ddd; flex-shrink:0;"></div>
+          <div>
+            <span class="category-tag" style="background:#1565C0; color:#fff; margin-bottom:6px; display:inline-block;">Business</span>
+            <p class="serif" style="font-size:13px; font-weight:700; color:#111; line-height:1.3;">NCB reports record profits</p>
+          </div>
+        </div>
+      </div>
+      <div class="pattern-block">
+        <span class="section-label">Section Divider</span>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#111; white-space:nowrap;">Latest Stories</span>
+          <div style="flex:1; height:1px; background:#ddd;"></div>
+        </div>
+      </div>
+      <div class="pattern-block">
+        <span class="section-label">Newsletter CTA</span>
+        <div style="background:#111; padding:16px;">
+          <p class="serif" style="font-size:14px; font-weight:700; color:#fff; margin-bottom:8px;">Get the morning briefing</p>
+          <input type="email" placeholder="Your email" style="width:100%; padding:8px 12px; background:#1a1a1a; border:1px solid #2a2a2a; color:#fff; font-size:12px; outline:none; font-family:inherit; margin-bottom:8px;">
+          <button style="width:100%; background:#fff; color:#111; padding:8px; font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; font-family:inherit;">SUBSCRIBE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Templates -->
+  <div id="view-templates" style="display:none; padding:48px; max-width:1296px; margin:0 auto;">
+    <span class="section-label">Design System / Content Templates</span>
+    <h2 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:8px; color:#111;">200 content templates.</h2>
+    <p style="font-size:15px; color:#888; font-weight:300; margin-bottom:48px;">Standardised layouts that accelerate publishing and maintain editorial consistency.</p>
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:2px;">
+      <div style="background:#f9f9f9; padding:24px; border:1px solid #eee; cursor:pointer; transition:border-color 0.2s;" onmouseover="this.style.borderColor='#111'" onmouseout="this.style.borderColor='#eee'">
+        <div style="background:#ddd; height:120px; margin-bottom:16px;"></div>
+        <p style="font-size:12px; font-weight:600; color:#111; margin-bottom:4px;">Lead Story — Full Width</p>
+        <p style="font-size:11px; color:#999; font-weight:300;">Hero image with overlay headline and category tag</p>
+      </div>
+      <div style="background:#f9f9f9; padding:24px; border:1px solid #eee; cursor:pointer; transition:border-color 0.2s;" onmouseover="this.style.borderColor='#111'" onmouseout="this.style.borderColor='#eee'">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px; height:120px; margin-bottom:16px;"><div style="background:#ddd;"></div><div style="background:#ddd;"></div></div>
+        <p style="font-size:12px; font-weight:600; color:#111; margin-bottom:4px;">Two-Column Grid</p>
+        <p style="font-size:11px; color:#999; font-weight:300;">Equal-weight stories with shared visual weight</p>
+      </div>
+      <div style="background:#f9f9f9; padding:24px; border:1px solid #eee; cursor:pointer; transition:border-color 0.2s;" onmouseover="this.style.borderColor='#111'" onmouseout="this.style.borderColor='#eee'">
+        <div style="display:grid; grid-template-columns:2fr 1fr; gap:4px; height:120px; margin-bottom:16px;"><div style="background:#ddd;"></div><div style="display:flex; flex-direction:column; gap:4px;"><div style="background:#ddd; flex:1;"></div><div style="background:#ddd; flex:1;"></div></div></div>
+        <p style="font-size:12px; font-weight:600; color:#111; margin-bottom:4px;">Lead + Secondary Stack</p>
+        <p style="font-size:11px; color:#999; font-weight:300;">Primary story with two supporting articles</p>
+      </div>
+      <div style="background:#f9f9f9; padding:24px; border:1px solid #eee; cursor:pointer; transition:border-color 0.2s;" onmouseover="this.style.borderColor='#111'" onmouseout="this.style.borderColor='#eee'">
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:4px; height:120px; margin-bottom:16px;"><div style="background:#ddd;"></div><div style="background:#ddd;"></div><div style="background:#ddd;"></div><div style="background:#ddd;"></div></div>
+        <p style="font-size:12px; font-weight:600; color:#111; margin-bottom:4px;">Four-Column Digest</p>
+        <p style="font-size:11px; color:#999; font-weight:300;">Compact grid for section fronts and digests</p>
+      </div>
+    </div>
+    <div style="background:#111; padding:40px; margin-top:2px;">
+      <span class="section-label" style="color:#555;">Impact — Design System Outcomes</span>
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:32px;">
+        <div><p style="font-size:40px; font-weight:200; color:#fff; line-height:1;">40+</p><p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; margin-top:8px;">Reusable Patterns</p></div>
+        <div><p style="font-size:40px; font-weight:200; color:#fff; line-height:1;">200</p><p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; margin-top:8px;">Content Templates</p></div>
+        <div><p style="font-size:40px; font-weight:200; color:#fff; line-height:1;">35%</p><p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; margin-top:8px;">Faster Publishing</p></div>
+        <div><p style="font-size:40px; font-weight:200; color:#fff; line-height:1;">2×</p><p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; margin-top:8px;">Reader Engagement</p></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showView(id, btn) {
+      ['homepage','article','patterns','templates'].forEach(v => {
+        document.getElementById('view-' + v).style.display = 'none';
+      });
+      document.getElementById('view-' + id).style.display = 'block';
+      document.querySelectorAll('#mainNav .tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>

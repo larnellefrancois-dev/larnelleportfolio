@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Loan Management Dashboard — Old Design</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        input[type="radio"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.25em;
+            height: 1.25em;
+            border: 1px solid #9ca3af;
+            border-radius: 50%;
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+        }
+        input[type="radio"]::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em white;
+            background-color: #0055a4;
+        }
+        input[type="radio"]:checked {
+            border-color: #0055a4;
+            background-color: #0055a4;
+        }
+        input[type="radio"]:checked::before {
+            transform: scale(1);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-[#f4f6f8] w-screen h-screen overflow-hidden flex flex-col text-gray-800">
+    <header class="h-[48px] bg-[#0055a4] flex items-center justify-between px-6 shrink-0 w-full">
+        <div class="flex items-center gap-2">
+            <svg width="32" height="24" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 15C0 6.71573 6.71573 0 15 0H25C33.2843 0 40 6.71573 40 15C40 23.2843 33.2843 30 25 30H15C6.71573 30 0 23.2843 0 15Z" fill="white" fill-opacity="0.1"/>
+                <path d="M8 22V8L22 18V8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="28" cy="15" r="5" stroke="white" stroke-width="2.5"/>
+            </svg>
+            <div class="text-white flex flex-col justify-center leading-none">
+                <span class="font-bold text-[10px] tracking-wider uppercase opacity-90">National</span>
+                <span class="font-bold text-[10px] tracking-wider uppercase opacity-90">Commercial</span>
+                <span class="font-bold text-[10px] tracking-wider uppercase opacity-90">Bank</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-6 text-white text-sm">
+            <button class="flex items-center gap-2 hover:text-blue-100 transition-colors">
+                <div class="relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"/>
+                    </svg>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border border-[#0055a4]"></span>
+                </div>
+                <span>Notifications</span>
+            </button>
+            <button class="flex items-center gap-2 hover:text-blue-100 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Zm97.76,66.41a79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75,88,88,0,1,1,131.52,0Z"/>
+                </svg>
+                <span class="font-medium">Larnelle C.</span>
+            </button>
+        </div>
+    </header>
+    <div class="flex flex-1 w-full overflow-hidden">
+        <nav class="w-[68px] bg-white border-r border-gray-200 flex flex-col items-center py-4 gap-6 shrink-0 z-20">
+            <button class="w-10 h-10 bg-[#0066cc] text-white rounded-lg flex items-center justify-center font-bold text-lg mb-2 shadow-sm">Lx</button>
+            <button class="w-12 h-12 rounded-full bg-[#fef3c7] text-[#92400e] flex items-center justify-center transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M240,112H227.2l-18.11-45.29A24,24,0,0,0,186.81,56H69.19a24,24,0,0,0-22.28,10.71L28.8,112H16a8,8,0,0,0,0,16h8v64a16,16,0,0,0,16,16H56a16,16,0,0,0,16-16V176H184v16a16,16,0,0,0,16,16h16a16,16,0,0,0,16-16V128h8a8,8,0,0,0,0-16ZM69.19,72H186.81a8,8,0,0,1,7.43,5.05L208.4,112H47.6l14.16-34.95A8,8,0,0,1,69.19,72ZM56,160a16,16,0,1,1,16-16A16,16,0,0,1,56,160Zm144,0a16,16,0,1,1,16-16A16,16,0,0,1,200,160Z"/>
+                </svg>
+            </button>
+            <button class="w-10 h-10 rounded-full text-gray-500 hover:bg-gray-100 flex items-center justify-center transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M218.83,103.77l-80-75.48a11.94,11.94,0,0,0-16.33,0l-80,75.48A12,12,0,0,0,46.62,124.1L56,115.25V208a12,12,0,0,0,12,12H188a12,12,0,0,0,12-12V115.25l9.38,8.85a12,12,0,0,0,16.46-17.41ZM176,208H148V160a12,12,0,0,0-24,0v48H96V104l56-52.81L208,104Z"/>
+                </svg>
+            </button>
+            <button class="w-10 h-10 rounded-full text-gray-500 hover:bg-gray-100 flex items-center justify-center transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,24,24,0,0,1,0-48h8a8,8,0,0,0,0-16H116a8,8,0,0,1,0-16,24,24,0,0,1,0,48h-8a8,8,0,0,0,0,16h28A8,8,0,0,1,144,176Z"/>
+                </svg>
+            </button>
+            <button class="w-10 h-10 rounded-full text-gray-500 hover:bg-gray-100 flex items-center justify-center transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M208,40H48A16,16,0,0,0,32,56v58.77c0,89.61,75.82,119.34,91,124.39a15.53,15.53,0,0,0,10,0c15.2-5.05,91-34.78,91-124.39V56A16,16,0,0,0,208,40Zm0,74.77c0,71.52-56.15,96.64-80,106.73-23.85-10.09-80-35.21-80-106.73V56H208Z"/>
+                </svg>
+            </button>
+            <button class="w-10 h-10 rounded-full text-gray-500 hover:bg-gray-100 flex items-center justify-center transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M216,56H40A16,16,0,0,0,24,72V184a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V72A16,16,0,0,0,216,56ZM40,72H216V96H40ZM216,184H40V128H216v56Zm-32-24a8,8,0,0,1-8,8H136a8,8,0,0,1,0-16h40A8,8,0,0,1,184,160Z"/>
+                </svg>
+            </button>
+            <button class="w-10 h-10 rounded-full text-gray-500 hover:bg-gray-100 flex items-center justify-center transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M24,104A24,24,0,0,1,48,80H208a24,24,0,0,1,24,24v48a24,24,0,0,1-24,24H48a24,24,0,0,1-24-24Zm24-8H208a8,8,0,0,1,8,8v48a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V104A8,8,0,0,1,48,96Zm80,48a16,16,0,1,0-16-16A16,16,0,0,0,128,144ZM64,128a8,8,0,1,1-8-8A8,8,0,0,1,64,128Zm136-8a8,8,0,1,0,8,8A8,8,0,0,0,200,120Z"/>
+                </svg>
+            </button>
+            <button class="w-10 h-10 rounded-full text-gray-500 hover:bg-gray-100 flex items-center justify-center transition-colors mt-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/>
+                </svg>
+            </button>
+            <button class="w-10 h-10 rounded-full text-gray-500 hover:bg-gray-100 flex items-center justify-center transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M216,72H130.67L102.93,51.2a16.12,16.12,0,0,0-9.6-3.2H40A16,16,0,0,0,24,64V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V88A16,16,0,0,0,216,72ZM40,64H93.33l27.74,20.8a16.12,16.12,0,0,0,9.6,3.2H216v16H40ZM216,200H40V120H216v80Z"/>
+                </svg>
+            </button>
+            <button class="w-10 h-10 rounded-full text-gray-500 hover:bg-gray-100 flex items-center justify-center transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M112,104a16,16,0,1,1-16-16A16,16,0,0,1,112,104Zm96-16a16,16,0,1,0,16,16A16,16,0,0,0,208,88ZM80,152a16,16,0,1,0,16,16A16,16,0,0,0,80,152ZM216,48V64a8,8,0,0,1-16,0V48a8,8,0,0,1,16,0Zm-16,72v88a8,8,0,0,0,16,0V120a8,8,0,0,0-16,0ZM96,48V88a8,8,0,0,1-16,0V48a8,8,0,0,1,16,0ZM80,136a8,8,0,0,0-8,8v64a8,8,0,0,0,16,0V144A8,8,0,0,0,80,136Z"/>
+                </svg>
+            </button>
+        </nav>
+        <div class="flex-1 flex flex-col min-w-0 h-full">
+            <div class="h-[64px] bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0 z-10 w-full">
+                <div class="flex items-center gap-2">
+                    <button class="px-4 py-2 text-gray-600 font-medium text-sm hover:text-gray-900 transition-colors">Dashboard</button>
+                    <button class="px-4 py-2 bg-[#f4f6f8] text-gray-900 font-semibold text-sm rounded-md border border-gray-200">Create WI</button>
+                    <button class="px-4 py-2 text-gray-600 font-medium text-sm hover:text-gray-900 transition-colors">Refresh</button>
+                    <button class="px-4 py-2 text-gray-600 font-medium text-sm hover:text-gray-900 transition-colors">More</button>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center border border-gray-200 rounded-md bg-[#fafafa] overflow-hidden w-[400px] h-[36px] focus-within:ring-1 focus-within:ring-[#0066cc] focus-within:border-[#0066cc] transition-shadow">
+                        <div class="pl-3 pr-2 text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                                <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/>
+                            </svg>
+                        </div>
+                        <input type="text" placeholder="Search" class="flex-1 bg-transparent border-none text-sm outline-none placeholder:text-gray-400 text-gray-800 h-full">
+                        <div class="h-full border-l border-gray-200 bg-[#f4f6f8] flex items-center px-4">
+                            <span class="text-xs text-gray-500 font-medium">Quick Search</span>
+                        </div>
+                    </div>
+                    <button class="border border-[#0066cc] text-[#0066cc] bg-white hover:bg-blue-50 px-5 py-1.5 rounded-md text-sm font-medium transition-colors h-[36px]">Advanced Search</button>
+                </div>
+            </div>
+            <div class="flex-1 flex overflow-hidden w-full relative">
+                <aside class="w-[320px] bg-white border-r border-gray-200 flex flex-col shrink-0 h-full z-10 shadow-[2px_0_10px_rgba(0,0,0,0.02)]">
+                    <div class="p-6 pb-4">
+                        <div class="flex items-center justify-between mb-1">
+                            <h2 class="text-lg font-semibold text-gray-900">Create a work item</h2>
+                            <button class="text-gray-400 hover:text-gray-600 transition-colors p-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                                    <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <p class="text-sm text-gray-500">Create new loan application.</p>
+                        <div class="mt-5 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256">
+                                    <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/>
+                                </svg>
+                            </div>
+                            <input type="text" placeholder="Search" class="w-full pl-9 pr-3 py-2 bg-[#f4f6f8] border border-gray-200 rounded-md text-sm outline-none focus:border-[#0066cc] transition-colors placeholder:text-gray-400">
+                        </div>
+                    </div>
+                    <div class="flex-1 overflow-y-auto no-scrollbar">
+                        <button class="w-full text-left px-6 py-4 border-b border-gray-100 border-l-4 border-l-[#0055a4] bg-[#f0f7ff] text-[#0055a4] flex items-center justify-between transition-colors">
+                            <span class="font-medium text-[15px]">Automobile Loan</span>
+                        </button>
+                        <button class="w-full text-left px-6 py-4 border-b border-gray-100 border-l-4 border-l-transparent text-gray-600 hover:bg-gray-50 flex items-center justify-between transition-colors">
+                            <span class="font-medium text-[15px]">Mortgage Loan</span>
+                        </button>
+                        <button class="w-full text-left px-6 py-4 border-b border-gray-100 border-l-4 border-l-transparent text-gray-600 hover:bg-gray-50 flex items-center justify-between transition-colors">
+                            <span class="font-medium text-[15px]">Unsecured Loan</span>
+                        </button>
+                        <button class="w-full text-left px-6 py-4 border-b border-gray-100 border-l-4 border-l-transparent text-gray-600 hover:bg-gray-50 flex items-center justify-between transition-colors">
+                            <span class="font-medium text-[15px]">Secured Loan</span>
+                        </button>
+                        <button class="w-full text-left px-6 py-4 border-b border-gray-100 border-l-4 border-l-transparent text-gray-600 hover:bg-gray-50 flex items-center justify-between transition-colors">
+                            <span class="font-medium text-[15px]">Credit Card</span>
+                        </button>
+                        <button class="w-full text-left px-6 py-4 border-b border-gray-100 border-l-4 border-l-transparent text-gray-600 hover:bg-gray-50 flex items-center justify-between transition-colors">
+                            <span class="font-medium text-[15px]">Cash Secured Loan</span>
+                        </button>
+                    </div>
+                </aside>
+                <main class="flex-1 overflow-y-auto w-full p-8 relative">
+                    <div class="max-w-[1000px] mx-auto w-full">
+                        <div class="flex items-start justify-between mb-6">
+                            <div>
+                                <nav class="flex items-center text-sm text-gray-500 mb-3 gap-2">
+                                    <a href="#" class="hover:text-gray-800 transition-colors">Dashboard</a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></svg>
+                                    <a href="#" class="hover:text-gray-800 transition-colors">Work Items</a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></svg>
+                                    <span class="text-gray-400">Create New WI</span>
+                                </nav>
+                                <h1 class="text-[28px] font-semibold text-gray-900 tracking-tight">Create New WI</h1>
+                            </div>
+                            <div class="relative w-[72px] h-[72px] shrink-0">
+                                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="42" stroke="#e0f2fe" stroke-width="8" fill="transparent"/>
+                                    <circle cx="50" cy="50" r="42" stroke="#0055a4" stroke-width="8" fill="transparent" stroke-dasharray="264" stroke-dashoffset="198" stroke-linecap="round"/>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-[#0055a4] font-bold text-sm">25%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-gray-200/60 overflow-hidden">
+                            <div class="p-8">
+                                <h3 class="text-[20px] font-medium text-gray-900">Automobile Loan</h3>
+                                <p class="mt-3 text-[15px] text-gray-600 leading-relaxed max-w-3xl">Whether it's a new or a used vehicle, our customers enjoy competitive rates and flexible payment terms.</p>
+                            </div>
+                            <div class="h-px bg-gray-100 mx-8"></div>
+                            <div class="p-8">
+                                <h3 class="text-[20px] font-medium text-gray-900">Basic Information</h3>
+                                <p class="mt-2 text-[15px] text-gray-500">Please enter some basic information about the customer to get started</p>
+                                <div class="mt-8 space-y-4">
+                                    <label class="flex items-center gap-3 cursor-pointer group">
+                                        <input type="radio" name="customer_status" value="yes" class="shrink-0">
+                                        <span class="text-[15px] text-gray-700 group-hover:text-gray-900 transition-colors">Applicant is an NCB customer</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 cursor-pointer group">
+                                        <input type="radio" name="customer_status" value="no" class="shrink-0" checked>
+                                        <span class="text-[15px] text-gray-700 group-hover:text-gray-900 transition-colors">Applicant is not a customer</span>
+                                    </label>
+                                </div>
+                                <div class="mt-10 grid grid-cols-2 gap-x-8 gap-y-7">
+                                    <div class="flex flex-col gap-2">
+                                        <label class="text-[14px] font-medium text-gray-800">TRN</label>
+                                        <input type="text" placeholder="TRN" class="w-full px-3.5 py-2.5 bg-white border border-gray-300 rounded-md text-[15px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-[#0055a4] focus:border-[#0055a4] transition-shadow shadow-sm">
+                                    </div>
+                                    <div class="flex flex-col gap-2 relative">
+                                        <label class="text-[14px] font-medium text-gray-800">Date of Birth</label>
+                                        <div class="relative">
+                                            <input type="text" placeholder="Date of Birth" class="w-full pl-3.5 pr-10 py-2.5 bg-white border border-gray-300 rounded-md text-[15px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-[#0055a4] focus:border-[#0055a4] transition-shadow shadow-sm cursor-pointer">
+                                            <div class="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#0055a4] pointer-events-none">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+                                                    <path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-96-88v64a8,8,0,0,1-16,0V120a8,8,0,0,1,16,0Z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label class="text-[14px] font-medium text-gray-800">First Name</label>
+                                        <input type="text" placeholder="First Name" class="w-full px-3.5 py-2.5 bg-white border border-gray-300 rounded-md text-[15px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-[#0055a4] focus:border-[#0055a4] transition-shadow shadow-sm">
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label class="text-[14px] font-medium text-gray-800">Last Name</label>
+                                        <input type="text" placeholder="Last Name" class="w-full px-3.5 py-2.5 bg-white border border-gray-300 rounded-md text-[15px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-[#0055a4] focus:border-[#0055a4] transition-shadow shadow-sm">
+                                    </div>
+                                </div>
+                                <div class="mt-12 flex justify-end">
+                                    <button class="bg-[#f4f6f8] text-gray-400 px-8 py-2.5 rounded-md text-[15px] font-medium cursor-not-allowed border border-transparent transition-colors">Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-12"></div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

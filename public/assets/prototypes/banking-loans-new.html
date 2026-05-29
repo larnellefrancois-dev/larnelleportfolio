@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Loan Management Dashboard — New Design</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .tab-active { font-weight: 600; color: #1e293b; border-bottom: 2px solid #005a9c; }
+        .tab-inactive { color: #64748b; border-bottom: 2px solid transparent; }
+        .tab-inactive:hover { color: #334155; border-bottom: 2px solid #cbd5e1; }
+        .view-hidden { display: none !important; }
+    </style>
+</head>
+<body class="w-full h-screen overflow-hidden text-slate-800 text-sm">
+    <div class="flex w-full h-full antialiased">
+        <div class="w-14 bg-[#004e89] flex flex-col items-center py-4 shrink-0 justify-between">
+            <div class="flex flex-col items-center gap-6 w-full">
+                <div class="text-white font-semibold text-xl tracking-wider mb-2">Lx</div>
+                <button class="w-full flex justify-center py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors relative group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+                    <div class="absolute top-1 right-2 bg-white text-[#004e89] rounded-sm flex items-center justify-center p-[1px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+                    </div>
+                </button>
+                <button class="w-full flex justify-center py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M221.8,175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,224a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,224Zm-80-40c8.77-15.06,16-42.24,16-80a64,64,0,1,1,128,0c0,37.76,7.23,64.94,16,80Z"/></svg>
+                </button>
+                <button class="w-full flex justify-center py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M216,72H130.67L102.93,51.2a16.12,16.12,0,0,0-9.6-3.2H40A16,16,0,0,0,24,64V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V88A16,16,0,0,0,216,72ZM40,64H93.33l27.74,20.8a16.12,16.12,0,0,0,9.6,3.2H216v16H40ZM216,200H40V120H216v80Z"/></svg>
+                </button>
+            </div>
+            <div class="flex flex-col items-center gap-6 w-full pb-2">
+                <button class="w-full flex justify-center py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-1.16c19.16-4.56,32-21.41,32-40.84C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>
+                </button>
+                <button class="w-full flex justify-center py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></svg>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-slate-300 overflow-hidden border-2 border-white/20 mt-2">
+                    <div class="w-full h-full bg-[#005a9c] flex items-center justify-center text-white font-medium text-lg">M</div>
+                </button>
+            </div>
+        </div>
+        <div class="w-64 bg-[#f8fafc] border-r border-slate-200 flex flex-col shrink-0">
+            <div class="p-4 flex items-center justify-between mt-2">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Product Queues</span>
+                <button class="p-1 border border-slate-200 rounded bg-white hover:bg-slate-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 256 256"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/></svg>
+                </button>
+            </div>
+            <div class="px-4 pb-4">
+                <div class="relative w-full cursor-pointer bg-white border border-slate-300 rounded shadow-sm hover:border-slate-400">
+                    <div class="flex items-center justify-between px-3 py-2">
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="text-slate-500" fill="currentColor" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56V200a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V56A16,16,0,0,0,208,40ZM48,56H208v48H48ZM208,200H48V120H208v80Z"/></svg>
+                            <span class="text-sm font-medium text-slate-800" id="sidebar-queue-name">My Queue</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="px-2 py-2 border-b border-slate-200">
+                <button class="w-full flex items-center gap-3 px-3 py-2 text-slate-700 hover:bg-slate-200 rounded transition-colors text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="text-slate-400" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+                    New
+                </button>
+                <button class="w-full flex items-center gap-3 px-3 py-2 text-slate-700 hover:bg-slate-200 rounded transition-colors text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="text-slate-400" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></svg>
+                    Search
+                </button>
+                <button class="w-full flex items-center gap-3 px-3 py-2 text-slate-700 hover:bg-slate-200 rounded transition-colors text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="text-slate-400" fill="currentColor" viewBox="0 0 256 256"><path d="M200,136a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H192A8,8,0,0,1,200,136Zm32-56H24a8,8,0,0,0,0,16H232a8,8,0,0,0,0-16Zm-80,96H104a8,8,0,0,0,0,16h48a8,8,0,0,0,0-16Z"/></svg>
+                    Filters
+                </button>
+            </div>
+            <div id="workflow-stages" class="flex-1 overflow-y-auto py-2">
+                <ul class="text-[13px] text-slate-700">
+                    <li><button class="w-full text-left px-6 py-2.5 hover:bg-slate-200 transition-colors">Applicant Review</button></li>
+                    <li><button class="w-full text-left px-6 py-2.5 hover:bg-slate-200 transition-colors">Authorize LU</button></li>
+                    <li><button class="w-full text-left px-6 py-2.5 hover:bg-slate-200 transition-colors">CDSU Review</button></li>
+                    <li><button class="w-full text-left px-6 py-2.5 hover:bg-slate-200 transition-colors">Conditionally Approved</button></li>
+                    <li><button class="w-full text-left px-6 py-2.5 hover:bg-slate-200 transition-colors">Data Entry</button></li>
+                    <li><button class="w-full text-left px-6 py-2.5 hover:bg-slate-200 transition-colors">Declined Application</button></li>
+                    <li id="active-stage-li" class="view-hidden"><button class="w-full text-left px-6 py-2.5 bg-[#e0effe] text-[#005a9c] font-medium border-l-0 border-[#005a9c] transition-colors">Initiation</button></li>
+                    <li id="inactive-stage-li"><button class="w-full text-left px-6 py-2.5 hover:bg-slate-200 transition-colors">Initiation</button></li>
+                    <li><button class="w-full text-left px-6 py-2.5 hover:bg-slate-200 transition-colors">Loan Disbursement</button></li>
+                    <li><button class="w-full text-left px-6 py-2.5 hover:bg-slate-200 transition-colors">Loan Opening</button></li>
+                    <li><button class="w-full text-left px-6 py-2.5 hover:bg-slate-200 transition-colors">Loan Verification</button></li>
+                    <li><button class="w-full text-left px-6 py-2.5 hover:bg-slate-200 transition-colors">Manager's Appeal</button></li>
+                    <li><button class="w-full text-left px-6 py-2.5 hover:bg-slate-200 transition-colors">Manual Salary Verification</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="flex-1 flex flex-col h-full bg-white relative overflow-hidden">
+            <div id="view-queue" class="flex-1 overflow-y-auto w-full h-full flex flex-col">
+                <div class="px-8 py-8 w-full max-w-[1400px]">
+                    <div class="mb-10">
+                        <h1 class="text-2xl font-semibold text-slate-900 mb-3 tracking-tight">My Queue</h1>
+                        <p class="text-slate-500 text-sm leading-relaxed">Your queue contains work items that you are working on or have been assigned to you</p>
+                    </div>
+                    <div class="flex items-center gap-8 mb-10 border-b border-slate-100 pb-6 w-full">
+                        <button class="bg-[#005a9c] hover:bg-[#004e89] text-white px-5 py-2.5 rounded-md text-sm font-semibold flex items-center gap-2.5 transition-all shadow-sm hover:shadow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+                            NEW WORK ITEM
+                        </button>
+                        <button class="text-[#005a9c] flex items-center gap-2 text-sm font-medium hover:text-[#004e89] uppercase">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Zm97.76,66.41a79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75,88,88,0,1,1,131.52,0Z"/></svg>
+                            ASSIGN TO
+                        </button>
+                        <button class="text-[#005a9c] flex items-center gap-2 text-sm font-medium hover:text-[#004e89] uppercase">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M200,136a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H192A8,8,0,0,1,200,136Zm32-56H24a8,8,0,0,0,0,16H232a8,8,0,0,0,0-16Zm-80,96H104a8,8,0,0,0,0,16h48a8,8,0,0,0,0-16Z"/></svg>
+                            FILTERS
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 256 256" class="mt-0.5"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+                        </button>
+                        <button class="text-[#005a9c] flex items-center gap-2 text-sm font-medium hover:text-[#004e89] uppercase">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M128,128a8,8,0,0,1-8,8H48a8,8,0,0,1,0-16h72A8,8,0,0,1,128,128ZM48,72H184a8,8,0,0,0,0-16H48a8,8,0,0,0,0,16Zm160,112H48a8,8,0,0,0,0,16H208a8,8,0,0,0,0-16Z"/></svg>
+                            SORT
+                        </button>
+                        <label class="flex items-center gap-2 cursor-pointer ml-4">
+                            <div class="w-4 h-4 border border-slate-400 rounded-sm flex items-center justify-center bg-white"></div>
+                            <span class="text-sm text-slate-800">Hide Done Items</span>
+                        </label>
+                    </div>
+                    <div class="mb-8">
+                        <div class="flex items-center gap-2 mb-4 cursor-pointer hover:bg-slate-50 w-fit pr-4 py-1 rounded">
+                            <h2 class="text-base font-semibold text-slate-900">Due Today</h2>
+                            <span class="text-slate-400 text-sm font-medium ml-2">7 items</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="text-slate-600 ml-1" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+                        </div>
+                        <div class="w-full overflow-x-auto">
+                            <table class="w-full text-left border-collapse min-w-[1000px]">
+                                <thead>
+                                    <tr class="bg-[#eaedf2] text-slate-700 text-sm font-medium border border-[#cbd5e1]">
+                                        <th class="p-3 w-12 text-center border-r border-[#cbd5e1]"><div class="w-4 h-4 border border-slate-500 rounded-sm bg-white mx-auto"></div></th>
+                                        <th class="p-3 border-r border-[#cbd5e1] font-medium">Customer Name</th>
+                                        <th class="p-3 border-r border-[#cbd5e1] font-medium text-center">Product</th>
+                                        <th class="p-3 border-r border-[#cbd5e1] font-medium text-center">TRN</th>
+                                        <th class="p-3 border-r border-[#cbd5e1] font-medium text-center">Workstep</th>
+                                        <th class="p-3 border-r border-[#cbd5e1] font-medium text-center">Assigned By</th>
+                                        <th class="p-3 border-r border-[#cbd5e1] font-medium text-center">Date</th>
+                                        <th class="p-3 border-r border-[#cbd5e1] font-medium text-center">Status</th>
+                                        <th class="p-3 w-16 bg-white border-0 border-b border-[#cbd5e1]"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-sm text-slate-800">
+                                    <tr class="border border-[#cbd5e1] hover:bg-slate-50 cursor-pointer group" onclick="toggleView('detail')">
+                                        <td class="p-3 text-center border-r border-[#cbd5e1]"><div class="w-4 h-4 border border-slate-400 rounded-sm bg-white mx-auto"></div></td>
+                                        <td class="p-3 border-r border-[#cbd5e1]">Chambers, Larnelle F.</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Auto</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">000 000 000</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Applicant Review</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Assigned By</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Jul 8</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center relative text-[#16a34a]">
+                                            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-[#16a34a]"></div>
+                                            Completed
+                                        </td>
+                                        <td class="p-2 border-none"><button class="w-8 h-8 flex items-center justify-center border border-slate-300 rounded bg-white text-blue-600 group-hover:border-blue-400"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg></button></td>
+                                    </tr>
+                                    <tr class="border border-[#cbd5e1] hover:bg-slate-50 cursor-pointer group" onclick="toggleView('detail')">
+                                        <td class="p-3 text-center border-r border-[#cbd5e1]"><div class="w-4 h-4 border border-slate-400 rounded-sm bg-white mx-auto"></div></td>
+                                        <td class="p-3 border-r border-[#cbd5e1]">Jane, Fonda A.M.,</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Auto</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">043 043 403</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Initiation</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Assigned By</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Jul 8</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center relative text-[#d97706]">
+                                            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-[#f59e0b]"></div>
+                                            In Progress
+                                        </td>
+                                        <td class="p-2 border-none"><button class="w-8 h-8 flex items-center justify-center border border-slate-300 rounded bg-white text-blue-600 group-hover:border-blue-400"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg></button></td>
+                                    </tr>
+                                    <tr class="border border-[#cbd5e1] hover:bg-slate-50 cursor-pointer group" onclick="toggleView('detail')">
+                                        <td class="p-3 text-center border-r border-[#cbd5e1]"><div class="w-4 h-4 border border-slate-400 rounded-sm bg-white mx-auto"></div></td>
+                                        <td class="p-3 border-r border-[#cbd5e1]">Dickens, Charles A.</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Auto</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">444 444 444</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Initiation</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Assigned By</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Jul 8</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center relative text-[#d97706]">
+                                            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-[#f59e0b]"></div>
+                                            In Progress
+                                        </td>
+                                        <td class="p-2 border-none"><button class="w-8 h-8 flex items-center justify-center border border-slate-300 rounded bg-white text-blue-600 group-hover:border-blue-400"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg></button></td>
+                                    </tr>
+                                    <tr class="border border-[#cbd5e1] hover:bg-slate-50 cursor-pointer group" onclick="toggleView('detail')">
+                                        <td class="p-3 text-center border-r border-[#cbd5e1]"><div class="w-4 h-4 border border-slate-400 rounded-sm bg-white mx-auto"></div></td>
+                                        <td class="p-3 border-r border-[#cbd5e1]">Mason, Clarence</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Auto</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">659 968 866</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Initiation</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Assigned By</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Jul 8</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center relative text-[#d97706]">
+                                            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-[#f59e0b]"></div>
+                                            In Progress
+                                        </td>
+                                        <td class="p-2 border-none"><button class="w-8 h-8 flex items-center justify-center border border-slate-300 rounded bg-white text-blue-600 group-hover:border-blue-400"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg></button></td>
+                                    </tr>
+                                    <tr class="border border-[#cbd5e1] hover:bg-slate-50 cursor-pointer group" onclick="toggleView('detail')">
+                                        <td class="p-3 text-center border-r border-[#cbd5e1]"><div class="w-4 h-4 border border-slate-400 rounded-sm bg-white mx-auto"></div></td>
+                                        <td class="p-3 border-r border-[#cbd5e1]">Smith, Lloyd A.E</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Auto</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">005 499 443</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Initiation</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Assigned By</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center">Jul 8</td>
+                                        <td class="p-3 border-r border-[#cbd5e1] text-center relative text-[#d97706]">
+                                            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-[#f59e0b]"></div>
+                                            In Progress
+                                        </td>
+                                        <td class="p-2 border-none"><button class="w-8 h-8 flex items-center justify-center border border-slate-300 rounded bg-white text-blue-600 group-hover:border-blue-400"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 cursor-pointer hover:bg-slate-50 w-fit pr-4 py-1 rounded">
+                            <h2 class="text-base font-semibold text-slate-900">Due Later</h2>
+                            <span class="text-slate-400 text-sm font-medium ml-2">4 items</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="text-slate-600 ml-1" fill="currentColor" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="view-detail" class="flex-1 overflow-y-auto w-full h-full view-hidden flex-col bg-white">
+                <div class="px-8 py-8 w-full max-w-[1400px]">
+                    <div class="mb-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <h1 class="text-2xl font-semibold text-slate-900 tracking-tight">Auto Loan - CLN-0000000262-AUTO</h1>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="text-slate-400" fill="currentColor" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"/></svg>
+                        </div>
+                        <p class="text-slate-600">The auto loan queue contains work items for customers applying for an automobile loan <a href="#" class="text-[#005a9c] hover:underline ml-1">See more</a></p>
+                    </div>
+                    <div class="border-b border-slate-200 w-full overflow-x-auto no-scrollbar mb-8" style="-ms-overflow-style:none;scrollbar-width:none;">
+                        <div class="flex whitespace-nowrap min-w-max">
+                            <button class="px-4 py-3 text-sm tab-active">Sales and Marketing</button>
+                            <button class="px-4 py-3 text-sm tab-inactive">Product</button>
+                            <button class="px-4 py-3 text-sm tab-inactive">Main Applicant</button>
+                            <button class="px-4 py-3 text-sm tab-inactive">Financial Details</button>
+                            <button class="px-4 py-3 text-sm tab-inactive">Next of Kin</button>
+                            <button class="px-4 py-3 text-sm tab-inactive">Pledged/ Offered Security</button>
+                            <button class="px-4 py-3 text-sm tab-inactive">Account Opening</button>
+                            <button class="px-4 py-3 text-sm tab-inactive">Additional Offerings</button>
+                            <button class="px-4 py-3 text-sm tab-inactive">Conditions</button>
+                            <button class="px-4 py-3 text-sm tab-inactive">Decision</button>
+                            <button class="px-4 py-3 text-sm tab-inactive">Scoring</button>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 mb-10">
+                        <button class="flex items-center gap-2.5 border border-slate-200 text-[#005a9c] font-semibold text-xs px-5 py-2.5 rounded-lg hover:bg-slate-50 hover:border-slate-300 uppercase tracking-wider transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Z"/></svg>
+                            DOCUMENT VIEWER
+                        </button>
+                        <button class="flex items-center gap-2 text-[#005a9c] font-semibold text-xs px-3 py-2.5 hover:text-[#004e89] hover:bg-slate-50 rounded-lg uppercase tracking-wider transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56V200a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V56A16,16,0,0,0,208,40ZM152,56v40H104V56ZM48,200V56h40V104a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V56h40V200Z"/></svg>
+                            SAVE DRAFT
+                        </button>
+                    </div>
+                    <div class="mb-14">
+                        <h2 class="text-base font-semibold text-slate-900 mb-2 uppercase tracking-wide text-xs">Marketing Details</h2>
+                        <p class="text-slate-500 text-sm mb-10 max-w-2xl leading-relaxed">To help us better reach our customers we routinely collect information about how they hear about our offers</p>
+                        <div class="grid grid-cols-2 gap-x-10 gap-y-5 max-w-4xl">
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-medium text-slate-600 uppercase tracking-wider">Product Awareness</label>
+                                <input type="text" value="Lorem ipsum" class="border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-800 w-full bg-slate-50/50 focus:outline-none focus:border-[#005a9c] focus:ring-2 focus:ring-[#005a9c]/20 transition-all">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-medium text-slate-600 uppercase tracking-wider">Branch</label>
+                                <input type="text" value="Lorem ipsum" class="border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-800 w-full bg-slate-50/50 focus:outline-none focus:border-[#005a9c] focus:ring-2 focus:ring-[#005a9c]/20 transition-all">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-medium text-slate-600 uppercase tracking-wider">Preferred Branch</label>
+                                <input type="text" value="Lorem ipsum" class="border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-800 w-full bg-slate-50/50 focus:outline-none focus:border-[#005a9c] focus:ring-2 focus:ring-[#005a9c]/20 transition-all">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-medium text-slate-600 uppercase tracking-wider">Sales Person</label>
+                                <input type="text" value="Lorem ipsum" class="border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-800 w-full bg-slate-50/50 focus:outline-none focus:border-[#005a9c] focus:ring-2 focus:ring-[#005a9c]/20 transition-all">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-px bg-slate-100 w-full mb-12 max-w-5xl"></div>
+                    <div class="mb-20">
+                        <h2 class="text-base font-semibold text-slate-900 mb-6 uppercase tracking-wide text-xs">Referrer Details</h2>
+                        <div class="w-[200px] mb-8">
+                            <div class="relative">
+                                <select class="appearance-none w-full border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-800 bg-slate-50/50 focus:outline-none focus:border-[#005a9c] focus:ring-2 focus:ring-[#005a9c]/20 transition-all cursor-pointer">
+                                    <option>Lorem ipsum</option>
+                                    <option>Option 2</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-x-10 gap-y-5 max-w-4xl">
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-medium text-slate-600 uppercase tracking-wider">First Name</label>
+                                <input type="text" value="Lorem ipsum" class="border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-800 w-full bg-slate-50/50 focus:outline-none focus:border-[#005a9c] focus:ring-2 focus:ring-[#005a9c]/20 transition-all">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-medium text-slate-600 uppercase tracking-wider">Middle Name</label>
+                                <input type="text" value="Lorem ipsum" class="border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-800 w-full bg-slate-50/50 focus:outline-none focus:border-[#005a9c] focus:ring-2 focus:ring-[#005a9c]/20 transition-all">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-medium text-slate-600 uppercase tracking-wider">Last Name</label>
+                                <input type="text" value="Lorem ipsum" class="border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-800 w-full bg-slate-50/50 focus:outline-none focus:border-[#005a9c] focus:ring-2 focus:ring-[#005a9c]/20 transition-all">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-medium text-slate-600 uppercase tracking-wider">Relationship</label>
+                                <input type="text" value="Lorem ipsum" class="border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-800 w-full bg-slate-50/50 focus:outline-none focus:border-[#005a9c] focus:ring-2 focus:ring-[#005a9c]/20 transition-all">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-8 max-w-5xl">
+                        <button class="text-[#005a9c] text-xs font-semibold uppercase hover:text-[#004e89] px-3 py-2 hover:bg-slate-50 rounded-md transition-colors" onclick="toggleView('queue')">CLOSE WORK ITEM</button>
+                        <div class="flex items-center gap-4">
+                            <button class="border border-slate-200 text-slate-600 text-xs font-semibold px-6 py-3 rounded-lg hover:bg-slate-50 hover:text-slate-800 uppercase tracking-wider transition-all">PREVIOUS</button>
+                            <button class="bg-[#005a9c] hover:bg-[#004e89] text-white text-xs font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-all uppercase tracking-wider">NEXT STEP</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleView(viewName) {
+            const queueView = document.getElementById('view-queue');
+            const detailView = document.getElementById('view-detail');
+            const queueNameLabel = document.getElementById('sidebar-queue-name');
+            const activeStageLi = document.getElementById('active-stage-li');
+            const inactiveStageLi = document.getElementById('inactive-stage-li');
+            if (viewName === 'detail') {
+                queueView.classList.add('view-hidden');
+                detailView.classList.remove('view-hidden');
+                detailView.classList.add('flex');
+                queueNameLabel.textContent = 'Auto loans';
+                activeStageLi.classList.remove('view-hidden');
+                inactiveStageLi.classList.add('view-hidden');
+            } else {
+                detailView.classList.add('view-hidden');
+                detailView.classList.remove('flex');
+                queueView.classList.remove('view-hidden');
+                queueNameLabel.textContent = 'My Queue';
+                activeStageLi.classList.add('view-hidden');
+                inactiveStageLi.classList.remove('view-hidden');
+            }
+        }
+    </script>
+</body>
+</html>

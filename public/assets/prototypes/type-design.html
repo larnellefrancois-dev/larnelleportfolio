@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCB Typeface — Design Process</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'OasisGeometric';
+      src: url('https://laxpiiufddoeafzuiyzh.supabase.co/storage/v1/object/sign/Pub%20Storage/Fonts/OasisGeometric-Regular.woff2?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNjZjOGMwZC0wOWIxLTRhNzAtYTc1My0wODE4MTc0NmRlZDUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQdWIgU3RvcmFnZS9Gb250cy9PYXNpc0dlb21ldHJpYy1SZWd1bGFyLndvZmYyIiwiaWF0IjoxNzc1MjQ3MTUyLCJleHAiOjE4MDY3ODMxNTJ9.qDjq0RRPAisO-uMi4KkpAXQ0hjjq78q9xhVS8qyulhE') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    body { font-family: 'OasisGeometric', 'Inter', sans-serif; -webkit-font-smoothing: antialiased; background: #0a0a0a; color: #ffffff; }
+    .mono { font-family: 'Courier New', monospace; }
+    .glyph-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 2px; }
+    .glyph-cell { background: #1a1a1a; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; font-size: 28px; font-weight: 300; color: #ffffff; transition: background 0.2s; cursor: default; }
+    .glyph-cell:hover { background: #2a2a2a; }
+    .tab-btn { padding: 8px 20px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid #333; background: transparent; color: #888; cursor: pointer; transition: all 0.2s; }
+    .tab-btn.active { background: #ffffff; color: #000000; border-color: #ffffff; }
+    .weight-sample { padding: 24px 0; border-bottom: 1px solid #1e1e1e; }
+    .specimen-char { font-size: clamp(80px, 12vw, 160px); font-weight: 200; line-height: 1; color: #ffffff; letter-spacing: -0.04em; }
+    .grid-overlay { background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 24px 24px; }
+    .construction-circle { border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; position: absolute; }
+    .construction-line { background: rgba(255,255,255,0.15); position: absolute; }
+    .metric-bar { height: 2px; background: #333; position: relative; overflow: hidden; }
+    .metric-fill { height: 100%; background: #ffffff; transition: width 1s ease; }
+    .section-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: #555; margin-bottom: 16px; display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header style="background:#0a0a0a; border-bottom:1px solid #1a1a1a; padding:20px 48px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <div style="width:32px; height:32px; background:#ffffff; display:flex; align-items:center; justify-content:center;">
+        <span style="font-size:14px; font-weight:700; color:#000; letter-spacing:-0.05em;">Aa</span>
+      </div>
+      <div>
+        <p class="mono" style="font-size:10px; color:#555; letter-spacing:0.08em; text-transform:uppercase;">NCB TYPEFACE SYSTEM</p>
+        <p style="font-size:12px; color:#888; font-weight:300;">Design Process Documentation</p>
+      </div>
+    </div>
+    <nav style="display:flex; gap:4px;" id="mainNav">
+      <button class="tab-btn active" onclick="showSection('overview', this)">Overview</button>
+      <button class="tab-btn" onclick="showSection('construction', this)">Construction</button>
+      <button class="tab-btn" onclick="showSection('glyphs', this)">Glyphs</button>
+      <button class="tab-btn" onclick="showSection('weights', this)">Weights</button>
+      <button class="tab-btn" onclick="showSection('specimen', this)">Specimen</button>
+    </nav>
+  </header>
+
+  <!-- Overview Section -->
+  <section id="section-overview" style="padding:64px 48px;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <span class="section-label">Phase 01 — Brief & Discovery</span>
+      <h1 style="font-size:clamp(40px, 6vw, 80px); font-weight:200; letter-spacing:-0.04em; line-height:1.05; margin-bottom:48px; max-width:900px;">
+        A typeface built for<br>institutional trust at scale.
+      </h1>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; margin-bottom:2px;">
+        <div style="background:#111; padding:40px;">
+          <span class="section-label">Design Brief</span>
+          <p style="font-size:15px; font-weight:300; color:#aaa; line-height:1.7;">The bank needed a typeface that communicated stability, precision, and digital readiness — one that could serve both print collateral and high-density data interfaces without compromise.</p>
+        </div>
+        <div style="background:#111; padding:40px;">
+          <span class="section-label">Core Requirements</span>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li style="font-size:13px; color:#888; padding:10px 0; border-bottom:1px solid #1e1e1e; font-weight:300;">Legible at 8px in data tables</li>
+            <li style="font-size:13px; color:#888; padding:10px 0; border-bottom:1px solid #1e1e1e; font-weight:300;">Distinct numerals — no ambiguity</li>
+            <li style="font-size:13px; color:#888; padding:10px 0; border-bottom:1px solid #1e1e1e; font-weight:300;">Geometric but warm — not cold</li>
+            <li style="font-size:13px; color:#888; padding:10px 0; font-weight:300;">Scalable across 5 weights</li>
+          </ul>
+        </div>
+        <div style="background:#111; padding:40px;">
+          <span class="section-label">Scope</span>
+          <div style="margin-bottom:24px;">
+            <p style="font-size:40px; font-weight:200; color:#fff; line-height:1;">450+</p>
+            <p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; margin-top:4px;">Glyphs Designed</p>
+          </div>
+          <div>
+            <p style="font-size:40px; font-weight:200; color:#fff; line-height:1;">5</p>
+            <p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; margin-top:4px;">Weight Variants</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:2fr 1fr; gap:2px;">
+        <div style="background:#111; padding:40px;">
+          <span class="section-label">Competitive Analysis — Existing Typefaces Reviewed</span>
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;">
+            <div style="text-align:center; padding:24px 16px; background:#1a1a1a;">
+              <p style="font-size:24px; font-weight:300; color:#666; font-family:Georgia, serif;">Ag</p>
+              <p style="font-size:9px; color:#444; margin-top:8px; text-transform:uppercase; letter-spacing:0.08em;">Helvetica<br>Too neutral</p>
+            </div>
+            <div style="text-align:center; padding:24px 16px; background:#1a1a1a;">
+              <p style="font-size:24px; font-weight:300; color:#666; font-family:'Times New Roman', serif;">Ag</p>
+              <p style="font-size:9px; color:#444; margin-top:8px; text-transform:uppercase; letter-spacing:0.08em;">Times<br>Too editorial</p>
+            </div>
+            <div style="text-align:center; padding:24px 16px; background:#1a1a1a;">
+              <p style="font-size:24px; font-weight:300; color:#666;">Ag</p>
+              <p style="font-size:9px; color:#444; margin-top:8px; text-transform:uppercase; letter-spacing:0.08em;">Inter<br>Too tech</p>
+            </div>
+            <div style="text-align:center; padding:24px 16px; background:#1e1e1e; border:1px solid #333;">
+              <p style="font-size:24px; font-weight:300; color:#fff;">Ag</p>
+              <p style="font-size:9px; color:#888; margin-top:8px; text-transform:uppercase; letter-spacing:0.08em;">NCB Type<br>Custom</p>
+            </div>
+          </div>
+        </div>
+        <div style="background:#1a1a1a; padding:40px; display:flex; flex-direction:column; justify-content:space-between;">
+          <span class="section-label">Personality Axes</span>
+          <div style="display:flex; flex-direction:column; gap:20px;">
+            <div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span style="font-size:11px; color:#666;">Geometric</span>
+                <span style="font-size:11px; color:#888;">Humanist</span>
+              </div>
+              <div class="metric-bar"><div class="metric-fill" style="width:65%;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span style="font-size:11px; color:#666;">Formal</span>
+                <span style="font-size:11px; color:#888;">Approachable</span>
+              </div>
+              <div class="metric-bar"><div class="metric-fill" style="width:55%;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span style="font-size:11px; color:#666;">Dense</span>
+                <span style="font-size:11px; color:#888;">Airy</span>
+              </div>
+              <div class="metric-bar"><div class="metric-fill" style="width:45%;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span style="font-size:11px; color:#666;">Traditional</span>
+                <span style="font-size:11px; color:#888;">Modern</span>
+              </div>
+              <div class="metric-bar"><div class="metric-fill" style="width:70%;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Construction Section -->
+  <section id="section-construction" style="display:none; padding:64px 48px;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <span class="section-label">Phase 02 — Geometric Construction</span>
+      <h2 style="font-size:clamp(32px, 5vw, 64px); font-weight:200; letter-spacing:-0.04em; line-height:1.05; margin-bottom:48px;">Every curve is derived from<br>a mathematical ratio.</h2>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-bottom:2px;">
+        <!-- Grid construction demo -->
+        <div class="grid-overlay" style="background-color:#111; padding:48px; min-height:400px; position:relative; display:flex; align-items:center; justify-content:center;">
+          <div style="position:relative; width:200px; height:200px;">
+            <!-- Construction circles -->
+            <div class="construction-circle" style="width:200px; height:200px; top:0; left:0;"></div>
+            <div class="construction-circle" style="width:140px; height:140px; top:30px; left:30px;"></div>
+            <div class="construction-circle" style="width:80px; height:80px; top:60px; left:60px;"></div>
+            <!-- Horizontal guide -->
+            <div class="construction-line" style="width:200px; height:1px; top:100px; left:0;"></div>
+            <!-- Vertical guide -->
+            <div class="construction-line" style="width:1px; height:200px; top:0; left:100px;"></div>
+            <!-- Diagonal -->
+            <div class="construction-line" style="width:283px; height:1px; top:100px; left:-41px; transform:rotate(45deg);"></div>
+            <!-- The letter O -->
+            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:120px; font-weight:200; color:rgba(255,255,255,0.9); line-height:1;">O</div>
+          </div>
+          <div style="position:absolute; bottom:24px; left:24px;">
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em;">Glyph O — Circular construction</span>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:2px;">
+          <div style="background:#111; padding:32px; flex:1;">
+            <span class="section-label">Construction Principles</span>
+            <ul style="list-style:none; padding:0; margin:0;">
+              <li style="padding:14px 0; border-bottom:1px solid #1e1e1e; font-size:14px; color:#aaa; font-weight:300;">
+                <span style="color:#555; margin-right:12px; font-size:11px;">01</span>
+                Stroke terminals cut at precise angles, not rounded
+              </li>
+              <li style="padding:14px 0; border-bottom:1px solid #1e1e1e; font-size:14px; color:#aaa; font-weight:300;">
+                <span style="color:#555; margin-right:12px; font-size:11px;">02</span>
+                Counter shapes derived from the same base circle
+              </li>
+              <li style="padding:14px 0; border-bottom:1px solid #1e1e1e; font-size:14px; color:#aaa; font-weight:300;">
+                <span style="color:#555; margin-right:12px; font-size:11px;">03</span>
+                Optical corrections applied at joints and curves
+              </li>
+              <li style="padding:14px 0; font-size:14px; color:#aaa; font-weight:300;">
+                <span style="color:#555; margin-right:12px; font-size:11px;">04</span>
+                Stem width ratio locked at 1:8 across all weights
+              </li>
+            </ul>
+          </div>
+          <div style="background:#111; padding:32px; flex:1;">
+            <span class="section-label">Critical Glyph Pairs — Disambiguation</span>
+            <div style="display:flex; gap:16px; flex-wrap:wrap;">
+              <div style="background:#1a1a1a; padding:16px 20px; text-align:center;">
+                <p style="font-size:32px; font-weight:300; color:#fff; letter-spacing:8px;">0 O</p>
+                <p style="font-size:9px; color:#555; margin-top:8px; text-transform:uppercase; letter-spacing:0.08em;">Zero vs. O</p>
+              </div>
+              <div style="background:#1a1a1a; padding:16px 20px; text-align:center;">
+                <p style="font-size:32px; font-weight:300; color:#fff; letter-spacing:8px;">1 l I</p>
+                <p style="font-size:9px; color:#555; margin-top:8px; text-transform:uppercase; letter-spacing:0.08em;">One / l / I</p>
+              </div>
+              <div style="background:#1a1a1a; padding:16px 20px; text-align:center;">
+                <p style="font-size:32px; font-weight:300; color:#fff; letter-spacing:8px;">8 B</p>
+                <p style="font-size:9px; color:#555; margin-top:8px; text-transform:uppercase; letter-spacing:0.08em;">Eight vs. B</p>
+              </div>
+              <div style="background:#1a1a1a; padding:16px 20px; text-align:center;">
+                <p style="font-size:32px; font-weight:300; color:#fff; letter-spacing:8px;">3 E</p>
+                <p style="font-size:9px; color:#555; margin-top:8px; text-transform:uppercase; letter-spacing:0.08em;">Three vs. E</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#111; padding:40px;">
+        <span class="section-label">Spacing System — Sidebearings & Kerning Pairs</span>
+        <div style="display:flex; align-items:flex-end; gap:0; overflow-x:auto; padding-bottom:16px;">
+          <div style="text-align:center; min-width:80px;">
+            <div style="height:80px; display:flex; align-items:center; justify-content:center; font-size:48px; font-weight:200; color:#fff; position:relative;">
+              <div style="position:absolute; left:0; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.15);"></div>
+              A
+              <div style="position:absolute; right:0; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.15);"></div>
+            </div>
+            <p style="font-size:9px; color:#444; margin-top:8px; text-transform:uppercase; letter-spacing:0.08em;">A — 42u</p>
+          </div>
+          <div style="text-align:center; min-width:80px;">
+            <div style="height:80px; display:flex; align-items:center; justify-content:center; font-size:48px; font-weight:200; color:#fff; position:relative;">
+              <div style="position:absolute; left:0; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.15);"></div>
+              V
+              <div style="position:absolute; right:0; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.15);"></div>
+            </div>
+            <p style="font-size:9px; color:#444; margin-top:8px; text-transform:uppercase; letter-spacing:0.08em;">V — 38u</p>
+          </div>
+          <div style="text-align:center; min-width:80px;">
+            <div style="height:80px; display:flex; align-items:center; justify-content:center; font-size:48px; font-weight:200; color:#fff; position:relative;">
+              <div style="position:absolute; left:0; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.15);"></div>
+              T
+              <div style="position:absolute; right:0; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.15);"></div>
+            </div>
+            <p style="font-size:9px; color:#444; margin-top:8px; text-transform:uppercase; letter-spacing:0.08em;">T — 36u</p>
+          </div>
+          <div style="text-align:center; min-width:80px;">
+            <div style="height:80px; display:flex; align-items:center; justify-content:center; font-size:48px; font-weight:200; color:#fff; position:relative;">
+              <div style="position:absolute; left:0; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.15);"></div>
+              o
+              <div style="position:absolute; right:0; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.15);"></div>
+            </div>
+            <p style="font-size:9px; color:#444; margin-top:8px; text-transform:uppercase; letter-spacing:0.08em;">o — 44u</p>
+          </div>
+          <div style="text-align:center; min-width:80px;">
+            <div style="height:80px; display:flex; align-items:center; justify-content:center; font-size:48px; font-weight:200; color:#fff; position:relative;">
+              <div style="position:absolute; left:0; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.15);"></div>
+              n
+              <div style="position:absolute; right:0; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.15);"></div>
+            </div>
+            <p style="font-size:9px; color:#444; margin-top:8px; text-transform:uppercase; letter-spacing:0.08em;">n — 40u</p>
+          </div>
+          <div style="text-align:center; min-width:80px;">
+            <div style="height:80px; display:flex; align-items:center; justify-content:center; font-size:48px; font-weight:200; color:#fff; position:relative;">
+              <div style="position:absolute; left:0; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.15);"></div>
+              1
+              <div style="position:absolute; right:0; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.15);"></div>
+            </div>
+            <p style="font-size:9px; color:#444; margin-top:8px; text-transform:uppercase; letter-spacing:0.08em;">1 — 28u</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Glyphs Section -->
+  <section id="section-glyphs" style="display:none; padding:64px 48px;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <span class="section-label">Phase 03 — Glyph Set</span>
+      <h2 style="font-size:clamp(32px, 5vw, 64px); font-weight:200; letter-spacing:-0.04em; line-height:1.05; margin-bottom:48px;">450+ glyphs covering Latin,<br>numerals, and symbols.</h2>
+
+      <div style="display:flex; gap:4px; margin-bottom:2px; flex-wrap:wrap;">
+        <button class="tab-btn active" onclick="filterGlyphs('uppercase', this)" style="font-size:10px;">Uppercase</button>
+        <button class="tab-btn" onclick="filterGlyphs('lowercase', this)" style="font-size:10px;">Lowercase</button>
+        <button class="tab-btn" onclick="filterGlyphs('numerals', this)" style="font-size:10px;">Numerals</button>
+        <button class="tab-btn" onclick="filterGlyphs('symbols', this)" style="font-size:10px;">Symbols</button>
+      </div>
+
+      <div id="glyph-display" class="glyph-grid" style="background:#111; padding:24px; margin-bottom:2px;"></div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;">
+        <div style="background:#111; padding:40px;">
+          <span class="section-label">Numeral Design — Banking Context</span>
+          <p style="font-size:clamp(32px, 5vw, 64px); font-weight:200; color:#fff; letter-spacing:0.1em; line-height:1.4;">0123456789</p>
+          <p style="font-size:11px; color:#555; margin-top:16px; line-height:1.6;">Tabular figures with fixed-width sidebearings ensure perfect column alignment in financial data tables. Lining numerals only — no old-style figures in the banking context.</p>
+        </div>
+        <div style="background:#111; padding:40px;">
+          <span class="section-label">Currency & Financial Symbols</span>
+          <p style="font-size:clamp(32px, 5vw, 56px); font-weight:200; color:#fff; letter-spacing:0.15em; line-height:1.4;">$ £ € ¥ ¢ %</p>
+          <p style="font-size:11px; color:#555; margin-top:16px; line-height:1.6;">All currency symbols are optically balanced to match the cap height and weight of surrounding numerals, preventing visual disruption in financial displays.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Weights Section -->
+  <section id="section-weights" style="display:none; padding:64px 48px;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <span class="section-label">Phase 04 — Weight System</span>
+      <h2 style="font-size:clamp(32px, 5vw, 64px); font-weight:200; letter-spacing:-0.04em; line-height:1.05; margin-bottom:48px;">Five weights. One coherent<br>typographic voice.</h2>
+
+      <div style="background:#111; padding:48px; margin-bottom:2px;">
+        <div class="weight-sample">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+            <span style="font-size:clamp(28px, 4vw, 56px); font-weight:100; color:#fff; letter-spacing:-0.02em;">NCB Typeface — Thin 100</span>
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em;">Weight 100 · Thin</span>
+          </div>
+        </div>
+        <div class="weight-sample">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+            <span style="font-size:clamp(28px, 4vw, 56px); font-weight:200; color:#fff; letter-spacing:-0.02em;">NCB Typeface — Light 200</span>
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em;">Weight 200 · Light</span>
+          </div>
+        </div>
+        <div class="weight-sample">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+            <span style="font-size:clamp(28px, 4vw, 56px); font-weight:300; color:#fff; letter-spacing:-0.02em;">NCB Typeface — Regular 300</span>
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em;">Weight 300 · Regular</span>
+          </div>
+        </div>
+        <div class="weight-sample">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+            <span style="font-size:clamp(28px, 4vw, 56px); font-weight:500; color:#fff; letter-spacing:-0.02em;">NCB Typeface — Medium 500</span>
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em;">Weight 500 · Medium</span>
+          </div>
+        </div>
+        <div class="weight-sample" style="border-bottom:none;">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+            <span style="font-size:clamp(28px, 4vw, 56px); font-weight:700; color:#fff; letter-spacing:-0.02em;">NCB Typeface — Bold 700</span>
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em;">Weight 700 · Bold</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px;">
+        <div style="background:#111; padding:32px;">
+          <span class="section-label">UI Application — Light</span>
+          <div style="background:#1a1a1a; padding:20px; border-radius:2px;">
+            <p style="font-size:11px; color:#555; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Account Balance</p>
+            <p style="font-size:32px; font-weight:200; color:#fff;">$24,850.00</p>
+            <p style="font-size:11px; color:#555; margin-top:4px;">Available balance</p>
+          </div>
+        </div>
+        <div style="background:#111; padding:32px;">
+          <span class="section-label">UI Application — Regular</span>
+          <div style="background:#1a1a1a; padding:20px; border-radius:2px;">
+            <p style="font-size:14px; font-weight:300; color:#aaa; line-height:1.6;">Your mortgage payment of <span style="color:#fff; font-weight:400;">$3,200</span> is due in <span style="color:#fff; font-weight:400;">14 days</span>. Review your payment schedule to stay on track.</p>
+          </div>
+        </div>
+        <div style="background:#111; padding:32px;">
+          <span class="section-label">UI Application — Bold</span>
+          <div style="background:#1a1a1a; padding:20px; border-radius:2px;">
+            <button style="background:#fff; color:#000; padding:12px 24px; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; width:100%;">APPLY NOW</button>
+            <p style="font-size:10px; color:#444; margin-top:12px; text-align:center;">Bold weight reserved for primary CTAs only</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specimen Section -->
+  <section id="section-specimen" style="display:none; padding:64px 48px;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <span class="section-label">Phase 05 — Type Specimen</span>
+
+      <div style="background:#111; padding:64px; margin-bottom:2px; overflow:hidden;">
+        <div style="display:flex; gap:0; overflow:hidden;">
+          <span class="specimen-char" style="opacity:1;">A</span>
+          <span class="specimen-char" style="opacity:0.8;">B</span>
+          <span class="specimen-char" style="opacity:0.6;">C</span>
+          <span class="specimen-char" style="opacity:0.4;">D</span>
+          <span class="specimen-char" style="opacity:0.2;">E</span>
+          <span class="specimen-char" style="opacity:0.1;">F</span>
+        </div>
+        <div style="display:flex; gap:0; overflow:hidden; margin-top:-20px;">
+          <span class="specimen-char" style="opacity:0.1;">G</span>
+          <span class="specimen-char" style="opacity:0.2;">H</span>
+          <span class="specimen-char" style="opacity:0.4;">I</span>
+          <span class="specimen-char" style="opacity:0.6;">J</span>
+          <span class="specimen-char" style="opacity:0.8;">K</span>
+          <span class="specimen-char" style="opacity:1;">L</span>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-bottom:2px;">
+        <div style="background:#111; padding:48px;">
+          <span class="section-label">Headline Setting</span>
+          <p style="font-size:clamp(24px, 3vw, 40px); font-weight:200; color:#fff; line-height:1.2; letter-spacing:-0.03em;">Trusted by over one million customers across the Caribbean.</p>
+        </div>
+        <div style="background:#111; padding:48px;">
+          <span class="section-label">Body Copy Setting</span>
+          <p style="font-size:15px; font-weight:300; color:#aaa; line-height:1.8;">The National Commercial Bank has served Jamaica and the wider Caribbean for over 175 years. Our commitment to financial inclusion, digital innovation, and community investment remains at the core of everything we do.</p>
+        </div>
+      </div>
+
+      <div style="background:#111; padding:48px;">
+        <span class="section-label">Data Table Setting — Financial Interface</span>
+        <table style="width:100%; border-collapse:collapse;">
+          <thead>
+            <tr>
+              <th style="text-align:left; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; padding:12px 0; border-bottom:1px solid #1e1e1e; font-weight:500;">Transaction</th>
+              <th style="text-align:left; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; padding:12px 0; border-bottom:1px solid #1e1e1e; font-weight:500;">Date</th>
+              <th style="text-align:right; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; padding:12px 0; border-bottom:1px solid #1e1e1e; font-weight:500;">Amount</th>
+              <th style="text-align:right; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; padding:12px 0; border-bottom:1px solid #1e1e1e; font-weight:500;">Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-size:13px; font-weight:300; color:#aaa; padding:14px 0; border-bottom:1px solid #1a1a1a;">Mortgage Payment</td>
+              <td style="font-size:13px; font-weight:300; color:#666; padding:14px 0; border-bottom:1px solid #1a1a1a;">03 Apr 2026</td>
+              <td style="font-size:13px; font-weight:300; color:#E53935; padding:14px 0; border-bottom:1px solid #1a1a1a; text-align:right;">-$3,200.00</td>
+              <td style="font-size:13px; font-weight:300; color:#aaa; padding:14px 0; border-bottom:1px solid #1a1a1a; text-align:right;">$21,650.00</td>
+            </tr>
+            <tr>
+              <td style="font-size:13px; font-weight:300; color:#aaa; padding:14px 0; border-bottom:1px solid #1a1a1a;">Salary Deposit</td>
+              <td style="font-size:13px; font-weight:300; color:#666; padding:14px 0; border-bottom:1px solid #1a1a1a;">01 Apr 2026</td>
+              <td style="font-size:13px; font-weight:300; color:#4CAF50; padding:14px 0; border-bottom:1px solid #1a1a1a; text-align:right;">+$6,500.00</td>
+              <td style="font-size:13px; font-weight:300; color:#aaa; padding:14px 0; border-bottom:1px solid #1a1a1a; text-align:right;">$24,850.00</td>
+            </tr>
+            <tr>
+              <td style="font-size:13px; font-weight:300; color:#aaa; padding:14px 0; border-bottom:1px solid #1a1a1a;">Auto Loan Repayment</td>
+              <td style="font-size:13px; font-weight:300; color:#666; padding:14px 0; border-bottom:1px solid #1a1a1a;">28 Mar 2026</td>
+              <td style="font-size:13px; font-weight:300; color:#E53935; padding:14px 0; border-bottom:1px solid #1a1a1a; text-align:right;">-$850.00</td>
+              <td style="font-size:13px; font-weight:300; color:#aaa; padding:14px 0; border-bottom:1px solid #1a1a1a; text-align:right;">$18,350.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const glyphSets = {
+      uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
+      lowercase: 'abcdefghijklmnopqrstuvwxyz'.split(''),
+      numerals: '0123456789'.split('').concat(['½','¼','¾','⅓','⅔']),
+      symbols: ['$','£','€','¥','¢','%','@','&','#','*','+','-','=','<','>','?','!','.',',',':',';','(',')','/','\\','|','"',"'"]
+    };
+
+    function showSection(id, btn) {
+      document.querySelectorAll('[id^="section-"]').forEach(s => s.style.display = 'none');
+      document.getElementById('section-' + id).style.display = 'block';
+      document.querySelectorAll('#mainNav .tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function filterGlyphs(set, btn) {
+      const display = document.getElementById('glyph-display');
+      display.innerHTML = '';
+      glyphSets[set].forEach(g => {
+        const cell = document.createElement('div');
+        cell.className = 'glyph-cell';
+        cell.textContent = g;
+        display.appendChild(cell);
+      });
+      document.querySelectorAll('#section-glyphs .tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // Init glyphs
+    filterGlyphs('uppercase', document.querySelector('#section-glyphs .tab-btn'));
+  </script>
+</body>
+</html>

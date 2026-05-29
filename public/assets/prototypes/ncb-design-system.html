@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oasis — NCB Design System</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; background: #0f0f0f; color: #fff; margin: 0; }
+    .mono { font-family: 'Courier New', monospace; }
+    .tab-btn { padding: 8px 20px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid #2a2a2a; background: transparent; color: #666; cursor: pointer; transition: all 0.2s; border-radius: 9999px; }
+    .tab-btn.active { background: #fff; color: #000; border-color: #fff; }
+    .component-card { background: #1a1a1a; padding: 24px; cursor: pointer; border: 1px solid transparent; transition: all 0.2s; }
+    .component-card:hover { border-color: #333; }
+    .component-card.selected { border-color: #fff; }
+    .section-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: #555; margin-bottom: 16px; display: block; }
+    .token-row { display: flex; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid #1a1a1a; }
+    .color-swatch { width: 32px; height: 32px; flex-shrink: 0; border-radius: 4px; }
+    .version-tag { display: inline-block; padding: 2px 8px; font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; background: #1a1a1a; color: #666; border: 1px solid #2a2a2a; border-radius: 9999px; }
+    .adoption-bar { height: 4px; background: #1a1a1a; position: relative; overflow: hidden; border-radius: 2px; }
+    .adoption-fill { height: 100%; background: #fff; transition: width 1.2s ease; border-radius: 2px; }
+    .doc-h2 { font-size: 20px; font-weight: 300; color: #fff; margin: 32px 0 12px; letter-spacing: -0.02em; }
+    .doc-h3 { font-size: 14px; font-weight: 500; color: #ccc; margin: 24px 0 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .doc-p { font-size: 13px; color: #888; line-height: 1.75; margin-bottom: 12px; font-weight: 300; }
+    .doc-li { font-size: 13px; color: #888; line-height: 1.75; padding: 4px 0 4px 16px; position: relative; font-weight: 300; }
+    .doc-li::before { content: '—'; position: absolute; left: 0; color: #444; }
+    .doc-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .doc-table th { font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: #444; padding: 10px 12px; border-bottom: 1px solid #222; text-align: left; font-weight: 500; }
+    .doc-table td { font-size: 12px; color: #888; padding: 10px 12px; border-bottom: 1px solid #1a1a1a; font-weight: 300; font-family: 'Courier New', monospace; }
+    .doc-table td:first-child { color: #ccc; }
+    .doc-table td:last-child { text-align: right; }
+    .doc-divider { border: none; border-top: 1px solid #1a1a1a; margin: 32px 0; }
+    .badge { display: inline-block; padding: 2px 8px; font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; border-radius: 9999px; }
+    .color-scale-row { display: flex; gap: 4px; margin-bottom: 8px; }
+    .color-scale-cell { flex: 1; height: 32px; border-radius: 4px; }
+    /* Responsive sidebar */
+    @media (max-width: 600px) {
+      aside { width: 180px !important; }
+      #section-tokens, #section-typography, #section-spacing, #section-metrics { padding: 24px 16px !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar + Main layout -->
+  <div style="display:flex; height:100vh; overflow:hidden;">
+
+    <!-- Sidebar -->
+    <aside style="width:240px; background:#0a0a0a; border-right:1px solid #1a1a1a; display:flex; flex-direction:column; flex-shrink:0; overflow-y:auto;">
+      <div style="padding:24px 20px; border-bottom:1px solid #1a1a1a;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+          <div style="width:24px; height:24px; background:#fff; border-radius:9999px; display:flex; align-items:center; justify-content:center;">
+            <span style="font-size:9px; font-weight:700; color:#000; letter-spacing:-0.02em;">O</span>
+          </div>
+          <span style="font-size:13px; font-weight:500; color:#fff;">Oasis</span>
+        </div>
+        <span class="version-tag">v3.1.0</span>
+      </div>
+
+      <nav style="padding:16px 0; flex:1;">
+        <div style="padding:8px 20px; margin-bottom:4px;">
+          <span style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#444;">Foundation</span>
+        </div>
+        <button class="nav-item active" onclick="showSection('tokens', this)" style="width:100%; text-align:left; padding:10px 20px; background:#1a1a1a; border:none; color:#fff; font-size:13px; cursor:pointer; font-family:inherit;">Design Tokens</button>
+        <button class="nav-item" onclick="showSection('typography', this)" style="width:100%; text-align:left; padding:10px 20px; background:transparent; border:none; color:#666; font-size:13px; cursor:pointer; font-family:inherit;">Typography</button>
+        <button class="nav-item" onclick="showSection('spacing', this)" style="width:100%; text-align:left; padding:10px 20px; background:transparent; border:none; color:#666; font-size:13px; cursor:pointer; font-family:inherit;">Spacing & Grid</button>
+
+        <div style="padding:8px 20px; margin-top:16px; margin-bottom:4px;">
+          <span style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#444;">Adoption</span>
+        </div>
+        <button class="nav-item" onclick="showSection('metrics', this)" style="width:100%; text-align:left; padding:10px 20px; background:transparent; border:none; color:#666; font-size:13px; cursor:pointer; font-family:inherit;">Metrics & Impact</button>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main style="flex:1; overflow-y:auto; background:#0f0f0f;">
+
+      <!-- ═══════════════════════════════════════════════════════════
+           DESIGN TOKENS — Full Documentation
+      ═══════════════════════════════════════════════════════════ -->
+      <div id="section-tokens" style="padding:48px; max-width:1100px;">
+        <span class="section-label">Foundation / Design Tokens</span>
+        <h1 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:8px;">Design Tokens Documentation</h1>
+        <p class="doc-p" style="max-width:680px; margin-bottom:48px; font-size:14px; color:#666;">This documentation translates the current token exports into a structured design system reference. It defines how foundational values should be organised, named, and used across product design and implementation.</p>
+
+        <!-- Overview -->
+        <div style="background:#1a1a1a; padding:32px; margin-bottom:2px;">
+          <span class="section-label">Overview</span>
+          <p class="doc-p">The token system is organised into four layers:</p>
+          <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-top:16px;">
+            <div style="background:#111; padding:20px; border-left:2px solid #333;">
+              <p style="font-size:12px; font-weight:600; color:#fff; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;">Primitives</p>
+              <p class="doc-p" style="margin:0;">Raw, reusable values — color scales, spacing values, and base constants.</p>
+            </div>
+            <div style="background:#111; padding:20px; border-left:2px solid #333;">
+              <p style="font-size:12px; font-weight:600; color:#fff; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;">Semantic Tokens</p>
+              <p class="doc-p" style="margin:0;">Role-based aliases — text-primary, bg-primary, spacing-md.</p>
+            </div>
+            <div style="background:#111; padding:20px; border-left:2px solid #333;">
+              <p style="font-size:12px; font-weight:600; color:#fff; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;">Modes</p>
+              <p class="doc-p" style="margin:0;">Light and dark theme mappings — same semantic token resolves differently by context.</p>
+            </div>
+            <div style="background:#111; padding:20px; border-left:2px solid #333;">
+              <p style="font-size:12px; font-weight:600; color:#fff; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;">Value Tokens</p>
+              <p class="doc-p" style="margin:0;">Typography and other foundational values used to build styles.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Token Architecture -->
+        <div style="background:#1a1a1a; padding:32px; margin-bottom:2px;">
+          <span class="section-label">Token Architecture</span>
+
+          <div class="doc-h2" style="margin-top:0;">1. Primitive Tokens</div>
+          <p class="doc-p">Primitive tokens are the source of truth for raw values. They should not describe intent or component usage. Instead, they define the underlying scales used by the system.</p>
+          <p class="doc-p">Examples:</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+            <span style="background:#111; border:1px solid #2a2a2a; padding:4px 12px; font-size:11px; color:#888; font-family:'Courier New',monospace; border-radius:9999px;">Colors/Base/white</span>
+            <span style="background:#111; border:1px solid #2a2a2a; padding:4px 12px; font-size:11px; color:#888; font-family:'Courier New',monospace; border-radius:9999px;">Colors/Gray (light mode)/900</span>
+            <span style="background:#111; border:1px solid #2a2a2a; padding:4px 12px; font-size:11px; color:#888; font-family:'Courier New',monospace; border-radius:9999px;">Colors/NCB Blue/500</span>
+            <span style="background:#111; border:1px solid #2a2a2a; padding:4px 12px; font-size:11px; color:#888; font-family:'Courier New',monospace; border-radius:9999px;">Spacing/4 (16px)</span>
+          </div>
+          <p class="doc-p">Primitive tokens should be: stable · reusable · mode-agnostic · named by family and step, not by UI meaning.</p>
+
+          <hr class="doc-divider">
+
+          <div class="doc-h2">2. Semantic Tokens</div>
+          <p class="doc-p">Semantic tokens map primitives to interface roles. They are the tokens designers and developers should use in product work.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+            <span style="background:#111; border:1px solid #2a2a2a; padding:4px 12px; font-size:11px; color:#C8A84B; font-family:'Courier New',monospace; border-radius:9999px;">text-primary</span>
+            <span style="background:#111; border:1px solid #2a2a2a; padding:4px 12px; font-size:11px; color:#C8A84B; font-family:'Courier New',monospace; border-radius:9999px;">text-secondary</span>
+            <span style="background:#111; border:1px solid #2a2a2a; padding:4px 12px; font-size:11px; color:#C8A84B; font-family:'Courier New',monospace; border-radius:9999px;">bg-primary</span>
+            <span style="background:#111; border:1px solid #2a2a2a; padding:4px 12px; font-size:11px; color:#C8A84B; font-family:'Courier New',monospace; border-radius:9999px;">bg-disabled</span>
+            <span style="background:#111; border:1px solid #2a2a2a; padding:4px 12px; font-size:11px; color:#C8A84B; font-family:'Courier New',monospace; border-radius:9999px;">spacing-md</span>
+          </div>
+          <p class="doc-p">Semantic tokens should: communicate purpose · remain consistent even when primitive values change · support mode switching without changing component logic.</p>
+
+          <hr class="doc-divider">
+
+          <div class="doc-h2">3. Modes</div>
+          <p class="doc-p">Modes allow the same semantic token to resolve differently in light and dark contexts.</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; margin:16px 0;">
+            <div style="background:#fff; padding:16px 20px; display:flex; align-items:center; justify-content:space-between;">
+              <span style="font-size:12px; color:#111; font-family:'Courier New',monospace;">text-primary</span>
+              <span style="font-size:11px; color:#555;">→ #111111 (dark neutral)</span>
+            </div>
+            <div style="background:#111; border:1px solid #222; padding:16px 20px; display:flex; align-items:center; justify-content:space-between;">
+              <span style="font-size:12px; color:#fff; font-family:'Courier New',monospace;">text-primary</span>
+              <span style="font-size:11px; color:#888;">→ #F5F5F5 (light neutral)</span>
+            </div>
+          </div>
+          <p class="doc-p">This preserves role consistency while adapting to surface contrast.</p>
+
+          <hr class="doc-divider">
+
+          <div class="doc-h2">4. Value Tokens</div>
+          <p class="doc-p">Value tokens define non-color foundations such as typography families, font weights, sizes, and line heights. These values support text styles and should be referenced by higher-order style tokens rather than applied ad hoc.</p>
+        </div>
+
+        <!-- Color Foundations -->
+        <div style="background:#1a1a1a; padding:32px; margin-bottom:2px;">
+          <span class="section-label">Color Foundations</span>
+
+          <div class="doc-h2" style="margin-top:0;">Base Colors</div>
+          <p class="doc-p">Base colors establish universal constants used across the system.</p>
+          <div class="token-row">
+            <div class="color-swatch" style="background:#FFFFFF; border:1px solid #333;"></div>
+            <div><p style="font-size:13px; color:#fff; margin-bottom:2px; font-family:'Courier New',monospace;">white</p><p class="mono" style="font-size:11px; color:#555;">#FFFFFF</p></div>
+          </div>
+          <div class="token-row">
+            <div class="color-swatch" style="background:#000000;"></div>
+            <div><p style="font-size:13px; color:#fff; margin-bottom:2px; font-family:'Courier New',monospace;">black</p><p class="mono" style="font-size:11px; color:#555;">#000000</p></div>
+          </div>
+          <div class="token-row" style="border-bottom:none;">
+            <div class="color-swatch" style="background:transparent; border:1px dashed #333;"></div>
+            <div><p style="font-size:13px; color:#fff; margin-bottom:2px; font-family:'Courier New',monospace;">transparent</p><p class="mono" style="font-size:11px; color:#555;">rgba(0,0,0,0)</p></div>
+          </div>
+          <p class="doc-p" style="margin-top:16px;">Use base tokens only when a universal constant is needed. In most product work, semantic tokens should be preferred.</p>
+
+          <hr class="doc-divider">
+
+          <div class="doc-h2">Neutral Color System</div>
+          <p class="doc-p">The system includes multiple neutral families, each designed for different visual needs.</p>
+
+          <div class="doc-h3">Core Neutral Families</div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+            <span class="badge" style="background:#1a2a3a; color:#8a9ab5; border:1px solid #2a2a3a;">Gray (light mode)</span>
+            <span class="badge" style="background:#1a1a2a; color:#8a8aaa; border:1px solid #2a2a3a;">Gray (dark mode)</span>
+            <span class="badge" style="background:#1a1a2a; color:#6a6a8a; border:1px solid #2a2a3a;">Gray (dark mode alpha)</span>
+          </div>
+
+          <div class="doc-h3">Scale Pattern — 25 to 950</div>
+          <div style="margin:12px 0 20px;">
+            <div class="color-scale-row">
+              <div class="color-scale-cell" style="background:#F9FAFB;" title="25"></div>
+              <div class="color-scale-cell" style="background:#F3F4F6;" title="50"></div>
+              <div class="color-scale-cell" style="background:#E5E7EB;" title="100"></div>
+              <div class="color-scale-cell" style="background:#D1D5DB;" title="200"></div>
+              <div class="color-scale-cell" style="background:#9CA3AF;" title="400"></div>
+              <div class="color-scale-cell" style="background:#6B7280;" title="500"></div>
+              <div class="color-scale-cell" style="background:#4B5563;" title="600"></div>
+              <div class="color-scale-cell" style="background:#374151;" title="700"></div>
+              <div class="color-scale-cell" style="background:#1F2937;" title="800"></div>
+              <div class="color-scale-cell" style="background:#111827;" title="900"></div>
+              <div class="color-scale-cell" style="background:#030712;" title="950"></div>
+            </div>
+            <div style="display:flex; gap:4px;">
+              <span style="flex:1; font-size:9px; color:#444; text-align:center; font-family:'Courier New',monospace;">25</span>
+              <span style="flex:1; font-size:9px; color:#444; text-align:center; font-family:'Courier New',monospace;">50</span>
+              <span style="flex:1; font-size:9px; color:#444; text-align:center; font-family:'Courier New',monospace;">100</span>
+              <span style="flex:1; font-size:9px; color:#444; text-align:center; font-family:'Courier New',monospace;">200</span>
+              <span style="flex:1; font-size:9px; color:#444; text-align:center; font-family:'Courier New',monospace;">400</span>
+              <span style="flex:1; font-size:9px; color:#444; text-align:center; font-family:'Courier New',monospace;">500</span>
+              <span style="flex:1; font-size:9px; color:#444; text-align:center; font-family:'Courier New',monospace;">600</span>
+              <span style="flex:1; font-size:9px; color:#444; text-align:center; font-family:'Courier New',monospace;">700</span>
+              <span style="flex:1; font-size:9px; color:#444; text-align:center; font-family:'Courier New',monospace;">800</span>
+              <span style="flex:1; font-size:9px; color:#444; text-align:center; font-family:'Courier New',monospace;">900</span>
+              <span style="flex:1; font-size:9px; color:#444; text-align:center; font-family:'Courier New',monospace;">950</span>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px;">
+            <div>
+              <p class="doc-p" style="margin-bottom:4px;"><strong style="color:#ccc;">25–100</strong> — lightest surfaces, subtle fills, low emphasis backgrounds</p>
+              <p class="doc-p" style="margin-bottom:4px;"><strong style="color:#ccc;">200–400</strong> — borders, disabled states, secondary surfaces</p>
+            </div>
+            <div>
+              <p class="doc-p" style="margin-bottom:4px;"><strong style="color:#ccc;">500–700</strong> — medium emphasis text, icons, controls</p>
+              <p class="doc-p" style="margin-bottom:4px;"><strong style="color:#ccc;">800–950</strong> — strongest contrast, headings, foreground on light surfaces</p>
+            </div>
+          </div>
+
+          <hr class="doc-divider">
+
+          <div class="doc-h2">Brand Colors</div>
+
+          <div class="doc-h3">NCB Blue — Primary Brand</div>
+          <div class="color-scale-row" style="margin-bottom:8px;">
+            <div class="color-scale-cell" style="background:#EFF6FF;" title="25"></div>
+            <div class="color-scale-cell" style="background:#DBEAFE;" title="50"></div>
+            <div class="color-scale-cell" style="background:#BFDBFE;" title="100"></div>
+            <div class="color-scale-cell" style="background:#93C5FD;" title="200"></div>
+            <div class="color-scale-cell" style="background:#60A5FA;" title="300"></div>
+            <div class="color-scale-cell" style="background:#3B82F6;" title="400"></div>
+            <div class="color-scale-cell" style="background:#1B2A4A;" title="500"></div>
+            <div class="color-scale-cell" style="background:#1e3a5f;" title="600"></div>
+            <div class="color-scale-cell" style="background:#1e3a8a;" title="700"></div>
+            <div class="color-scale-cell" style="background:#1e40af;" title="800"></div>
+            <div class="color-scale-cell" style="background:#1d4ed8;" title="900"></div>
+          </div>
+          <p class="doc-p">Recommended roles: primary actions · interactive states · links · selected states · branded surfaces.</p>
+
+          <div class="doc-h3">NCB Yellow — Secondary Brand</div>
+          <div class="color-scale-row" style="margin-bottom:8px;">
+            <div class="color-scale-cell" style="background:#FFFBEB;" title="25"></div>
+            <div class="color-scale-cell" style="background:#FEF3C7;" title="50"></div>
+            <div class="color-scale-cell" style="background:#FDE68A;" title="100"></div>
+            <div class="color-scale-cell" style="background:#FCD34D;" title="200"></div>
+            <div class="color-scale-cell" style="background:#FBBF24;" title="300"></div>
+            <div class="color-scale-cell" style="background:#F59E0B;" title="400"></div>
+            <div class="color-scale-cell" style="background:#C8A84B;" title="500"></div>
+            <div class="color-scale-cell" style="background:#B45309;" title="600"></div>
+            <div class="color-scale-cell" style="background:#92400E;" title="700"></div>
+            <div class="color-scale-cell" style="background:#78350F;" title="800"></div>
+            <div class="color-scale-cell" style="background:#451A03;" title="900"></div>
+          </div>
+          <p class="doc-p">Recommended roles: highlights · callouts · badges · brand accents · celebratory or high-visibility moments.</p>
+          <p class="doc-p">Blue should remain the primary functional brand color. Yellow should be used more selectively and should not carry large volumes of text or UI chrome without contrast validation.</p>
+
+          <hr class="doc-divider">
+
+          <div class="doc-h2">Feedback Colors</div>
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:2px; margin:16px 0;">
+            <div style="background:#111; padding:20px;">
+              <p style="font-size:11px; font-weight:600; color:#C62828; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px;">Error</p>
+              <div class="color-scale-row" style="margin-bottom:8px;">
+                <div style="flex:1; height:24px; background:#FEF2F2; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#FECACA; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#F87171; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#EF4444; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#C62828; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#991B1B; border-radius:3px;"></div>
+              </div>
+              <p class="doc-p" style="margin:0; font-size:11px;">Destructive actions, validation failures, critical alerts.</p>
+            </div>
+            <div style="background:#111; padding:20px;">
+              <p style="font-size:11px; font-weight:600; color:#E65100; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px;">Warning</p>
+              <div class="color-scale-row" style="margin-bottom:8px;">
+                <div style="flex:1; height:24px; background:#FFFBEB; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#FEF3C7; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#FCD34D; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#F59E0B; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#E65100; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#92400E; border-radius:3px;"></div>
+              </div>
+              <p class="doc-p" style="margin:0; font-size:11px;">Cautionary messaging, pending issues, elevated attention states.</p>
+            </div>
+            <div style="background:#111; padding:20px;">
+              <p style="font-size:11px; font-weight:600; color:#2E7D32; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px;">Success</p>
+              <div class="color-scale-row" style="margin-bottom:8px;">
+                <div style="flex:1; height:24px; background:#F0FDF4; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#DCFCE7; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#86EFAC; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#4ADE80; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#2E7D32; border-radius:3px;"></div>
+                <div style="flex:1; height:24px; background:#166534; border-radius:3px;"></div>
+              </div>
+              <p class="doc-p" style="margin:0; font-size:11px;">Confirmations, completed actions, positive outcomes.</p>
+            </div>
+          </div>
+          <p class="doc-p">Use lighter steps for background fills and status badges, medium steps for borders and icons, and darker steps for high-contrast text or emphasis.</p>
+        </div>
+
+        <!-- Semantic Color Documentation -->
+        <div style="background:#1a1a1a; padding:32px; margin-bottom:2px;">
+          <span class="section-label">Semantic Color Documentation</span>
+
+          <div class="doc-h2" style="margin-top:0;">Text Tokens</div>
+          <p class="doc-p">Text tokens define foreground hierarchy and should be the default choice for typography color.</p>
+          <table class="doc-table">
+            <thead><tr><th>Token</th><th>Role</th><th>Light Mode</th><th>Dark Mode</th></tr></thead>
+            <tbody>
+              <tr><td>text-primary</td><td style="color:#888; font-family:inherit; font-size:12px;">Highest-emphasis body and heading text</td><td>#111111</td><td>#F5F5F5</td></tr>
+              <tr><td>text-secondary</td><td style="color:#888; font-family:inherit; font-size:12px;">Supporting content, medium-emphasis labels</td><td>#444444</td><td>#AAAAAA</td></tr>
+              <tr><td>text-tertiary</td><td style="color:#888; font-family:inherit; font-size:12px;">Helper text and subdued metadata</td><td>#777777</td><td>#666666</td></tr>
+              <tr><td>text-quaternary</td><td style="color:#888; font-family:inherit; font-size:12px;">Lowest emphasis text where still readable</td><td>#999999</td><td>#444444</td></tr>
+              <tr><td>text-disabled</td><td style="color:#888; font-family:inherit; font-size:12px;">Disabled text state</td><td>#BBBBBB</td><td>#333333</td></tr>
+              <tr><td>text-white</td><td style="color:#888; font-family:inherit; font-size:12px;">Explicit white text when required</td><td>#FFFFFF</td><td>#FFFFFF</td></tr>
+              <tr><td>text-on-brand</td><td style="color:#888; font-family:inherit; font-size:12px;">Text on brand-colored surfaces</td><td>#FFFFFF</td><td>#FFFFFF</td></tr>
+            </tbody>
+          </table>
+          <p class="doc-p">Use semantic text roles rather than direct gray steps. Prefer *_on_brand tokens for text placed on blue or other branded fills.</p>
+
+          <hr class="doc-divider">
+
+          <div class="doc-h2">Background Tokens</div>
+          <p class="doc-p">Background tokens define primary surfaces, alternates, states, and layered fills.</p>
+          <table class="doc-table">
+            <thead><tr><th>Token</th><th>Usage</th></tr></thead>
+            <tbody>
+              <tr><td>bg-primary</td><td style="color:#888; font-family:inherit; font-size:12px;">Main page/surface background</td></tr>
+              <tr><td>bg-primary_alt</td><td style="color:#888; font-family:inherit; font-size:12px;">Alternate surface, subtle distinction</td></tr>
+              <tr><td>bg-primary_hover</td><td style="color:#888; font-family:inherit; font-size:12px;">Hover state for primary surfaces</td></tr>
+              <tr><td>bg-quaternary</td><td style="color:#888; font-family:inherit; font-size:12px;">Deeply nested or low-emphasis fills</td></tr>
+              <tr><td>bg-active</td><td style="color:#888; font-family:inherit; font-size:12px;">Active/selected state background</td></tr>
+              <tr><td>bg-disabled</td><td style="color:#888; font-family:inherit; font-size:12px;">Disabled element background</td></tr>
+            </tbody>
+          </table>
+          <p class="doc-p">Use background tokens to preserve consistent elevation and contrast across themes. Hover, active, and disabled background states should always be driven by semantic tokens.</p>
+        </div>
+
+        <!-- Spacing Foundations -->
+        <div style="background:#1a1a1a; padding:32px; margin-bottom:2px;">
+          <span class="section-label">Spacing Foundations</span>
+
+          <div class="doc-h2" style="margin-top:0;">Primitive Spacing Scale</div>
+          <p class="doc-p">The primitive spacing system uses a numeric scale in pixels.</p>
+          <table class="doc-table">
+            <thead><tr><th>Token</th><th>Value</th><th>Visual</th></tr></thead>
+            <tbody>
+              <tr><td>0</td><td>0px</td><td></td></tr>
+              <tr><td>0.5</td><td>2px</td><td><div style="width:2px; height:8px; background:#333; display:inline-block;"></div></td></tr>
+              <tr><td>1</td><td>4px</td><td><div style="width:4px; height:8px; background:#444; display:inline-block;"></div></td></tr>
+              <tr><td>1.5</td><td>6px</td><td><div style="width:6px; height:8px; background:#444; display:inline-block;"></div></td></tr>
+              <tr><td>2</td><td>8px</td><td><div style="width:8px; height:8px; background:#555; display:inline-block;"></div></td></tr>
+              <tr><td>3</td><td>12px</td><td><div style="width:12px; height:8px; background:#555; display:inline-block;"></div></td></tr>
+              <tr><td>4</td><td>16px</td><td><div style="width:16px; height:8px; background:#666; display:inline-block;"></div></td></tr>
+              <tr><td>5</td><td>20px</td><td><div style="width:20px; height:8px; background:#666; display:inline-block;"></div></td></tr>
+              <tr><td>6</td><td>24px</td><td><div style="width:24px; height:8px; background:#777; display:inline-block;"></div></td></tr>
+              <tr><td>8</td><td>32px</td><td><div style="width:32px; height:8px; background:#777; display:inline-block;"></div></td></tr>
+              <tr><td>10</td><td>40px</td><td><div style="width:40px; height:8px; background:#888; display:inline-block;"></div></td></tr>
+              <tr><td>12</td><td>48px</td><td><div style="width:48px; height:8px; background:#888; display:inline-block;"></div></td></tr>
+              <tr><td>16</td><td>64px</td><td><div style="width:64px; height:8px; background:#999; display:inline-block;"></div></td></tr>
+              <tr><td>20</td><td>80px</td><td><div style="width:80px; height:8px; background:#999; display:inline-block;"></div></td></tr>
+              <tr><td>24</td><td>96px</td><td><div style="width:96px; height:8px; background:#aaa; display:inline-block;"></div></td></tr>
+              <tr><td>32</td><td>128px</td><td><div style="width:128px; height:8px; background:#aaa; display:inline-block;"></div></td></tr>
+            </tbody>
+          </table>
+
+          <hr class="doc-divider">
+
+          <div class="doc-h2">Semantic Spacing Tokens</div>
+          <p class="doc-p">Semantic spacing aliases make the scale easier to use in components and code.</p>
+          <table class="doc-table">
+            <thead><tr><th>Semantic Token</th><th>Primitive Value</th></tr></thead>
+            <tbody>
+              <tr><td>spacing-none</td><td>0px</td></tr>
+              <tr><td>spacing-xxs</td><td>2px</td></tr>
+              <tr><td>spacing-xs</td><td>4px</td></tr>
+              <tr><td>spacing-sm</td><td>6px</td></tr>
+              <tr><td>spacing-md</td><td>8px</td></tr>
+              <tr><td>spacing-lg</td><td>12px</td></tr>
+              <tr><td>spacing-xl</td><td>16px</td></tr>
+              <tr><td>spacing-2xl</td><td>20px</td></tr>
+              <tr><td>spacing-3xl</td><td>24px</td></tr>
+              <tr><td>spacing-4xl</td><td>32px</td></tr>
+              <tr><td>spacing-5xl</td><td>40px</td></tr>
+              <tr><td>spacing-6xl</td><td>48px</td></tr>
+              <tr><td>spacing-7xl</td><td>64px</td></tr>
+              <tr><td>spacing-8xl</td><td>80px</td></tr>
+              <tr><td>spacing-9xl</td><td>96px</td></tr>
+              <tr><td>spacing-10xl</td><td>128px</td></tr>
+            </tbody>
+          </table>
+          <p class="doc-p">Use semantic spacing tokens in components, layouts, and documentation. Use primitive spacing values only when maintaining the foundation. Maintain consistent naming between design and code to reduce handoff friction.</p>
+        </div>
+
+        <!-- Naming Conventions -->
+        <div style="background:#1a1a1a; padding:32px; margin-bottom:2px;">
+          <span class="section-label">Naming Conventions</span>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;">
+            <div style="background:#111; padding:24px;">
+              <div class="doc-h3" style="margin-top:0;">Primitive Naming</div>
+              <p class="doc-p">Pattern: <code style="color:#C8A84B;">Category / Family / Step</code></p>
+              <div style="display:flex; flex-direction:column; gap:8px; margin-top:12px;">
+                <span style="font-size:11px; color:#888; font-family:'Courier New',monospace; background:#1a1a1a; padding:6px 12px; border-radius:9999px;">Colors / NCB Blue / 500</span>
+                <span style="font-size:11px; color:#888; font-family:'Courier New',monospace; background:#1a1a1a; padding:6px 12px; border-radius:9999px;">Colors / Gray (light mode) / 900</span>
+                <span style="font-size:11px; color:#888; font-family:'Courier New',monospace; background:#1a1a1a; padding:6px 12px; border-radius:9999px;">Spacing / 4 (16px)</span>
+              </div>
+            </div>
+            <div style="background:#111; padding:24px;">
+              <div class="doc-h3" style="margin-top:0;">Semantic Naming</div>
+              <p class="doc-p">Pattern: <code style="color:#C8A84B;">role-state-variant</code></p>
+              <div style="display:flex; flex-direction:column; gap:8px; margin-top:12px;">
+                <span style="font-size:11px; color:#C8A84B; font-family:'Courier New',monospace; background:#1a1a1a; padding:6px 12px; border-radius:9999px;">text-primary</span>
+                <span style="font-size:11px; color:#C8A84B; font-family:'Courier New',monospace; background:#1a1a1a; padding:6px 12px; border-radius:9999px;">text-secondary_hover</span>
+                <span style="font-size:11px; color:#C8A84B; font-family:'Courier New',monospace; background:#1a1a1a; padding:6px 12px; border-radius:9999px;">bg-disabled</span>
+                <span style="font-size:11px; color:#C8A84B; font-family:'Courier New',monospace; background:#1a1a1a; padding:6px 12px; border-radius:9999px;">spacing-md</span>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:2px; background:#111; padding:24px;">
+            <div class="doc-h3" style="margin-top:0;">Naming Principles</div>
+            <ul style="list-style:none; padding:0; margin:0;">
+              <li class="doc-li">Name by purpose, not appearance, at the semantic layer</li>
+              <li class="doc-li">Name by family and scale, not purpose, at the primitive layer</li>
+              <li class="doc-li">Avoid duplicate tokens that express the same UI meaning</li>
+              <li class="doc-li">Avoid using raw hex values or pixel values directly in product components</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Usage Rules -->
+        <div style="background:#1a1a1a; padding:32px; margin-bottom:2px;">
+          <span class="section-label">Usage Rules</span>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;">
+            <div style="background:#111; padding:24px;">
+              <div class="doc-h3" style="margin-top:0;">Designers</div>
+              <ul style="list-style:none; padding:0; margin:0;">
+                <li class="doc-li">Apply semantic tokens in components and templates</li>
+                <li class="doc-li">Use primitives only when defining or revising foundations</li>
+                <li class="doc-li">Do not manually substitute similar gray values when a semantic token already exists</li>
+                <li class="doc-li">Validate yellow and low-contrast color pairings carefully</li>
+              </ul>
+            </div>
+            <div style="background:#111; padding:24px;">
+              <div class="doc-h3" style="margin-top:0;">Developers</div>
+              <ul style="list-style:none; padding:0; margin:0;">
+                <li class="doc-li">Consume semantic tokens in UI code</li>
+                <li class="doc-li">Keep primitive references inside the token pipeline rather than application code</li>
+                <li class="doc-li">Support theme switching through mode-aware token resolution</li>
+                <li class="doc-li">Do not hardcode color or spacing values already represented by tokens</li>
+              </ul>
+            </div>
+          </div>
+          <div style="margin-top:2px; background:#111; padding:24px;">
+            <div class="doc-h3" style="margin-top:0;">Accessibility</div>
+            <p class="doc-p">Semantic tokens should be evaluated in context, especially for:</p>
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;">
+              <span class="badge" style="background:#1a1a2a; color:#8a8aaa; border:1px solid #2a2a3a;">text on brand surfaces</span>
+              <span class="badge" style="background:#1a1a2a; color:#8a8aaa; border:1px solid #2a2a3a;">disabled content</span>
+              <span class="badge" style="background:#1a1a2a; color:#8a8aaa; border:1px solid #2a2a3a;">subtle borders</span>
+              <span class="badge" style="background:#1a1a2a; color:#8a8aaa; border:1px solid #2a2a3a;">warning and success backgrounds</span>
+              <span class="badge" style="background:#1a1a2a; color:#8a8aaa; border:1px solid #2a2a3a;">dark theme overlays and alpha values</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Governance -->
+        <div style="background:#1a1a1a; padding:32px; margin-bottom:2px;">
+          <span class="section-label">Governance</span>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;">
+            <div style="background:#111; padding:24px;">
+              <div class="doc-h3" style="margin-top:0; color:#2E7D32;">Add a new primitive token when:</div>
+              <ul style="list-style:none; padding:0; margin:0;">
+                <li class="doc-li">No existing family and scale step can support the need</li>
+                <li class="doc-li">The value has clear reuse potential</li>
+                <li class="doc-li">The value represents a foundational addition, not a one-off component exception</li>
+              </ul>
+            </div>
+            <div style="background:#111; padding:24px;">
+              <div class="doc-h3" style="margin-top:0; color:#2E7D32;">Add a new semantic token when:</div>
+              <ul style="list-style:none; padding:0; margin:0;">
+                <li class="doc-li">A new UI role is needed</li>
+                <li class="doc-li">An existing role is overloaded or ambiguous</li>
+                <li class="doc-li">A token must behave differently across themes while preserving intent</li>
+              </ul>
+            </div>
+          </div>
+          <div style="margin-top:2px; background:#2a1111; padding:24px; border-left:2px solid #C62828;">
+            <div class="doc-h3" style="margin-top:0; color:#C62828;">Avoid:</div>
+            <ul style="list-style:none; padding:0; margin:0;">
+              <li class="doc-li">Component-specific primitive names</li>
+              <li class="doc-li">Ad hoc one-off colors</li>
+              <li class="doc-li">Inconsistent spacing aliases</li>
+              <li class="doc-li">Publishing internal or experimental palettes without a defined use case</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Recommended Publishing Structure -->
+        <div style="background:#1a1a1a; padding:32px; margin-bottom:2px;">
+          <span class="section-label">Recommended Publishing Structure</span>
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:2px;">
+            <div style="background:#111; padding:24px;">
+              <div class="doc-h3" style="margin-top:0;">Foundations</div>
+              <ul style="list-style:none; padding:0; margin:0;">
+                <li class="doc-li">Colors</li>
+                <li class="doc-li">Spacing</li>
+                <li class="doc-li">Typography</li>
+              </ul>
+            </div>
+            <div style="background:#111; padding:24px;">
+              <div class="doc-h3" style="margin-top:0;">Semantics</div>
+              <ul style="list-style:none; padding:0; margin:0;">
+                <li class="doc-li">Text</li>
+                <li class="doc-li">Background</li>
+                <li class="doc-li">Border</li>
+                <li class="doc-li">Icon</li>
+                <li class="doc-li">Utility</li>
+                <li class="doc-li">State</li>
+              </ul>
+            </div>
+            <div style="background:#111; padding:24px;">
+              <div class="doc-h3" style="margin-top:0;">Themes & Reference</div>
+              <ul style="list-style:none; padding:0; margin:0;">
+                <li class="doc-li">Light mode</li>
+                <li class="doc-li">Dark mode</li>
+                <li class="doc-li">Naming conventions</li>
+                <li class="doc-li">Token usage rules</li>
+                <li class="doc-li">Contribution guidance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div style="background:#1B2A4A; padding:32px; margin-bottom:2px;">
+          <span class="section-label" style="color:#4a6a9a;">Summary</span>
+          <p style="font-size:16px; font-weight:300; color:#fff; line-height:1.7; margin-bottom:16px;">This token system is already structured strongly enough to support a mature design system. The main documentation goal is to separate what values exist from how they should be used.</p>
+          <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-top:16px;">
+            <div style="display:flex; align-items:flex-start; gap:12px;">
+              <div style="width:6px; height:6px; background:#C8A84B; border-radius:50%; margin-top:6px; flex-shrink:0;"></div>
+              <p style="font-size:13px; color:#8a9ab5; font-weight:300; line-height:1.6; margin:0;">Primitives define the scales</p>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:12px;">
+              <div style="width:6px; height:6px; background:#C8A84B; border-radius:50%; margin-top:6px; flex-shrink:0;"></div>
+              <p style="font-size:13px; color:#8a9ab5; font-weight:300; line-height:1.6; margin:0;">Semantic tokens define intent</p>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:12px;">
+              <div style="width:6px; height:6px; background:#C8A84B; border-radius:50%; margin-top:6px; flex-shrink:0;"></div>
+              <p style="font-size:13px; color:#8a9ab5; font-weight:300; line-height:1.6; margin:0;">Modes define context</p>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:12px;">
+              <div style="width:6px; height:6px; background:#C8A84B; border-radius:50%; margin-top:6px; flex-shrink:0;"></div>
+              <p style="font-size:13px; color:#8a9ab5; font-weight:300; line-height:1.6; margin:0;">Value tokens define foundational typographic behaviour</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typography -->
+      <div id="section-typography" style="display:none; padding:48px;">
+        <span class="section-label">Foundation / Typography</span>
+        <h1 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:8px;">Typography Scale</h1>
+        <p class="doc-p" style="margin-bottom:32px;">Font families: <strong style="color:#ccc;">font-family-display</strong> — Roboto &nbsp;·&nbsp; <strong style="color:#ccc;">font-family-body</strong> — Roboto</p>
+        <div style="background:#1a1a1a; padding:40px; margin-bottom:2px;">
+          <span class="section-label">Type Scale</span>
+          <div style="padding:20px 0; border-bottom:1px solid #222;">
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:8px;">Display — 72px / Weight 200 / Line-height 1</span>
+            <p style="font-size:72px; font-weight:200; color:#fff; line-height:1; letter-spacing:-0.04em;">Banking</p>
+          </div>
+          <div style="padding:20px 0; border-bottom:1px solid #222;">
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:8px;">display-md — 36px / Line-height 44px</span>
+            <p style="font-size:36px; font-weight:200; color:#fff; line-height:1.22; letter-spacing:-0.03em;">Account Overview</p>
+          </div>
+          <div style="padding:20px 0; border-bottom:1px solid #222;">
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:8px;">display-sm — 30px / Line-height 38px</span>
+            <p style="font-size:30px; font-weight:300; color:#fff; line-height:1.27; letter-spacing:-0.02em;">Recent Transactions</p>
+          </div>
+          <div style="padding:20px 0; border-bottom:1px solid #222;">
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:8px;">display-xs — 24px / Line-height 32px</span>
+            <p style="font-size:24px; font-weight:300; color:#fff; line-height:1.33;">Savings Account — JMD</p>
+          </div>
+          <div style="padding:20px 0; border-bottom:1px solid #222;">
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:8px;">text-xl — 20px / Line-height 28px</span>
+            <p style="font-size:20px; font-weight:400; color:#fff; line-height:1.4;">Loan Application Form</p>
+          </div>
+          <div style="padding:20px 0; border-bottom:1px solid #222;">
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:8px;">text-md — 16px / Line-height 22px / Body</span>
+            <p style="font-size:16px; font-weight:300; color:#aaa; line-height:1.375; max-width:600px;">Your account is in good standing. Your next scheduled payment of $3,200 is due on April 15, 2026.</p>
+          </div>
+          <div style="padding:20px 0; border-bottom:1px solid #222;">
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:8px;">text-sm — 14px / Line-height 20px</span>
+            <p style="font-size:14px; font-weight:300; color:#aaa; line-height:1.43;">Last updated: 03 Apr 2026 at 09:42 AM · All amounts in Jamaican Dollars (JMD)</p>
+          </div>
+          <div style="padding:20px 0; border-bottom:1px solid #222;">
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:8px;">text-xs — 12px / Line-height 18px</span>
+            <p style="font-size:12px; font-weight:400; color:#666; line-height:1.5;">Last updated: 03 Apr 2026 at 09:42 AM</p>
+          </div>
+          <div style="padding:20px 0;">
+            <span style="font-size:9px; color:#444; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:8px;">Label — 9px / Weight 600 / Uppercase</span>
+            <p style="font-size:9px; font-weight:600; color:#888; line-height:1.6; text-transform:uppercase; letter-spacing:0.1em;">ACCOUNT NUMBER · SORT CODE · AVAILABLE BALANCE</p>
+          </div>
+        </div>
+        <div style="background:#1a1a1a; padding:32px;">
+          <span class="section-label">Font Weights</span>
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;">
+            <div><p style="font-size:20px; font-weight:300; color:#fff; margin-bottom:4px;">Regular</p><p style="font-size:10px; color:#555;">300</p></div>
+            <div><p style="font-size:20px; font-weight:400; color:#fff; margin-bottom:4px;">Medium</p><p style="font-size:10px; color:#555;">400</p></div>
+            <div><p style="font-size:20px; font-weight:600; color:#fff; margin-bottom:4px;">SemiBold</p><p style="font-size:10px; color:#555;">600</p></div>
+            <div><p style="font-size:20px; font-weight:700; color:#fff; margin-bottom:4px;">Bold</p><p style="font-size:10px; color:#555;">700</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div id="section-buttons" style="display:none; padding:48px;">
+        <span class="section-label">Components / Buttons</span>
+        <h1 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:48px;">Button System</h1>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;">
+          <div style="background:#1a1a1a; padding:40px;">
+            <span class="section-label">Primary Actions</span>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div>
+                <button style="background:#1B2A4A; color:#fff; padding:14px 28px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; font-family:inherit; border-radius:9999px;">APPLY NOW</button>
+                <p style="font-size:10px; color:#555; margin-top:8px;">btn.primary — Default</p>
+              </div>
+              <div>
+                <button style="background:#C8A84B; color:#fff; padding:14px 28px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; font-family:inherit; border-radius:9999px;">GET STARTED</button>
+                <p style="font-size:10px; color:#555; margin-top:8px;">btn.primary.accent — Gold</p>
+              </div>
+              <div>
+                <button style="background:transparent; color:#fff; padding:14px 28px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:1px solid #333; cursor:pointer; font-family:inherit; border-radius:9999px;">LEARN MORE</button>
+                <p style="font-size:10px; color:#555; margin-top:8px;">btn.secondary — Ghost</p>
+              </div>
+            </div>
+          </div>
+          <div style="background:#1a1a1a; padding:40px;">
+            <span class="section-label">States & Sizes</span>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                <button style="background:#1B2A4A; color:#fff; padding:10px 20px; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; font-family:inherit; border-radius:9999px;">SMALL</button>
+                <button style="background:#1B2A4A; color:#fff; padding:14px 28px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; font-family:inherit; border-radius:9999px;">MEDIUM</button>
+                <button style="background:#1B2A4A; color:#fff; padding:18px 36px; font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; font-family:inherit; border-radius:9999px;">LARGE</button>
+              </div>
+              <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                <button style="background:#1B2A4A; color:#fff; padding:14px 28px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; font-family:inherit; border-radius:9999px; opacity:0.4;" disabled>DISABLED</button>
+                <button style="background:#2E7D32; color:#fff; padding:14px 28px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; font-family:inherit; border-radius:9999px;">✓ SUCCESS</button>
+                <button style="background:#C62828; color:#fff; padding:14px 28px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; font-family:inherit; border-radius:9999px;">✕ ERROR</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Forms -->
+      <div id="section-forms" style="display:none; padding:48px;">
+        <span class="section-label">Components / Forms & Inputs</span>
+        <h1 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:48px;">Form Components</h1>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;">
+          <div style="background:#1a1a1a; padding:40px;">
+            <span class="section-label">Input States</span>
+            <div style="display:flex; flex-direction:column; gap:24px;">
+              <div>
+                <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#666; display:block; margin-bottom:8px;">Default</label>
+                <input type="text" placeholder="Account number" style="width:100%; padding:12px 16px; background:#111; border:1px solid #2a2a2a; color:#fff; font-size:14px; font-weight:300; outline:none; font-family:inherit; border-radius:9999px;">
+              </div>
+              <div>
+                <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#666; display:block; margin-bottom:8px;">Focused</label>
+                <input type="text" value="1234-5678-9012" style="width:100%; padding:12px 16px; background:#111; border:1px solid #fff; color:#fff; font-size:14px; font-weight:300; outline:none; font-family:inherit; border-radius:9999px;">
+              </div>
+              <div>
+                <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#2E7D32; display:block; margin-bottom:8px;">Valid ✓</label>
+                <input type="text" value="marcus.williams@email.com" style="width:100%; padding:12px 16px; background:#111; border:1px solid #2E7D32; color:#fff; font-size:14px; font-weight:300; outline:none; font-family:inherit; border-radius:9999px;">
+              </div>
+              <div>
+                <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#C62828; display:block; margin-bottom:8px;">Error</label>
+                <input type="text" value="invalid-trn" style="width:100%; padding:12px 16px; background:#111; border:1px solid #C62828; color:#fff; font-size:14px; font-weight:300; outline:none; font-family:inherit; border-radius:9999px;">
+                <p style="font-size:11px; color:#C62828; margin-top:6px;">Please enter a valid TRN in the format 000-000-000</p>
+              </div>
+            </div>
+          </div>
+          <div style="background:#1a1a1a; padding:40px;">
+            <span class="section-label">Form Pattern — Loan Application</span>
+            <div style="display:flex; flex-direction:column; gap:20px;">
+              <div>
+                <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#666; display:block; margin-bottom:8px;">Full Name</label>
+                <input type="text" placeholder="Marcus Williams" style="width:100%; padding:12px 16px; background:#111; border:1px solid #2a2a2a; color:#fff; font-size:14px; font-weight:300; outline:none; font-family:inherit; border-radius:9999px;">
+              </div>
+              <div>
+                <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#666; display:block; margin-bottom:8px;">Loan Amount (JMD)</label>
+                <input type="text" placeholder="$2,000,000" style="width:100%; padding:12px 16px; background:#111; border:1px solid #2a2a2a; color:#fff; font-size:14px; font-weight:300; outline:none; font-family:inherit; border-radius:9999px;">
+              </div>
+              <div>
+                <label style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#666; display:block; margin-bottom:8px;">Loan Purpose</label>
+                <select style="width:100%; padding:12px 16px; background:#111; border:1px solid #2a2a2a; color:#fff; font-size:14px; font-weight:300; outline:none; font-family:inherit; appearance:none; border-radius:9999px;">
+                  <option>Auto Loan — New Vehicle</option>
+                  <option>Auto Loan — Used Vehicle</option>
+                  <option>Mortgage</option>
+                  <option>Personal Loan</option>
+                </select>
+              </div>
+              <button style="background:#1B2A4A; color:#fff; padding:14px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; font-family:inherit; width:100%; border-radius:9999px;">CONTINUE →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div id="section-cards" style="display:none; padding:48px;">
+        <span class="section-label">Components / Cards</span>
+        <h1 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:48px;">Card Patterns</h1>
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:2px; margin-bottom:2px;">
+          <div style="background:#1a1a1a; padding:28px;">
+            <span style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; display:block; margin-bottom:16px;">Account Card</span>
+            <p style="font-size:11px; color:#666; margin-bottom:4px;">Savings Account</p>
+            <p style="font-size:32px; font-weight:200; color:#fff; margin-bottom:4px;">$24,850.00</p>
+            <p style="font-size:11px; color:#555;">Available balance · JMD</p>
+            <div style="margin-top:24px; padding-top:16px; border-top:1px solid #222; display:flex; gap:12px;">
+              <button style="flex:1; background:#1B2A4A; color:#fff; padding:10px; font-size:10px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; border:none; cursor:pointer; font-family:inherit; border-radius:9999px;">TRANSFER</button>
+              <button style="flex:1; background:transparent; color:#666; padding:10px; font-size:10px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; border:1px solid #2a2a2a; cursor:pointer; font-family:inherit; border-radius:9999px;">HISTORY</button>
+            </div>
+          </div>
+          <div style="background:#1a1a1a; padding:28px;">
+            <span style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; display:block; margin-bottom:16px;">Loan Status Card</span>
+            <p style="font-size:11px; color:#666; margin-bottom:4px;">Auto Loan · NCB-2024-0847</p>
+            <p style="font-size:32px; font-weight:200; color:#fff; margin-bottom:4px;">$1,840,000</p>
+            <p style="font-size:11px; color:#555;">Outstanding balance</p>
+            <div style="margin-top:16px; background:#111; padding:12px; border-radius:8px;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span style="font-size:10px; color:#555;">Progress</span>
+                <span style="font-size:10px; color:#888;">8%</span>
+              </div>
+              <div style="height:3px; background:#222; border-radius:2px;"><div style="width:8%; height:100%; background:#C8A84B; border-radius:2px;"></div></div>
+            </div>
+          </div>
+          <div style="background:#1B2A4A; padding:28px;">
+            <span style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#4a6a9a; display:block; margin-bottom:16px;">Promotional Card</span>
+            <p style="font-size:20px; font-weight:300; color:#fff; line-height:1.3; margin-bottom:16px;">Auto loans from 8.5% p.a.</p>
+            <p style="font-size:13px; color:#8a9ab5; font-weight:300; line-height:1.6; margin-bottom:24px;">Finance your next vehicle with competitive rates and flexible terms up to 7 years.</p>
+            <button style="background:#C8A84B; color:#fff; padding:12px 24px; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; font-family:inherit; border-radius:9999px;">APPLY NOW</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Display -->
+      <div id="section-data" style="display:none; padding:48px;">
+        <span class="section-label">Components / Data Display</span>
+        <h1 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:48px;">Data Components</h1>
+        <div style="background:#1a1a1a; padding:40px; margin-bottom:2px;">
+          <span class="section-label">Transaction Table</span>
+          <table style="width:100%; border-collapse:collapse;">
+            <thead>
+              <tr>
+                <th style="text-align:left; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#444; padding:12px 0; border-bottom:1px solid #222; font-weight:500;">Description</th>
+                <th style="text-align:left; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#444; padding:12px 0; border-bottom:1px solid #222; font-weight:500;">Date</th>
+                <th style="text-align:left; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#444; padding:12px 0; border-bottom:1px solid #222; font-weight:500;">Category</th>
+                <th style="text-align:right; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#444; padding:12px 0; border-bottom:1px solid #222; font-weight:500;">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="font-size:13px; font-weight:300; color:#aaa; padding:14px 0; border-bottom:1px solid #1a1a1a;">Mortgage Payment</td><td style="font-size:13px; color:#555; padding:14px 0; border-bottom:1px solid #1a1a1a;">03 Apr 2026</td><td style="padding:14px 0; border-bottom:1px solid #1a1a1a;"><span style="font-size:9px; background:#1B2A4A; color:#8a9ab5; padding:3px 10px; text-transform:uppercase; letter-spacing:0.06em; border-radius:9999px;">Loan</span></td><td style="font-size:13px; font-weight:300; color:#C62828; padding:14px 0; border-bottom:1px solid #1a1a1a; text-align:right;">-$3,200.00</td></tr>
+              <tr><td style="font-size:13px; font-weight:300; color:#aaa; padding:14px 0; border-bottom:1px solid #1a1a1a;">Salary Deposit</td><td style="font-size:13px; color:#555; padding:14px 0; border-bottom:1px solid #1a1a1a;">01 Apr 2026</td><td style="padding:14px 0; border-bottom:1px solid #1a1a1a;"><span style="font-size:9px; background:#1a3a1a; color:#4CAF50; padding:3px 10px; text-transform:uppercase; letter-spacing:0.06em; border-radius:9999px;">Income</span></td><td style="font-size:13px; font-weight:300; color:#4CAF50; padding:14px 0; border-bottom:1px solid #1a1a1a; text-align:right;">+$6,500.00</td></tr>
+              <tr><td style="font-size:13px; font-weight:300; color:#aaa; padding:14px 0;">Auto Loan Repayment</td><td style="font-size:13px; color:#555; padding:14px 0;">28 Mar 2026</td><td style="padding:14px 0; border-bottom:1px solid #1a1a1a;"><span style="font-size:9px; background:#1B2A4A; color:#8a9ab5; padding:3px 10px; text-transform:uppercase; letter-spacing:0.06em; border-radius:9999px;">Loan</span></td><td style="font-size:13px; font-weight:300; color:#C62828; padding:14px 0; text-align:right;">-$850.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Metrics -->
+      <div id="section-metrics" style="display:none; padding:48px;">
+        <span class="section-label">Adoption / Metrics & Impact</span>
+        <h1 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:48px;">System Adoption</h1>
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:2px; margin-bottom:2px;">
+          <div style="background:#1a1a1a; padding:32px;"><p style="font-size:48px; font-weight:200; color:#fff; line-height:1;">2000+</p><p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; margin-top:8px;">Components</p></div>
+          <div style="background:#1a1a1a; padding:32px;"><p style="font-size:48px; font-weight:200; color:#fff; line-height:1;">65%</p><p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; margin-top:8px;">Adoption Rate</p></div>
+          <div style="background:#1a1a1a; padding:32px;"><p style="font-size:48px; font-weight:200; color:#fff; line-height:1;">70%</p><p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; margin-top:8px;">Faster Handoff</p></div>
+          <div style="background:#1a1a1a; padding:32px;"><p style="font-size:48px; font-weight:200; color:#fff; line-height:1;">85%</p><p style="font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:#555; margin-top:8px;">Product Coverage</p></div>
+        </div>
+        <div style="background:#1a1a1a; padding:40px;">
+          <span class="section-label">Adoption by Product Team</span>
+          <div style="display:flex; flex-direction:column; gap:20px;">
+            <div><div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span style="font-size:13px; color:#aaa; font-weight:300;">Mobile Banking App</span><span style="font-size:13px; color:#fff; font-weight:300;">92%</span></div><div class="adoption-bar"><div class="adoption-fill" style="width:92%;"></div></div></div>
+            <div><div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span style="font-size:13px; color:#aaa; font-weight:300;">Online Banking Web</span><span style="font-size:13px; color:#fff; font-weight:300;">78%</span></div><div class="adoption-bar"><div class="adoption-fill" style="width:78%;"></div></div></div>
+            <div><div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span style="font-size:13px; color:#aaa; font-weight:300;">Loan Products</span><span style="font-size:13px; color:#fff; font-weight:300;">65%</span></div><div class="adoption-bar"><div class="adoption-fill" style="width:65%;"></div></div></div>
+            <div><div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span style="font-size:13px; color:#aaa; font-weight:300;">Marketing & Campaigns</span><span style="font-size:13px; color:#fff; font-weight:300;">48%</span></div><div class="adoption-bar"><div class="adoption-fill" style="width:48%;"></div></div></div>
+            <div><div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span style="font-size:13px; color:#aaa; font-weight:300;">Internal Tools</span><span style="font-size:13px; color:#fff; font-weight:300;">35%</span></div><div class="adoption-bar"><div class="adoption-fill" style="width:35%;"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spacing -->
+      <div id="section-spacing" style="display:none; padding:48px;">
+        <span class="section-label">Foundation / Spacing & Grid</span>
+        <h1 style="font-size:clamp(28px, 4vw, 48px); font-weight:200; letter-spacing:-0.03em; margin-bottom:48px;">Spacing & Grid System</h1>
+        <div style="background:#1a1a1a; padding:40px; margin-bottom:2px;">
+          <span class="section-label">12-Column Grid — 1280px Container</span>
+          <div style="display:grid; grid-template-columns:repeat(12, 1fr); gap:8px; margin-bottom:24px;">
+            <div style="background:#1B2A4A; height:40px; opacity:0.6;"></div>
+            <div style="background:#1B2A4A; height:40px; opacity:0.6;"></div>
+            <div style="background:#1B2A4A; height:40px; opacity:0.6;"></div>
+            <div style="background:#1B2A4A; height:40px; opacity:0.6;"></div>
+            <div style="background:#1B2A4A; height:40px; opacity:0.6;"></div>
+            <div style="background:#1B2A4A; height:40px; opacity:0.6;"></div>
+            <div style="background:#1B2A4A; height:40px; opacity:0.6;"></div>
+            <div style="background:#1B2A4A; height:40px; opacity:0.6;"></div>
+            <div style="background:#1B2A4A; height:40px; opacity:0.6;"></div>
+            <div style="background:#1B2A4A; height:40px; opacity:0.6;"></div>
+            <div style="background:#1B2A4A; height:40px; opacity:0.6;"></div>
+            <div style="background:#1B2A4A; height:40px; opacity:0.6;"></div>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(12, 1fr); gap:8px;">
+            <div style="grid-column:span 8; background:#1B2A4A; height:60px; display:flex; align-items:center; justify-content:center;"><span style="font-size:10px; color:#8a9ab5; text-transform:uppercase; letter-spacing:0.08em;">8 col — Main Content</span></div>
+            <div style="grid-column:span 4; background:#333; height:60px; display:flex; align-items:center; justify-content:center;"><span style="font-size:10px; color:#666; text-transform:uppercase; letter-spacing:0.08em;">4 col — Sidebar</span></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    function showSection(id, btn) {
+      document.querySelectorAll('[id^="section-"]').forEach(s => s.style.display = 'none');
+      document.getElementById('section-' + id).style.display = 'block';
+      document.querySelectorAll('.nav-item').forEach(b => {
+        b.style.background = 'transparent';
+        b.style.color = '#666';
+      });
+      btn.style.background = '#1a1a1a';
+      btn.style.color = '#fff';
+    }
+  </script>
+</body>
+</html>
