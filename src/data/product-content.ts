@@ -109,11 +109,12 @@ export const PRODUCT_WORK: ProductWork[] = [
     client: 'NCB Financial Group',
     type: 'Type Design',
     year: '2022',
-    description: 'A custom geometric sans-serif typeface designed for the Oasis design system.',
+    description: 'A custom geometric sans-serif typeface designed for the Oasis design system — with an interactive specimen and live type tester.',
     href: '/case-studies/type-design',
     img: '/assets/images/image-1775321950897.png',
     alt: 'Type design system showing typographic scale and specimens',
-    tags: ['Typography', 'Type Design', 'Brand'],
+    tags: ['Typography', 'Type Design', 'Specimen'],
+    featured: true,
   },
 ];
 

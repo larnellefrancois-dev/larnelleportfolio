@@ -15,13 +15,13 @@ export default function ProductDesignPage() {
     <SectionLanding
       eyebrow="Systema · Product Design"
       title="Designing clear, credible products at scale."
-      lede="Case studies, design systems, and interfaces. I help teams ship structured, accessible, trustworthy products — most recently across enterprise banking and design-systems work."
+      lede="Case studies, design systems, typography, and interfaces. I help teams ship structured, accessible, trustworthy products — most recently across enterprise banking, design systems, and type design."
       actions={[
         { label: 'View case studies', href: '/product-design/case-studies', primary: true },
-        { label: 'About', href: '/product-design/about' },
+        { label: 'Design systems & type', href: '/product-design/design-systems' },
       ]}
       featuredTitle="Featured work"
-      featuredDesc="Selected projects across banking UX, design systems, and platform design."
+      featuredDesc="Selected projects across banking UX, design systems, typography, and platform design."
       features={featured.map((w) => ({
         title: w.title,
         meta: `${w.client} · ${w.year}`,
