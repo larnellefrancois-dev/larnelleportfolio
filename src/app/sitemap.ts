@@ -5,8 +5,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   return [
-    // Portal homepage
-    { url: `${baseUrl}/portal`, lastModified: now, changeFrequency: 'monthly', priority: 1.0 },
+    // Portal homepage (canonical root)
+    { url: `${baseUrl}/`, lastModified: now, changeFrequency: 'monthly', priority: 1.0 },
 
     // Art section
     { url: `${baseUrl}/art`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
@@ -48,9 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/case-studies/hsbc-design-system`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/case-studies/accessibility-programme`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
 
-    // Legacy pages (preserved)
-    { url: `${baseUrl}/writing`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${baseUrl}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/homepage`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
+    // Featured writing detail
+    { url: `${baseUrl}/product-design/writing/semantic-tokens-architecture`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
   ];
 }
