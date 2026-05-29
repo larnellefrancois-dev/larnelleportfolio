@@ -1,17 +1,19 @@
 # Local fonts
 
-## OasisGeometric-Regular.woff2
+## Oasis Geometric
 
-Used by the Oasis Geometric Typeface case study's live type tester
-(`src/app/case-studies/type-design/TypeDesignCaseStudyClient.tsx`).
+An original geometric sans-serif typeface designed from scratch by
+Larnelle Chambers. Used by the type-design case study's live specimen /
+type tester (`src/app/case-studies/type-design/TypeDesignCaseStudyClient.tsx`)
+via `@font-face` (family name `OasisGeometric`).
 
-The `@font-face` rule loads this local file first and falls back to a
-signed Supabase URL (which has an expiry) if it's missing. To make the
-tester permanent and self-hosted, place the real font file here:
+Files in this directory:
 
-    public/assets/fonts/OasisGeometric-Regular.woff2
+| File                            | Weight        | Style   |
+|---------------------------------|---------------|---------|
+| OasisGeometric-Regular.woff     | 400 Regular   | normal  |
+| OasisGeometric-SemiBold.woff    | 600 SemiBold  | normal  |
+| OasisGeometric-Bold.woff2       | 700 Bold      | normal  |
+| OasisGeometric-Oblique.woff     | 400 Oblique   | italic  |
 
-No code change is needed — once the file exists it is used automatically.
-
-(It could not be downloaded automatically because the build sandbox has
-no outbound network access.)
+Self-hosted from this folder; no external/CDN dependency.

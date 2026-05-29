@@ -31,15 +31,33 @@ function TypeDesignModal({ onClose }: { onClose: () => void }) {
       role="dialog"
       aria-label="Type Design Process Preview">
       <style>{`
+        /* Self-hosted Oasis Geometric family (public/assets/fonts/). */
         @font-face {
           font-family: 'OasisGeometric';
-          /* Local copy first (drop OasisGeometric-Regular.woff2 into
-             public/assets/fonts/ to use it); signed Supabase URL is a
-             fallback so the tester keeps working until then. */
-          src: url('/assets/fonts/OasisGeometric-Regular.woff2') format('woff2'),
-               url('https://laxpiiufddoeafzuiyzh.supabase.co/storage/v1/object/sign/Pub%20Storage/Fonts/OasisGeometric-Regular.woff2?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNjZjOGMwZC0wOWIxLTRhNzAtYTc1My0wODE4MTc0NmRlZDUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQdWIgU3RvcmFnZS9Gb250cy9PYXNpc0dlb21ldHJpYy1SZWd1bGFyLndvZmYyIiwiaWF0IjoxNzc1MjQ3MTUyLCJleHAiOjE4MDY3ODMxNTJ9.qDjq0RRPAisO-uMi4KkpAXQ0hjjq78q9xhVS8qyulhE') format('woff2');
-          font-weight: normal;
+          src: url('/assets/fonts/OasisGeometric-Regular.woff') format('woff');
+          font-weight: 400;
           font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: 'OasisGeometric';
+          src: url('/assets/fonts/OasisGeometric-SemiBold.woff') format('woff');
+          font-weight: 600;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: 'OasisGeometric';
+          src: url('/assets/fonts/OasisGeometric-Bold.woff2') format('woff2');
+          font-weight: 700;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: 'OasisGeometric';
+          src: url('/assets/fonts/OasisGeometric-Oblique.woff') format('woff');
+          font-weight: 400;
+          font-style: italic;
           font-display: swap;
         }
       `}</style>
@@ -99,7 +117,7 @@ function TypeDesignModal({ onClose }: { onClose: () => void }) {
           </button>
           {activeTab === 'prototype' && (
             <span style={{ marginLeft: 'auto', padding: '0 20px', fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: '#44567a', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-              NCB Typeface System — Overview · Construction · Glyphs · Weights · Specimen
+              Oasis Geometric — Overview · Construction · Glyphs · Weights · Specimen
             </span>
           )}
         </div>
