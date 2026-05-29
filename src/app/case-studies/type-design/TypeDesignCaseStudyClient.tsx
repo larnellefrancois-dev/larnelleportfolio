@@ -33,7 +33,11 @@ function TypeDesignModal({ onClose }: { onClose: () => void }) {
       <style>{`
         @font-face {
           font-family: 'OasisGeometric';
-          src: url('https://laxpiiufddoeafzuiyzh.supabase.co/storage/v1/object/sign/Pub%20Storage/Fonts/OasisGeometric-Regular.woff2?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNjZjOGMwZC0wOWIxLTRhNzAtYTc1My0wODE4MTc0NmRlZDUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQdWIgU3RvcmFnZS9Gb250cy9PYXNpc0dlb21ldHJpYy1SZWd1bGFyLndvZmYyIiwiaWF0IjoxNzc1MjQ3MTUyLCJleHAiOjE4MDY3ODMxNTJ9.qDjq0RRPAisO-uMi4KkpAXQ0hjjq78q9xhVS8qyulhE') format('woff2');
+          /* Local copy first (drop OasisGeometric-Regular.woff2 into
+             public/assets/fonts/ to use it); signed Supabase URL is a
+             fallback so the tester keeps working until then. */
+          src: url('/assets/fonts/OasisGeometric-Regular.woff2') format('woff2'),
+               url('https://laxpiiufddoeafzuiyzh.supabase.co/storage/v1/object/sign/Pub%20Storage/Fonts/OasisGeometric-Regular.woff2?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yNjZjOGMwZC0wOWIxLTRhNzAtYTc1My0wODE4MTc0NmRlZDUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQdWIgU3RvcmFnZS9Gb250cy9PYXNpc0dlb21ldHJpYy1SZWd1bGFyLndvZmYyIiwiaWF0IjoxNzc1MjQ3MTUyLCJleHAiOjE4MDY3ODMxNTJ9.qDjq0RRPAisO-uMi4KkpAXQ0hjjq78q9xhVS8qyulhE') format('woff2');
           font-weight: normal;
           font-style: normal;
           font-display: swap;
