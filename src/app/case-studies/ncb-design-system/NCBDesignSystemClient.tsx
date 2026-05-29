@@ -34,7 +34,7 @@ function OasisCarousel() {
 
   return (
     <>
-      <div style={{ position: 'relative', backgroundColor: '#EEEEEE', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', backgroundColor: '#121425', overflow: 'hidden' }}>
         {/* Slides */}
         <div
           style={{
@@ -68,8 +68,8 @@ function OasisCarousel() {
             position: 'absolute',
             bottom: '44px',
             left: '12px',
-            background: 'rgba(17,17,17,0.55)',
-            color: '#ffffff',
+            background: 'rgba(247,230,183,0.55)',
+            color: '#05060f',
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: '10px',
             padding: '3px 7px',
@@ -92,7 +92,7 @@ function OasisCarousel() {
                 top: '50%',
                 left: '12px',
                 transform: 'translateY(-50%)',
-                background: 'rgba(17,17,17,0.55)',
+                background: 'rgba(247,230,183,0.55)',
                 border: 'none',
                 borderRadius: '50%',
                 width: '36px',
@@ -101,7 +101,7 @@ function OasisCarousel() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                color: '#ffffff',
+                color: '#05060f',
                 fontSize: '18px',
                 lineHeight: 1,
               }}
@@ -116,7 +116,7 @@ function OasisCarousel() {
                 top: '50%',
                 right: '12px',
                 transform: 'translateY(-50%)',
-                background: 'rgba(17,17,17,0.55)',
+                background: 'rgba(247,230,183,0.55)',
                 border: 'none',
                 borderRadius: '50%',
                 width: '36px',
@@ -125,7 +125,7 @@ function OasisCarousel() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                color: '#ffffff',
+                color: '#05060f',
                 fontSize: '18px',
                 lineHeight: 1,
               }}
@@ -158,7 +158,7 @@ function OasisCarousel() {
                   borderRadius: '50%',
                   border: 'none',
                   cursor: 'pointer',
-                  background: i === current ? '#111111' : 'rgba(17,17,17,0.3)',
+                  background: i === current ? '#f7e6b7' : 'rgba(247,230,183,0.3)',
                   padding: 0,
                   transition: 'background 0.2s',
                 }}
@@ -173,8 +173,8 @@ function OasisCarousel() {
             position: 'absolute',
             top: '12px',
             right: '12px',
-            background: 'rgba(17,17,17,0.55)',
-            color: '#ffffff',
+            background: 'rgba(247,230,183,0.55)',
+            color: '#05060f',
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: '11px',
             padding: '4px 8px',
@@ -220,7 +220,7 @@ function OasisCarousel() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                color: '#ffffff',
+                color: '#05060f',
                 fontSize: '24px',
                 lineHeight: 1,
               }}
@@ -270,7 +270,7 @@ function OasisCarousel() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                color: '#ffffff',
+                color: '#05060f',
                 fontSize: '24px',
                 lineHeight: 1,
               }}
@@ -296,7 +296,7 @@ function OasisCarousel() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                color: '#ffffff',
+                color: '#05060f',
                 fontSize: '20px',
                 lineHeight: 1,
             }}
@@ -313,7 +313,7 @@ function OasisCarousel() {
                 left: '50%',
                 transform: 'translateX(-50%)',
                 background: 'rgba(255,255,255,0.15)',
-                color: '#ffffff',
+                color: '#05060f',
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: '12px',
                 padding: '5px 12px',
@@ -359,23 +359,23 @@ function NCBDesignSystemModal({ onClose }: {onClose: () => void;}) {
       style={{ maxWidth: '1400px', height: 'min(96vh, 900px)', borderRadius: '4px', overflow: 'hidden', boxShadow: '0 32px 80px rgba(0,0,0,0.4)' }}
       onClick={(e) => e.stopPropagation()}>
         {/* Header bar */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px', borderBottom: '1px solid #E5E5E5', flexShrink: 0, backgroundColor: '#FAFAFA', gap: '8px', minWidth: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px', borderBottom: '1px solid #1a1d30', flexShrink: 0, backgroundColor: '#080a16', gap: '8px', minWidth: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0, flex: 1, overflow: 'hidden' }}>
-            <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#111111', flexShrink: 0 }} />
+            <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#f7e6b7', flexShrink: 0 }} />
             <div style={{ minWidth: 0, flex: 1, overflow: 'hidden' }}>
-              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#999999', marginBottom: '2px' }}>Interactive System Preview</p>
-              <p style={{ fontSize: '12px', color: '#555555', fontWeight: 300, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Explore the Oasis design system — tokens, typography, spacing, and adoption metrics.</p>
+              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#6f87aa', marginBottom: '2px' }}>Interactive System Preview</p>
+              <p style={{ fontSize: '12px', color: '#b3c4d9', fontWeight: 300, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Explore the Oasis design system — tokens, typography, spacing, and adoption metrics.</p>
             </div>
           </div>
-          <button onClick={onClose} aria-label="Close modal" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '36px', height: '36px', border: '1px solid #E5E5E5', borderRadius: '9999px', background: 'white', cursor: 'pointer', color: '#666666', flexShrink: 0 }}>
+          <button onClick={onClose} aria-label="Close modal" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '36px', height: '36px', border: '1px solid #1a1d30', borderRadius: '9999px', background: '#05060f', cursor: 'pointer', color: '#9fb3cc', flexShrink: 0 }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z" /></svg>
           </button>
         </div>
         {/* Subtitle bar */}
-        <div style={{ padding: '6px 12px', borderBottom: '1px solid #F0F0F0', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px', backgroundColor: '#FAFAFA', overflow: 'hidden', minWidth: 0 }}>
-          <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#111111', display: 'inline-block', flexShrink: 0 }} />
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: '#999999', textTransform: 'uppercase', letterSpacing: '0.06em', flexShrink: 0 }}>Oasis v3.1</span>
-          <span style={{ fontSize: '10px', color: '#BBBBBB', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', minWidth: 0 }}>— Design Tokens · Typography · Spacing · Adoption Metrics</span>
+        <div style={{ padding: '6px 12px', borderBottom: '1px solid #0e1020', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px', backgroundColor: '#080a16', overflow: 'hidden', minWidth: 0 }}>
+          <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#f7e6b7', display: 'inline-block', flexShrink: 0 }} />
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: '#6f87aa', textTransform: 'uppercase', letterSpacing: '0.06em', flexShrink: 0 }}>Oasis v3.1</span>
+          <span style={{ fontSize: '10px', color: '#44567a', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', minWidth: 0 }}>— Design Tokens · Typography · Spacing · Adoption Metrics</span>
         </div>
         {/* iframe */}
         <div style={{ flex: 1, position: 'relative', overflow: 'hidden', minHeight: 0 }}>
@@ -397,7 +397,7 @@ export default function NCBDesignSystemClient() {
   const sectionStyle: React.CSSProperties = {
     fontSize: 'clamp(15px, 2.5vw, 19px)',
     lineHeight: 1.7,
-    color: '#111111',
+    color: '#f7e6b7',
     fontWeight: 300,
     marginBottom: '24px'
   };
@@ -406,7 +406,7 @@ export default function NCBDesignSystemClient() {
     fontSize: '9px',
     textTransform: 'uppercase',
     letterSpacing: '0.1em',
-    color: '#999999',
+    color: '#6f87aa',
     display: 'block',
     marginBottom: '24px'
   };
@@ -414,14 +414,14 @@ export default function NCBDesignSystemClient() {
   const monoStyle: React.CSSProperties = {
     fontFamily: "'JetBrains Mono', monospace",
     fontSize: '11px',
-    color: '#999999',
+    color: '#6f87aa',
     textTransform: 'uppercase',
     letterSpacing: '0.05em'
   };
 
   return (
     <div
-      className="max-w-[1600px] mx-auto px-5 sm:px-10 py-10"
+      className="case-study-sheet max-w-[1600px] mx-auto px-5 sm:px-10 py-10"
       style={{ fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader activePage="Case Studies" />
 
@@ -440,7 +440,7 @@ export default function NCBDesignSystemClient() {
             lineHeight: 1.1,
             letterSpacing: '-0.04em',
             marginBottom: '32px',
-            color: '#111111'
+            color: '#f7e6b7'
           }} />
         
         <p style={{ ...sectionStyle, maxWidth: '720px', marginBottom: 0 }}>
@@ -456,8 +456,8 @@ export default function NCBDesignSystemClient() {
         { value: '70%', label: 'Faster Handoff' },
         { value: '85%', label: 'Product Coverage' }].
         map((m) =>
-        <div key={m.label} style={{ backgroundColor: '#F7F7F7', padding: '24px' }}>
-            <span style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 200, display: 'block', color: '#111111' }}>
+        <div key={m.label} style={{ backgroundColor: '#0a0b1c', padding: '24px' }}>
+            <span style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 200, display: 'block', color: '#f7e6b7' }}>
               {m.value}
             </span>
             <span
@@ -465,7 +465,7 @@ export default function NCBDesignSystemClient() {
               fontSize: '9px',
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
-              color: '#999999',
+              color: '#6f87aa',
               marginTop: '8px',
               display: 'block'
             }}>
@@ -477,7 +477,7 @@ export default function NCBDesignSystemClient() {
 
       {/* Overview + Role */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-1 mb-1">
-        <div className="md:col-span-3" style={{ backgroundColor: '#F7F7F7', padding: 'clamp(20px, 4vw, 32px)' }}>
+        <div className="md:col-span-3" style={{ backgroundColor: '#0a0b1c', padding: 'clamp(20px, 4vw, 32px)' }}>
           <span style={labelStyle}>Overview</span>
           <p style={sectionStyle}>
             When I joined NCB in 2018, there was no true design system in place. The organisation was in the middle of shifting from waterfall to agile delivery, and much of the bank's digital product design had historically been handled by external agencies. As a result, the internal team inherited a fragmented set of files, inconsistent interface patterns, and very little shared structure across products.
@@ -492,7 +492,7 @@ export default function NCBDesignSystemClient() {
         <div
           className="md:col-span-1"
           style={{
-            backgroundColor: '#111111',
+            backgroundColor: '#f7e6b7',
             padding: 'clamp(20px, 4vw, 32px)',
             display: 'flex',
             flexDirection: 'column'
@@ -509,9 +509,9 @@ export default function NCBDesignSystemClient() {
               key={r}
               style={{
                 fontSize: '13px',
-                color: '#ffffff',
+                color: '#05060f',
                 padding: '12px 0',
-                borderBottom: '1px solid #333333',
+                borderBottom: '1px solid #d9c79a',
                 fontWeight: 300
               }}>
                 {r}
@@ -523,12 +523,12 @@ export default function NCBDesignSystemClient() {
 
       {/* Section 01 — The Starting Point */}
       <div className="grid grid-cols-1 gap-1 mb-1">
-        <div style={{ backgroundColor: '#F7F7F7', padding: 'clamp(20px, 4vw, 32px)' }}>
+        <div style={{ backgroundColor: '#0a0b1c', padding: 'clamp(20px, 4vw, 32px)' }}>
           <span style={{ ...monoStyle, display: 'block', marginBottom: '16px' }}>01</span>
-          <h2 style={{ fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 200, color: '#111111', marginBottom: '16px', lineHeight: 1.2 }}>
+          <h2 style={{ fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 200, color: '#f7e6b7', marginBottom: '16px', lineHeight: 1.2 }}>
             The starting point
           </h2>
-          <p style={{ fontSize: '15px', color: '#666666', marginBottom: '32px', fontWeight: 400 }}>No system. Just fragments.</p>
+          <p style={{ fontSize: '15px', color: '#9fb3cc', marginBottom: '32px', fontWeight: 400 }}>No system. Just fragments.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-[1000px]">
             <div>
               <p style={sectionStyle}>
@@ -547,7 +547,7 @@ export default function NCBDesignSystemClient() {
                 'Newer designers had less support and fewer proven patterns to build from',
                 'Design review focused on avoidable inconsistencies rather than higher-level UX decisions'].
                 map((item, i) =>
-                <li key={i} style={{ fontSize: '14px', color: '#444444', padding: '12px 0', borderBottom: '1px solid #E5E5E5', lineHeight: 1.6 }}>
+                <li key={i} style={{ fontSize: '14px', color: '#c9d6e6', padding: '12px 0', borderBottom: '1px solid #1a1d30', lineHeight: 1.6 }}>
                     {item}
                   </li>
                 )}
@@ -559,12 +559,12 @@ export default function NCBDesignSystemClient() {
 
       {/* Section 02 — Adobe XD Era */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mb-1">
-        <div style={{ backgroundColor: '#F7F7F7', padding: 'clamp(20px, 4vw, 32px)' }}>
+        <div style={{ backgroundColor: '#0a0b1c', padding: 'clamp(20px, 4vw, 32px)' }}>
           <span style={{ ...monoStyle, display: 'block', marginBottom: '16px' }}>02</span>
-          <h2 style={{ fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 200, color: '#111111', marginBottom: '16px', lineHeight: 1.2 }}>
+          <h2 style={{ fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 200, color: '#f7e6b7', marginBottom: '16px', lineHeight: 1.2 }}>
             Adobe XD era
           </h2>
-          <p style={{ fontSize: '15px', color: '#666666', marginBottom: '32px' }}>A shared library, not yet a system.</p>
+          <p style={{ fontSize: '15px', color: '#9fb3cc', marginBottom: '32px' }}>A shared library, not yet a system.</p>
           <p style={sectionStyle}>
             The first meaningful step toward consistency happened in Adobe XD. What we built there was not yet a mature design system — it was closer to a shared component library: colours, buttons, cards, headers, footers, and the beginnings of reusable layout pieces. Still, it mattered. It gave the team a common base to work from and started introducing the habit of reuse.
           </p>
@@ -572,7 +572,7 @@ export default function NCBDesignSystemClient() {
             Adobe XD did not support the kind of design logic, scalable variables, or token architecture that later became central to the system. That meant the library could improve consistency, but it could not yet become the flexible, intelligent foundation we needed long term. Even so, this phase shifted the team's mindset toward patterns that should be reused, improved, and shared.
           </p>
         </div>
-        <div style={{ backgroundColor: '#EEEEEE', padding: 'clamp(20px, 4vw, 32px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div style={{ backgroundColor: '#121425', padding: 'clamp(20px, 4vw, 32px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <span style={labelStyle}>What this phase established</span>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, flex: 1 }}>
             {[
@@ -582,7 +582,7 @@ export default function NCBDesignSystemClient() {
             'Less duplication of simple components',
             'A common design vocabulary within the team'].
             map((item, i) =>
-            <li key={i} style={{ fontSize: '14px', color: '#444444', padding: '14px 0', borderBottom: '1px solid #D5D5D5', lineHeight: 1.6 }}>
+            <li key={i} style={{ fontSize: '14px', color: '#c9d6e6', padding: '14px 0', borderBottom: '1px solid #232c40', lineHeight: 1.6 }}>
                 {item}
               </li>
             )}
@@ -592,12 +592,12 @@ export default function NCBDesignSystemClient() {
 
       {/* Section 04 — Version History */}
       <div className="grid grid-cols-1 gap-1 mb-1">
-        <div style={{ backgroundColor: '#F7F7F7', padding: '32px' }}>
+        <div style={{ backgroundColor: '#0a0b1c', padding: '32px' }}>
           <span style={{ ...monoStyle, display: 'block', marginBottom: '16px' }}>04</span>
-          <h2 style={{ fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 200, color: '#111111', marginBottom: '8px', lineHeight: 1.2 }}>
+          <h2 style={{ fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 200, color: '#f7e6b7', marginBottom: '8px', lineHeight: 1.2 }}>
             How it evolved
           </h2>
-          <p style={{ fontSize: '15px', color: '#666666', marginBottom: '40px' }}>Four versions. One living system.</p>
+          <p style={{ fontSize: '15px', color: '#9fb3cc', marginBottom: '40px' }}>Four versions. One living system.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1">
             {[
             {
@@ -629,20 +629,20 @@ export default function NCBDesignSystemClient() {
             <div
               key={v.version}
               style={{
-                backgroundColor: v.current ? '#111111' : '#EEEEEE',
+                backgroundColor: v.current ? '#f7e6b7' : '#121425',
                 padding: '28px'
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
-                  <span style={{ fontSize: '24px', fontWeight: 200, color: v.current ? '#ffffff' : '#111111' }}>{v.version}</span>
+                  <span style={{ fontSize: '24px', fontWeight: 200, color: v.current ? '#05060f' : '#f7e6b7' }}>{v.version}</span>
                   {v.current &&
-                <span style={{ fontSize: '9px', backgroundColor: '#333333', color: '#999999', padding: '4px 8px', borderRadius: '2px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <span style={{ fontSize: '9px', backgroundColor: '#d9c79a', color: '#6f87aa', padding: '4px 8px', borderRadius: '2px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                       Current
                     </span>
                 }
                 </div>
-                <p style={{ fontSize: '11px', color: v.current ? '#666666' : '#999999', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '12px' }}>{v.tool}</p>
-                <p style={{ fontSize: '15px', fontWeight: 400, color: v.current ? '#ffffff' : '#111111', marginBottom: '12px' }}>{v.title}</p>
-                <p style={{ fontSize: '13px', color: v.current ? '#888888' : '#666666', lineHeight: 1.6 }}>{v.desc}</p>
+                <p style={{ fontSize: '11px', color: v.current ? '#9fb3cc' : '#6f87aa', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '12px' }}>{v.tool}</p>
+                <p style={{ fontSize: '15px', fontWeight: 400, color: v.current ? '#05060f' : '#f7e6b7', marginBottom: '12px' }}>{v.title}</p>
+                <p style={{ fontSize: '13px', color: v.current ? '#8198b8' : '#9fb3cc', lineHeight: 1.6 }}>{v.desc}</p>
               </div>
             )}
           </div>
@@ -651,14 +651,14 @@ export default function NCBDesignSystemClient() {
 
       {/* Image Block — Design System in Context (moved here: after How it Evolved, before Team Impact) */}
       <div className="grid grid-cols-1 gap-1 mb-1">
-        <div style={{ backgroundColor: '#F7F7F7', padding: 'clamp(20px, 4vw, 32px)' }}>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', color: '#999999', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '24px' }}>
+        <div style={{ backgroundColor: '#0a0b1c', padding: 'clamp(20px, 4vw, 32px)' }}>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', color: '#6f87aa', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '24px' }}>
             The system in action
           </span>
-          <h2 style={{ fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 200, color: '#111111', marginBottom: '8px', lineHeight: 1.2 }}>
+          <h2 style={{ fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 200, color: '#f7e6b7', marginBottom: '8px', lineHeight: 1.2 }}>
             Built with Oasis
           </h2>
-          <p style={{ fontSize: '15px', color: '#666666', marginBottom: '32px' }}>Desktop screens designed using the system.</p>
+          <p style={{ fontSize: '15px', color: '#9fb3cc', marginBottom: '32px' }}>Desktop screens designed using the system.</p>
 
           {/* Carousel */}
           <OasisCarousel />
@@ -667,12 +667,12 @@ export default function NCBDesignSystemClient() {
 
       {/* Section 05 — Team Impact */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-1 mb-1">
-        <div className="md:col-span-3" style={{ backgroundColor: '#F7F7F7', padding: '32px' }}>
+        <div className="md:col-span-3" style={{ backgroundColor: '#0a0b1c', padding: '32px' }}>
           <span style={{ ...monoStyle, display: 'block', marginBottom: '16px' }}>05</span>
-          <h2 style={{ fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 200, color: '#111111', marginBottom: '8px', lineHeight: 1.2 }}>
+          <h2 style={{ fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 200, color: '#f7e6b7', marginBottom: '8px', lineHeight: 1.2 }}>
             Team impact
           </h2>
-          <p style={{ fontSize: '15px', color: '#666666', marginBottom: '32px' }}>What changed for the team.</p>
+          <p style={{ fontSize: '15px', color: '#9fb3cc', marginBottom: '32px' }}>What changed for the team.</p>
           <p style={sectionStyle}>
             The biggest outcome was not just cleaner files or more components. It was a change in how the team worked. As the system matured, designers were able to move faster because they no longer had to solve the same foundational problems repeatedly. They could start from proven patterns, spend less time rebuilding common UI, and focus more of their energy on experience design, content structure, and solving the specific problem in front of them.
           </p>
@@ -688,7 +688,7 @@ export default function NCBDesignSystemClient() {
             'Less experienced designers had more support and clearer starting points',
             'Design reviews became more strategic — fewer cycles spent fixing basic inconsistency'].
             map((item, i) =>
-            <li key={i} style={{ fontSize: '14px', color: '#444444', padding: '12px 0', borderBottom: '1px solid #E5E5E5', lineHeight: 1.6 }}>
+            <li key={i} style={{ fontSize: '14px', color: '#c9d6e6', padding: '12px 0', borderBottom: '1px solid #1a1d30', lineHeight: 1.6 }}>
                 {item}
               </li>
             )}
@@ -701,11 +701,11 @@ export default function NCBDesignSystemClient() {
           { value: '70%', label: 'Faster Handoff' },
           { value: '85%', label: 'Product Coverage' }].
           map((m) =>
-          <div key={m.label} style={{ backgroundColor: '#111111', padding: '28px' }}>
-              <span style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 200, display: 'block', color: '#ffffff' }}>
+          <div key={m.label} style={{ backgroundColor: '#f7e6b7', padding: '28px' }}>
+              <span style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 200, display: 'block', color: '#05060f' }}>
                 {m.value}
               </span>
-              <span style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#666666', marginTop: '8px', display: 'block' }}>
+              <span style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#9fb3cc', marginTop: '8px', display: 'block' }}>
                 {m.label}
               </span>
             </div>
@@ -715,12 +715,12 @@ export default function NCBDesignSystemClient() {
 
       {/* Section 06 — Reflection */}
       <div className="grid grid-cols-1 gap-1 mb-1">
-        <div style={{ backgroundColor: '#F7F7F7', padding: '32px' }}>
+        <div style={{ backgroundColor: '#0a0b1c', padding: '32px' }}>
           <span style={{ ...monoStyle, display: 'block', marginBottom: '16px' }}>06</span>
-          <h2 style={{ fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 200, color: '#111111', marginBottom: '8px', lineHeight: 1.2 }}>
+          <h2 style={{ fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 200, color: '#f7e6b7', marginBottom: '8px', lineHeight: 1.2 }}>
             Reflection
           </h2>
-          <p style={{ fontSize: '15px', color: '#666666', marginBottom: '40px' }}>What I learned from building it.</p>
+          <p style={{ fontSize: '15px', color: '#9fb3cc', marginBottom: '40px' }}>What I learned from building it.</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-1">
             {[
             {
@@ -739,10 +739,10 @@ export default function NCBDesignSystemClient() {
               desc: 'A design system is not mature because it looks polished. It is mature when people understand it, trust it, and use it in real work. Adoption, flexibility, and relevance matter more than visual neatness alone.'
             }].
             map((item) =>
-            <div key={item.num} style={{ backgroundColor: '#EEEEEE', padding: '32px' }}>
-                <span style={{ fontSize: '32px', fontWeight: 200, color: '#CCCCCC', display: 'block', marginBottom: '16px' }}>{item.num}</span>
-                <h3 style={{ fontSize: '18px', fontWeight: 300, color: '#111111', marginBottom: '16px' }}>{item.title}</h3>
-                <p style={{ fontSize: '13px', color: '#666666', lineHeight: 1.6 }}>{item.desc}</p>
+            <div key={item.num} style={{ backgroundColor: '#121425', padding: '32px' }}>
+                <span style={{ fontSize: '32px', fontWeight: 200, color: '#2b3450', display: 'block', marginBottom: '16px' }}>{item.num}</span>
+                <h3 style={{ fontSize: '18px', fontWeight: 300, color: '#f7e6b7', marginBottom: '16px' }}>{item.title}</h3>
+                <p style={{ fontSize: '13px', color: '#9fb3cc', lineHeight: 1.6 }}>{item.desc}</p>
               </div>
             )}
           </div>
@@ -751,12 +751,12 @@ export default function NCBDesignSystemClient() {
 
       {/* Closing Takeaway */}
       <div className="grid grid-cols-1 gap-1 mb-1">
-        <div style={{ backgroundColor: '#111111', padding: '48px 32px' }}>
+        <div style={{ backgroundColor: '#f7e6b7', padding: '48px 32px' }}>
           <span style={labelStyle}>Closing takeaway</span>
-          <p style={{ fontSize: 'clamp(18px, 3vw, 28px)', fontWeight: 200, color: '#ffffff', lineHeight: 1.4, maxWidth: '800px', marginBottom: '32px' }}>
+          <p style={{ fontSize: 'clamp(18px, 3vw, 28px)', fontWeight: 200, color: '#05060f', lineHeight: 1.4, maxWidth: '800px', marginBottom: '32px' }}>
             This project taught me that design systems are not really about components alone. They are about creating shared confidence.
           </p>
-          <p style={{ fontSize: '16px', color: '#888888', lineHeight: 1.7, maxWidth: '720px' }}>
+          <p style={{ fontSize: '16px', color: '#8198b8', lineHeight: 1.7, maxWidth: '720px' }}>
             What started as a fragmented collection of assets gradually became a living, versioned system that improved consistency, accelerated collaboration, and gave the team a stronger foundation for product design across web and mobile. Its real value was not just in what it contained, but in how it changed the way people worked. It did not simply standardise design. It increased designer efficiency by making good decisions easier to repeat.
           </p>
         </div>
@@ -768,11 +768,11 @@ export default function NCBDesignSystemClient() {
         style={{ marginTop: '4px' }}>
         <div
           style={{
-            background: 'linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 60%, #111111 100%)',
+            background: 'linear-gradient(135deg, #f9ecc4 0%, #efddb0 60%, #f7e6b7 100%)',
             padding: 'clamp(40px, 6vw, 72px) clamp(24px, 5vw, 56px)',
             position: 'relative',
             overflow: 'hidden',
-            borderLeft: '3px solid #ffffff',
+            borderLeft: '3px solid #05060f',
           }}>
           {/* Background accent */}
           <div style={{
@@ -799,13 +799,13 @@ export default function NCBDesignSystemClient() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-10" style={{ position: 'relative', zIndex: 1 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '640px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <span style={{ width: '28px', height: '1px', backgroundColor: '#ffffff', display: 'inline-block' }} />
-                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: '#888888', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Interactive · Live Documentation</span>
+                <span style={{ width: '28px', height: '1px', backgroundColor: '#05060f', display: 'inline-block' }} />
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: '#8198b8', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Interactive · Live Documentation</span>
               </div>
-              <p style={{ fontSize: 'clamp(22px, 4vw, 36px)', fontWeight: 200, color: '#ffffff', lineHeight: 1.2, letterSpacing: '-0.03em', margin: 0 }}>
+              <p style={{ fontSize: 'clamp(22px, 4vw, 36px)', fontWeight: 200, color: '#05060f', lineHeight: 1.2, letterSpacing: '-0.03em', margin: 0 }}>
                 Explore the Oasis<br />design system
               </p>
-              <p style={{ fontSize: '14px', color: '#777777', fontWeight: 300, lineHeight: 1.7, margin: 0 }}>
+              <p style={{ fontSize: '14px', color: '#8ba2c0', fontWeight: 300, lineHeight: 1.7, margin: 0 }}>
                 Browse design tokens, typography scale, spacing system, and adoption metrics — the full living documentation for the NCB design system.
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
@@ -815,8 +815,8 @@ export default function NCBDesignSystemClient() {
                     fontSize: '9px',
                     textTransform: 'uppercase',
                     letterSpacing: '0.08em',
-                    color: '#555555',
-                    border: '1px solid #2A2A2A',
+                    color: '#b3c4d9',
+                    border: '1px solid #e0cfa3',
                     padding: '5px 10px',
                     borderRadius: '2px',
                   }}>{tag}</span>
@@ -828,9 +828,9 @@ export default function NCBDesignSystemClient() {
               className="case-study-cta-btn"
               style={{
                 padding: '16px 40px',
-                border: '1px solid #ffffff',
-                background: '#ffffff',
-                color: '#111111',
+                border: '1px solid #05060f',
+                background: '#05060f',
+                color: '#f7e6b7',
                 fontSize: '11px',
                 fontWeight: 600,
                 letterSpacing: '0.1em',
@@ -842,8 +842,8 @@ export default function NCBDesignSystemClient() {
                 transition: 'background 0.2s, color 0.2s',
                 whiteSpace: 'nowrap',
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#ffffff'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.color = '#111111'; }}>
+              onMouseEnter={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#05060f'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = '#05060f'; e.currentTarget.style.color = '#f7e6b7'; }}>
               View Design System →
             </button>
           </div>
@@ -859,7 +859,7 @@ export default function NCBDesignSystemClient() {
           style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: '11px',
-            color: '#111111',
+            color: '#f7e6b7',
             textDecoration: 'none',
             display: 'inline-flex',
             alignItems: 'center',
@@ -872,14 +872,14 @@ export default function NCBDesignSystemClient() {
         </Link>
       </div>
       {/* Prev / Next Case Study Navigation */}
-      <div className="flex justify-between items-center mt-8 pt-8" style={{ borderTop: '1px solid #E5E5E5' }}>
+      <div className="flex justify-between items-center mt-8 pt-8" style={{ borderTop: '1px solid #1a1d30' }}>
         <span style={{ visibility: 'hidden' }} />
         <Link
           href="/case-studies/mobile-banking"
           style={{ display: 'flex', flexDirection: 'column', gap: '4px', textDecoration: 'none', padding: '8px 0', minHeight: '44px', textAlign: 'right' }}
         >
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#999999' }}>Next →</span>
-          <span style={{ fontSize: '13px', color: '#111111', fontWeight: 300 }}>Improving a Large-Scale Mobile Banking App</span>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6f87aa' }}>Next →</span>
+          <span style={{ fontSize: '13px', color: '#f7e6b7', fontWeight: 300 }}>Improving a Large-Scale Mobile Banking App</span>
         </Link>
       </div>
       <SiteFooter />

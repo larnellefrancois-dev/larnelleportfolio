@@ -9,7 +9,7 @@ const realms = [
     arcaneTitle: 'Ars Visualis',
     meta: 'M·I // VISIO',
     href: '/art',
-    description: 'Expressive forms, painterly manifestations, and the alchemy of pigment.',
+    description: 'Traditional work, studies, commissions, and visual experiments.',
     cta: 'Enter Realm',
     cardClass: 'card-art',
     ariaLabel: 'Art — Ars Visualis — Enter Realm',
@@ -20,7 +20,7 @@ const realms = [
     arcaneTitle: 'Systema',
     meta: 'M·II // STRUCTURA',
     href: '/product-design',
-    description: 'Digital architecture, refined interfaces, and the logic of human interaction.',
+    description: 'Case studies, systems, interfaces, and professional design practice.',
     cta: 'Enter Realm',
     cardClass: 'card-product',
     ariaLabel: 'Product Design — Systema — Enter Realm',
@@ -31,7 +31,7 @@ const realms = [
     arcaneTitle: 'Scriptorium',
     meta: 'M·III // FABULA',
     href: '/literature',
-    description: 'Worldbuilding, narrative threads, and echoes from the dark forest.',
+    description: 'Fiction, worldbuilding, The Pale Interval, and recovered archives.',
     cta: 'Enter Realm',
     cardClass: 'card-literature',
     ariaLabel: 'Literature — Scriptorium — Enter Realm',
@@ -105,7 +105,8 @@ export default function PortalHomepage() {
                   <div className="arcane-index">{realm?.meta}</div>
 
                   <div className="card-typography">
-                    <h2 className="card-title">{realm?.arcaneTitle}</h2>
+                    <h2 className="card-title">{realm?.label}</h2>
+                    <p className="card-arcane-sub">{realm?.arcaneTitle}</p>
                     <p className="card-desc">{realm?.description}</p>
                     <span className="action-rune">{realm?.cta}</span>
                   </div>

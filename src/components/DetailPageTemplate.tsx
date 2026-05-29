@@ -94,16 +94,17 @@ const REALM_TOKENS: Record<
     tagBorder: 'rgba(212,178,113,0.15)',
   },
   product: {
+    // Systema — cyan accent over the shared Obsidian void.
     accent: '#7da7d9',
-    accentDim: 'rgba(125,167,217,0.5)',
-    accentBorder: 'rgba(125,167,217,0.2)',
-    metaColor: 'rgba(125,167,217,0.5)',
+    accentDim: 'rgba(125,167,217,0.55)',
+    accentBorder: 'rgba(125,167,217,0.22)',
+    metaColor: 'rgba(125,167,217,0.55)',
     headingColor: '#f7e6b7',
-    bodyColor: 'rgba(232,208,153,0.75)',
+    bodyColor: 'rgba(232,208,153,0.72)',
     bg: '#05060f',
     cardBg: 'rgba(10,11,28,0.6)',
-    tagBg: 'rgba(125,167,217,0.06)',
-    tagBorder: 'rgba(125,167,217,0.15)',
+    tagBg: 'rgba(125,167,217,0.08)',
+    tagBorder: 'rgba(125,167,217,0.2)',
   },
   literature: {
     accent: '#b32435',

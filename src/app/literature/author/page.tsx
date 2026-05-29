@@ -1,48 +1,16 @@
 import type { Metadata } from 'next';
 import React from 'react';
 import DetailPageTemplate from '@/components/DetailPageTemplate';
+import { authorPageData } from '@/data/realms-content';
 
 export const metadata: Metadata = {
-  title: 'Author — Literature — L.F. Chambers',
-  description: 'Author profile for L.F. Chambers, writer of The Pale Interval.',
+  title: 'L.F. Chambers — Author of The Pale Interval',
+  description: 'Author profile for L.F. Chambers, writer of The Pale Interval — a YA literary sci-fi horror novel of grief, signal, and recovered transmission.',
 };
 
 export default function AuthorPage() {
   return (
-    <DetailPageTemplate
-      realm="literature"
-      breadcrumbs={[
-        { label: 'Literature', href: '/literature' },
-        { label: 'Author', href: '/literature/author' },
-      ]}
-      arcaneIndex="M·III // AUCTOR"
-      title="L.F. Chambers"
-      subtitle="Multidisciplinary creative working across image, interface, and story."
-      meta={[
-        { label: 'Current Work', value: 'The Pale Interval' },
-        { label: 'Genre', value: 'Speculative Fiction' },
-        { label: 'Status', value: 'In Progress' },
-      ]}
-      navLinks={[
-        { label: 'Excerpts', href: '/literature/excerpts', direction: 'prev' },
-        { label: 'Worldbuilding', href: '/literature/worldbuilding', direction: 'next' },
-      ]}
-      sysLabel="SYS_LOC: AUCTOR_ARCHIVE"
-      content={[
-        {
-          type: 'text',
-          body: 'L.F. Chambers is a multidisciplinary creative working across image, interface, and story. The literary work operates in the space between speculative fiction, atmospheric prose, and archival narrative.',
-        },
-        {
-          type: 'text',
-          body: 'Current project: The Pale Interval, a novel in progress. Themes include signal and silence, geological rupture, archival memory, and the space between worlds.',
-        },
-        {
-          type: 'text',
-          body: 'The literary work is informed by a background in visual design and systems thinking — an attention to structure, negative space, and the architecture of meaning.',
-        },
-      ]}
-    >
+    <DetailPageTemplate {...authorPageData}>
       {/* Literary Inquiries CTA */}
       <div
         style={{

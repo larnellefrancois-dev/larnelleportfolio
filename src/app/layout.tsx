@@ -1,7 +1,9 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import '../styles/tailwind.css';
+import '../styles/design-system.css';
 import { LoadingBar, PageTransition } from '../components/ui/PageTransition';
+import AppShell from '../components/shell/AppShell';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -84,9 +86,11 @@ export default function RootLayout({
 
         <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Flarnellepo4855back.builtwithrocket.new&_be=https%3A%2F%2Fappanalytics.rocket.new&_v=0.1.19" />
         <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2" /></head>
-      <body style={{ overflowX: 'hidden' }}>
+      <body className="ds-body" style={{ overflowX: 'hidden' }}>
         <LoadingBar />
-        <PageTransition>{children}</PageTransition>
+        <AppShell>
+          <PageTransition>{children}</PageTransition>
+        </AppShell>
       </body>
     </html>
   );

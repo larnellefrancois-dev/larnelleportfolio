@@ -14,15 +14,6 @@ const nextConfig = {
     remotePatterns: imageHosts,
     minimumCacheTTL: 60,
   },
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/homepage',
-        permanent: false,
-      },
-    ];
-  },
 
   webpack(
     config,

@@ -448,8 +448,17 @@ body {
   font-weight: 500;
   letter-spacing: 0.1em;
   color: var(--gold-glow);
-  margin-bottom: 12px;
+  margin-bottom: 4px;
   text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+}
+
+.card-arcane-sub {
+  font-family: var(--font-mono-portal);
+  font-size: 0.55rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(212, 178, 113, 0.6);
+  margin-bottom: 14px;
 }
 
 .card-desc {
@@ -986,5 +995,72 @@ body {
   .art-gallery-side-cell {
     grid-column: span 1;
     min-height: 260px;
+  }
+}
+/* ─────────────────────────────────────────────────────────────────────────
+   THE PALE INTERVAL — ICSE archive experience
+   Animations live here so they can honour prefers-reduced-motion.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.pi-waveform-line {
+  transform-origin: center;
+  animation: pi-wave 6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.pi-waveform-line--ghost {
+  animation: pi-wave 6s cubic-bezier(0.65, 0, 0.35, 1) infinite reverse;
+}
+@keyframes pi-wave {
+  0%, 100% { transform: scaleY(0.7); }
+  50% { transform: scaleY(1.15); }
+}
+
+.pi-seg {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.pi-seg:hover,
+.pi-seg:focus-visible {
+  transform: translateX(-50%) scaleY(1.25);
+}
+.pi-seg:focus-visible {
+  outline: 2px solid #f7e6b7;
+  outline-offset: 3px;
+}
+
+.pi-rupture {
+  animation: pi-rupture-pulse 7s ease-in-out infinite;
+}
+@keyframes pi-rupture-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pi-waveform-line,
+  .pi-waveform-line--ghost,
+  .pi-rupture {
+    animation: none !important;
+  }
+  .pi-seg {
+    transition: none;
+  }
+}
+
+/* The Pale Interval — book marketing hero responsive stacking */
+@media (max-width: 760px) {
+  .pi-book-hero {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .pi-book-hero > div:first-child {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+/* The Pale Interval — worldbuilding glossary rows stack on mobile */
+@media (max-width: 640px) {
+  .pi-glossary-row {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
   }
 }

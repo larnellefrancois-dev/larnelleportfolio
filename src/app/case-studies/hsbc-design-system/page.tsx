@@ -1,8 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-
-
-
+import PageTemplate from '@/components/templates/PageTemplate';
 
 
 export const metadata: Metadata = {
@@ -35,5 +33,19 @@ export const metadata: Metadata = {
 };
 
 export default function HSBCDesignSystemPage() {
-  return null;
+  return (
+    <PageTemplate
+      eyebrow="M·II // SYSTEMA"
+      breadcrumbs={[
+        { label: 'Product Design', href: '/product-design' },
+        { label: 'Case Studies', href: '/product-design/case-studies' },
+        { label: 'Unified Design System', href: '/case-studies/hsbc-design-system' },
+      ]}
+      title="Unified Design System for Banking"
+      subtitle="Building and evolving a reusable design system to support consistent, scalable, and accessible digital product design across a large banking environment."
+      meta={[{ label: 'Discipline', value: 'Design Systems' }, { label: 'Role', value: 'Systems Lead' }, { label: 'Status', value: 'Write-up in progress' }]}
+      content={[{ type: 'text', heading: 'Overview', body: 'A detailed write-up of this design-system work is in progress. See the Oasis Design System case study for related, fully documented work.' }]}
+      navLinks={[{ label: 'All case studies', href: '/product-design/case-studies', direction: 'next' }]}
+    />
+  );
 }
