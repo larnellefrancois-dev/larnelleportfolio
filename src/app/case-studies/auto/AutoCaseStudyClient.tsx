@@ -61,7 +61,7 @@ export default function AutoCaseStudyClient() {
 
   return (
     <div className="w-full min-h-screen overflow-x-hidden" style={{ fontFamily: "'Inter', sans-serif", backgroundColor: '#ffffff', color: '#111111', WebkitFontSmoothing: 'antialiased' }}>
-      <div className="max-w-[1600px] mx-auto px-5 sm:px-10 py-10">
+      <div className="case-study-sheet max-w-[1600px] mx-auto px-5 sm:px-10 py-10">
         <SiteHeader activePage="Case Studies" />
 
         <main className="grid grid-cols-1 md:grid-cols-4 gap-1 w-full" style={{ gridAutoRows: 'minmax(300px, auto)' }}>

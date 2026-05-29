@@ -34,6 +34,17 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <a className="ds-skip-link" href="#main">Skip to content</a>
 
       {!isPortal && (
+        <div className="shell-universe" aria-hidden="true">
+          <div className="shell-universe__stars" />
+          <div className="shell-universe__astrolabe">
+            <div className="shell-universe__ring shell-universe__ring--1" />
+            <div className="shell-universe__ring shell-universe__ring--2" />
+            <div className="shell-universe__ring shell-universe__ring--3" />
+          </div>
+        </div>
+      )}
+
+      {!isPortal && (
         <>
           <Header active={active} menuOpen={menuOpen} onOpenMenu={() => setMenuOpen(true)} />
           {active !== 'home' && <SubNav active={active} pathname={pathname} />}

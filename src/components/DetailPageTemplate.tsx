@@ -94,17 +94,17 @@ const REALM_TOKENS: Record<
     tagBorder: 'rgba(212,178,113,0.15)',
   },
   product: {
-    // Clean light editorial theme — matches the unified Product Design realm.
-    accent: '#1b4b8f',
-    accentDim: 'rgba(27,75,143,0.6)',
-    accentBorder: 'rgba(17,17,17,0.12)',
-    metaColor: 'rgba(17,17,17,0.5)',
-    headingColor: '#111111',
-    bodyColor: 'rgba(17,17,17,0.72)',
-    bg: '#f8f8f6',
-    cardBg: '#ffffff',
-    tagBg: 'rgba(27,75,143,0.06)',
-    tagBorder: 'rgba(17,17,17,0.12)',
+    // Systema — cyan accent over the shared Obsidian void.
+    accent: '#7da7d9',
+    accentDim: 'rgba(125,167,217,0.55)',
+    accentBorder: 'rgba(125,167,217,0.22)',
+    metaColor: 'rgba(125,167,217,0.55)',
+    headingColor: '#f7e6b7',
+    bodyColor: 'rgba(232,208,153,0.72)',
+    bg: '#05060f',
+    cardBg: 'rgba(10,11,28,0.6)',
+    tagBg: 'rgba(125,167,217,0.08)',
+    tagBorder: 'rgba(125,167,217,0.2)',
   },
   literature: {
     accent: '#b32435',

@@ -257,7 +257,7 @@ export default function BankingLoansClient() {
 
   return (
     <div
-      className="max-w-[1600px] mx-auto px-5 sm:px-10 py-10"
+      className="case-study-sheet max-w-[1600px] mx-auto px-5 sm:px-10 py-10"
       style={{ fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader activePage="Case Studies" />
       <section className="pt-16 pb-12 sm:pt-24 sm:pb-16 lg:pt-[120px] lg:pb-[80px] max-w-[1000px]">

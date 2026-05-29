@@ -50,25 +50,37 @@
   --dur-mid: 320ms;
   --dur-slow: 620ms;
 
-  /* ---- Themeable tokens (overridden per realm). Default = home/portal. ---- */
-  --bg: #07060d;
-  --bg-elevated: #0e0c18;
-  --surface: rgba(255, 255, 255, 0.04);
-  --surface-strong: rgba(255, 255, 255, 0.08);
-  --border: rgba(255, 255, 255, 0.12);
-  --border-strong: rgba(255, 255, 255, 0.24);
-  --text: rgba(246, 244, 238, 0.95);
-  --text-muted: rgba(246, 244, 238, 0.62);
-  --text-faint: rgba(246, 244, 238, 0.4);
-  --accent: #e8d099;
-  --accent-2: #8c6fb0;
-  --accent-contrast: #07060d;
-  --glow: rgba(232, 208, 153, 0.35);
-  --motif-opacity: 0.6;
-  --shadow-card: 0 18px 50px -24px rgba(0, 0, 0, 0.7);
-  --shadow-lift: 0 30px 80px -28px rgba(0, 0, 0, 0.85);
-  /* Header chrome is glassy-dark by default; product overrides to light. */
-  --header-bg: rgba(8, 7, 14, 0.7);
+  /* ---- Obsidian universe palette (shared across ALL realms) ---- */
+  --void-dark: #05060f;
+  --void-light: #0a0b1c;
+  --gold-muted: #d4b271;
+  --gold-bright: #e8d099;
+  --gold-glow: #f7e6b7;
+  --crimson-main: #8a1c2a;
+  --crimson-bright: #b32435;
+  --cyan-muted: #4a6b8c;
+  --cyan-bright: #7da7d9;
+  --silver-glow: #a3c4eb;
+
+  /* ---- Themeable tokens. Default = home/portal (gold). Every realm shares
+     the same void background + cosmic surfaces and varies only the accent. ---- */
+  --bg: var(--void-dark);
+  --bg-elevated: var(--void-light);
+  --surface: rgba(10, 11, 28, 0.6);
+  --surface-strong: rgba(125, 167, 217, 0.08);
+  --border: rgba(212, 178, 113, 0.18);
+  --border-strong: rgba(232, 208, 153, 0.4);
+  --text: var(--gold-bright);
+  --text-muted: rgba(232, 208, 153, 0.7);
+  --text-faint: rgba(232, 208, 153, 0.42);
+  --accent: var(--gold-bright);
+  --accent-2: var(--cyan-bright);
+  --accent-contrast: var(--void-dark);
+  --glow: rgba(212, 178, 113, 0.3);
+  --motif-opacity: 0.5;
+  --shadow-card: 0 18px 50px -24px rgba(0, 0, 0, 0.8);
+  --shadow-lift: 0 30px 80px -28px rgba(0, 0, 0, 0.9);
+  --header-bg: rgba(5, 6, 15, 0.8);
   --header-border: var(--border);
   --header-text: var(--text);
   --header-text-muted: var(--text-muted);
@@ -76,73 +88,54 @@
   color-scheme: dark;
 }
 
-/* ---------- PRODUCT DESIGN: clean light editorial theme ---------- */
+/* ---------- PRODUCT DESIGN — Systema: cyan accent over the void ---------- */
 [data-realm='product'] {
-  --bg: #f8f8f6;
-  --bg-elevated: #ffffff;
-  --surface: #ffffff;
-  --surface-strong: #f0f0ee;
-  --border: rgba(17, 17, 17, 0.1);
-  --border-strong: rgba(17, 17, 17, 0.22);
-  --text: #111111;
-  --text-muted: rgba(17, 17, 17, 0.62);
-  --text-faint: rgba(17, 17, 17, 0.42);
-  --accent: #1b4b8f;
-  --accent-2: #2a8c7d;
-  --accent-contrast: #ffffff;
-  --glow: rgba(27, 75, 143, 0.18);
-  --motif-opacity: 0.18;
-  --shadow-card: 0 12px 36px -20px rgba(17, 17, 17, 0.25);
-  --shadow-lift: 0 24px 60px -28px rgba(17, 17, 17, 0.32);
-  --header-bg: rgba(248, 248, 246, 0.82);
-  --header-border: rgba(17, 17, 17, 0.1);
-  --header-text: #111111;
-  --header-text-muted: rgba(17, 17, 17, 0.6);
-  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
-  color-scheme: light;
+  --surface: rgba(10, 11, 28, 0.6);
+  --surface-strong: rgba(125, 167, 217, 0.1);
+  --border: rgba(125, 167, 217, 0.2);
+  --border-strong: rgba(125, 167, 217, 0.45);
+  --text: var(--gold-bright);
+  --text-muted: rgba(232, 208, 153, 0.7);
+  --text-faint: rgba(125, 167, 217, 0.5);
+  --accent: var(--cyan-bright);
+  --accent-2: var(--silver-glow);
+  --accent-contrast: var(--void-dark);
+  --glow: rgba(125, 167, 217, 0.3);
+  --header-text: var(--gold-bright);
+  --header-text-muted: rgba(125, 167, 217, 0.6);
 }
 
-/* ---------- ART: warm dark gallery theme ---------- */
+/* ---------- ART — Ars Visualis: gold accent over the void ---------- */
 [data-realm='art'] {
-  --bg: #0d0905;
-  --bg-elevated: #160f07;
-  --surface: rgba(255, 240, 222, 0.05);
-  --surface-strong: rgba(255, 240, 222, 0.1);
-  --border: rgba(212, 178, 113, 0.18);
-  --border-strong: rgba(212, 178, 113, 0.34);
-  --text: #f0e6d1;
-  --text-muted: rgba(240, 230, 209, 0.66);
+  --surface: rgba(20, 14, 6, 0.6);
+  --surface-strong: rgba(212, 178, 113, 0.1);
+  --border: rgba(212, 178, 113, 0.2);
+  --border-strong: rgba(232, 208, 153, 0.45);
+  --text: var(--gold-bright);
+  --text-muted: rgba(240, 230, 209, 0.7);
   --text-faint: rgba(212, 178, 113, 0.45);
-  --accent: #e0a155;
-  --accent-2: #b8412f;
-  --accent-contrast: #160f07;
-  --glow: rgba(224, 161, 85, 0.34);
-  --motif-opacity: 0.6;
-  --header-bg: rgba(13, 9, 5, 0.78);
-  --header-border: rgba(212, 178, 113, 0.14);
-  --header-text: #f0e6d1;
+  --accent: var(--gold-bright);
+  --accent-2: var(--gold-muted);
+  --accent-contrast: var(--void-dark);
+  --glow: rgba(212, 178, 113, 0.32);
+  --header-text: var(--gold-bright);
   --header-text-muted: rgba(212, 178, 113, 0.6);
 }
 
-/* ---------- LITERATURE: dark red/black archive theme ---------- */
+/* ---------- LITERATURE — Scriptorium: crimson accent over the void ---------- */
 [data-realm='literature'] {
-  --bg: #080508;
-  --bg-elevated: #110a0c;
-  --surface: rgba(255, 235, 230, 0.035);
-  --surface-strong: rgba(255, 235, 230, 0.07);
-  --border: rgba(179, 36, 53, 0.2);
-  --border-strong: rgba(179, 36, 53, 0.38);
-  --text: #ece3e1;
-  --text-muted: rgba(236, 227, 225, 0.6);
-  --text-faint: rgba(212, 197, 181, 0.4);
-  --accent: #b32435;
-  --accent-2: #9aa9c4;
-  --accent-contrast: #f7e6b7;
+  --surface: rgba(20, 8, 10, 0.6);
+  --surface-strong: rgba(179, 36, 53, 0.1);
+  --border: rgba(179, 36, 53, 0.22);
+  --border-strong: rgba(179, 36, 53, 0.45);
+  --text: var(--gold-bright);
+  --text-muted: rgba(232, 208, 153, 0.66);
+  --text-faint: rgba(212, 197, 181, 0.42);
+  --accent: var(--crimson-bright);
+  --accent-2: var(--gold-bright);
+  --accent-contrast: var(--gold-glow);
   --glow: rgba(179, 36, 53, 0.36);
-  --motif-opacity: 0.5;
-  --header-bg: rgba(8, 5, 8, 0.78);
-  --header-border: rgba(179, 36, 53, 0.16);
-  --header-text: #f7e6b7;
+  --header-text: var(--gold-bright);
   --header-text-muted: rgba(212, 197, 181, 0.6);
 }
 
@@ -325,7 +318,6 @@ p { text-wrap: pretty; }
 /* ---- Prose (articles, synopses, case-study sections) ---- */
 .ds-prose { max-width: var(--container-narrow); margin-inline: auto; padding-inline: var(--space-md); }
 .ds-prose p { margin-top: var(--space-sm); color: var(--text); font-family: var(--font-serif); font-size: var(--step-1); line-height: 1.75; }
-[data-realm='product'] .ds-prose p { font-family: var(--font-sans); font-size: var(--step-0); line-height: 1.7; }
 .ds-prose h2 { font-size: var(--step-2); margin-top: var(--space-xl); }
 .ds-prose h3 { font-size: var(--step-1); margin-top: var(--space-lg); }
 .ds-prose ul { margin-top: var(--space-sm); padding-left: 1.2em; display: flex; flex-direction: column; gap: var(--space-3xs); color: var(--text-muted); }
@@ -334,8 +326,57 @@ p { text-wrap: pretty; }
    APP SHELL — header, nav, switcher, mobile menu, footer
    Mounted once in the root layout; appears on EVERY route.
    ============================================================================= */
-.shell { display: flex; flex-direction: column; min-height: 100vh; }
-.shell__main { flex: 1; }
+.shell { display: flex; flex-direction: column; min-height: 100vh; position: relative; }
+.shell__main { flex: 1; position: relative; z-index: 1; }
+
+/* ---- Shared cosmic universe backdrop (behind every subsite page) ---- */
+.shell-universe {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, var(--void-light) 0%, var(--void-dark) 70%);
+}
+.shell-universe__stars {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.3) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 80% 30%, rgba(232,208,153,0.5) 100%, transparent),
+    radial-gradient(1px 1px at 40% 70%, rgba(125,167,217,0.4) 100%, transparent),
+    radial-gradient(2px 2px at 90% 85%, rgba(255,255,255,0.2) 100%, transparent);
+  background-size: 200px 200px;
+  opacity: 0.5;
+  animation: ds-drift 100s linear infinite;
+}
+.shell-universe__astrolabe {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 140vw; height: 140vw; max-width: 2000px; max-height: 2000px;
+  display: flex; align-items: center; justify-content: center; opacity: 0.14;
+}
+.shell-universe__ring { position: absolute; border-radius: 50%; border: 1px solid var(--accent); }
+.shell-universe__ring--1 { width: 42%; height: 42%; animation: ds-spin 160s linear infinite; }
+.shell-universe__ring--2 { width: 62%; height: 62%; border-style: dashed; border-color: var(--accent-2); animation: ds-spin-rev 220s linear infinite; }
+.shell-universe__ring--3 { width: 82%; height: 82%; opacity: 0.6; animation: ds-spin 300s linear infinite; }
+@keyframes ds-drift { 0% { background-position: 0 0; } 100% { background-position: -1000px 1000px; } }
+@keyframes ds-spin { 100% { transform: rotate(360deg); } }
+@keyframes ds-spin-rev { 100% { transform: rotate(-360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .shell-universe__stars, .shell-universe__astrolabe .shell-universe__ring { animation: none; }
+}
+/* Portal renders its own universe; suppress the shell one there. */
+.shell[data-chrome='bare'] .shell-universe { display: none; }
+
+/* ---- Case-study "document sheet" ----
+   The detailed Product Design case studies are authored as light editorial
+   documents (dark ink on light). Rather than rewrite that real content, we
+   present each as a light paper sheet floating within the cosmic Product
+   realm — keeping them readable while staying visually integrated. */
+.case-study-sheet {
+  background: #f8f8f6;
+  color: #111111;
+  border: 1px solid rgba(125, 167, 217, 0.25);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 40px 100px -40px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(232, 208, 153, 0.06);
+  margin: var(--space-lg) auto;
+  /* Pages set their own max-width / padding via existing classes. */
+}
 
 /* ---- Header ---- */
 .shell-header {
@@ -381,8 +422,10 @@ p { text-wrap: pretty; }
 
 /* ---- Sub-nav (section secondary links, desktop) ---- */
 .shell-subnav {
+  position: relative; z-index: 90;
   border-bottom: 1px solid var(--header-border);
   background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
 }
 .shell-subnav__inner { display: flex; gap: var(--space-md); max-width: var(--container); margin-inline: auto; padding: var(--space-2xs) var(--space-md); overflow-x: auto; }
 .shell-subnav a { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); padding: var(--space-2xs) 0; white-space: nowrap; border-bottom: 1px solid transparent; transition: color var(--dur-fast), border-color var(--dur-fast); }
@@ -403,7 +446,7 @@ p { text-wrap: pretty; }
 .shell-mobile__links a[aria-current='page'] { color: var(--accent); }
 
 /* ---- Footer (unified across all pages) ---- */
-.shell-footer { border-top: 1px solid var(--border); background: var(--bg-elevated); padding-block: var(--space-xl); }
+.shell-footer { position: relative; z-index: 1; border-top: 1px solid var(--border); background: color-mix(in srgb, var(--void-dark) 88%, transparent); padding-block: var(--space-xl); }
 .shell-footer__grid { display: grid; gap: var(--space-lg); }
 @media (min-width: 720px) { .shell-footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
 .shell-footer__brand { font-family: var(--font-display); font-size: var(--step-2); }

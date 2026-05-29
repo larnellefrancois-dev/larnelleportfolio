@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 export default function EnterpriseLoansPage() {
   return (
     <div
-      className="max-w-[1600px] mx-auto px-5 sm:px-10 py-10"
+      className="case-study-sheet max-w-[1600px] mx-auto px-5 sm:px-10 py-10"
       style={{ fontFamily: "'Inter', sans-serif" }}
     >
       <SiteHeader activePage="Case Studies" />

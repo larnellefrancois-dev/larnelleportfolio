@@ -1,8 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-
-
-
+import PageTemplate from '@/components/templates/PageTemplate';
 
 
 export const metadata: Metadata = {
@@ -35,5 +33,19 @@ export const metadata: Metadata = {
 };
 
 export default function AccessibilityProgrammePage() {
-  return null;
+  return (
+    <PageTemplate
+      eyebrow="M·II // STRUCTURA"
+      breadcrumbs={[
+        { label: 'Product Design', href: '/product-design' },
+        { label: 'Case Studies', href: '/product-design/case-studies' },
+        { label: 'Accessibility Programme', href: '/case-studies/accessibility-programme' },
+      ]}
+      title="Accessibility Programme"
+      subtitle="Implementing comprehensive accessibility improvements across digital products to ensure inclusive design for all users."
+      meta={[{ label: 'Focus', value: 'Accessibility' }, { label: 'Standard', value: 'WCAG 2.2 AA' }, { label: 'Status', value: 'Write-up in progress' }]}
+      content={[{ type: 'text', heading: 'Overview', body: 'A detailed write-up of this accessibility programme is in progress. Accessibility considerations are documented throughout the banking case studies.' }]}
+      navLinks={[{ label: 'All case studies', href: '/product-design/case-studies', direction: 'next' }]}
+    />
+  );
 }

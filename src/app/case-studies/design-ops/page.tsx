@@ -1,8 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-
-
-
+import PageTemplate from '@/components/templates/PageTemplate';
 
 
 export const metadata: Metadata = {
@@ -35,5 +33,19 @@ export const metadata: Metadata = {
 };
 
 export default function DesignOpsPage() {
-  return null;
+  return (
+    <PageTemplate
+      eyebrow="M·II // STRUCTURA"
+      breadcrumbs={[
+        { label: 'Product Design', href: '/product-design' },
+        { label: 'Case Studies', href: '/product-design/case-studies' },
+        { label: 'Design Operations', href: '/case-studies/design-ops' },
+      ]}
+      title="Design Operations & Systems"
+      subtitle="Establishing design operations and systems thinking to improve team efficiency, collaboration, and design consistency across enterprise products."
+      meta={[{ label: 'Discipline', value: 'Design Ops' }, { label: 'Role', value: 'Systems' }, { label: 'Status', value: 'Write-up in progress' }]}
+      content={[{ type: 'text', heading: 'Overview', body: 'A detailed write-up of this design-operations work is in progress. Related systems work is available in the Design Systems section.' }]}
+      navLinks={[{ label: 'All case studies', href: '/product-design/case-studies', direction: 'next' }]}
+    />
+  );
 }
