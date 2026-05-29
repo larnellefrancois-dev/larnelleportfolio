@@ -3,8 +3,8 @@ import React from 'react';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Literature — L.F. Chambers',
-  description: 'Worldbuilding, narrative threads, and echoes from the dark forest. Literary work by L.F. Chambers.',
+  title: 'L.F. Chambers — The Pale Interval and Literary Work',
+  description: 'The literary realm of L.F. Chambers, featuring The Pale Interval — a YA literary sci-fi horror novel — alongside excerpts, worldbuilding, and a recovered ICSE archive.',
 };
 
 export default function LiteraturePage() {
@@ -83,13 +83,15 @@ export default function LiteraturePage() {
               marginBottom: '48px',
             }}
           >
-            Worldbuilding, narrative threads, and echoes from the dark forest.
+            Signal and silence, grief and inheritance. Home to the novel <em>The Pale Interval</em> and a recovered ICSE archive.
           </p>
 
           <nav aria-label="Literature sections" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
             {[
               { label: 'The Pale Interval', href: '/literature/the-pale-interval' },
+              { label: 'The Archive', href: '/literature/archive' },
               { label: 'Excerpts', href: '/literature/excerpts' },
+              { label: 'Characters', href: '/literature/characters' },
               { label: 'Worldbuilding', href: '/literature/worldbuilding' },
               { label: 'Author', href: '/literature/author' },
             ].map((link) => (
@@ -176,13 +178,13 @@ export default function LiteraturePage() {
 
             <div style={{ padding: '48px', backgroundColor: 'rgba(138, 28, 42, 0.04)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <p style={{ fontFamily: 'var(--font-mono-portal)', fontSize: '0.55rem', letterSpacing: '0.3em', color: 'rgba(179, 36, 53, 0.5)', textTransform: 'uppercase', marginBottom: '20px' }}>
-                Novel · In Progress
+                YA Literary Sci-Fi Horror · In Progress
               </p>
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 3vw, 2.8rem)', fontWeight: 400, letterSpacing: '0.1em', color: 'var(--gold-glow)', marginBottom: '24px', lineHeight: 1.2 }}>
                 The Pale Interval
               </h3>
               <p style={{ fontFamily: 'var(--font-body-serif)', fontSize: '1.1rem', fontStyle: 'italic', color: 'rgba(212, 197, 181, 0.65)', lineHeight: 1.7, marginBottom: '32px' }}>
-                A novel of signal and silence. Twin moons. A dark mineral landscape. Transmission artifacts from a world between worlds.
+                A daughter recovers her dead mother&apos;s final transmission from the abandoned world of Calyx — and the static begins to answer. Grief, signal, and an institution that would rather keep it sealed.
               </p>
               <span style={{ fontFamily: 'var(--font-mono-portal)', fontSize: '0.55rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#e05a6a', borderBottom: '1px solid rgba(224, 90, 106, 0.3)', paddingBottom: '4px', display: 'inline-block' }}>
                 Enter the Archive

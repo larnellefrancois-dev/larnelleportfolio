@@ -267,33 +267,33 @@ export interface LiteratureExcerpt {
 export const literatureExcerpts: LiteratureExcerpt[] = [
 {
   id: 'interval-01',
-  title: 'The First Signal',
+  title: 'The Drone Returns',
   source: 'The Pale Interval',
-  chapter: 'Chapter I',
-  text: `The archive had no windows. This was intentional — the archivist had learned early that windows invited the sky, and the sky, since the Interval, was not something one looked at without preparation.
+  chapter: 'Opening',
+  text: `They told her the drone came home at night, the way bad news always seems to. Sela was awake for it anyway. She had been awake for most of the things that mattered.
 
-She catalogued by sound instead. The low hum of the retrieval system. The dry click of the index cards. The occasional distant tone from the signal tower, which meant another fragment had surfaced from the pale.`
+On the recovery feed, NAIAD looked smaller than it did in the ICSE briefings — scorched along one flank, antenna folded like a broken wing. It had been gone eleven years. It had come back carrying her mother's voice.`
 },
 {
   id: 'interval-02',
-  title: 'Twin Moons',
+  title: 'Twin Moons Over Calyx',
   source: 'The Pale Interval',
   chapter: 'Chapter IV',
-  text: `Before the Interval, there had been one moon. Everyone agreed on this, though the records were inconsistent on its colour. Some said silver. Some said bone. The second moon appeared on the forty-third day after the rupture — smaller, redder, and positioned in a way that suggested it had always been there, waiting.
+  text: `Calyx came up red-brown in the old survey plates, two moons hung above it like a held breath, and between them a pale seam in the sky that the cartographers had labelled and then, very deliberately, never measured again.
 
-The archivist noted this in her log without comment. She had learned to note without comment.`
+Her mother had measured it. That was the part the ICSE kept sealed. That was the part Sela had come for.`
 },
 {
   id: 'interval-03',
-  title: 'Transmission Fragment 7',
+  title: 'Transmission Fragment — A. Mares',
   source: 'The Pale Interval',
-  chapter: 'Archive Fragment',
+  chapter: 'Recovered Recording',
   text: `[SIGNAL RECOVERED — PARTIAL — CONFIDENCE: 0.34]
 
-...the mineral plain extends...
-...no horizon visible from this position...
-...the interval is not a gap. It is a...
-...repeat: the interval is not a gap. It is a...
+...the haze isn't weather. We had that wrong from the start...
+...NAIAD is intact. Telemetry is — telemetry is good. Mostly good...
+...Sela, if they let you hear this — don't trust the clean version...
+...it's been listening longer than we have. Be careful what you—
 
 [SIGNAL LOST]`
 }];
@@ -341,10 +341,10 @@ export const literatureVolumes: LiteratureVolume[] = [
   cycle: 'THE OBSIDIAN CYCLE',
   title: 'The Pale Interval',
   excerpt:
-  '"The trees did not merely grow; they observed. Each knot in the bark was a silent eye, recording the passage of souls who dared to wander from the lit path."',
+  '"If you\'re hearing this, then the interval held. NAIAD is intact. Sela — if they let you hear this — don\'t trust the clean version."',
   coverImg:
-  "https://images.unsplash.com/photo-1675749766352-84c1e023b430",
-  coverAlt: 'Dark atmospheric forest with mist and deep shadows suggesting mystery',
+  "https://images.unsplash.com/photo-1543722530-d2c3201371e7",
+  coverAlt: 'Twin moons above a fractured mineral landscape under a pale red-brown haze',
   status: 'In Progress',
   href: '/literature/the-pale-interval'
 },
@@ -387,48 +387,52 @@ export const thePaleIntervalPageData: RealmPageData = {
 
   arcaneIndex: 'M·III // VOL. I',
   title: 'The Pale Interval',
-  subtitle: 'A novel in progress. Signal, silence, and the space between worlds.',
+  subtitle: 'A YA literary sci-fi horror novel. A daughter, a dead world, and the last transmission no one was meant to recover.',
   meta: [
-  { label: 'Status', value: 'In Progress' },
-  { label: 'Genre', value: 'Speculative Fiction' },
-  { label: 'Cycle', value: 'The Obsidian Cycle' }],
+  { label: 'Author', value: 'L.F. Chambers' },
+  { label: 'Genre', value: 'YA Literary Sci-Fi Horror' },
+  { label: 'Status', value: 'In Progress' }],
 
   content: [
   {
     type: 'text',
-    heading: 'Premise',
-    body: 'After an unexplained atmospheric rupture known as the Interval, an archivist catalogues fragments of a world that may no longer exist. The novel is structured as a series of recovered transmissions, field notes, and archive entries — each piece partial, each piece pointing toward a silence at the centre of the story.'
+    heading: 'Logline',
+    body: 'When a survey-corps daughter recovers her dead mother\'s final transmission, she has to decide how much of the truth a buried world — and a buried institution — can survive.'
+  },
+  {
+    type: 'text',
+    heading: 'Synopsis',
+    body: 'Sela Mares has spent her life inside the long shadow of the Intercolonial Survey and Cartography Executive, the agency that lost her mother. When a NAIAD drone returns from the Calyx system carrying Adra Mares\'s corrupted last recording, Sela is pulled into a recovery effort the ICSE would rather keep sealed. The deeper she listens, the less the static behaves like static — and the more it sounds like an answer to a question no one was supposed to ask.'
+  },
+  {
+    type: 'text',
+    body: 'Reconstruction is its own kind of haunting. As Sela stabilises fragment after fragment, she runs up against Protocol 7 — the sealed institutional response that governs what the ICSE does when a survey finds something surveys are not supposed to find. The Pale Interval is a story about grief and inheritance, about institutions that mistake concealment for safety, and about a girl learning that listening, truly listening, changes the listener.'
   },
   {
     type: 'list',
     heading: 'Themes',
     items: [
-    'Signal and silence — the meaning carried in what is not transmitted',
-    'Geological rupture as metaphor for psychological fracture',
-    'Archival memory and the unreliability of records',
-    'The space between worlds — literal and emotional intervals',
-    'Observation as a form of survival']
+    'Grief, inheritance, and the voice of a lost parent',
+    'Signal and silence — meaning carried in what is not transmitted',
+    'Institutional concealment and the ethics of the sealed record',
+    'Identity, memory, and survival under a pale rupture',
+    'First contact as something closer to being heard than to speaking']
 
   },
   {
     type: 'grid',
     heading: 'At a Glance',
     gridItems: [
-    { label: 'Status', value: 'Draft' },
-    { label: 'Form', value: 'Novel' },
-    { label: 'POV', value: 'Third' },
-    { label: 'Tone', value: 'Atmospheric' }]
+    { label: 'Genre', value: 'YA Sci-Fi Horror' },
+    { label: 'Protagonist', value: 'Sela Mares' },
+    { label: 'Setting', value: 'Calyx' },
+    { label: 'Status', value: 'In Progress' }]
 
-  },
-  {
-    type: 'text',
-    heading: 'Structure',
-    body: 'The novel is divided into three parts: The Archive, The Field, and The Pale. Each part shifts perspective and register — from the controlled precision of archival prose to the fragmented, signal-interrupted language of the field transmissions.'
   }],
 
   navLinks: [
   { label: 'Literature', href: '/literature', direction: 'prev' },
-  { label: 'Excerpts', href: '/literature/excerpts', direction: 'next' }],
+  { label: 'The Archive', href: '/literature/archive', direction: 'next' }],
 
   sysLabel: 'SYS_LOC: VOL_I_PALE'
 };
@@ -444,50 +448,52 @@ export const worldbuildingPageData: RealmPageData = {
 
   arcaneIndex: 'M·III // MUNDUS',
   title: 'Worldbuilding',
-  subtitle: 'The architecture of invented worlds — geography, cosmology, and lore.',
+  subtitle: 'Glossary, locations, and lore from the Calyx survey records of The Pale Interval.',
   meta: [
-  { label: 'Primary World', value: 'The Pale' },
-  { label: 'Secondary', value: 'The Void' }],
+  { label: 'System', value: 'Calyx' },
+  { label: 'Authority', value: 'ICSE' }],
 
   content: [
   {
     type: 'text',
-    heading: 'The Pale',
-    body: 'The Pale is the name given to the altered atmospheric layer that appeared after the Interval. It is not a sky in the conventional sense — it is a membrane, semi-translucent, through which the original sky can sometimes be glimpsed. Looking at it directly requires preparation. Most people have stopped trying.'
+    heading: 'The Calyx System',
+    body: 'Calyx is a catalogued, classified, and quietly abandoned world at the heart of the novel. Its surface is a fractured mineral landscape under a persistent red-brown haze; twin moons hang above it, and between them runs a pale rupture in the sky that the ICSE measured exactly once and then sealed. The survey called it a navigational loss. Adra Mares called it something else.'
   },
   {
     type: 'text',
-    heading: 'The Archive',
-    body: 'The Archive is the central institution of the novel — a repository of pre-Interval records, post-Interval transmissions, and the archivist\'s own cataloguing work. It has no windows. It is located in a structure that predates the Interval by several centuries, which is considered significant.'
+    heading: 'The Institution',
+    body: 'The Intercolonial Survey and Cartography Executive (ICSE) maps, classifies, and decides what is recorded and what is sealed. When a survey finds something it was not supposed to find, Protocol 7 governs the silence that follows. NAIAD — the Navigational Assessment and Integrated Approach Drone tied to Adra\'s final mission — is the thread that brings the sealed record home.'
+  },
+  {
+    type: 'list',
+    heading: 'Glossary',
+    items: [
+    'ICSE — Intercolonial Survey and Cartography Executive: the surveying, mapping, and classifying authority',
+    'NAIAD — Navigational Assessment and Integrated Approach Drone: tied to Adra Mares\'s last transmission and Calyx telemetry',
+    'Calyx — the abandoned world: red-brown haze, twin moons, a pale rupture',
+    'kaen — a term recovered from the Calyx survey records (meaning withheld, spoiler-safe)',
+    'nara — a term recovered from the Calyx survey records (meaning withheld, spoiler-safe)',
+    'the Knot — a named feature the ICSE measured once and never again',
+    'Soth — a name surfacing in the deeper, sealed fragments',
+    'Protocol 7 — the sealed institutional response to a survey finding something it should not']
+
   },
   {
     type: 'list',
     heading: 'Key Locations',
     items: [
-    'The Archive — windowless repository at the edge of the mineral plain',
-    'The Signal Tower — transmission point for recovered fragments',
-    'The Mineral Plain — vast flat expanse with no visible horizon',
-    'The Rupture Site — location of the original Interval event, now inaccessible',
-    'The Second Moon — not a location but a presence; redder, smaller, always watching']
-
-  },
-  {
-    type: 'list',
-    heading: 'Cosmological Rules',
-    items: [
-    'The Interval is not a gap — it is a presence',
-    'The second moon appeared on day forty-three; its origin is unrecorded',
-    'Transmissions from the field arrive partial — confidence ratings attached',
-    'The sky cannot be looked at without preparation since the rupture',
-    'Time in the novel is measured in days since the Interval, not calendar dates']
+    'Calyx (CLX-0) — fractured mineral plain beneath twin moons and the pale rupture',
+    'The Approach Corridor (CLX-A1) — the descent path NAIAD followed inward',
+    'The Knot — origin point of the strongest recovered fragments',
+    'The Relay Margin — outer boundary where the recovery effort listens from']
 
   }],
 
   navLinks: [
   { label: 'Author', href: '/literature/author', direction: 'prev' },
-  { label: 'Literature', href: '/literature', direction: 'next' }],
+  { label: 'Characters', href: '/literature/characters', direction: 'next' }],
 
-  sysLabel: 'SYS_LOC: MUNDUS_ARCHIVE'
+  sysLabel: 'SYS_LOC: MUNDUS_CALYX'
 };
 
 // ── Author ────────────────────────────────────────────────────────────────────
@@ -501,24 +507,24 @@ export const authorPageData: RealmPageData = {
 
   arcaneIndex: 'M·III // AUCTOR',
   title: 'L.F. Chambers',
-  subtitle: 'Multidisciplinary creative working across image, interface, and story.',
+  subtitle: 'Author of The Pale Interval. Multidisciplinary creative working across image, interface, and story.',
   meta: [
   { label: 'Current Work', value: 'The Pale Interval' },
-  { label: 'Genre', value: 'Speculative Fiction' },
+  { label: 'Genre', value: 'YA Literary Sci-Fi Horror' },
   { label: 'Status', value: 'In Progress' }],
 
   content: [
   {
     type: 'text',
-    body: 'L.F. Chambers is a multidisciplinary creative working across image, interface, and story. The literary work operates in the space between speculative fiction, atmospheric prose, and archival narrative.'
+    body: 'L.F. Chambers writes literary science fiction with the lights low. The current project, The Pale Interval, is a YA literary sci-fi horror novel about grief, signal, and a daughter recovering her mother\'s final transmission from a sealed world.'
   },
   {
     type: 'text',
-    body: 'Current project: The Pale Interval, a novel in progress. Themes include signal and silence, geological rupture, archival memory, and the space between worlds.'
+    body: 'The work sits where atmospheric horror meets hard-edged institutional science fiction: recovered recordings, classified archives, redacted protocols, and the slow, careful act of listening to something that may be listening back.'
   },
   {
     type: 'text',
-    body: 'The literary work is informed by a background in visual design and systems thinking — an attention to structure, negative space, and the architecture of meaning.'
+    body: 'The literary work is informed by a background in visual design and systems thinking — an attention to structure, negative space, and the architecture of meaning. L.F. Chambers also works as the product designer Larnelle Chambers and as a visual artist.'
   }],
 
   navLinks: [
@@ -999,9 +1005,277 @@ export function getLiteratureVolume(id: string): LiteratureVolume | undefined {
   return literatureVolumes.find((v) => v.id === id);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// THE PALE INTERVAL — CONTENT BIBLE (new canon)
+// ─────────────────────────────────────────────────────────────────────────────
+//
+// Single source of truth for the novel's marketing copy + archive content.
+// Spoiler-safe by default; `spoilerLocked` fields hold deeper reveals that
+// stay behind an explicit opt-in. Replace placeholder prose with final,
+// manuscript-approved copy as it is ready.
+
+export interface BuyLink {
+  label: string;
+  href: string;
+  available: boolean;
+}
+
+export const paleIntervalBook = {
+  title: 'The Pale Interval',
+  author: 'L.F. Chambers',
+  genre: 'YA literary sci-fi horror',
+  // Cover art pending. Drop a file at /public/assets/images and set coverImg.
+  coverImg: undefined as string | undefined,
+  coverAlt:
+    'The Pale Interval — twin moons above a fractured mineral landscape under a red-brown haze.',
+  logline:
+    'When a survey-corps daughter recovers her dead mother’s final transmission, she has to decide how much of the truth a buried world — and a buried institution — can survive.',
+  shortSynopsis:
+    'Sela Mares has spent her life inside the long shadow of the Intercolonial Survey and Cartography Executive, the agency that lost her mother. When a NAIAD drone returns from the Calyx system carrying Adra Mares’s corrupted last recording, Sela is pulled into a recovery effort the ICSE would rather keep sealed. The deeper she listens, the less the static behaves like static.',
+  longSynopsis: [
+    'The Pale Interval follows Sela Mares, seventeen, raised among the cartographers and signal analysts of the ICSE. Her mother Adra disappeared on a long survey of Calyx — a world the agency catalogued, classified, and quietly stopped discussing. The official record calls it a navigational loss.',
+    'When NAIAD, the Navigational Assessment and Integrated Approach Drone tied to Adra’s last mission, finally limps home, it brings telemetry no one can fully explain and a recording that should not have survived. Granted limited access to the recovery archive, Sela begins to reconstruct her mother’s voice out of damage and silence.',
+    'But reconstruction is its own kind of haunting. As Sela stabilises fragment after fragment, she runs up against Protocol 7 — the sealed institutional response that governs what the ICSE does when a survey finds something surveys are not supposed to find. The Pale Interval is a story about grief and inheritance, about institutions that mistake concealment for safety, and about a girl learning that listening, truly listening, changes the listener.'
+  ],
+  motifs: [
+    'Twin moons',
+    'A pale rupture in the sky',
+    'Animated signal / waveform',
+    'Fractured mineral landscape',
+    'Red-brown haze',
+    'Negative space',
+    'Recovered transmission artifacts',
+    'Redacted institutional documents'
+  ],
+  buyLinks: [
+    // TODO: replace with real retailer / pre-order links when available.
+    { label: 'Pre-order (coming soon)', href: '#', available: false }
+  ] as BuyLink[],
+  mailingListNote:
+    'Get a note when The Pale Interval is available to pre-order. No spam, ever.'
+} as const;
+
+export const paleIntervalSeoDescription =
+  'The Pale Interval by L.F. Chambers — a YA literary sci-fi horror novel about grief, signal, and a daughter recovering her mother’s final transmission from the Calyx system.';
+
+// ── Character dossiers ────────────────────────────────────────────────────────
+
+export interface CharacterDossier {
+  name: string;
+  slug: string;
+  role: string;
+  classification: string;
+  /** Spoiler-safe summary. */
+  description: string;
+  quote?: string;
+  /** Relationship to Sela / Calyx / ICSE, spoiler-safe. */
+  relationship?: string;
+  /** Optional spoiler-locked expanded content. */
+  spoilerLocked?: string[];
+}
+
+export const paleIntervalCharacters: CharacterDossier[] = [
+{
+  name: 'Sela Mares',
+  slug: 'sela-mares',
+  role: 'Protagonist',
+  classification: 'ICSE — Dependent, Recovery Access (provisional)',
+  description:
+    'Seventeen, precise, and raised inside the agency that lost her mother. A natural signal-reader who would rather rebuild a damaged recording than talk about why.',
+  quote: '“Static is just an answer I haven’t finished listening to.”',
+  relationship: 'Daughter of Adra Mares. Granted limited access to the Calyx recovery archive.',
+  spoilerLocked: ['Placeholder for spoiler-locked character development. Replace with approved content.']
+},
+{
+  name: 'Adra Mares',
+  slug: 'adra-mares',
+  role: 'The Recovered Voice',
+  classification: 'ICSE — Survey Lead, Calyx (status: lost)',
+  description:
+    'Sela’s mother and lead of the final Calyx survey. Present in the story only through the recovered transmission — a voice reconstructed from damage.',
+  quote: '“If you’re hearing this, then the interval held. Listen carefully.”',
+  relationship: 'Tied to NAIAD and the Calyx telemetry. The centre of Sela’s search.',
+  spoilerLocked: ['Placeholder for spoiler-locked content about Adra.']
+},
+{
+  name: 'NAIAD',
+  slug: 'naiad',
+  role: 'Returned Drone',
+  classification: 'ICSE — Navigational Assessment and Integrated Approach Drone',
+  description:
+    'The drone that carried Adra’s last transmission home. Damaged, partial, and not behaving entirely like a machine should.',
+  quote: '“…re-establishing approach. Re-establishing. Re—”',
+  relationship: 'Bonded to the Calyx survey telemetry and Adra’s recording.',
+  spoilerLocked: ['Placeholder for spoiler-locked content about NAIAD.']
+},
+{
+  name: 'The Archivist',
+  slug: 'the-archivist',
+  role: 'ICSE Gatekeeper',
+  classification: 'ICSE — Recovery & Records (Protocol 7 cleared)',
+  description:
+    'The institution’s human face: the person deciding which fragments Sela is allowed to hear, and which stay sealed.',
+  quote: '“Some recordings are evidence. Some are warnings. This one is both.”',
+  relationship: 'Controls Sela’s access to the archive and to Protocol 7 material.',
+  spoilerLocked: ['Placeholder for spoiler-locked content about the Archivist.']
+}];
+
+export function getCharacter(slug: string): CharacterDossier | undefined {
+  return paleIntervalCharacters.find((c) => c.slug === slug);
+}
+
+// ── Glossary terms ──────────────────────────────────────────────────────────
+
+export interface GlossaryTerm {
+  term: string;
+  expansion?: string;
+  definition: string;
+  category: 'institution' | 'technology' | 'place' | 'language' | 'concept';
+}
+
+export const paleIntervalGlossary: GlossaryTerm[] = [
+{ term: 'ICSE', expansion: 'Intercolonial Survey and Cartography Executive', definition: 'The institution responsible for surveying, mapping, and classifying systems across the colonies — and for deciding what is recorded and what is sealed.', category: 'institution' },
+{ term: 'NAIAD', expansion: 'Navigational Assessment and Integrated Approach Drone', definition: 'A long-range survey drone class tied to the Calyx telemetry and to Adra Mares’s final transmission.', category: 'technology' },
+{ term: 'Calyx', definition: 'A catalogued, classified, and quietly abandoned world. Red-brown haze, twin moons, a pale rupture overhead.', category: 'place' },
+{ term: 'kaen', definition: 'A term recovered from the Calyx survey records. Meaning withheld — spoiler-safe placeholder.', category: 'language' },
+{ term: 'nara', definition: 'A term recovered from the Calyx survey records. Meaning withheld — spoiler-safe placeholder.', category: 'language' },
+{ term: 'the Knot', definition: 'A named feature in the survey records the ICSE measured once and never again.', category: 'concept' },
+{ term: 'Soth', definition: 'A name surfacing in the deeper, sealed fragments. Spoiler-safe placeholder.', category: 'concept' },
+{ term: 'Protocol 7', definition: 'The sealed institutional response governing what the ICSE does when a survey finds something it was not supposed to find. Most of its documents are redacted.', category: 'institution' }];
+
+// ── Survey locations ────────────────────────────────────────────────────────
+
+export type RiskClass = 'nominal' | 'caution' | 'restricted' | 'sealed';
+
+export interface SurveyLocation {
+  name: string;
+  designation: string;
+  environment: string;
+  signalNotes: string;
+  risk: RiskClass;
+  related?: string[];
+}
+
+export const paleIntervalLocations: SurveyLocation[] = [
+{ name: 'Calyx', designation: 'CLX-0', environment: 'Fractured mineral landscape under a persistent red-brown haze. Twin moons; a pale rupture along the upper sky.', signalNotes: 'Background telemetry never fully settles. Survey instruments logged a low, periodic return the agency declined to classify.', risk: 'sealed', related: ['adra-mares'] },
+{ name: 'Approach Corridor', designation: 'CLX-A1', environment: 'The mapped descent path NAIAD followed inward.', signalNotes: 'Telemetry degrades sharply past the corridor midpoint.', risk: 'restricted', related: ['naiad'] },
+{ name: 'The Knot', designation: 'CLX-?', environment: 'A named feature in the survey records the ICSE measured once and never again.', signalNotes: 'Origin point of the strongest recovered fragments.', risk: 'sealed' },
+{ name: 'Relay Margin', designation: 'CLX-R', environment: 'The outer relay boundary where the recovery effort listens from.', signalNotes: 'Where Adra’s transmission was finally re-acquired by NAIAD.', risk: 'caution' }];
+
+// ── Transmission fragments (Signal Console) ─────────────────────────────────
+
+export interface TransmissionFragment {
+  id: string;
+  /** Position along the timeline, 0–100. */
+  position: number;
+  timestamp: string;
+  /** Stabilised text, or null if irrecoverable. */
+  text: string | null;
+  corrupted: boolean;
+}
+
+export const transmissionTitle = 'Recovered Recording — A. Mares, Calyx Survey';
+
+export const paleIntervalTransmissions: TransmissionFragment[] = [
+{ id: 'frag-01', position: 4, timestamp: '00:03', text: 'If you’re hearing this, then the interval held.', corrupted: false },
+{ id: 'frag-02', position: 16, timestamp: '00:11', text: 'NAIAD is intact. Telemetry is— telemetry is good. Mostly good.', corrupted: false },
+{ id: 'frag-03', position: 28, timestamp: '00:24', text: null, corrupted: true },
+{ id: 'frag-04', position: 40, timestamp: '00:37', text: 'The haze isn’t weather. We had that wrong from the start.', corrupted: false },
+{ id: 'frag-05', position: 54, timestamp: '00:49', text: 'Sela — if they let you hear this — don’t trust the clean version.', corrupted: false },
+{ id: 'frag-06', position: 66, timestamp: '01:02', text: null, corrupted: true },
+{ id: 'frag-07', position: 80, timestamp: '01:18', text: 'It’s been listening longer than we have. Be careful what you—', corrupted: false },
+{ id: 'frag-08', position: 93, timestamp: '01:31', text: null, corrupted: true }];
+
+// ── Protocol 7 documents ────────────────────────────────────────────────────
+
+export type Classification = 'restricted' | 'confidential' | 'sealed';
+
+export interface ProtocolDocument {
+  id: string;
+  code: string;
+  title: string;
+  classification: Classification;
+  /** Spoiler-safe lines; use [REDACTED] for redaction bars. */
+  body: string[];
+  spoilerLocked?: string[];
+}
+
+export const paleIntervalProtocols: ProtocolDocument[] = [
+{
+  id: 'p7-001',
+  code: 'P7 / DIR-001',
+  title: 'Directive — Conditions for Survey Seal',
+  classification: 'restricted',
+  body: [
+    'Upon detection of a return signal meeting the criteria in [REDACTED], the survey lead shall cease active measurement and initiate seal procedures.',
+    'No further [REDACTED] of the affected catalogue entry is authorised without Executive sign-off.',
+    'Dependents and non-cleared personnel are to be informed only that a navigational loss has occurred.'
+  ],
+  spoilerLocked: ['Placeholder spoiler-locked annex. Replace with approved content.']
+},
+{
+  id: 'p7-002',
+  code: 'P7 / MEMO-014',
+  title: 'Internal Memo — Recovery of NAIAD Asset',
+  classification: 'confidential',
+  body: [
+    'NAIAD has re-acquired the relay margin after [REDACTED] years.',
+    'Onboard recording is degraded but [REDACTED]. Recommend restricted reconstruction only.',
+    'Note: requests for access from [REDACTED] should be routed to the Archivist.'
+  ],
+  spoilerLocked: ['Placeholder spoiler-locked annex.']
+},
+{
+  id: 'p7-003',
+  code: 'P7 / FILE-███',
+  title: 'Incident File — Calyx',
+  classification: 'sealed',
+  body: ['Contents sealed under Protocol 7.', '[REDACTED]', '[REDACTED]', 'Authorisation required.'],
+  spoilerLocked: ['Placeholder spoiler-locked file. Replace with approved content.']
+}];
+
+// ── New literature page data: Archive + Characters ──────────────────────────
+
+export const archivePageData: RealmPageData = {
+  slug: 'archive',
+  realm: 'literature',
+  breadcrumbs: [
+  { label: 'Literature', href: '/literature' },
+  { label: 'The Archive', href: '/literature/archive' }],
+  arcaneIndex: 'M·III // ICSE ARCHIVE',
+  title: 'The Archive',
+  subtitle: 'A recovered ICSE / NAIAD archive: corrupted transmissions, classified files, Calyx survey data, and fragments from Adra’s recording.',
+  meta: [
+  { label: 'Authority', value: 'ICSE' },
+  { label: 'Status', value: 'Recovered — Partial' },
+  { label: 'Clearance', value: 'Provisional' }],
+  navLinks: [
+  { label: 'The Pale Interval', href: '/literature/the-pale-interval', direction: 'prev' },
+  { label: 'Characters', href: '/literature/characters', direction: 'next' }],
+  sysLabel: 'SYS_LOC: ICSE_ARCHIVE'
+};
+
+export const charactersPageData: RealmPageData = {
+  slug: 'characters',
+  realm: 'literature',
+  breadcrumbs: [
+  { label: 'Literature', href: '/literature' },
+  { label: 'Characters', href: '/literature/characters' }],
+  arcaneIndex: 'M·III // DRAMATIS',
+  title: 'Characters',
+  subtitle: 'Dossiers from the Calyx recovery. Spoiler-safe by default.',
+  meta: [
+  { label: 'Records', value: `${paleIntervalCharacters.length}` },
+  { label: 'Authority', value: 'ICSE' }],
+  navLinks: [
+  { label: 'Worldbuilding', href: '/literature/worldbuilding', direction: 'prev' },
+  { label: 'The Archive', href: '/literature/archive', direction: 'next' }],
+  sysLabel: 'SYS_LOC: DRAMATIS_PERSONAE'
+};
+
 /** All page data records keyed by realm for CMS-style enumeration */
 export const allRealmPages = {
   art: [galleryPageData, artProjectsPageData, commissionsPageData],
-  literature: [excerptsPageData, thePaleIntervalPageData, worldbuildingPageData, authorPageData],
+  literature: [excerptsPageData, thePaleIntervalPageData, worldbuildingPageData, authorPageData, archivePageData, charactersPageData],
   product: caseStudies
 } as const;

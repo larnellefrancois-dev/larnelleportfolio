@@ -1,46 +1,12 @@
 import type { Metadata } from 'next';
 import React from 'react';
 import DetailPageTemplate from '@/components/DetailPageTemplate';
+import { literatureExcerpts } from '@/data/realms-content';
 
 export const metadata: Metadata = {
-  title: 'Excerpts — Literature — L.F. Chambers',
-  description: 'Selected writing excerpts from The Pale Interval and other works by L.F. Chambers.',
+  title: 'Excerpts — The Pale Interval — L.F. Chambers',
+  description: 'Selected excerpts from The Pale Interval by L.F. Chambers — a YA literary sci-fi horror novel of grief, signal, and recovered transmission.',
 };
-
-const excerpts = [
-  {
-    id: 'interval-01',
-    title: 'The First Signal',
-    source: 'The Pale Interval',
-    chapter: 'Chapter I',
-    text: `The archive had no windows. This was intentional — the archivist had learned early that windows invited the sky, and the sky, since the Interval, was not something one looked at without preparation.
-
-She catalogued by sound instead. The low hum of the retrieval system. The dry click of the index cards. The occasional distant tone from the signal tower, which meant another fragment had surfaced from the pale.`,
-  },
-  {
-    id: 'interval-02',
-    title: 'Twin Moons',
-    source: 'The Pale Interval',
-    chapter: 'Chapter IV',
-    text: `Before the Interval, there had been one moon. Everyone agreed on this, though the records were inconsistent on its colour. Some said silver. Some said bone. The second moon appeared on the forty-third day after the rupture — smaller, redder, and positioned in a way that suggested it had always been there, waiting.
-
-The archivist noted this in her log without comment. She had learned to note without comment.`,
-  },
-  {
-    id: 'interval-03',
-    title: 'Transmission Fragment 7',
-    source: 'The Pale Interval',
-    chapter: 'Archive Fragment',
-    text: `[SIGNAL RECOVERED — PARTIAL — CONFIDENCE: 0.34]
-
-...the mineral plain extends...
-...no horizon visible from this position...
-...the interval is not a gap. It is a...
-...repeat: the interval is not a gap. It is a...
-
-[SIGNAL LOST]`,
-  },
-];
 
 export default function ExcerptsPage() {
   return (
@@ -52,19 +18,19 @@ export default function ExcerptsPage() {
       ]}
       arcaneIndex="M·III // SCRIPTORIUM"
       title="Excerpts"
-      subtitle="Selected passages from The Pale Interval and other works."
+      subtitle="Selected passages from The Pale Interval."
       meta={[
         { label: 'Source', value: 'The Pale Interval' },
-        { label: 'Fragments', value: `${excerpts.length}` },
+        { label: 'Fragments', value: `${literatureExcerpts.length}` },
       ]}
       navLinks={[
-        { label: 'Literature', href: '/literature', direction: 'prev' },
-        { label: 'Author', href: '/literature/author', direction: 'next' },
+        { label: 'The Pale Interval', href: '/literature/the-pale-interval', direction: 'prev' },
+        { label: 'Characters', href: '/literature/characters', direction: 'next' },
       ]}
       sysLabel="SYS_LOC: SCRIPTORIUM_DEEP"
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}>
-        {excerpts.map((excerpt) => (
+        {literatureExcerpts.map((excerpt) => (
           <article
             key={excerpt.id}
             style={{

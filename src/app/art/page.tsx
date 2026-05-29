@@ -56,9 +56,15 @@ const artSections = [
   desc: 'Collections, visual studies, and extended series.'
 },
 {
+  label: 'Process',
+  href: '/art/process',
+  meta: 'III',
+  desc: 'Sketchbook pages, studio documentation, and working stages.'
+},
+{
   label: 'Commissions',
   href: '/art/commissions',
-  meta: 'III',
+  meta: 'IV',
   desc: 'Collaborative and commissioned work.'
 }];
 
