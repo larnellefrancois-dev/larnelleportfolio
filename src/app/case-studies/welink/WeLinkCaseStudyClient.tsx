@@ -30,24 +30,24 @@ function WeLinkDesignModal({ onClose }: { onClose: () => void }) {
         className="relative flex flex-col bg-white"
         style={{ width: 'min(96vw, 1400px)', height: 'min(92vh, 900px)', borderRadius: '4px', overflow: 'hidden', boxShadow: '0 32px 80px rgba(0,0,0,0.4)' }}
         onClick={(e) => e.stopPropagation()}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 24px', borderBottom: '1px solid #E5E5E5', flexShrink: 0, backgroundColor: '#FAFAFA' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 24px', borderBottom: '1px solid #1a1d30', flexShrink: 0, backgroundColor: '#080a16' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#4CAF50', flexShrink: 0 }} />
             <div>
-              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#999999', marginBottom: '3px' }}>Interactive Platform Preview</p>
-              <p style={{ fontSize: '13px', color: '#555555', fontWeight: 300 }}>Explore the WeLink Caribbean concept platform design — homepage, service discovery, and worker listings.</p>
+              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#6f87aa', marginBottom: '3px' }}>Interactive Platform Preview</p>
+              <p style={{ fontSize: '13px', color: '#b3c4d9', fontWeight: 300 }}>Explore the WeLink Caribbean concept platform design — homepage, service discovery, and worker listings.</p>
             </div>
           </div>
-          <button onClick={onClose} aria-label="Close modal" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', border: '1px solid #E5E5E5', borderRadius: '2px', background: 'white', cursor: 'pointer', color: '#666666', flexShrink: 0 }}>
+          <button onClick={onClose} aria-label="Close modal" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', border: '1px solid #1a1d30', borderRadius: '2px', background: '#05060f', cursor: 'pointer', color: '#9fb3cc', flexShrink: 0 }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
               <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128,192.66,205.66A8,8,0,0,1,205.66,216.34Z" />
             </svg>
           </button>
         </div>
-        <div style={{ padding: '8px 24px', borderBottom: '1px solid #F0F0F0', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px', backgroundColor: '#FAFAFA' }}>
+        <div style={{ padding: '8px 24px', borderBottom: '1px solid #0e1020', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px', backgroundColor: '#080a16' }}>
           <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#4CAF50', display: 'inline-block', flexShrink: 0 }} />
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: '#999999', textTransform: 'uppercase', letterSpacing: '0.06em' }}>WeLink Caribbean</span>
-          <span style={{ fontSize: '10px', color: '#BBBBBB' }}>— Full platform concept with homepage, search, service categories, and app download</span>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: '#6f87aa', textTransform: 'uppercase', letterSpacing: '0.06em' }}>WeLink Caribbean</span>
+          <span style={{ fontSize: '10px', color: '#44567a' }}>— Full platform concept with homepage, search, service categories, and app download</span>
         </div>
         <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
           <iframe
@@ -83,16 +83,16 @@ export default function WeLinkCaseStudyClient() {
     <div className="case-study-sheet max-w-[1600px] mx-auto px-5 sm:px-10 py-10" style={{ fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader activePage="Case Studies" />
       <section className="pt-16 pb-12 sm:pt-24 sm:pb-16 lg:pt-[120px] lg:pb-[80px] max-w-[1000px]">
-        <div className="flex flex-wrap gap-4 sm:gap-8 mb-8 sm:mb-10" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', color: '#999999', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div className="flex flex-wrap gap-4 sm:gap-8 mb-8 sm:mb-10" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', color: '#6f87aa', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
           <span>Product Design</span>
           <span>Platform Concept</span>
           <span>Case Study</span>
         </div>
         <TypingH1
           text="WeLink Caribbean"
-          style={{ fontSize: 'clamp(36px, 7vw, 72px)', fontWeight: 200, lineHeight: 1.1, letterSpacing: '-0.04em', marginBottom: '32px', color: '#111111' }}
+          style={{ fontSize: 'clamp(36px, 7vw, 72px)', fontWeight: 200, lineHeight: 1.1, letterSpacing: '-0.04em', marginBottom: '32px', color: '#f7e6b7' }}
         />
-        <p style={{ fontSize: 'clamp(15px, 2.5vw, 19px)', lineHeight: 1.7, color: '#111111', fontWeight: 300, maxWidth: '720px' }}>
+        <p style={{ fontSize: 'clamp(15px, 2.5vw, 19px)', lineHeight: 1.7, color: '#f7e6b7', fontWeight: 300, maxWidth: '720px' }}>
           A concept platform designed to help users discover skilled workers across the Caribbean through clearer browsing, stronger structure, and more practical service discovery.
         </p>
       </section>
@@ -103,27 +103,27 @@ export default function WeLinkCaseStudyClient() {
           { value: 'Multi-region', label: 'Platform Context' },
           { value: 'Service browsing', label: 'UX Priority' },
         ]?.map((m) => (
-          <div key={m?.label} style={{ backgroundColor: '#F7F7F7', padding: '24px' }}>
-            <span style={{ fontSize: 'clamp(18px, 3vw, 28px)', fontWeight: 200, display: 'block', color: '#111111', lineHeight: 1.2 }}>{m?.value}</span>
-            <span style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#999999', marginTop: '8px', display: 'block' }}>{m?.label}</span>
+          <div key={m?.label} style={{ backgroundColor: '#0a0b1c', padding: '24px' }}>
+            <span style={{ fontSize: 'clamp(18px, 3vw, 28px)', fontWeight: 200, display: 'block', color: '#f7e6b7', lineHeight: 1.2 }}>{m?.value}</span>
+            <span style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6f87aa', marginTop: '8px', display: 'block' }}>{m?.label}</span>
           </div>
         ))}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-1 mb-1">
-        <div className="md:col-span-3" style={{ backgroundColor: '#F7F7F7', padding: 'clamp(20px, 4vw, 32px)' }}>
-          <span style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#999999', display: 'block', marginBottom: '24px' }}>Overview</span>
-          <p style={{ fontSize: 'clamp(15px, 2.5vw, 19px)', lineHeight: 1.7, color: '#111111', fontWeight: 300, marginBottom: '32px' }}>
+        <div className="md:col-span-3" style={{ backgroundColor: '#0a0b1c', padding: 'clamp(20px, 4vw, 32px)' }}>
+          <span style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6f87aa', display: 'block', marginBottom: '24px' }}>Overview</span>
+          <p style={{ fontSize: 'clamp(15px, 2.5vw, 19px)', lineHeight: 1.7, color: '#f7e6b7', fontWeight: 300, marginBottom: '32px' }}>
             WeLink is a platform designed to help users discover skilled workers and services across the Caribbean. The challenge was to create a browsing and discovery experience that felt intuitive, trustworthy, and easy to navigate across multiple service categories and geographic regions.
           </p>
-          <p style={{ fontSize: 'clamp(15px, 2.5vw, 19px)', lineHeight: 1.7, color: '#111111', fontWeight: 300 }}>
+          <p style={{ fontSize: 'clamp(15px, 2.5vw, 19px)', lineHeight: 1.7, color: '#f7e6b7', fontWeight: 300 }}>
             I led the design work across the platform, focusing on service discovery, worker profiles, booking flows, and the overall information architecture. The goal was to make it easy for users to find what they needed, understand their options, and take action with confidence.
           </p>
         </div>
-        <div className="md:col-span-1" style={{ backgroundColor: '#111111', padding: 'clamp(20px, 4vw, 32px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <span style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#999999', display: 'block', marginBottom: '24px' }}>My Role</span>
+        <div className="md:col-span-1" style={{ backgroundColor: '#f7e6b7', padding: 'clamp(20px, 4vw, 32px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <span style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6f87aa', display: 'block', marginBottom: '24px' }}>My Role</span>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
             {['Lead Product Designer', 'Platform Architecture', 'Discovery & Search Design', 'Interaction Design']?.map((r) => (
-              <li key={r} style={{ fontSize: '13px', color: '#ffffff', padding: '12px 0', borderBottom: '1px solid #333333', fontWeight: 300 }}>{r}</li>
+              <li key={r} style={{ fontSize: '13px', color: '#05060f', padding: '12px 0', borderBottom: '1px solid #d9c79a', fontWeight: 300 }}>{r}</li>
             ))}
           </ul>
         </div>
@@ -131,17 +131,17 @@ export default function WeLinkCaseStudyClient() {
       {/* ── Challenge + Process ── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1 mt-1">
         {/* Challenge */}
-        <div className="lg:col-span-2" style={{ backgroundColor: '#F7F7F7', padding: '32px', display: 'flex', flexDirection: 'column' }}>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#999999', display: 'block', marginBottom: '24px' }}>The Challenge</span>
-          <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.2, marginBottom: '16px', color: '#111111' }}>Marketplace Clarity</h2>
-          <p style={{ fontSize: '13px', color: '#666666', lineHeight: 1.6, maxWidth: '400px' }}>
+        <div className="lg:col-span-2" style={{ backgroundColor: '#0a0b1c', padding: '32px', display: 'flex', flexDirection: 'column' }}>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6f87aa', display: 'block', marginBottom: '24px' }}>The Challenge</span>
+          <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.2, marginBottom: '16px', color: '#f7e6b7' }}>Marketplace Clarity</h2>
+          <p style={{ fontSize: '13px', color: '#9fb3cc', lineHeight: 1.6, maxWidth: '400px' }}>
             Marketplace and services platforms need to reduce ambiguity quickly. Users need to understand what the platform offers, how to find the right person, and how to move toward action without friction — especially in a multi-region context.
           </p>
         </div>
 
         {/* Process Workflow */}
-        <div className="lg:col-span-2" style={{ backgroundColor: '#F7F7F7', padding: '32px', display: 'flex', flexDirection: 'column' }}>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#999999', display: 'block', marginBottom: '32px' }}>Process Workflow</span>
+        <div className="lg:col-span-2" style={{ backgroundColor: '#0a0b1c', padding: '32px', display: 'flex', flexDirection: 'column' }}>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6f87aa', display: 'block', marginBottom: '32px' }}>Process Workflow</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 0, flex: 1 }}>
             {[
               { num: '01', title: 'Discovery Review', desc: 'Reviewed discovery and service-browsing patterns to clarify the core user need and platform logic.' },
@@ -149,10 +149,10 @@ export default function WeLinkCaseStudyClient() {
               { num: '03', title: 'Interface Direction', desc: 'Refined interface ideas and page structure to support clearer matching and service discovery.' },
               { num: '04', title: 'Concept Development', desc: 'Used the project as a way to shape a stronger product direction, even though the platform did not go live.' },
             ].map((step, i) => (
-              <div key={step.num} style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingTop: i === 0 ? '8px' : '20px', paddingBottom: '20px', borderTop: '1px solid #E5E5E5' }}>
-                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: '#999999' }}>{step.num}</span>
-                <h4 style={{ fontSize: '16px', fontWeight: 500, color: '#111111', margin: 0 }}>{step.title}</h4>
-                <p style={{ fontSize: '13px', color: '#666666', lineHeight: 1.6, margin: 0, maxWidth: '400px' }}>{step.desc}</p>
+              <div key={step.num} style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingTop: i === 0 ? '8px' : '20px', paddingBottom: '20px', borderTop: '1px solid #1a1d30' }}>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: '#6f87aa' }}>{step.num}</span>
+                <h4 style={{ fontSize: '16px', fontWeight: 500, color: '#f7e6b7', margin: 0 }}>{step.title}</h4>
+                <p style={{ fontSize: '13px', color: '#9fb3cc', lineHeight: 1.6, margin: 0, maxWidth: '400px' }}>{step.desc}</p>
               </div>
             ))}
           </div>
@@ -160,10 +160,10 @@ export default function WeLinkCaseStudyClient() {
       </div>
 
       {/* ── Dark Pull Quote ── */}
-      <div className="mt-1" style={{ backgroundColor: '#111111', padding: 'clamp(24px, 4vw, 40px) clamp(20px, 4vw, 48px)', position: 'relative', overflow: 'hidden' }}>
+      <div className="mt-1" style={{ backgroundColor: '#f7e6b7', padding: 'clamp(24px, 4vw, 40px) clamp(20px, 4vw, 48px)', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)', pointerEvents: 'none' }} />
-        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#888888', display: 'block', marginBottom: '32px', position: 'relative', zIndex: 1 }}>Design Philosophy</span>
-        <h3 style={{ fontSize: 'clamp(20px, 3vw, 32px)', fontWeight: 300, lineHeight: 1.4, letterSpacing: '-0.01em', color: '#eeeeee', maxWidth: '700px', position: 'relative', zIndex: 1, margin: 0 }}>
+        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#8198b8', display: 'block', marginBottom: '32px', position: 'relative', zIndex: 1 }}>Design Philosophy</span>
+        <h3 style={{ fontSize: 'clamp(20px, 3vw, 32px)', fontWeight: 300, lineHeight: 1.4, letterSpacing: '-0.01em', color: '#121425', maxWidth: '700px', position: 'relative', zIndex: 1, margin: 0 }}>
           "Concept work still benefits from rigor. Even when a platform does not launch, the value lies in how clearly the problem is framed and how effectively the solution structure supports the intended experience."
         </h3>
       </div>
@@ -171,8 +171,8 @@ export default function WeLinkCaseStudyClient() {
       {/* ── Key Decisions + Platform Concept ── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 mt-1">
         {/* Key Decisions */}
-        <div style={{ backgroundColor: '#F7F7F7', padding: '32px', display: 'flex', flexDirection: 'column' }}>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#999999', display: 'block', marginBottom: '32px' }}>Key Decisions</span>
+        <div style={{ backgroundColor: '#0a0b1c', padding: '32px', display: 'flex', flexDirection: 'column' }}>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6f87aa', display: 'block', marginBottom: '32px' }}>Key Decisions</span>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px 32px', marginBottom: '40px' }}>
             {[
               { num: '01', text: 'Improved discoverability of skilled-worker listings.' },
@@ -181,24 +181,24 @@ export default function WeLinkCaseStudyClient() {
               { num: '04', text: 'Supported a more coherent browsing experience.' },
             ].map((d) => (
               <div key={d.num} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: '#999999', borderBottom: '1px solid #E5E5E5', paddingBottom: '8px' }}>{d.num}</span>
-                <p style={{ fontSize: '13px', color: '#666666', lineHeight: 1.6, margin: 0 }}>{d.text}</p>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: '#6f87aa', borderBottom: '1px solid #1a1d30', paddingBottom: '8px' }}>{d.num}</span>
+                <p style={{ fontSize: '13px', color: '#9fb3cc', lineHeight: 1.6, margin: 0 }}>{d.text}</p>
               </div>
             ))}
           </div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', marginTop: 'auto', paddingTop: '24px', borderTop: '1px solid #E5E5E5', color: '#666666', lineHeight: 1.8 }}>
-            <div style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#999999', marginBottom: '12px' }}>What Changed</div>
-            <div><span style={{ color: '#999999' }}>➜</span> Improved clarity of the platform structure.</div>
-            <div><span style={{ color: '#999999' }}>➜</span> Made service discovery easier to navigate.</div>
-            <div><span style={{ color: '#999999' }}>➜</span> Strengthened the overall concept journey.</div>
-            <div><span style={{ color: '#999999' }}>➜</span> Created a clearer foundation for a service-matching experience.</div>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', marginTop: 'auto', paddingTop: '24px', borderTop: '1px solid #1a1d30', color: '#9fb3cc', lineHeight: 1.8 }}>
+            <div style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6f87aa', marginBottom: '12px' }}>What Changed</div>
+            <div><span style={{ color: '#6f87aa' }}>➜</span> Improved clarity of the platform structure.</div>
+            <div><span style={{ color: '#6f87aa' }}>➜</span> Made service discovery easier to navigate.</div>
+            <div><span style={{ color: '#6f87aa' }}>➜</span> Strengthened the overall concept journey.</div>
+            <div><span style={{ color: '#6f87aa' }}>➜</span> Created a clearer foundation for a service-matching experience.</div>
           </div>
         </div>
 
         {/* Platform Concept Interface Abstraction */}
-        <div style={{ backgroundColor: '#111111', padding: '32px', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ backgroundColor: '#f7e6b7', padding: '32px', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0, background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)', pointerEvents: 'none' }} />
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#888888', display: 'block', marginBottom: '32px', position: 'relative', zIndex: 1 }}>Platform Concept / Interface Abstraction</span>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#8198b8', display: 'block', marginBottom: '32px', position: 'relative', zIndex: 1 }}>Platform Concept / Interface Abstraction</span>
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '24px', opacity: 0.9, maxWidth: '500px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 1 }}>
             {/* Search bar */}
             <div style={{ border: '1px solid rgba(255,255,255,0.2)', borderRadius: '6px', padding: '16px', fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', color: 'rgba(255,255,255,0.5)', display: 'flex', alignItems: 'center', gap: '16px', backgroundColor: 'rgba(255,255,255,0.05)' }}>
@@ -213,7 +213,7 @@ export default function WeLinkCaseStudyClient() {
                 { label: 'Carpentry', active: false },
                 { label: 'Masonry', active: false },
               ].map((cat) => (
-                <div key={cat.label} style={{ border: cat.active ? '1px solid rgba(255,255,255,0.4)' : '1px solid rgba(255,255,255,0.2)', backgroundColor: cat.active ? 'rgba(255,255,255,0.1)' : 'transparent', borderRadius: '999px', padding: '6px 16px', fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: cat.active ? '#ffffff' : 'rgba(255,255,255,0.6)' }}>{cat.label}</div>
+                <div key={cat.label} style={{ border: cat.active ? '1px solid rgba(255,255,255,0.4)' : '1px solid rgba(255,255,255,0.2)', backgroundColor: cat.active ? 'rgba(255,255,255,0.1)' : 'transparent', borderRadius: '999px', padding: '6px 16px', fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: cat.active ? '#05060f' : 'rgba(255,255,255,0.6)' }}>{cat.label}</div>
               ))}
             </div>
             {/* Worker cards */}
@@ -245,8 +245,8 @@ export default function WeLinkCaseStudyClient() {
       </div>
 
       {/* ── Indicative Outcomes ── */}
-      <div className="mt-1" style={{ backgroundColor: '#F7F7F7', padding: 'clamp(24px, 4vw, 40px) clamp(20px, 4vw, 48px)' }}>
-        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#999999', display: 'block', marginBottom: '40px' }}>Indicative Outcomes</span>
+      <div className="mt-1" style={{ backgroundColor: '#0a0b1c', padding: 'clamp(24px, 4vw, 40px) clamp(20px, 4vw, 48px)' }}>
+        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6f87aa', display: 'block', marginBottom: '40px' }}>Indicative Outcomes</span>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {[
             { num: '01', text: 'Improved clarity of service discovery and browsing structure.' },
@@ -254,8 +254,8 @@ export default function WeLinkCaseStudyClient() {
             { num: '03', text: 'Strengthened matching-flow clarity.' },
           ].map((o) => (
             <div key={o.num} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ fontSize: '64px', fontWeight: 200, letterSpacing: '-0.04em', marginBottom: '16px', lineHeight: 1, color: '#999999' }}>{o.num}</div>
-              <p style={{ fontSize: '15px', color: '#111111', lineHeight: 1.6, marginBottom: '24px', maxWidth: '300px' }}>{o.text}</p>
+              <div style={{ fontSize: '64px', fontWeight: 200, letterSpacing: '-0.04em', marginBottom: '16px', lineHeight: 1, color: '#6f87aa' }}>{o.num}</div>
+              <p style={{ fontSize: '15px', color: '#f7e6b7', lineHeight: 1.6, marginBottom: '24px', maxWidth: '300px' }}>{o.text}</p>
             </div>
           ))}
         </div>
@@ -267,8 +267,8 @@ export default function WeLinkCaseStudyClient() {
           style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: '11px',
-            color: '#ffffff',
-            backgroundColor: '#111111',
+            color: '#05060f',
+            backgroundColor: '#f7e6b7',
             padding: '12px 24px',
             border: 'none',
             borderRadius: '2px',
@@ -279,10 +279,10 @@ export default function WeLinkCaseStudyClient() {
             minWidth: '44px',
             transition: 'background-color 0.2s ease',
           }}
-          onMouseDown={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#333333'; }}
-          onMouseUp={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#111111'; }}
-          onTouchStart={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#333333'; }}
-          onTouchEnd={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#111111'; }}>
+          onMouseDown={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#d9c79a'; }}
+          onMouseUp={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#f7e6b7'; }}
+          onTouchStart={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#d9c79a'; }}
+          onTouchEnd={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#f7e6b7'; }}>
           View Interactive Prototype
         </button>
       </div>
@@ -293,7 +293,7 @@ export default function WeLinkCaseStudyClient() {
           style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: '11px',
-            color: '#111111',
+            color: '#f7e6b7',
             textDecoration: 'none',
             display: 'inline-flex',
             alignItems: 'center',
@@ -306,20 +306,20 @@ export default function WeLinkCaseStudyClient() {
         </Link>
       </div>
       {/* Prev / Next Case Study Navigation */}
-      <div className="flex justify-between items-center mt-8 pt-8" style={{ borderTop: '1px solid #E5E5E5' }}>
+      <div className="flex justify-between items-center mt-8 pt-8" style={{ borderTop: '1px solid #1a1d30' }}>
         <Link
           href="/case-studies/auto"
           style={{ display: 'flex', flexDirection: 'column', gap: '4px', textDecoration: 'none', padding: '8px 0', minHeight: '44px' }}
         >
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#999999' }}>← Previous</span>
-          <span style={{ fontSize: '13px', color: '#111111', fontWeight: 300 }}>Simplifying the Auto Loan Journey</span>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6f87aa' }}>← Previous</span>
+          <span style={{ fontSize: '13px', color: '#f7e6b7', fontWeight: 300 }}>Simplifying the Auto Loan Journey</span>
         </Link>
         <Link
           href="/case-studies/banking-loans"
           style={{ display: 'flex', flexDirection: 'column', gap: '4px', textDecoration: 'none', padding: '8px 0', minHeight: '44px', textAlign: 'right' }}
         >
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#999999' }}>Next →</span>
-          <span style={{ fontSize: '13px', color: '#111111', fontWeight: 300 }}>Streamlining an Internal Loans Management Platform</span>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6f87aa' }}>Next →</span>
+          <span style={{ fontSize: '13px', color: '#f7e6b7', fontWeight: 300 }}>Streamlining an Internal Loans Management Platform</span>
         </Link>
       </div>
       <SiteFooter />

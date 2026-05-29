@@ -51,7 +51,7 @@ export default function EnterpriseLoansPage() {
       >
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <span style={{ fontWeight: 500, fontSize: '14px' }}>LARNELLE CHAMBERS</span>
-          <span style={{ color: '#999999', fontSize: '10px', marginTop: '4px' }}>CASE STUDY // 04</span>
+          <span style={{ color: '#6f87aa', fontSize: '10px', marginTop: '4px' }}>CASE STUDY // 04</span>
         </div>
 
         <ul className="flex flex-wrap gap-2 sm:gap-6 list-none p-0 m-0">
@@ -61,9 +61,9 @@ export default function EnterpriseLoansPage() {
                 href={`#${item?.toLowerCase()}`}
                 style={{
                   textDecoration: 'none',
-                  color: '#111111',
+                  color: '#f7e6b7',
                   fontSize: '11px',
-                  border: '1px solid #E5E5E5',
+                  border: '1px solid #1a1d30',
                   padding: '8px 16px',
                   borderRadius: '100px',
                   display: 'inline-block',
@@ -83,8 +83,8 @@ export default function EnterpriseLoansPage() {
         <Link
           href="/contact"
           style={{
-            backgroundColor: '#111111',
-            color: '#ffffff',
+            backgroundColor: '#f7e6b7',
+            color: '#05060f',
             padding: '10px 24px',
             borderRadius: '100px',
             fontSize: '11px',
@@ -113,7 +113,7 @@ export default function EnterpriseLoansPage() {
         <section
           className="sm:col-span-2 lg:col-span-3"
           style={{
-            backgroundColor: '#F7F7F7',
+            backgroundColor: '#0a0b1c',
             padding: '32px',
             display: 'flex',
             flexDirection: 'column',
@@ -127,7 +127,7 @@ export default function EnterpriseLoansPage() {
               fontFamily: "'JetBrains Mono', monospace",
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color: '#999999',
+              color: '#6f87aa',
               marginBottom: '24px',
               display: 'block',
             }}
@@ -142,13 +142,13 @@ export default function EnterpriseLoansPage() {
               lineHeight: 1.1,
               letterSpacing: '-0.02em',
               marginBottom: '24px',
-              color: '#111111',
+              color: '#f7e6b7',
             }}
           />
           <p
             style={{
               fontSize: '14px',
-              color: '#666666',
+              color: '#9fb3cc',
               lineHeight: 1.6,
               maxWidth: '480px',
             }}
@@ -161,7 +161,7 @@ export default function EnterpriseLoansPage() {
         <section
           className="sm:col-span-1"
           style={{
-            backgroundColor: '#F7F7F7',
+            backgroundColor: '#0a0b1c',
             padding: '32px',
             display: 'flex',
             flexDirection: 'column',
@@ -174,7 +174,7 @@ export default function EnterpriseLoansPage() {
               fontFamily: "'JetBrains Mono', monospace",
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color: '#999999',
+              color: '#6f87aa',
               marginBottom: '24px',
               display: 'block',
             }}
@@ -185,7 +185,7 @@ export default function EnterpriseLoansPage() {
             <p
               style={{
                 fontSize: '12px',
-                color: '#666666',
+                color: '#9fb3cc',
                 lineHeight: 1.6,
                 marginBottom: '12px',
               }}
@@ -196,11 +196,11 @@ export default function EnterpriseLoansPage() {
               style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: '11px',
-                border: '1px solid #dddddd',
+                border: '1px solid #20283c',
                 padding: '16px',
                 borderRadius: '2px',
                 lineHeight: 1.8,
-                color: '#111111',
+                color: '#f7e6b7',
               }}
             >
               $ stack --list<br />
@@ -216,8 +216,8 @@ export default function EnterpriseLoansPage() {
           id="process"
           className="sm:col-span-2"
           style={{
-            backgroundColor: '#111111',
-            color: '#ffffff',
+            backgroundColor: '#f7e6b7',
+            color: '#05060f',
             padding: '32px',
             display: 'flex',
             flexDirection: 'column',
@@ -230,7 +230,7 @@ export default function EnterpriseLoansPage() {
               fontFamily: "'JetBrains Mono', monospace",
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color: '#999999',
+              color: '#6f87aa',
               marginBottom: '24px',
               display: 'block',
             }}
@@ -248,7 +248,7 @@ export default function EnterpriseLoansPage() {
           >
             Complexity at Scale
           </h2>
-          <p style={{ fontSize: '14px', color: '#888888', lineHeight: 1.6, maxWidth: '480px' }}>
+          <p style={{ fontSize: '14px', color: '#8198b8', lineHeight: 1.6, maxWidth: '480px' }}>
             The existing system suffered from high cognitive load, with loan officers navigating 14+ disjointed views per application. Error rates in data entry were exceeding 8.4% monthly.
           </p>
         </section>
@@ -257,7 +257,7 @@ export default function EnterpriseLoansPage() {
         <section
           className="sm:col-span-2"
           style={{
-            backgroundColor: '#F7F7F7',
+            backgroundColor: '#0a0b1c',
             padding: '32px',
             display: 'flex',
             flexDirection: 'column',
@@ -270,7 +270,7 @@ export default function EnterpriseLoansPage() {
               fontFamily: "'JetBrains Mono', monospace",
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color: '#999999',
+              color: '#6f87aa',
               marginBottom: '24px',
               display: 'block',
             }}
@@ -290,9 +290,9 @@ export default function EnterpriseLoansPage() {
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: '12px',
                   paddingLeft: '12px',
-                  borderLeft: '1px solid #111111',
+                  borderLeft: '1px solid #f7e6b7',
                   lineHeight: 1.6,
-                  color: '#111111',
+                  color: '#f7e6b7',
                 }}
               >
                 <strong>{step?.num} {step?.title}</strong><br />
@@ -309,7 +309,7 @@ export default function EnterpriseLoansPage() {
           style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: '11px',
-            color: '#111111',
+            color: '#f7e6b7',
             textDecoration: 'none',
             display: 'inline-flex',
             alignItems: 'center',

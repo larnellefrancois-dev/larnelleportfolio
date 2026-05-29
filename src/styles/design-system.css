@@ -363,19 +363,18 @@ p { text-wrap: pretty; }
 /* Portal renders its own universe; suppress the shell one there. */
 .shell[data-chrome='bare'] .shell-universe { display: none; }
 
-/* ---- Case-study "document sheet" ----
-   The detailed Product Design case studies are authored as light editorial
-   documents (dark ink on light). Rather than rewrite that real content, we
-   present each as a light paper sheet floating within the cosmic Product
-   realm — keeping them readable while staying visually integrated. */
+/* ---- Case-study panel ----
+   The detailed Product Design case studies render full dark cyan-over-void,
+   matching the rest of the realm. This gives the document a subtle framed
+   panel within the cosmic backdrop. */
 .case-study-sheet {
-  background: #f8f8f6;
-  color: #111111;
-  border: 1px solid rgba(125, 167, 217, 0.25);
+  background: rgba(10, 11, 28, 0.55);
+  border: 1px solid rgba(125, 167, 217, 0.2);
   border-radius: var(--radius-lg);
-  box-shadow: 0 40px 100px -40px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(232, 208, 153, 0.06);
+  box-shadow: 0 40px 100px -40px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(232, 208, 153, 0.05);
   margin: var(--space-lg) auto;
-  /* Pages set their own max-width / padding via existing classes. */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 /* ---- Header ---- */
