@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Twin moons, red archive rupture, and pale waveform">
+  <defs>
+    <radialGradient id="void" cx="52%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#111426"/>
+      <stop offset="58%" stop-color="#05060f"/>
+      <stop offset="100%" stop-color="#020208"/>
+    </radialGradient>
+    <linearGradient id="rupture" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f7e6b7" stop-opacity="0"/>
+      <stop offset="36%" stop-color="#b32435" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#b32435" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#void)"/>
+  <circle cx="610" cy="255" r="86" fill="none" stroke="#9aa9c4" stroke-opacity="0.52" stroke-width="2"/>
+  <circle cx="735" cy="300" r="58" fill="none" stroke="#b32435" stroke-opacity="0.62" stroke-width="2"/>
+  <path d="M820 -60 C780 170 890 360 805 590 C755 720 820 820 790 980" fill="none" stroke="url(#rupture)" stroke-width="16"/>
+  <path d="M120 590 C300 500 450 680 620 575 S910 420 1100 535 S1380 700 1540 565" fill="none" stroke="#7da7d9" stroke-opacity="0.42" stroke-width="4"/>
+  <path d="M120 620 C300 530 450 710 620 605 S910 450 1100 565 S1380 730 1540 595" fill="none" stroke="#f7e6b7" stroke-opacity="0.22" stroke-width="2" stroke-dasharray="12 18"/>
+</svg>

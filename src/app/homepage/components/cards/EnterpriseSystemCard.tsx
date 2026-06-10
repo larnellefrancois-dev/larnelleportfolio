@@ -31,8 +31,8 @@ export default function EnterpriseSystemCard() {
         className="text-[13px] leading-relaxed"
         style={{ color: '#888', marginBottom: '20px', maxWidth: '300px' }}
       >
-        Design systems built for consistency, governance, and accessibility —
-        reducing fragmentation across complex product ecosystems.
+        Design systems built for consistency, governance, and accessibility — reducing fragmentation
+        across complex product ecosystems.
       </p>
       {/* Terminal block */}
       <div

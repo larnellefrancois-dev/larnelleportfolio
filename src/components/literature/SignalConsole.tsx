@@ -17,10 +17,30 @@ function Waveform() {
       preserveAspectRatio="none"
       role="img"
       aria-label="A pale animated signal waveform"
-      style={{ width: '100%', height: '90px', color: ACCENT, display: 'block', marginBottom: '8px' }}
+      style={{
+        width: '100%',
+        height: '90px',
+        color: ACCENT,
+        display: 'block',
+        marginBottom: '8px',
+      }}
     >
-      <path className="pi-waveform-line pi-waveform-line--ghost" d={ghost} fill="none" stroke="rgba(125,167,217,0.4)" strokeWidth={1.5} strokeLinecap="round" />
-      <path className="pi-waveform-line" d={line} fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" />
+      <path
+        className="pi-waveform-line pi-waveform-line--ghost"
+        d={ghost}
+        fill="none"
+        stroke="rgba(125,167,217,0.4)"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
+      <path
+        className="pi-waveform-line"
+        d={line}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -69,7 +89,14 @@ export default function SignalConsole() {
     >
       <p
         id="pi-console-title"
-        style={{ fontFamily: MONO, fontSize: '0.6rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(179,36,53,0.7)', marginBottom: '16px' }}
+        style={{
+          fontFamily: MONO,
+          fontSize: '0.6rem',
+          letterSpacing: '0.16em',
+          textTransform: 'uppercase',
+          color: 'rgba(179,36,53,0.7)',
+          marginBottom: '16px',
+        }}
       >
         Signal Console · {transmissionTitle}
       </p>
@@ -80,7 +107,15 @@ export default function SignalConsole() {
       <div
         role="group"
         aria-label="Transmission segments — select to reveal"
-        style={{ position: 'relative', height: '48px', margin: '8px 0 20px', borderRadius: '3px', border: `1px solid ${BORDER}`, background: 'repeating-linear-gradient(90deg, rgba(212,197,181,0.05) 0 2px, transparent 2px 7px)' }}
+        style={{
+          position: 'relative',
+          height: '48px',
+          margin: '8px 0 20px',
+          borderRadius: '3px',
+          border: `1px solid ${BORDER}`,
+          background:
+            'repeating-linear-gradient(90deg, rgba(212,197,181,0.05) 0 2px, transparent 2px 7px)',
+        }}
       >
         {paleIntervalTransmissions.map((frag) => {
           const isActive = frag.id === activeId;
@@ -118,13 +153,31 @@ export default function SignalConsole() {
       {/* Live readout */}
       <div
         aria-live="polite"
-        style={{ minHeight: '72px', padding: '16px', border: `1px solid ${BORDER}`, borderRadius: '3px', backgroundColor: '#080510', fontFamily: MONO, fontSize: '0.9rem', color: BODY, lineHeight: 1.6 }}
+        style={{
+          minHeight: '72px',
+          padding: '16px',
+          border: `1px solid ${BORDER}`,
+          borderRadius: '3px',
+          backgroundColor: '#080510',
+          fontFamily: MONO,
+          fontSize: '0.9rem',
+          color: BODY,
+          lineHeight: 1.6,
+        }}
       >
         <span style={{ color: ACCENT, letterSpacing: '0.1em' }}>{active.timestamp}</span>{' '}
         {active.corrupted || active.text === null ? (
           <span style={{ color: 'rgba(125,167,217,0.8)', letterSpacing: '0.3em' }}>
             ░░░ signal lost ░░░
-            <span style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
+            <span
+              style={{
+                position: 'absolute',
+                width: 1,
+                height: 1,
+                overflow: 'hidden',
+                clip: 'rect(0 0 0 0)',
+              }}
+            >
               corrupted segment, no recoverable audio
             </span>
           </span>
@@ -135,12 +188,24 @@ export default function SignalConsole() {
 
       {/* Always-available fallback transcript */}
       <details style={{ marginTop: '16px' }}>
-        <summary style={{ cursor: 'pointer', fontFamily: MONO, fontSize: '0.6rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(179,36,53,0.7)' }}>
+        <summary
+          style={{
+            cursor: 'pointer',
+            fontFamily: MONO,
+            fontSize: '0.6rem',
+            letterSpacing: '0.16em',
+            textTransform: 'uppercase',
+            color: 'rgba(179,36,53,0.7)',
+          }}
+        >
           Full recovered transcript
         </summary>
         <ul style={{ listStyle: 'none', padding: '12px 0 0', margin: 0 }}>
           {paleIntervalTransmissions.map((f) => (
-            <li key={f.id} style={{ fontFamily: MONO, fontSize: '0.8rem', color: BODY, padding: '3px 0' }}>
+            <li
+              key={f.id}
+              style={{ fontFamily: MONO, fontSize: '0.8rem', color: BODY, padding: '3px 0' }}
+            >
               [{f.timestamp}] {f.corrupted ? '— signal lost —' : f.text}
             </li>
           ))}

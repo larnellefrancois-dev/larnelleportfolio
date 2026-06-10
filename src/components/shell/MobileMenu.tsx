@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import CinematicRouteLink from '@/components/motion/CinematicRouteLink';
 import { SECTIONS, SECTION_NAV, type SectionId } from '@/lib/site-nav';
 
 interface Props {
@@ -18,7 +19,9 @@ export default function MobileMenu({ open, onClose, pathname, active }: Props) {
   useEffect(() => {
     if (!open) return;
     closeRef.current?.focus();
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
     document.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
     return () => {
@@ -33,7 +36,9 @@ export default function MobileMenu({ open, onClose, pathname, active }: Props) {
     <div className="shell-mobile" role="dialog" aria-modal="true" aria-label="Site menu">
       <div className="shell-mobile__top">
         <span className="shell-brand__name">Menu</span>
-        <button ref={closeRef} className="shell-menu-btn" onClick={onClose}>Close ✕</button>
+        <button ref={closeRef} className="shell-menu-btn" onClick={onClose}>
+          Close ✕
+        </button>
       </div>
       <div className="shell-mobile__scroll">
         <Link
@@ -60,13 +65,33 @@ export default function MobileMenu({ open, onClose, pathname, active }: Props) {
             <ul className="shell-mobile__links">
               {SECTION_NAV[section.id].map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    aria-current={pathname === link.href ? 'page' : undefined}
-                    onClick={onClose}
-                  >
-                    {link.label}
-                  </Link>
+                  {section.id === 'literature' && link.href === '/literature/archive' ? (
+                    <CinematicRouteLink
+                      href={link.href}
+                      kind="archive"
+                      title="Accessing Archive"
+                      subtitle="ICSE / NAIAD recovered record"
+                      numeral="I"
+                      indexLabel="VY-0031"
+                      aria-current={pathname === link.href ? 'page' : undefined}
+                      images={[
+                        '/assets/images/veyrath-kaen-bloom.png',
+                        '/assets/hyperframes/archive-rupture.svg',
+                        '/assets/motion/pale-interval-signal-loop.svg',
+                        '/assets/images/art/shine-archive.jpg',
+                      ]}
+                    >
+                      {link.label}
+                    </CinematicRouteLink>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      aria-current={pathname === link.href ? 'page' : undefined}
+                      onClick={onClose}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

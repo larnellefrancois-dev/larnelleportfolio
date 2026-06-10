@@ -6,6 +6,7 @@ import Header from './Header';
 import SubNav from './SubNav';
 import MobileMenu from './MobileMenu';
 import Footer from './Footer';
+import RealmMotionBackdrop from '@/components/motion/RealmMotionBackdrop';
 
 /**
  * The single global layout shell. Mounted once in the root layout so EVERY
@@ -19,19 +20,36 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() || '/';
   const active = sectionFromPath(pathname);
   const realm = realmFromSection(active);
-  const isPortal = pathname === '/' || pathname.startsWith('/portal') || pathname.startsWith('/homepage');
+  const isPortal =
+    pathname === '/' || pathname.startsWith('/portal') || pathname.startsWith('/homepage');
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-realm', realm);
   }, [realm]);
 
+  useEffect(() => {
+    const handlePointerMove = (event: PointerEvent) => {
+      const x = event.clientX / window.innerWidth;
+      const y = event.clientY / window.innerHeight;
+      document.documentElement.style.setProperty('--mouse-x', x.toFixed(4));
+      document.documentElement.style.setProperty('--mouse-y', y.toFixed(4));
+    };
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    return () => window.removeEventListener('pointermove', handlePointerMove);
+  }, []);
+
   // Close the mobile menu whenever the route changes.
-  useEffect(() => { setMenuOpen(false); }, [pathname]);
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   return (
     <div className="shell" data-realm={realm} data-chrome={isPortal ? 'bare' : 'full'}>
-      <a className="ds-skip-link" href="#main">Skip to content</a>
+      <a className="ds-skip-link" href="#main">
+        Skip to content
+      </a>
 
       {!isPortal && (
         <div className="shell-universe" aria-hidden="true">
@@ -44,15 +62,24 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       )}
 
+      {!isPortal && <RealmMotionBackdrop realm={realm} density="max" />}
+
       {!isPortal && (
         <>
           <Header active={active} menuOpen={menuOpen} onOpenMenu={() => setMenuOpen(true)} />
           {active !== 'home' && <SubNav active={active} pathname={pathname} />}
-          <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} pathname={pathname} active={active} />
+          <MobileMenu
+            open={menuOpen}
+            onClose={() => setMenuOpen(false)}
+            pathname={pathname}
+            active={active}
+          />
         </>
       )}
 
-      <main id="main" className="shell__main">{children}</main>
+      <main id="main" className="shell__main">
+        {children}
+      </main>
 
       {!isPortal && <Footer active={active} />}
     </div>

@@ -27,12 +27,9 @@ export default function DesignSystemsCard() {
       >
         Structuring Complexity
       </h3>
-      <p
-        className="text-[13px] text-ink-gray leading-relaxed"
-        style={{ maxWidth: '300px' }}
-      >
-        Aligning user needs with business objectives through clear product
-        thinking, journey design, and systems that reduce friction at scale.
+      <p className="text-[13px] text-ink-gray leading-relaxed" style={{ maxWidth: '300px' }}>
+        Aligning user needs with business objectives through clear product thinking, journey design,
+        and systems that reduce friction at scale.
       </p>
     </Link>
   );

@@ -1,126 +1,144 @@
 'use client';
+
 import React from 'react';
-import Link from 'next/link';
+import CinematicRouteLink from '@/components/motion/CinematicRouteLink';
 
 const realms = [
   {
-    id: 'art',
-    label: 'Art',
-    arcaneTitle: 'Ars Visualis',
-    meta: 'M·I // VISIO',
-    href: '/art',
-    description: 'Traditional work, studies, commissions, and visual experiments.',
-    cta: 'Enter Realm',
-    cardClass: 'card-art',
-    ariaLabel: 'Art — Ars Visualis — Enter Realm',
-  },
-  {
-    id: 'product',
-    label: 'Product Design',
-    arcaneTitle: 'Systema',
-    meta: 'M·II // STRUCTURA',
-    href: '/product-design',
-    description: 'Case studies, systems, interfaces, and professional design practice.',
-    cta: 'Enter Realm',
-    cardClass: 'card-product',
-    ariaLabel: 'Product Design — Systema — Enter Realm',
-  },
-  {
-    id: 'literature',
-    label: 'Literature',
-    arcaneTitle: 'Scriptorium',
-    meta: 'M·III // FABULA',
+    type: 'lit',
     href: '/literature',
-    description: 'Fiction, worldbuilding, The Pale Interval, and recovered archives.',
-    cta: 'Enter Realm',
-    cardClass: 'card-literature',
-    ariaLabel: 'Literature — Scriptorium — Enter Realm',
+    numeral: 'I',
+    title: 'Literature',
+    subtitle: 'Fiction & Worldbuilding',
+    image: '/assets/images/veyrath-kaen-bloom.png',
+    alt: 'Pale Interval Veyrath bloom artwork with blue mineral light.',
+    metaLeft: ['Vol. 01 — Narrative', 'The Pale Interval'],
+    metaRight: ['Index: LT-892', 'Enter Chapter'],
+    transitionTitle: 'Opening Literature',
+    transitionSubtitle: 'Scriptorium / fiction and worldbuilding',
+    flashImages: [
+      '/assets/images/veyrath-kaen-bloom.png',
+      '/assets/motion/pale-interval-signal-loop.svg',
+      '/assets/hyperframes/veyrath-signal.svg',
+      '/assets/images/art/shine-archive.jpg',
+    ],
+  },
+  {
+    type: 'art',
+    href: '/art',
+    numeral: 'II',
+    title: 'Visual Arts',
+    subtitle: 'Canvas & Charcoal',
+    image: '/assets/images/art/nocturne-bloom.jpg',
+    alt: 'Black, white, and gold mixed-media portrait surrounded by flowers and wings.',
+    metaLeft: ['Exhibition — 02', 'Gallery Space'],
+    metaRight: ['Index: VA-414', 'View Canvas'],
+    transitionTitle: 'Opening Visual Arts',
+    transitionSubtitle: 'Visio / canvas and charcoal',
+    flashImages: [
+      '/assets/images/art/nocturne-bloom.jpg',
+      '/assets/images/art/green-butterfly-collar.jpg',
+      '/assets/images/art/shine-archive.jpg',
+      '/assets/images/art/crown-in-coral.jpg',
+    ],
+  },
+  {
+    type: 'design',
+    href: '/product-design',
+    numeral: 'III',
+    title: 'Systems',
+    subtitle: 'Product & Interface',
+    image: '/assets/images/portfolio-shipme-ui.jpg',
+    alt: 'ShipMe mobile interface screens from the product design portfolio.',
+    metaLeft: ['Structure — 03', 'Logic & Form'],
+    metaRight: ['Index: PD-771', 'Analyze Logic'],
+    transitionTitle: 'Opening Systems',
+    transitionSubtitle: 'Systema / product and interface',
+    flashImages: [
+      '/assets/images/portfolio-shipme-ui.jpg',
+      '/assets/images/Personal-1775589530525.png',
+      '/assets/images/portfolio-web-design.jpg',
+      '/assets/motion/product-system-loop.svg',
+    ],
   },
 ];
 
 export default function PortalHomepage() {
+  React.useEffect(() => {
+    const handlePointerMove = (event: PointerEvent) => {
+      const x = event.clientX / window.innerWidth;
+      const y = event.clientY / window.innerHeight;
+      document.documentElement.style.setProperty('--mouse-x', x.toFixed(4));
+      document.documentElement.style.setProperty('--mouse-y', y.toFixed(4));
+    };
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    return () => window.removeEventListener('pointermove', handlePointerMove);
+  }, []);
+
   return (
-    <div className="portal-body portal-page-root">
-      {/* Universe Background */}
-      <div className="universe-bg" aria-hidden="true">
-        <div className="stars" />
-      </div>
-      {/* Astrolabe */}
-      <div className="astrolabe" aria-hidden="true">
-        <div className="ring ring-1" />
-        <div className="ring ring-2" />
-        <div className="ring ring-3" />
-      </div>
-      {/* Crimson Ribbon */}
-      <div className="ribbon-container" aria-hidden="true">
-        <svg className="ribbon-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <defs>
-            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-            <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(138, 28, 42, 0)" />
-              <stop offset="50%" stopColor="rgba(179, 36, 53, 0.4)" />
-              <stop offset="100%" stopColor="rgba(94, 13, 22, 0)" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M -10,110 C 30,80 70,20 110,-10"
-            fill="none"
-            stroke="url(#ribbonGrad)"
-            strokeWidth="8"
-            filter="url(#glow)"
-          />
-          <path
-            d="M -10,90 C 40,90 60,10 110,10"
-            fill="none"
-            stroke="rgba(138, 28, 42, 0.15)"
-            strokeWidth="2"
-          />
-        </svg>
-      </div>
-      {/* Header Brand */}
-      <header className="header-brand">
-        <h1 className="brand-name">L.F. Chambers</h1>
-        <div className="brand-subtitle">Architect of Realms</div>
+    <div className="home-triptych">
+      <header className="home-triptych__header">
+        <div className="home-triptych__identity">
+          <span>Archive</span>
+          <b aria-hidden="true">{'//'}</b>
+          <span>Portfolio</span>
+          <b aria-hidden="true">{'//'}</b>
+          <span>2026</span>
+        </div>
+        <div className="home-triptych__status">Accepting Commissions</div>
       </header>
-      {/* Portal Stage */}
-      <main className="portal-stage">
-        {realms?.map((realm) => (
-          <div key={realm?.id} className="card-wrapper">
-            <Link
-              href={realm?.href}
-              className={`tarot-card ${realm?.cardClass}`}
-              aria-label={realm?.ariaLabel}
+
+      <main className="home-triptych__main" aria-label="Portfolio realms">
+        <div className="home-triptych__grid">
+          {realms.map((realm) => (
+            <CinematicRouteLink
+              key={realm.type}
+              href={realm.href}
+              kind="realm"
+              className="home-triptych-card"
+              data-type={realm.type}
+              aria-label={`Explore ${realm.title}`}
+              title={realm.transitionTitle}
+              subtitle={realm.transitionSubtitle}
+              numeral={realm.numeral}
+              indexLabel={realm.metaRight[0].replace('Index: ', '')}
+              images={realm.flashImages}
             >
-              <div className="card-inner">
-                <div className="card-bg" />
-                <div className="card-overlay" />
-                <div className="card-gradient" />
-                <div className="glass-glare" />
-                <div className="card-frame" />
-
-                <div className="card-content">
-                  <div className="arcane-index">{realm?.meta}</div>
-
-                  <div className="card-typography">
-                    <h2 className="card-title">{realm?.label}</h2>
-                    <p className="card-arcane-sub">{realm?.arcaneTitle}</p>
-                    <p className="card-desc">{realm?.description}</p>
-                    <span className="action-rune">{realm?.cta}</span>
-                  </div>
-                </div>
+              <img className="home-triptych-card__img" src={realm.image} alt={realm.alt} />
+              <div className="home-triptych-card__tint" aria-hidden="true" />
+              <div className="home-triptych-card__frame" aria-hidden="true">
+                <span className="home-triptych-card__corner home-triptych-card__corner--tl" />
+                <span className="home-triptych-card__corner home-triptych-card__corner--tr" />
+                <span className="home-triptych-card__corner home-triptych-card__corner--bl" />
+                <span className="home-triptych-card__corner home-triptych-card__corner--br" />
               </div>
-            </Link>
-          </div>
-        ))}
+              <div className="home-triptych-card__header">
+                <span className="home-triptych-card__numeral">{realm.numeral}</span>
+                <span className="home-triptych-card__sigil" aria-hidden="true" />
+              </div>
+              <div className="home-triptych-card__body">
+                <h2 className="home-triptych-card__title">{realm.title}</h2>
+                <span className="home-triptych-card__subtitle">{realm.subtitle}</span>
+              </div>
+              <div className="home-triptych-card__footer">
+                <span>
+                  {realm.metaLeft.map((line) => (
+                    <b key={line}>{line}</b>
+                  ))}
+                </span>
+                <span>
+                  {realm.metaRight.map((line) => (
+                    <b key={line}>{line}</b>
+                  ))}
+                </span>
+              </div>
+            </CinematicRouteLink>
+          ))}
+        </div>
       </main>
-      {/* Footer Meta */}
-      <footer className="footer-meta" aria-hidden="true">
-        <div>SYS_LOC: ASTRAL_PLANE</div>
-        <div>VER. 9.4.2 // OBSIDIAN</div>
-      </footer>
+
+      <footer className="home-triptych__footer">© MMXXVI — Multidisciplinary Studio</footer>
     </div>
   );
 }

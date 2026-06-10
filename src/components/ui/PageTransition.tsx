@@ -59,9 +59,12 @@ export function LoadingBar() {
         style={{
           height: '100%',
           width: `${progress}%`,
-          background: 'var(--ink-black)',
-          transition: progress === 100
-            ? 'width 0.2s ease, opacity 0.4s ease 0.2s' :'width 0.4s cubic-bezier(0.215, 0.61, 0.355, 1)',
+          background: 'linear-gradient(90deg, #c5ab84, #e8e3d8)',
+          boxShadow: '0 0 18px rgba(197, 171, 132, 0.5)',
+          transition:
+            progress === 100
+              ? 'width 0.2s ease, opacity 0.4s ease 0.2s'
+              : 'width 0.4s cubic-bezier(0.215, 0.61, 0.355, 1)',
           opacity: progress === 100 ? 0 : 1,
         }}
       />
@@ -87,7 +90,8 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       style={{
         opacity: transitionStage === 'enter' ? 0 : 1,
         transform: transitionStage === 'enter' ? 'translateY(8px)' : 'translateY(0)',
-        transition: 'opacity 0.35s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.35s cubic-bezier(0.215, 0.61, 0.355, 1)',
+        transition:
+          'opacity 0.35s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.35s cubic-bezier(0.215, 0.61, 0.355, 1)',
       }}
     >
       {displayChildren}

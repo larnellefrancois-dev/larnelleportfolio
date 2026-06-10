@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Crash Basin survey plate</title>
+  <desc id="desc">Generated Veyrath survey image for impact return.</desc>
+  <defs><filter id="n"><feTurbulence baseFrequency="0.08" numOctaves="3" seed="13"/><feDisplacementMap in="SourceGraphic" scale="18"/></filter></defs>
+  <rect width="1200" height="760" fill="#05060f"/>
+  <circle cx="420" cy="406" r="252" fill="#d4b271" opacity="0.12"/>
+  <path d="M0 488 C260 444 480 626 760 528 S1030 428 1200 424 V760 H0Z" fill="#0a0b1c"/>
+  <path d="M0 594 C290 596 438 660 706 618 S1048 516 1200 610" fill="none" stroke="#d4b271" stroke-width="5" stroke-opacity="0.58" filter="url(#n)"/>
+  <g stroke="#f7e6b7" stroke-opacity="0.22" fill="none"><circle cx="600" cy="380" r="170"/><circle cx="600" cy="380" r="270" stroke-dasharray="5 18"/><path d="M150 380 H1050 M600 96 V664"/></g>
+  <text x="70" y="106" fill="#d4b271" font-family="Space Mono, monospace" font-size="22" letter-spacing="5">SURVEY // VY-CB</text>
+  <text x="70" y="640" fill="#f7e6b7" font-family="Cormorant Garamond, Georgia, serif" font-size="76" font-style="italic">Crash Basin</text>
+  <text x="74" y="688" fill="#d4c5b5" font-family="Space Mono, monospace" font-size="18" letter-spacing="4">impact return</text>
+</svg>

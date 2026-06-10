@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Archive Rupture cinematic poster">
+  <rect width="1200" height="675" fill="#06050a"/>
+  <g stroke="#b32435" stroke-opacity="0.32">
+    <path d="M150 130 H1060"/><path d="M150 210 H1060"/><path d="M150 290 H1060"/><path d="M150 370 H1060"/><path d="M150 450 H1060"/>
+  </g>
+  <path d="M620 -40 C560 170 700 270 590 460 C545 535 610 625 570 720" fill="none" stroke="#b32435" stroke-width="18" stroke-opacity="0.88"/>
+  <path d="M650 0 C630 180 725 310 630 560" fill="none" stroke="#f7e6b7" stroke-width="4" stroke-opacity="0.45"/>
+  <text x="72" y="105" fill="#f7e6b7" font-family="Cinzel, serif" font-size="54" letter-spacing="8">ARCHIVE RUPTURE</text>
+  <text x="76" y="596" fill="#9aa9c4" font-family="Space Mono, monospace" font-size="22" letter-spacing="4">HYPERFRAMES SLOT / AWAITING FINAL CLIP</text>
+</svg>

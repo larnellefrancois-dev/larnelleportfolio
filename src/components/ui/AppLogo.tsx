@@ -2,8 +2,6 @@
 
 import React, { memo, useMemo } from 'react';
 
-
-
 interface AppLogoProps {
   src?: string; // Image source (optional)
   iconName?: string; // Icon name when no image
@@ -27,10 +25,7 @@ const AppLogo = memo(function AppLogo({
     return classes.join(' ');
   }, [onClick, className]);
 
-  return (
-    <div className={containerClassName} onClick={onClick}>
-    </div>
-  );
+  return <div className={containerClassName} onClick={onClick}></div>;
 });
 
 export default AppLogo;

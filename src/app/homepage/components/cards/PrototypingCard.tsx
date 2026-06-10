@@ -27,12 +27,9 @@ export default function PrototypingCard() {
       >
         Prototyping &amp; Process
       </h3>
-      <p
-        className="text-[13px] text-ink-gray leading-relaxed"
-        style={{ maxWidth: '300px' }}
-      >
-        Exploring interactions, tools, and workflows through rapid prototyping
-        — testing ideas before committing to systems.
+      <p className="text-[13px] text-ink-gray leading-relaxed" style={{ maxWidth: '300px' }}>
+        Exploring interactions, tools, and workflows through rapid prototyping — testing ideas
+        before committing to systems.
       </p>
     </Link>
   );

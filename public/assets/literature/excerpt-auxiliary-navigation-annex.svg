@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">The Gap Has Shape excerpt plate</title>
+  <desc id="desc">Generated cinematic reading plate for structured absence waveform.</desc>
+  <defs>
+    <radialGradient id="r" cx="48%" cy="48%" r="62%"><stop stop-color="#7da7d9" stop-opacity="0.24"/><stop offset="0.5" stop-color="#b32435" stop-opacity="0.12"/><stop offset="1" stop-color="#05060f"/></radialGradient>
+    <filter id="noise"><feTurbulence baseFrequency="0.74" numOctaves="3" seed="90"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 0.2"/></feComponentTransfer></filter>
+  </defs>
+  <rect width="1600" height="1000" fill="#05060f"/>
+  <rect width="1600" height="1000" fill="url(#r)"/>
+  <g fill="none" stroke="#7da7d9" stroke-opacity="0.48">
+    <path d="M140 520 C350 250 470 790 690 500 S1080 280 1450 540" stroke-width="4" stroke-dasharray="10 16"/>
+    <path d="M170 640 C450 540 580 720 800 610 S1210 470 1432 625" stroke-width="2"/>
+    <circle cx="800" cy="500" r="160"/>
+    <circle cx="800" cy="500" r="250" stroke-dasharray="3 22"/>
+  </g>
+  <g opacity="0.9">
+    <rect x="88" y="84" width="1424" height="832" fill="none" stroke="#b32435" stroke-opacity="0.36" stroke-width="2"/>
+    <text x="118" y="148" fill="#7da7d9" font-family="Space Mono, monospace" font-size="22" letter-spacing="6">EXCERPT // 01 // THE PALE INTERVAL</text>
+    <text x="118" y="800" fill="#f7e6b7" font-family="Cormorant Garamond, Georgia, serif" font-size="92" font-style="italic">The Gap Has Shape</text>
+    <text x="122" y="852" fill="#d4c5b5" font-family="Space Mono, monospace" font-size="20" letter-spacing="4">structured absence waveform</text>
+  </g>
+  <g stroke="#f7e6b7" stroke-opacity="0.24" stroke-width="1">
+    <path d="M120 220 V760"/><path d="M202 220 V760"/><path d="M284 220 V760"/><path d="M366 220 V760"/><path d="M448 220 V760"/><path d="M530 220 V760"/><path d="M612 220 V760"/><path d="M694 220 V760"/><path d="M776 220 V760"/><path d="M858 220 V760"/><path d="M940 220 V760"/><path d="M1022 220 V760"/><path d="M1104 220 V760"/><path d="M1186 220 V760"/><path d="M1268 220 V760"/><path d="M1350 220 V760"/><path d="M1432 220 V760"/><path d="M1514 220 V760"/>
+  </g>
+  <rect width="1600" height="1000" filter="url(#noise)"/>
+</svg>

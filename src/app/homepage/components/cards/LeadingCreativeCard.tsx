@@ -36,8 +36,8 @@ export default function LeadingCreativeCard() {
         className="text-[13px] leading-relaxed"
         style={{ color: '#888', marginTop: '20px', maxWidth: '300px' }}
       >
-        Reflections on product design, accessibility, the architecture of
-        digital experiences, and what it means to build things that last.
+        Reflections on product design, accessibility, the architecture of digital experiences, and
+        what it means to build things that last.
       </p>
       {/* Decorative SVG */}
       <div className="mt-auto" style={{ opacity: 0.5 }}>

@@ -24,12 +24,9 @@ export default function LetsTalkCard() {
       >
         Start a Conversation
       </h3>
-      <p
-        className="text-[13px] text-ink-gray leading-relaxed"
-        style={{ maxWidth: '300px' }}
-      >
-        Open to product design, systems work, and collaboration. Reach out
-        about opportunities or just to exchange ideas.
+      <p className="text-[13px] text-ink-gray leading-relaxed" style={{ maxWidth: '300px' }}>
+        Open to product design, systems work, and collaboration. Reach out about opportunities or
+        just to exchange ideas.
       </p>
       {/* Email row */}
       <a
@@ -37,9 +34,7 @@ export default function LetsTalkCard() {
         className="mt-auto w-full flex items-center no-underline group"
         style={{ borderBottom: '1px solid #ddd', paddingBottom: '8px' }}
       >
-        <span style={{ fontSize: '12px', color: '#999' }}>
-          chambersuiux@gmail.com
-        </span>
+        <span style={{ fontSize: '12px', color: '#999' }}>chambersuiux@gmail.com</span>
         <span className="ml-auto text-[12px] arrow-hover">→</span>
       </a>
     </div>

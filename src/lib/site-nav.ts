@@ -50,6 +50,7 @@ export const SECTION_NAV: Record<SectionId, { label: string; href: string }[]> =
   product: [
     { label: 'Overview', href: '/product-design' },
     { label: 'Case Studies', href: '/product-design/case-studies' },
+    { label: 'Archive', href: '/product-design/archive' },
     { label: 'Design Systems', href: '/product-design/design-systems' },
     { label: 'Writing', href: '/product-design/writing' },
     { label: 'About', href: '/product-design/about' },

@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://larnellepo4855.builtwithrocket.new'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://larnellepo4855.builtwithrocket.new'
+  ),
   title: 'About Larnelle Chambers — Product & Systems Designer',
-  description: 'UX/UI and product designer with 7+ years of experience designing digital experiences across web, mobile, and enterprise banking systems.',
+  description:
+    'UX/UI and product designer with 7+ years of experience designing digital experiences across web, mobile, and enterprise banking systems.',
   openGraph: {
     type: 'profile',
     url: 'https://larnellepo4855.builtwithrocket.new/about',

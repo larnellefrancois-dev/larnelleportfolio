@@ -27,12 +27,9 @@ export default function DesignLeadershipCard() {
       >
         Point of View
       </h3>
-      <p
-        className="text-[13px] text-ink-gray leading-relaxed"
-        style={{ maxWidth: '300px' }}
-      >
-        Developing a design practice grounded in systems thinking,
-        accessibility, and the belief that good UX is invisible infrastructure.
+      <p className="text-[13px] text-ink-gray leading-relaxed" style={{ maxWidth: '300px' }}>
+        Developing a design practice grounded in systems thinking, accessibility, and the belief
+        that good UX is invisible infrastructure.
       </p>
     </Link>
   );

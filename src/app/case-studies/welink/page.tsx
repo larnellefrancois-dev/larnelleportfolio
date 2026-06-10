@@ -2,9 +2,12 @@ import type { Metadata } from 'next';
 import WeLinkCaseStudyClient from './WeLinkCaseStudyClient';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://larnellepo4855.builtwithrocket.new'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://larnellepo4855.builtwithrocket.new'
+  ),
   title: 'Caribbean Service Discovery Platform — Larnelle Chambers',
-  description: 'Designing a platform to help users discover skilled workers across the Caribbean through clearer browsing, stronger structure, and practical service discovery.',
+  description:
+    'Designing a platform to help users discover skilled workers across the Caribbean through clearer browsing, stronger structure, and practical service discovery.',
   openGraph: {
     type: 'article',
     url: 'https://larnellepo4855.builtwithrocket.new/case-studies/welink',

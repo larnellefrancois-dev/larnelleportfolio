@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Nae dossier portrait</title>
+  <desc id="desc">Generated classified dossier portrait plate for Nae.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05060f"/><stop offset="0.52" stop-color="#0a0b1c"/><stop offset="1" stop-color="#14060a"/></linearGradient>
+    <radialGradient id="halo" cx="55%" cy="35%" r="58%"><stop stop-color="#7da7d9" stop-opacity="0.28"/><stop offset="0.54" stop-color="#f7e6b7" stop-opacity="0.14"/><stop offset="1" stop-color="#05060f" stop-opacity="0"/></radialGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.92" numOctaves="2" seed="185"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 0.18"/></feComponentTransfer></filter>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="4" seed="194"/><feDisplacementMap in="SourceGraphic" scale="12"/></filter>
+  </defs>
+  <rect width="900" height="1200" fill="url(#bg)"/>
+  <rect width="900" height="1200" fill="url(#halo)"/>
+  <rect x="42" y="42" width="816" height="1116" fill="none" stroke="#7da7d9" stroke-opacity="0.34" stroke-width="2"/>
+  <path d="M90 154 H236 M664 154 H810 M90 1046 H236 M664 1046 H810" stroke="#f7e6b7" stroke-width="3" stroke-opacity="0.72"/>
+  <g opacity="0.35" stroke="#7da7d9" stroke-width="1">
+    <path d="M146 188 C318 274 420 80 686 256" fill="none"/>
+    <path d="M106 816 C302 720 518 884 792 704" fill="none"/>
+    <path d="M452 86 V1114" stroke-dasharray="4 18"/>
+  </g>
+  <g filter="url(#rough)">
+    <ellipse cx="450" cy="446" rx="158" ry="188" fill="#d7d0c8" opacity="0.16"/>
+    <path d="M298 434 C304 252 418 180 540 230 C664 282 644 460 594 586 C558 680 356 676 316 570 C300 528 294 486 298 434Z" fill="#e7ded1" opacity="0.24"/>
+    <path d="M292 392 C330 246 484 174 620 282 C574 256 518 262 472 302 C408 358 354 368 292 392Z" fill="#02030a" opacity="0.88"/>
+    <path d="M318 680 C370 624 524 620 586 682 C648 748 680 878 688 1032 H214 C230 878 258 748 318 680Z" fill="#050611" opacity="0.9"/>
+  </g>
+  <g stroke="#7da7d9" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.82">
+    <path d="M260 788 C340 828 394 862 464 934"/>
+    <path d="M610 728 C542 800 514 866 494 1016"/>
+    <path d="M304 728 C378 742 464 742 592 718" stroke-dasharray="2 22"/>
+  </g>
+  <g opacity="0.9">
+    <rect x="92" y="86" width="268" height="28" fill="#f7e6b7" opacity="0.22"/>
+    <text x="104" y="108" fill="#7da7d9" font-family="Space Mono, monospace" font-size="22" letter-spacing="4">DOSSIER // 05</text>
+    <text x="92" y="992" fill="#f7e6b7" font-family="Cormorant Garamond, Georgia, serif" font-size="70" font-style="italic">Nae</text>
+    <text x="96" y="1042" fill="#7da7d9" font-family="Space Mono, monospace" font-size="18" letter-spacing="5" text-transform="uppercase">evidence board</text>
+    <text x="96" y="1094" fill="#d4c5b5" font-family="Space Mono, monospace" font-size="16" letter-spacing="2">evidence first naming second</text>
+  </g>
+  <rect width="900" height="1200" filter="url(#grain)" opacity="0.65"/>
+</svg>

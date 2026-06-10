@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Veyrath Signal cinematic poster">
+  <rect width="1200" height="675" fill="#05060f"/>
+  <circle cx="760" cy="330" r="210" fill="#7da7d9" opacity="0.12"/>
+  <path d="M80 510 C260 380 420 530 600 410 S900 210 1120 300" fill="none" stroke="#7da7d9" stroke-opacity="0.58" stroke-width="8"/>
+  <path d="M620 30 C585 210 650 350 600 545" fill="none" stroke="#b32435" stroke-width="12" stroke-opacity="0.7"/>
+  <text x="72" y="105" fill="#f7e6b7" font-family="Cinzel, serif" font-size="54" letter-spacing="8">VEYRATH SIGNAL</text>
+  <text x="76" y="596" fill="#9aa9c4" font-family="Space Mono, monospace" font-size="22" letter-spacing="4">HYPERFRAMES SLOT / AWAITING FINAL CLIP</text>
+</svg>

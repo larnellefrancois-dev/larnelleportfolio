@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">White Passage survey plate</title>
+  <desc id="desc">Generated Veyrath survey image for proof mineral.</desc>
+  <defs><filter id="n"><feTurbulence baseFrequency="0.08" numOctaves="3" seed="17"/><feDisplacementMap in="SourceGraphic" scale="18"/></filter></defs>
+  <rect width="1200" height="760" fill="#05060f"/>
+  <circle cx="740" cy="250" r="252" fill="#d4c5b5" opacity="0.12"/>
+  <path d="M0 424 C260 532 480 578 760 584 S1030 524 1200 352 V760 H0Z" fill="#0a0b1c"/>
+  <path d="M0 562 C290 668 438 620 706 666 S1048 452 1200 650" fill="none" stroke="#d4c5b5" stroke-width="5" stroke-opacity="0.58" filter="url(#n)"/>
+  <g stroke="#f7e6b7" stroke-opacity="0.22" fill="none"><circle cx="600" cy="380" r="170"/><circle cx="600" cy="380" r="270" stroke-dasharray="5 18"/><path d="M150 380 H1050 M600 96 V664"/></g>
+  <text x="70" y="106" fill="#d4c5b5" font-family="Space Mono, monospace" font-size="22" letter-spacing="5">SURVEY // VY-WP</text>
+  <text x="70" y="640" fill="#f7e6b7" font-family="Cormorant Garamond, Georgia, serif" font-size="76" font-style="italic">White Passage</text>
+  <text x="74" y="688" fill="#d4c5b5" font-family="Space Mono, monospace" font-size="18" letter-spacing="4">proof mineral</text>
+</svg>

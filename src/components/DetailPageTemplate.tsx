@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import MotionReveal from '@/components/motion/MotionReveal';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -122,17 +123,35 @@ const REALM_TOKENS: Record<
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
-function ContentBlock({ block, tokens }: { block: DetailContentBlock; tokens: (typeof REALM_TOKENS)[DetailRealm] }) {
+function ContentBlock({
+  block,
+  tokens,
+  realm,
+}: {
+  block: DetailContentBlock;
+  tokens: (typeof REALM_TOKENS)[DetailRealm];
+  realm: DetailRealm;
+}) {
+  const headingFont =
+    realm === 'product'
+      ? "'Montserrat', sans-serif"
+      : "'Cormorant Garamond', 'Palatino Linotype', Georgia, serif";
+  const headingStyle =
+    realm === 'art'
+      ? { fontStyle: 'italic', letterSpacing: '0.08em', textTransform: 'none' as const }
+      : realm === 'product'
+        ? { fontStyle: 'normal', letterSpacing: '0.18em', textTransform: 'uppercase' as const }
+        : { fontStyle: 'normal', letterSpacing: '0.12em', textTransform: 'uppercase' as const };
+
   return (
     <div style={{ marginBottom: '48px' }}>
       {block.heading && (
         <h2
           style={{
-            fontFamily: "'Cinzel', serif",
+            fontFamily: headingFont,
             fontSize: '1rem',
-            fontWeight: 400,
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
+            fontWeight: realm === 'product' ? 300 : 500,
+            ...headingStyle,
             color: tokens.accent,
             marginBottom: '20px',
             paddingBottom: '10px',
@@ -265,6 +284,16 @@ export default function DetailPageTemplate({
   children,
 }: DetailPageTemplateProps) {
   const tokens = REALM_TOKENS[realm];
+  const titleFont =
+    realm === 'product'
+      ? "'Montserrat', sans-serif"
+      : "'Cormorant Garamond', 'Palatino Linotype', Georgia, serif";
+  const titleStyle =
+    realm === 'art'
+      ? { fontStyle: 'italic', letterSpacing: '0.07em', textTransform: 'none' as const }
+      : realm === 'product'
+        ? { fontStyle: 'normal', letterSpacing: '0.2em', textTransform: 'uppercase' as const }
+        : { fontStyle: 'normal', letterSpacing: '0.06em', textTransform: 'none' as const };
 
   return (
     <div
@@ -273,7 +302,8 @@ export default function DetailPageTemplate({
         backgroundColor: tokens.bg,
         color: tokens.headingColor,
         minHeight: '100vh',
-        fontFamily: "'Cormorant Garamond', serif",
+        fontFamily:
+          realm === 'product' ? "'Montserrat', sans-serif" : "'Cormorant Garamond', serif",
       }}
     >
       <main>
@@ -285,8 +315,11 @@ export default function DetailPageTemplate({
           }}
         >
           {/* ── Breadcrumb ── */}
-          <nav
+          <MotionReveal
+            as="nav"
+            variant="fade"
             aria-label="Breadcrumb"
+            className="detail-motion-breadcrumb"
             style={{
               fontFamily: "'Space Mono', monospace",
               fontSize: '0.55rem',
@@ -314,11 +347,13 @@ export default function DetailPageTemplate({
                 )}
               </React.Fragment>
             ))}
-          </nav>
+          </MotionReveal>
 
           {/* ── Arcane index ── */}
           {arcaneIndex && (
-            <div
+            <MotionReveal
+              variant="fade"
+              delay={80}
               aria-hidden="true"
               style={{
                 fontFamily: "'Space Mono', monospace",
@@ -341,18 +376,17 @@ export default function DetailPageTemplate({
                 }}
               />
               {arcaneIndex}
-            </div>
+            </MotionReveal>
           )}
 
           {/* ── Title ── */}
           <h1
             style={{
-              fontFamily: "'Cinzel', serif",
+              fontFamily: titleFont,
               fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-              fontWeight: 400,
-              letterSpacing: '0.1em',
+              fontWeight: realm === 'product' ? 300 : realm === 'literature' ? 600 : 500,
+              ...titleStyle,
               color: tokens.headingColor,
-              textTransform: 'uppercase',
               marginBottom: subtitle ? '16px' : '40px',
               textShadow: '0 4px 20px rgba(0,0,0,0.6)',
               lineHeight: 1.15,
@@ -363,19 +397,21 @@ export default function DetailPageTemplate({
 
           {/* ── Subtitle ── */}
           {subtitle && (
-            <p
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: '1.15rem',
-                fontStyle: 'italic',
-                color: tokens.bodyColor,
-                lineHeight: 1.65,
-                maxWidth: '640px',
-                marginBottom: '40px',
-              }}
-            >
-              {subtitle}
-            </p>
+            <MotionReveal delay={180}>
+              <p
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: '1.15rem',
+                  fontStyle: 'italic',
+                  color: tokens.bodyColor,
+                  lineHeight: 1.65,
+                  maxWidth: '640px',
+                  marginBottom: '40px',
+                }}
+              >
+                {subtitle}
+              </p>
+            </MotionReveal>
           )}
 
           {/* ── Metadata chips ── */}
@@ -423,11 +459,13 @@ export default function DetailPageTemplate({
 
           {/* ── Content blocks ── */}
           {content?.map((block, i) => (
-            <ContentBlock key={i} block={block} tokens={tokens} />
+            <MotionReveal key={i} delay={i * 70}>
+              <ContentBlock block={block} tokens={tokens} realm={realm} />
+            </MotionReveal>
           ))}
 
           {/* ── Slot for custom children ── */}
-          {children}
+          <MotionReveal variant="fade">{children}</MotionReveal>
 
           {/* ── Prev / Next navigation ── */}
           {navLinks && navLinks.length > 0 && (

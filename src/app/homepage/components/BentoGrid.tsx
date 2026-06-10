@@ -31,10 +31,18 @@ function RevealWrapper({
     const el = ref.current;
     if (!el) return;
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) { setVisible(true); return; }
+    if (prefersReduced) {
+      setVisible(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.unobserve(el); } },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(el);
+        }
+      },
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     );
     observer.observe(el);
@@ -64,10 +72,7 @@ export default function BentoGrid() {
   return (
     <>
       {/* Desktop bento grid */}
-      <div
-        className="hidden lg:grid"
-        style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: '4px' }}
-      >
+      <div className="hidden lg:grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: '4px' }}>
         {/* Row 1 */}
         <RevealWrapper delay={0} style={{ gridColumn: 'span 2' }}>
           <AboutCard />
@@ -77,17 +82,29 @@ export default function BentoGrid() {
         </RevealWrapper>
 
         {/* Row 2 */}
-        <RevealWrapper delay={0}><TeamVelocityCard /></RevealWrapper>
-        <RevealWrapper delay={80}><EnterpriseSystemCard /></RevealWrapper>
-        <RevealWrapper delay={160}><TeamsLedCard /></RevealWrapper>
-        <RevealWrapper delay={240}><DesignSystemsCard /></RevealWrapper>
+        <RevealWrapper delay={0}>
+          <TeamVelocityCard />
+        </RevealWrapper>
+        <RevealWrapper delay={80}>
+          <EnterpriseSystemCard />
+        </RevealWrapper>
+        <RevealWrapper delay={160}>
+          <TeamsLedCard />
+        </RevealWrapper>
+        <RevealWrapper delay={240}>
+          <DesignSystemsCard />
+        </RevealWrapper>
 
         {/* Row 3 */}
         <RevealWrapper delay={0} style={{ gridColumn: 'span 2' }}>
           <CodeImageCard />
         </RevealWrapper>
-        <RevealWrapper delay={80}><PrototypingCard /></RevealWrapper>
-        <RevealWrapper delay={160}><DesignLeadershipCard /></RevealWrapper>
+        <RevealWrapper delay={80}>
+          <PrototypingCard />
+        </RevealWrapper>
+        <RevealWrapper delay={160}>
+          <DesignLeadershipCard />
+        </RevealWrapper>
 
         {/* Row 4 + 5 */}
         <RevealWrapper delay={0} style={{ gridRow: 'span 2' }}>
@@ -96,7 +113,9 @@ export default function BentoGrid() {
         <RevealWrapper delay={80} style={{ gridColumn: 'span 2' }}>
           <BuildingAccessibleCard />
         </RevealWrapper>
-        <RevealWrapper delay={160}><LetsTalkCard /></RevealWrapper>
+        <RevealWrapper delay={160}>
+          <LetsTalkCard />
+        </RevealWrapper>
       </div>
 
       {/* Mobile stacked layout */}

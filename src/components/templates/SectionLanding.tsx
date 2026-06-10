@@ -1,5 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
+import { CinematicVideo, MotionReveal } from '@/components/motion';
+import CinematicRouteLink from '@/components/motion/CinematicRouteLink';
+import type { MotionAsset } from '@/data/motion-assets';
 
 export interface LandingFeature {
   title: string;
@@ -22,63 +25,143 @@ export interface SectionLandingProps {
   featuredDesc?: string;
   features: LandingFeature[];
   /** Optional closing CTA. */
-  cta?: { title: string; desc?: string; actions: { label: string; href: string; primary?: boolean }[] };
+  cta?: {
+    title: string;
+    desc?: string;
+    actions: { label: string; href: string; primary?: boolean }[];
+  };
   /** Decorative hero motif (themed per realm by caller). */
   motif?: React.ReactNode;
+  /** Optional cinematic motion asset for the hero stage. */
+  motionAsset?: MotionAsset;
 }
 
 /** Shared landing template for every vertical's overview page. Same
     architecture (hero → featured grid → CTA), themed via tokens. */
 export default function SectionLanding({
-  eyebrow, title, lede, actions, featuredTitle, featuredDesc, features, cta, motif,
+  eyebrow,
+  title,
+  lede,
+  actions,
+  featuredTitle,
+  featuredDesc,
+  features,
+  cta,
+  motif,
+  motionAsset,
 }: SectionLandingProps) {
+  const LinkComponent = ({
+    href,
+    className,
+    children,
+  }: {
+    href: string;
+    className?: string;
+    children: React.ReactNode;
+  }) =>
+    href === '/literature/archive' ? (
+      <CinematicRouteLink
+        href={href}
+        className={className}
+        kind="archive"
+        title="Accessing Archive"
+        subtitle="ICSE / NAIAD recovered record"
+        numeral="I"
+        indexLabel="VY-0031"
+        images={[
+          '/assets/images/veyrath-kaen-bloom.png',
+          '/assets/hyperframes/archive-rupture.svg',
+          '/assets/motion/pale-interval-signal-loop.svg',
+          '/assets/images/art/shine-archive.jpg',
+        ]}
+      >
+        {children}
+      </CinematicRouteLink>
+    ) : (
+      <Link href={href} className={className}>
+        {children}
+      </Link>
+    );
+
   return (
     <>
       <section className="ds-hero">
-        {motif && <div className="ds-hero__motif" aria-hidden="true">{motif}</div>}
-        <div className="ds-container">
+        {motionAsset && (
+          <CinematicVideo
+            asset={motionAsset}
+            intensity="hero"
+            className="ds-hero__cinematic"
+            showCaption={false}
+          />
+        )}
+        {motif && (
+          <div className="ds-hero__motif" aria-hidden="true">
+            {motif}
+          </div>
+        )}
+        <MotionReveal className="ds-container" variant="clip">
           <p className="ds-eyebrow">{eyebrow}</p>
           <h1 className="ds-hero__title">{title}</h1>
           <p className="ds-lede ds-hero__lede">{lede}</p>
           {actions && actions.length > 0 && (
             <div className="ds-hero__actions">
               {actions.map((a) => (
-                <Link key={a.href} href={a.href} className={`ds-btn ${a.primary ? 'ds-btn--primary' : 'ds-btn--ghost'}`}>
+                <LinkComponent
+                  key={`${a.href}-${a.label}`}
+                  href={a.href}
+                  className={`ds-btn ${a.primary ? 'ds-btn--primary' : 'ds-btn--ghost'}`}
+                >
                   {a.label}
-                </Link>
+                </LinkComponent>
               ))}
             </div>
           )}
-        </div>
+        </MotionReveal>
       </section>
 
       <section className="ds-section--tight">
         <div className="ds-container">
           {(featuredTitle || featuredDesc) && (
-            <div className="ds-section-intro">
+            <MotionReveal className="ds-section-intro">
               {featuredTitle && <h2 className="ds-section-intro__title">{featuredTitle}</h2>}
               {featuredDesc && <p className="ds-section-intro__desc">{featuredDesc}</p>}
-            </div>
+            </MotionReveal>
           )}
           <div className="ds-grid ds-grid--auto">
-            {features.map((f) => (
-              <article key={f.href} className="ds-card">
+            {features.map((f, index) => (
+              <MotionReveal
+                key={`${f.href}-${f.title}`}
+                as="article"
+                className="ds-card"
+                delay={index * 70}
+                variant="scale"
+              >
                 <div className="ds-card__media">
-                  {f.img ? <img src={f.img} alt={f.alt ?? ''} loading="lazy" /> : <span>{f.meta ?? title}</span>}
+                  {f.img ? (
+                    <img src={f.img} alt={f.alt ?? ''} loading="lazy" />
+                  ) : (
+                    <span>{f.meta ?? title}</span>
+                  )}
                 </div>
                 <div className="ds-card__body">
                   {f.meta && <p className="ds-card__meta">{f.meta}</p>}
                   <h3 className="ds-card__title">
-                    <Link className="ds-stretch" href={f.href}>{f.title}</Link>
+                    <LinkComponent className="ds-stretch" href={f.href}>
+                      {f.title}
+                    </LinkComponent>
                   </h3>
                   <p className="ds-card__excerpt">{f.excerpt}</p>
                   {f.tags && f.tags.length > 0 && (
                     <div className="ds-card__footer">
-                      {f.tags.slice(0, 4).map((t) => <span key={t} className="ds-tag">{t}</span>)}
+                      {f.tags.slice(0, 4).map((t) => (
+                        <span key={t} className="ds-tag">
+                          {t}
+                        </span>
+                      ))}
                     </div>
                   )}
                 </div>
-              </article>
+              </MotionReveal>
             ))}
           </div>
         </div>
@@ -86,17 +169,21 @@ export default function SectionLanding({
 
       {cta && (
         <section className="ds-section--tight">
-          <div className="ds-cta__inner">
+          <MotionReveal className="ds-cta__inner" variant="clip">
             <h2 className="ds-cta__title">{cta.title}</h2>
             {cta.desc && <p className="ds-cta__desc">{cta.desc}</p>}
             <div className="ds-cta__actions">
               {cta.actions.map((a) => (
-                <Link key={a.href} href={a.href} className={`ds-btn ${a.primary ? 'ds-btn--primary' : 'ds-btn--ghost'}`}>
+                <Link
+                  key={`${a.href}-${a.label}`}
+                  href={a.href}
+                  className={`ds-btn ${a.primary ? 'ds-btn--primary' : 'ds-btn--ghost'}`}
+                >
                   {a.label}
                 </Link>
               ))}
             </div>
-          </div>
+          </MotionReveal>
         </section>
       )}
     </>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Twin-Moon Bloom cinematic poster">
+  <rect width="1200" height="675" fill="#070812"/>
+  <circle cx="410" cy="175" r="76" fill="none" stroke="#9aa9c4" stroke-opacity="0.72" stroke-width="3"/>
+  <circle cx="530" cy="218" r="48" fill="none" stroke="#b32435" stroke-opacity="0.75" stroke-width="3"/>
+  <ellipse cx="610" cy="470" rx="300" ry="86" fill="#7da7d9" opacity="0.18"/>
+  <path d="M430 510 C520 350 700 350 800 510" fill="none" stroke="#f7e6b7" stroke-opacity="0.5" stroke-width="5"/>
+  <text x="72" y="105" fill="#f7e6b7" font-family="Cinzel, serif" font-size="54" letter-spacing="8">TWIN-MOON BLOOM</text>
+  <text x="76" y="596" fill="#9aa9c4" font-family="Space Mono, monospace" font-size="22" letter-spacing="4">HYPERFRAMES SLOT / AWAITING FINAL CLIP</text>
+</svg>

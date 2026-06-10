@@ -39,12 +39,19 @@
     "warning": "🚨 CRITICAL: DO NOT REMOVE OR MODIFY ABOVE DEPENDENCIES - Required for Next.js 15 TypeScript app functionality"
   },
   "scripts": {
-    "dev": "next dev -p 4028",
+    "dev": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\" && next dev -p 4028",
     "build": "next build",
-    "start": "next dev -p 4028",
+    "start": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\" && next dev -p 4028",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,md,json}\"",
+    "remotion:studio": "remotion studio remotion/index.ts",
+    "remotion:render": "remotion render remotion/index.ts pale-interval-signal-loop public/assets/motion/pale-interval-signal-loop.webm --codec=vp8",
+    "remotion:render:home": "remotion render remotion/index.ts home-portal-loop public/assets/motion/home-portal-loop.webm --codec=vp8",
+    "remotion:render:product": "remotion render remotion/index.ts product-system-loop public/assets/motion/product-system-loop.webm --codec=vp8",
+    "remotion:render:art": "remotion render remotion/index.ts art-gallery-loop public/assets/motion/art-gallery-loop.webm --codec=vp8",
+    "remotion:render:literature": "remotion render remotion/index.ts pale-interval-signal-loop public/assets/motion/pale-interval-signal-loop.webm --codec=vp8",
+    "remotion:render:all": "npm run remotion:render:home && npm run remotion:render:product && npm run remotion:render:art && npm run remotion:render:literature",
     "serve": "next start",
     "type-check": "tsc --noEmit"
   },
@@ -63,6 +70,8 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@netlify/plugin-nextjs": "^5.11.1",
+    "@remotion/cli": "^4.0.473",
+    "@remotion/renderer": "^4.0.473",
     "@types/node": "^20",
     "@types/react": "19.0.3",
     "@types/react-dom": "19.0.3",
@@ -75,6 +84,7 @@
     "eslint-plugin-prettier": "^5.2.6",
     "postcss": "8.4.8",
     "prettier": "^3.5.3",
+    "remotion": "^4.0.473",
     "tailwindcss": "3.4.6",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5"

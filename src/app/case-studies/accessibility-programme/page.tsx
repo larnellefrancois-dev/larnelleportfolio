@@ -2,11 +2,13 @@ import React from 'react';
 import type { Metadata } from 'next';
 import PageTemplate from '@/components/templates/PageTemplate';
 
-
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://larnellepo4855.builtwithrocket.new'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://larnellepo4855.builtwithrocket.new'
+  ),
   title: 'Accessibility Programme — Larnelle Chambers',
-  description: 'Implementing comprehensive accessibility improvements across digital products to ensure inclusive design for all users.',
+  description:
+    'Implementing comprehensive accessibility improvements across digital products to ensure inclusive design for all users.',
   openGraph: {
     type: 'article',
     url: 'https://larnellepo4855.builtwithrocket.new/case-studies/accessibility-programme',
@@ -43,9 +45,21 @@ export default function AccessibilityProgrammePage() {
       ]}
       title="Accessibility Programme"
       subtitle="Implementing comprehensive accessibility improvements across digital products to ensure inclusive design for all users."
-      meta={[{ label: 'Focus', value: 'Accessibility' }, { label: 'Standard', value: 'WCAG 2.2 AA' }, { label: 'Status', value: 'Write-up in progress' }]}
-      content={[{ type: 'text', heading: 'Overview', body: 'A detailed write-up of this accessibility programme is in progress. Accessibility considerations are documented throughout the banking case studies.' }]}
-      navLinks={[{ label: 'All case studies', href: '/product-design/case-studies', direction: 'next' }]}
+      meta={[
+        { label: 'Focus', value: 'Accessibility' },
+        { label: 'Standard', value: 'WCAG 2.2 AA' },
+        { label: 'Status', value: 'Write-up in progress' },
+      ]}
+      content={[
+        {
+          type: 'text',
+          heading: 'Overview',
+          body: 'A detailed write-up of this accessibility programme is in progress. Accessibility considerations are documented throughout the banking case studies.',
+        },
+      ]}
+      navLinks={[
+        { label: 'All case studies', href: '/product-design/case-studies', direction: 'next' },
+      ]}
     />
   );
 }

@@ -1,6 +1,6 @@
-
 import React from 'react';
 import Link from 'next/link';
+import { CommissionBriefBuilder } from '@/components/creative/CreativeExperiences';
 
 export const metadata = {
   title: 'Commissions — Art — L.F. Chambers',
@@ -26,7 +26,9 @@ export default function ArtCommissionsPage() {
               alignItems: 'center',
             }}
           >
-            <Link href="/art" style={{ color: 'inherit', textDecoration: 'none' }}>Art</Link>
+            <Link href="/art" style={{ color: 'inherit', textDecoration: 'none' }}>
+              Art
+            </Link>
             <span>/</span>
             <span style={{ color: 'rgba(212, 178, 113, 0.7)' }}>Commissions</span>
           </nav>
@@ -55,14 +57,27 @@ export default function ArtCommissionsPage() {
               marginBottom: '48px',
             }}
           >
-            I accept a limited number of commissions each year for original works, editorial illustration, and creative collaborations. Each commission is approached with the same care and intention as personal work.
+            I accept a limited number of commissions each year for original works, editorial
+            illustration, and creative collaborations. Each commission is approached with the same
+            care and intention as personal work.
           </p>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', marginBottom: '64px' }}>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: '1px', marginBottom: '64px' }}
+          >
             {[
-              { type: 'Original Works', desc: 'Paintings, drawings, and mixed media pieces for private collectors.' },
-              { type: 'Editorial Illustration', desc: 'Illustration for books, publications, and editorial projects.' },
-              { type: 'Creative Collaboration', desc: 'Cross-disciplinary projects at the intersection of art, design, and narrative.' },
+              {
+                type: 'Original Works',
+                desc: 'Paintings, drawings, and mixed media pieces for private collectors.',
+              },
+              {
+                type: 'Editorial Illustration',
+                desc: 'Illustration for books, publications, and editorial projects.',
+              },
+              {
+                type: 'Creative Collaboration',
+                desc: 'Cross-disciplinary projects at the intersection of art, design, and narrative.',
+              },
             ].map((item) => (
               <div
                 key={item.type}
@@ -88,7 +103,14 @@ export default function ArtCommissionsPage() {
                 >
                   {item.type}
                 </div>
-                <p style={{ fontFamily: 'var(--font-body-serif)', fontSize: '1rem', color: 'rgba(240, 230, 211, 0.6)', lineHeight: 1.6 }}>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-body-serif)',
+                    fontSize: '1rem',
+                    color: 'rgba(240, 230, 211, 0.6)',
+                    lineHeight: 1.6,
+                  }}
+                >
                   {item.desc}
                 </p>
               </div>
@@ -112,6 +134,8 @@ export default function ArtCommissionsPage() {
           >
             Inquire About a Commission
           </a>
+
+          <CommissionBriefBuilder />
         </section>
       </main>
     </div>

@@ -1,122 +1,138 @@
 import type { Metadata } from 'next';
-import React from 'react';
 import Link from 'next/link';
-import DetailPageTemplate from '@/components/DetailPageTemplate';
+import { AmbientSoundControl, ArchivePuzzleLayer } from '@/components/creative/CreativeExperiences';
+import {
+  ArchiveGate,
+  ArtifactViewer,
+  DossierViewer,
+  SceneFrame,
+  SceneScroller,
+  VeyrathOrbitEngine,
+} from '@/components/cinematic/CinematicPrimitives';
 import SignalConsole from '@/components/literature/SignalConsole';
 import ArchiveDocumentCard from '@/components/literature/ArchiveDocumentCard';
-import CalyxSurveyViewer from '@/components/literature/CalyxSurveyViewer';
 import StabilizeTransmission from '@/components/literature/StabilizeTransmission';
-import CharacterDossierCard from '@/components/literature/CharacterDossierCard';
 import {
   archivePageData,
-  paleIntervalProtocols,
   paleIntervalCharacters,
+  paleIntervalLocations,
+  paleIntervalProtocols,
   paleIntervalSeoDescription,
+  paleIntervalTransmissions,
 } from '@/data/realms-content';
 
 export const metadata: Metadata = {
   title: 'The Archive — The Pale Interval — L.F. Chambers',
   description:
-    'Enter the recovered ICSE / NAIAD archive: corrupted transmissions, Calyx survey data, redacted Protocol 7 files, and fragments from Adra Mares’s recording. ' +
+    'Enter the recovered ICSE / NAIAD archive: corrupted VY-0031 transmissions, Veyrath survey data, redacted Protocol Seven files, recurrence evidence, and fragments from Adra Mares’s warning. ' +
     paleIntervalSeoDescription,
 };
 
-const headingStyle: React.CSSProperties = {
-  fontFamily: "'Cinzel', serif",
-  fontSize: '1rem',
-  fontWeight: 400,
-  letterSpacing: '0.2em',
-  textTransform: 'uppercase',
-  color: '#b32435',
-  margin: '0 0 8px',
-};
-const descStyle: React.CSSProperties = {
-  fontFamily: "'Cormorant Garamond', serif",
-  fontSize: '1.1rem',
-  color: 'rgba(212,197,181,0.7)',
-  lineHeight: 1.6,
-  maxWidth: '60ch',
-  marginBottom: '24px',
-};
-const sectionStyle: React.CSSProperties = { marginBottom: '64px' };
-
 export default function ArchivePage() {
   return (
-    <DetailPageTemplate {...archivePageData}>
-      {/* Orientation note — always know where you are / how to leave */}
-      <p
-        style={{
-          fontFamily: "'Space Mono', monospace",
-          fontSize: '0.6rem',
-          letterSpacing: '0.12em',
-          color: 'rgba(212,197,181,0.5)',
-          lineHeight: 1.7,
-          border: '1px solid rgba(138,28,42,0.2)',
-          borderRadius: '3px',
-          padding: '16px 20px',
-          marginBottom: '56px',
-        }}
+    <SceneScroller className="literature-archive-app">
+      <ArchiveGate protocols={paleIntervalProtocols} transmissions={paleIntervalTransmissions} />
+
+      <SceneFrame
+        tone="literature"
+        eyebrow={archivePageData.arcaneIndex}
+        title="The Archive Is A Machine You Enter"
+        lede={archivePageData.subtitle}
+        meta={archivePageData.meta}
+        visual={
+          <ArtifactViewer
+            src="/assets/literature/location-csb-31b.svg"
+            alt="Generated Veyrath survey artifact plate."
+            title="CSB-31B / Veyrath"
+            meta="Recovered survey body"
+          >
+            <p style={{ color: 'rgba(240,230,211,.72)', lineHeight: 1.6 }}>
+              Breathable does not mean safe. The archive is arranged as orbit, surface, signal,
+              dossier, and refusal.
+            </p>
+          </ArtifactViewer>
+        }
       >
-        ARCHIVE NOTICE — You are inside a recovered, partial ICSE record. Content is
-        spoiler-safe by default; sealed material is marked. Return to the clean book page at{' '}
-        <Link href="/literature/the-pale-interval" style={{ color: '#e05a6a' }}>
-          The Pale Interval
-        </Link>
-        .
-      </p>
-
-      {/* 1 · Signal Console */}
-      <section style={sectionStyle} aria-labelledby="sec-signal">
-        <h2 id="sec-signal" style={headingStyle}>Recovered Recording</h2>
-        <p style={descStyle}>
-          Fragments of Adra Mares’s final transmission, reassembled from NAIAD telemetry. Select a
-          segment to listen; some are corrupted beyond recovery.
+        <p className="ds-prose" style={{ maxWidth: '62ch', color: 'rgba(240,230,211,.72)' }}>
+          ARCHIVE NOTICE — Spoiler-aware by default. Sealed material remains marked. Return to{' '}
+          <Link href="/literature/the-pale-interval" style={{ color: '#e05a6a' }}>
+            The Pale Interval
+          </Link>{' '}
+          for the clean book page.
         </p>
+      </SceneFrame>
+
+      <section className="scene-frame scene-frame--literature" aria-labelledby="veyrath-orbit">
+        <div style={{ width: 'min(1320px, 100%)', margin: '0 auto' }}>
+          <p className="scene-frame__eyebrow">Playable field layer // orbit to surface</p>
+          <h1 id="veyrath-orbit" className="scene-frame__title" style={{ marginBottom: 28 }}>
+            Veyrath Orbit Engine
+          </h1>
+          <VeyrathOrbitEngine
+            locations={paleIntervalLocations}
+            characters={paleIntervalCharacters}
+          />
+        </div>
+      </section>
+
+      <SceneFrame
+        tone="literature"
+        eyebrow="Recovered Recording // VY-0031"
+        title="The Signal Keeps Its Pressure"
+        lede="Fragments of Adra Mares’s final warning, reassembled from NAIAD telemetry. Select a segment to inspect; corrupted areas preserve the shape of absence."
+        visual={
+          <ArtifactViewer
+            src="/assets/literature/excerpt-recovered-recording.svg"
+            alt="Generated redacted signal artifact for Adra Mares’s recovered recording."
+            title="A. Mares / Partial"
+            meta="Transmission plate"
+          />
+        }
+      >
         <SignalConsole />
-      </section>
+      </SceneFrame>
 
-      {/* 2 · Protocol 7 */}
-      <section style={sectionStyle} aria-labelledby="sec-protocol">
-        <h2 id="sec-protocol" style={headingStyle}>Protocol 7 — Classified Files</h2>
-        <p style={descStyle}>
-          Institutional documents governing the Calyx seal. Redacted lines are sealed under
-          Protocol 7; some files expose a spoiler-locked annex.
-        </p>
-        <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
-          {paleIntervalProtocols.map((doc) => (
-            <ArchiveDocumentCard key={doc.id} doc={doc} />
-          ))}
+      <section className="scene-frame scene-frame--literature" aria-labelledby="protocol-seven">
+        <div style={{ width: 'min(1240px, 100%)', margin: '0 auto' }}>
+          <p className="scene-frame__eyebrow">ICSE files // classified language</p>
+          <h1 id="protocol-seven" className="scene-frame__title" style={{ marginBottom: 28 }}>
+            Protocol Seven
+          </h1>
+          <div
+            style={{
+              display: 'grid',
+              gap: 16,
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            }}
+          >
+            {paleIntervalProtocols.map((doc) => (
+              <ArchiveDocumentCard key={doc.id} doc={doc} />
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* 3 · Calyx survey */}
-      <section style={sectionStyle} aria-labelledby="sec-calyx">
-        <h2 id="sec-calyx" style={headingStyle}>Calyx Survey Data</h2>
-        <p style={descStyle}>
-          Location records recovered from the survey. Risk classifications follow ICSE convention.
-        </p>
-        <CalyxSurveyViewer />
-      </section>
-
-      {/* 4 · Dossiers teaser */}
-      <section style={sectionStyle} aria-labelledby="sec-dossiers">
-        <h2 id="sec-dossiers" style={headingStyle}>Personnel Dossiers</h2>
-        <p style={descStyle}>
-          A selection of recovered records. Full dossiers live in the{' '}
-          <Link href="/literature/characters" style={{ color: '#e05a6a' }}>Characters</Link> archive.
-        </p>
-        <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
-          {paleIntervalCharacters.slice(0, 2).map((c) => (
-            <CharacterDossierCard key={c.slug} character={c} />
-          ))}
+      <section className="scene-frame scene-frame--literature" aria-labelledby="dossier-feed">
+        <div style={{ width: 'min(1320px, 100%)', margin: '0 auto' }}>
+          <p className="scene-frame__eyebrow">Dossier cross-feed // NAIAD cohort</p>
+          <h1 id="dossier-feed" className="scene-frame__title" style={{ marginBottom: 28 }}>
+            Survivor Records
+          </h1>
+          <DossierViewer characters={paleIntervalCharacters} />
         </div>
       </section>
 
-      {/* 5 · Stabilize the Transmission */}
-      <section style={sectionStyle} aria-labelledby="sec-stabilize">
-        <h2 id="sec-stabilize" style={headingStyle}>Interactive · Stabilize the Transmission</h2>
+      <SceneFrame
+        tone="literature"
+        eyebrow="Interactive stabilizer // refusal mechanic"
+        title="Do Not Answer With The Wound"
+        lede="The archive wants the phrase completed. The ending asks for something harder: keep the wound open without turning it into an entrance."
+      >
+        <ArchivePuzzleLayer />
         <StabilizeTransmission />
-      </section>
-    </DetailPageTemplate>
+      </SceneFrame>
+
+      <AmbientSoundControl />
+    </SceneScroller>
   );
 }

@@ -8,13 +8,15 @@ import TypingH1 from '@/components/ui/TypingH1';
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: 'Enterprise Loans Platform Redesign — Larnelle Chambers',
-  description: 'Case study on re-engineering a legacy loans management platform from fragmented manual entries to a unified, automated risk-assessment engine with improved efficiency.',
+  description:
+    'Case study on re-engineering a legacy loans management platform from fragmented manual entries to a unified, automated risk-assessment engine with improved efficiency.',
   alternates: {
     canonical: '/case-studies/enterprise-loans',
   },
   openGraph: {
     title: 'Enterprise Loans Platform Redesign',
-    description: 'Re-engineered loan infrastructure from fragmented manual entries to unified automation.',
+    description:
+      'Re-engineered loan infrastructure from fragmented manual entries to unified automation.',
     type: 'article',
     url: '/case-studies/enterprise-loans',
     images: [
@@ -29,7 +31,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Enterprise Loans Platform Redesign',
-    description: 'Re-engineered loan infrastructure from fragmented manual entries to unified automation.',
+    description:
+      'Re-engineered loan infrastructure from fragmented manual entries to unified automation.',
     images: ['/assets/images/app_logo.png'],
   },
 };
@@ -51,7 +54,9 @@ export default function EnterpriseLoansPage() {
       >
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <span style={{ fontWeight: 500, fontSize: '14px' }}>LARNELLE CHAMBERS</span>
-          <span style={{ color: '#6f87aa', fontSize: '10px', marginTop: '4px' }}>CASE STUDY // 04</span>
+          <span style={{ color: '#6f87aa', fontSize: '10px', marginTop: '4px' }}>
+            CASE STUDY // 04
+          </span>
         </div>
 
         <ul className="flex flex-wrap gap-2 sm:gap-6 list-none p-0 m-0">
@@ -66,7 +71,6 @@ export default function EnterpriseLoansPage() {
                   border: '1px solid #1a1d30',
                   padding: '8px 16px',
                   borderRadius: '100px',
-                  display: 'inline-block',
                   minHeight: '44px',
                   minWidth: '44px',
                   display: 'flex',
@@ -153,7 +157,8 @@ export default function EnterpriseLoansPage() {
               maxWidth: '480px',
             }}
           >
-            A comprehensive overhaul of a legacy loans management platform, transitioning from fragmented manual entries to a unified, automated risk-assessment engine.
+            A comprehensive overhaul of a legacy loans management platform, transitioning from
+            fragmented manual entries to a unified, automated risk-assessment engine.
           </p>
         </section>
 
@@ -190,7 +195,8 @@ export default function EnterpriseLoansPage() {
                 marginBottom: '12px',
               }}
             >
-              Lead Systems Designer &amp; Frontend Architect. Responsible for information architecture, component library, and API integration strategy.
+              Lead Systems Designer &amp; Frontend Architect. Responsible for information
+              architecture, component library, and API integration strategy.
             </p>
             <div
               style={{
@@ -203,9 +209,12 @@ export default function EnterpriseLoansPage() {
                 color: '#f7e6b7',
               }}
             >
-              $ stack --list<br />
-              &gt; TypeScript / React<br />
-              &gt; Tailwind CSS<br />
+              $ stack --list
+              <br />
+              &gt; TypeScript / React
+              <br />
+              &gt; Tailwind CSS
+              <br />
               &gt; Framer Motion
             </div>
           </div>
@@ -249,7 +258,8 @@ export default function EnterpriseLoansPage() {
             Complexity at Scale
           </h2>
           <p style={{ fontSize: '14px', color: '#8198b8', lineHeight: 1.6, maxWidth: '480px' }}>
-            The existing system suffered from high cognitive load, with loan officers navigating 14+ disjointed views per application. Error rates in data entry were exceeding 8.4% monthly.
+            The existing system suffered from high cognitive load, with loan officers navigating 14+
+            disjointed views per application. Error rates in data entry were exceeding 8.4% monthly.
           </p>
         </section>
 
@@ -279,10 +289,26 @@ export default function EnterpriseLoansPage() {
           </span>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[
-              { num: '01.', title: 'Workflow Review', desc: 'Mapping the 22-step lifecycle of a commercial loan.' },
-              { num: '02.', title: 'Info Restructuring', desc: 'Normalizing data structures for cross-departmental visibility.' },
-              { num: '03.', title: 'Refinement', desc: 'High-fidelity prototyping of the "Single Source of Truth" dashboard.' },
-              { num: '04.', title: 'Validation', desc: 'Stress testing the UI with 500+ concurrent simulated entries.' },
+              {
+                num: '01.',
+                title: 'Workflow Review',
+                desc: 'Mapping the 22-step lifecycle of a commercial loan.',
+              },
+              {
+                num: '02.',
+                title: 'Info Restructuring',
+                desc: 'Normalizing data structures for cross-departmental visibility.',
+              },
+              {
+                num: '03.',
+                title: 'Refinement',
+                desc: 'High-fidelity prototyping of the "Single Source of Truth" dashboard.',
+              },
+              {
+                num: '04.',
+                title: 'Validation',
+                desc: 'Stress testing the UI with 500+ concurrent simulated entries.',
+              },
             ]?.map((step) => (
               <div
                 key={step?.num}
@@ -295,7 +321,10 @@ export default function EnterpriseLoansPage() {
                   color: '#f7e6b7',
                 }}
               >
-                <strong>{step?.num} {step?.title}</strong><br />
+                <strong>
+                  {step?.num} {step?.title}
+                </strong>
+                <br />
                 {step?.desc}
               </div>
             ))}

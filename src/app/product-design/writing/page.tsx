@@ -5,7 +5,8 @@ import { PRODUCT_WRITING, articleHref } from '@/data/product-content';
 
 export const metadata: Metadata = {
   title: 'Writing — Larnelle Chambers',
-  description: 'Essays on design systems, semantic tokens, governance, and product design practice by Larnelle Chambers.',
+  description:
+    'Essays on design systems, semantic tokens, governance, and product design practice by Larnelle Chambers.',
   alternates: { canonical: 'https://larnelle.me/product-design/writing' },
 };
 
@@ -18,7 +19,9 @@ export default function ProductWritingPage() {
         <span style={{ color: 'var(--text-muted)' }}>Writing</span>
       </div>
       <p className="ds-eyebrow">Systema · Writing</p>
-      <h1 style={{ fontSize: 'var(--step-3)', margin: 'var(--space-2xs) 0 var(--space-sm)' }}>Writing</h1>
+      <h1 style={{ fontSize: 'var(--step-3)', margin: 'var(--space-2xs) 0 var(--space-sm)' }}>
+        Writing
+      </h1>
       <p className="ds-lede" style={{ marginBottom: 'var(--space-xl)' }}>
         Notes on design systems, tokens, governance, and the craft of product design.
       </p>
@@ -27,8 +30,14 @@ export default function ProductWritingPage() {
         {PRODUCT_WRITING.map((a) => (
           <article key={a.slug} className="ds-card">
             <div className="ds-card__body">
-              <p className="ds-card__meta">{a.tag} · {a.date}</p>
-              <h2 className="ds-card__title"><Link className="ds-stretch" href={articleHref(a.slug)}>{a.title}</Link></h2>
+              <p className="ds-card__meta">
+                {a.tag} · {a.date}
+              </p>
+              <h2 className="ds-card__title">
+                <Link className="ds-stretch" href={articleHref(a.slug)}>
+                  {a.title}
+                </Link>
+              </h2>
               <p className="ds-card__excerpt">{a.excerpt}</p>
             </div>
           </article>

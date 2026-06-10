@@ -3,7 +3,8 @@ import PortalHomepage from './portal/PortalHomepage';
 
 export const metadata: Metadata = {
   title: 'L.F. Chambers — Image. Interface. Story.',
-  description: 'Multidisciplinary creative portfolio spanning Art, Product Design, and Literature by L.F. Chambers / Larnelle Chambers.',
+  description:
+    'Multidisciplinary creative portfolio spanning Art, Product Design, and Literature by L.F. Chambers / Larnelle Chambers.',
   alternates: { canonical: 'https://larnelle.me' },
 };
 

@@ -5,7 +5,8 @@ import { authorPageData } from '@/data/realms-content';
 
 export const metadata: Metadata = {
   title: 'L.F. Chambers — Author of The Pale Interval',
-  description: 'Author profile for L.F. Chambers, writer of The Pale Interval — a YA literary sci-fi horror novel of grief, signal, and recovered transmission.',
+  description:
+    'Author profile for L.F. Chambers, writer of The Pale Interval — a YA literary sci-fi horror novel of grief, signal, and recovered transmission.',
 };
 
 export default function AuthorPage() {

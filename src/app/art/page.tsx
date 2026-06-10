@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 import React from 'react';
 import SectionLanding from '@/components/templates/SectionLanding';
 import { galleryArtworks } from '@/data/realms-content';
+import { motionAssets } from '@/data/motion-assets';
 
 export const metadata: Metadata = {
   title: 'L.F. Chambers — Traditional Art & Visual Work',
-  description: 'The art realm of L.F. Chambers — traditional and mixed-media work, studies, projects, process, and commissions.',
+  description:
+    'The art realm of L.F. Chambers — traditional and mixed-media work, studies, projects, process, and commissions.',
   alternates: { canonical: 'https://larnelle.me/art' },
 };
 
@@ -14,7 +16,8 @@ function ArtMotif() {
   return (
     <div
       style={{
-        position: 'absolute', inset: 0,
+        position: 'absolute',
+        inset: 0,
         background:
           'radial-gradient(70% 60% at 25% 20%, rgba(224,161,85,0.25), transparent 60%),' +
           'radial-gradient(60% 70% at 85% 80%, rgba(184,65,47,0.2), transparent 60%)',
@@ -39,7 +42,7 @@ export default function ArtPage() {
       features={featured.map((a) => ({
         title: a.title,
         meta: `${a.medium} · ${a.year}`,
-        excerpt: a.alt,
+        excerpt: a.description ?? a.alt,
         href: '/art/gallery',
         img: a.img,
         alt: a.alt,
@@ -53,6 +56,7 @@ export default function ArtPage() {
         ],
       }}
       motif={<ArtMotif />}
+      motionAsset={motionAssets.artGallery}
     />
   );
 }

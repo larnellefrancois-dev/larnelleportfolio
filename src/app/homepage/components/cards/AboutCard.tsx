@@ -30,8 +30,8 @@ export default function AboutCard() {
             style={{ maxWidth: '300px' }}
           >
             I'm Larnelle and I design digital products and the systems behind them — translating
-            complexity into coherent, accessible experiences. Seven years
-            working across product, UX, and systems design.
+            complexity into coherent, accessible experiences. Seven years working across product,
+            UX, and systems design.
           </p>
         </div>
       </div>

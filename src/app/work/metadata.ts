@@ -1,14 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://larnellepo4855.builtwithrocket.new'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://larnellepo4855.builtwithrocket.new'
+  ),
   title: 'Work — Larnelle Chambers | Product & Systems Design',
-  description: 'Selected projects across banking, internal tools, editorial systems, and product experiences. Focused on clarity, structure, usability, and systems thinking.',
+  description:
+    'Selected projects across banking, internal tools, editorial systems, and product experiences. Focused on clarity, structure, usability, and systems thinking.',
   openGraph: {
     type: 'website',
     url: 'https://larnellepo4855.builtwithrocket.new/work',
     title: 'Work — Larnelle Chambers',
-    description: 'Selected projects across banking, internal tools, editorial systems, and product experiences.',
+    description:
+      'Selected projects across banking, internal tools, editorial systems, and product experiences.',
     images: [
       {
         url: '/assets/images/portfolio_work_tile.png',
@@ -21,7 +25,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Work — Larnelle Chambers',
-    description: 'Selected projects across banking, internal tools, editorial systems, and product experiences.',
+    description:
+      'Selected projects across banking, internal tools, editorial systems, and product experiences.',
     images: ['/assets/images/portfolio_work_tile.png'],
   },
   alternates: {
