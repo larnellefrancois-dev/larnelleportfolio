@@ -1,8 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
-import { CinematicVideo, MotionReveal } from '@/components/motion';
+import { MotionReveal } from '@/components/motion';
 import CinematicRouteLink from '@/components/motion/CinematicRouteLink';
-import type { MotionAsset } from '@/data/motion-assets';
 
 export interface LandingFeature {
   title: string;
@@ -32,8 +30,6 @@ export interface SectionLandingProps {
   };
   /** Decorative hero motif (themed per realm by caller). */
   motif?: React.ReactNode;
-  /** Optional cinematic motion asset for the hero stage. */
-  motionAsset?: MotionAsset;
 }
 
 /** Shared landing template for every vertical's overview page. Same
@@ -48,7 +44,6 @@ export default function SectionLanding({
   features,
   cta,
   motif,
-  motionAsset,
 }: SectionLandingProps) {
   const LinkComponent = ({
     href,
@@ -78,28 +73,32 @@ export default function SectionLanding({
         {children}
       </CinematicRouteLink>
     ) : (
-      <Link href={href} className={className}>
+      <CinematicRouteLink
+        href={href}
+        className={className}
+        kind="tile"
+        title={`Opening ${typeof children === 'string' ? children : 'Record'}`}
+        subtitle="Portfolio route / transition gate"
+      >
         {children}
-      </Link>
+      </CinematicRouteLink>
     );
 
   return (
     <>
-      <section className="ds-hero">
-        {motionAsset && (
-          <CinematicVideo
-            asset={motionAsset}
-            intensity="hero"
-            className="ds-hero__cinematic"
-            showCaption={false}
-          />
-        )}
+      <section className="ds-hero ds-hero--stage">
         {motif && (
           <div className="ds-hero__motif" aria-hidden="true">
             {motif}
           </div>
         )}
-        <MotionReveal className="ds-container" variant="clip">
+        <div className="ds-hero__frame" aria-hidden="true">
+          <span className="ds-hero__corner ds-hero__corner--tl" />
+          <span className="ds-hero__corner ds-hero__corner--tr" />
+          <span className="ds-hero__corner ds-hero__corner--bl" />
+          <span className="ds-hero__corner ds-hero__corner--br" />
+        </div>
+        <MotionReveal className="ds-container ds-hero__stage-copy" variant="clip">
           <p className="ds-eyebrow">{eyebrow}</p>
           <h1 className="ds-hero__title">{title}</h1>
           <p className="ds-lede ds-hero__lede">{lede}</p>
@@ -117,6 +116,10 @@ export default function SectionLanding({
             </div>
           )}
         </MotionReveal>
+        <div className="ds-hero__scrollcue" aria-hidden="true">
+          <span>SCROLL</span>
+          <i />
+        </div>
       </section>
 
       <section className="ds-section--tight">
@@ -174,13 +177,13 @@ export default function SectionLanding({
             {cta.desc && <p className="ds-cta__desc">{cta.desc}</p>}
             <div className="ds-cta__actions">
               {cta.actions.map((a) => (
-                <Link
+                <LinkComponent
                   key={`${a.href}-${a.label}`}
                   href={a.href}
                   className={`ds-btn ${a.primary ? 'ds-btn--primary' : 'ds-btn--ghost'}`}
                 >
                   {a.label}
-                </Link>
+                </LinkComponent>
               ))}
             </div>
           </MotionReveal>

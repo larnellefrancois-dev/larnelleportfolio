@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import React from 'react';
 import SectionLanding from '@/components/templates/SectionLanding';
 import { galleryArtworks } from '@/data/realms-content';
-import { motionAssets } from '@/data/motion-assets';
 
 export const metadata: Metadata = {
   title: 'L.F. Chambers — Traditional Art & Visual Work',
@@ -56,7 +55,6 @@ export default function ArtPage() {
         ],
       }}
       motif={<ArtMotif />}
-      motionAsset={motionAssets.artGallery}
     />
   );
 }

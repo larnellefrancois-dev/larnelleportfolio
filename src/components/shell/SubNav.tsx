@@ -13,7 +13,7 @@ export default function SubNav({ active, pathname }: { active: SectionId; pathna
   return (
     <nav className="shell-subnav" aria-label="Section navigation">
       <div className="shell-subnav__inner">
-        {links.map((link) =>
+        {links.map((link, index) =>
           active === 'literature' && link.href === '/literature/archive' ? (
             <CinematicRouteLink
               key={link.href}
@@ -31,7 +31,10 @@ export default function SubNav({ active, pathname }: { active: SectionId; pathna
                 '/assets/images/art/shine-archive.jpg',
               ]}
             >
-              {link.label}
+              <span className="shell-subnav__index" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span>{link.label}</span>
             </CinematicRouteLink>
           ) : (
             <Link
@@ -39,7 +42,10 @@ export default function SubNav({ active, pathname }: { active: SectionId; pathna
               href={link.href}
               aria-current={pathname === link.href ? 'page' : undefined}
             >
-              {link.label}
+              <span className="shell-subnav__index" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span>{link.label}</span>
             </Link>
           )
         )}

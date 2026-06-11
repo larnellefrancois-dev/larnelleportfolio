@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import React from 'react';
 import Link from 'next/link';
+import { SceneFrame, SceneScroller } from '@/components/cinematic/CinematicPrimitives';
 import { PRODUCT_WRITING, articleHref } from '@/data/product-content';
 
 export const metadata: Metadata = {
@@ -12,37 +13,43 @@ export const metadata: Metadata = {
 
 export default function ProductWritingPage() {
   return (
-    <div className="ds-container ds-container--narrow ds-section">
-      <div className="ds-breadcrumbs">
-        <Link href="/product-design">Product Design</Link>
-        <span aria-hidden="true">/</span>
-        <span style={{ color: 'var(--text-muted)' }}>Writing</span>
-      </div>
-      <p className="ds-eyebrow">Systema · Writing</p>
-      <h1 style={{ fontSize: 'var(--step-3)', margin: 'var(--space-2xs) 0 var(--space-sm)' }}>
-        Writing
-      </h1>
-      <p className="ds-lede" style={{ marginBottom: 'var(--space-xl)' }}>
-        Notes on design systems, tokens, governance, and the craft of product design.
-      </p>
+    <SceneScroller>
+      <SceneFrame
+        tone="product"
+        eyebrow="Systema // Field Notes"
+        title="Notes From Inside the System"
+        lede="Essays on design systems, semantic tokens, governance, and the craft of product design."
+        meta={[
+          { label: 'Entries', value: String(PRODUCT_WRITING.length) },
+          { label: 'Format', value: 'Essay' },
+          { label: 'Wing', value: 'M·II' },
+        ]}
+      />
 
-      <div className="ds-grid">
-        {PRODUCT_WRITING.map((a) => (
-          <article key={a.slug} className="ds-card">
-            <div className="ds-card__body">
-              <p className="ds-card__meta">
-                {a.tag} · {a.date}
-              </p>
-              <h2 className="ds-card__title">
-                <Link className="ds-stretch" href={articleHref(a.slug)}>
-                  {a.title}
-                </Link>
-              </h2>
-              <p className="ds-card__excerpt">{a.excerpt}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
+      <section className="scene-frame scene-frame--product" aria-label="Writing index">
+        <div
+          style={{ width: 'min(960px, 100%)', margin: '0 auto', position: 'relative', zIndex: 1 }}
+        >
+          <p className="scene-frame__eyebrow">Log entries // chronological</p>
+          <div className="ds-grid">
+            {PRODUCT_WRITING.map((a, index) => (
+              <article key={a.slug} className="ds-card">
+                <div className="ds-card__body">
+                  <p className="ds-card__meta">
+                    ENTRY {String(index + 1).padStart(2, '0')} · {a.tag} · {a.date}
+                  </p>
+                  <h2 className="ds-card__title">
+                    <Link className="ds-stretch" href={articleHref(a.slug)}>
+                      {a.title}
+                    </Link>
+                  </h2>
+                  <p className="ds-card__excerpt">{a.excerpt}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </SceneScroller>
   );
 }

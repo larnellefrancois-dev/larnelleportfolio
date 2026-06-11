@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import React from 'react';
 import Link from 'next/link';
+import { SceneFrame, SceneScroller } from '@/components/cinematic/CinematicPrimitives';
 
 export const metadata: Metadata = {
   title: 'Design Systems — Larnelle Chambers',
@@ -38,48 +39,45 @@ const systems = [
 
 export default function DesignSystemsPage() {
   return (
-    <div className="ds-container ds-section">
-      <div className="ds-breadcrumbs">
-        <Link href="/product-design">Product Design</Link>
-        <span aria-hidden="true">/</span>
-        <span style={{ color: 'var(--text-muted)' }}>Design Systems</span>
-      </div>
-      <p className="ds-eyebrow">Systema · Design Systems</p>
-      <h1 style={{ fontSize: 'var(--step-3)', margin: 'var(--space-2xs) 0 var(--space-sm)' }}>
-        Design Systems
-      </h1>
-      <p className="ds-lede" style={{ maxWidth: '56ch', marginBottom: 'var(--space-xl)' }}>
-        Token architecture, component libraries, typography, and the governance that keeps systems
-        alive across many teams.
-      </p>
+    <SceneScroller>
+      <SceneFrame
+        tone="product"
+        eyebrow="Systema // Infrastructure"
+        title="Systems That Keep Products Honest"
+        lede="Token architecture, component libraries, typography, and the governance that keeps systems alive across many teams."
+        meta={[
+          { label: 'Systems', value: String(systems.length) },
+          { label: 'Scope', value: 'Enterprise' },
+          { label: 'Wing', value: 'M·II' },
+        ]}
+      />
 
-      <div className="ds-grid ds-grid--auto">
-        {systems.map((s) => (
-          <article key={s.id} className="ds-card">
-            <div className="ds-card__media">
-              {s.img ? <img src={s.img} alt={s.alt} loading="lazy" /> : <span>{s.title}</span>}
-            </div>
-            <div className="ds-card__body">
-              <p className="ds-card__meta">
-                {s.org} · {s.year}
-              </p>
-              <h2 className="ds-card__title">
-                <Link className="ds-stretch" href={s.href}>
-                  {s.title}
-                </Link>
-              </h2>
-              <p className="ds-card__excerpt">{s.description}</p>
-              <div className="ds-card__footer">
-                {s.tags.map((t) => (
-                  <span key={t} className="ds-tag">
-                    {t}
-                  </span>
-                ))}
+      {systems.map((s, index) => (
+        <SceneFrame
+          key={s.id}
+          tone="product"
+          eyebrow={`SYS ${String(index + 1).padStart(2, '0')} // ${s.org} · ${s.year}`}
+          title={s.title}
+          lede={s.description}
+          meta={s.tags.map((t) => ({ label: '◉', value: t }))}
+          visual={
+            <div className="dossier-viewer__portrait" style={{ minHeight: 360 }}>
+              <img src={s.img} alt={s.alt} loading="lazy" />
+              <div className="dossier-viewer__overlay" aria-hidden="true">
+                <span>SYSTEMA</span>
+                <span>{s.year}</span>
+                <span>SPEC</span>
               </div>
             </div>
-          </article>
-        ))}
-      </div>
-    </div>
+          }
+        >
+          <div style={{ marginTop: 28 }}>
+            <Link href={s.href} className="ds-btn ds-btn--primary">
+              Open the case file
+            </Link>
+          </div>
+        </SceneFrame>
+      ))}
+    </SceneScroller>
   );
 }

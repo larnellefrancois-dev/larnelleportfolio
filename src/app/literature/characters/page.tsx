@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import {
   DossierViewer,
+  NavCoreVisualizer,
   SceneFrame,
   SceneScroller,
 } from '@/components/cinematic/CinematicPrimitives';
@@ -21,19 +22,7 @@ export default function CharactersPage() {
         title="Personnel Files From A Planet That Learns"
         lede={charactersPageData.subtitle}
         meta={charactersPageData.meta}
-        visual={
-          <div className="dossier-viewer__portrait" style={{ minHeight: 540 }}>
-            <img
-              src="/assets/literature/character-sela-mares.svg"
-              alt="Generated dossier portrait plate for Sela Mares."
-            />
-            <div className="dossier-viewer__overlay" aria-hidden="true">
-              <span>NAIAD</span>
-              <span>VY-0031</span>
-              <span>RECORD</span>
-            </div>
-          </div>
-        }
+        visual={<NavCoreVisualizer />}
       />
 
       <section className="scene-frame scene-frame--literature" aria-labelledby="character-dossiers">

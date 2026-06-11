@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { AmbientSoundControl, ArchivePuzzleLayer } from '@/components/creative/CreativeExperiences';
+import { ArchivePuzzleLayer } from '@/components/creative/CreativeExperiences';
 import {
   ArchiveGate,
   ArtifactViewer,
@@ -10,6 +10,8 @@ import {
   VeyrathOrbitEngine,
 } from '@/components/cinematic/CinematicPrimitives';
 import SignalConsole from '@/components/literature/SignalConsole';
+import SignalDecoder from '@/components/literature/SignalDecoder';
+import DeepArchive from '@/components/literature/DeepArchive';
 import ArchiveDocumentCard from '@/components/literature/ArchiveDocumentCard';
 import StabilizeTransmission from '@/components/literature/StabilizeTransmission';
 import {
@@ -90,6 +92,9 @@ export default function ArchivePage() {
         }
       >
         <SignalConsole />
+        <div style={{ marginTop: 16 }}>
+          <SignalDecoder />
+        </div>
       </SceneFrame>
 
       <section className="scene-frame scene-frame--literature" aria-labelledby="protocol-seven">
@@ -108,6 +113,9 @@ export default function ArchivePage() {
             {paleIntervalProtocols.map((doc) => (
               <ArchiveDocumentCard key={doc.id} doc={doc} />
             ))}
+          </div>
+          <div style={{ marginTop: 16 }}>
+            <DeepArchive />
           </div>
         </div>
       </section>
@@ -131,8 +139,6 @@ export default function ArchivePage() {
         <ArchivePuzzleLayer />
         <StabilizeTransmission />
       </SceneFrame>
-
-      <AmbientSoundControl />
     </SceneScroller>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import CinematicRouteLink from '@/components/motion/CinematicRouteLink';
 import type { DesignArchiveItem } from '@/data/product-content';
 
 const filters = [
@@ -78,7 +78,17 @@ export default function SystemsArchiveClient({ items }: { items: DesignArchiveIt
               </div>
               <div>
                 <h2 className="systems-card__title">
-                  <Link href={`/product-design/archive#${item.id}`}>{item.title}</Link>
+                  <CinematicRouteLink
+                    href={`/product-design/archive#${item.id}`}
+                    kind="tile"
+                    title="Indexing System"
+                    subtitle={`${projectIndex(index)} / ${item.category}`}
+                    numeral={String(index + 1).padStart(2, '0')}
+                    indexLabel={projectIndex(index)}
+                    images={[item.img, '/assets/motion/product-system-loop.svg']}
+                  >
+                    {item.title}
+                  </CinematicRouteLink>
                 </h2>
                 <p className="systems-card__client">{item.category}</p>
                 <p className="systems-card__desc">{item.description}</p>

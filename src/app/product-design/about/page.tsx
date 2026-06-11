@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import React from 'react';
-import Link from 'next/link';
 import { InteractiveTimeline, MythologyIndex } from '@/components/creative/CreativeExperiences';
+import { SceneFrame, SceneScroller } from '@/components/cinematic/CinematicPrimitives';
 import { CONTACT_EMAIL } from '@/lib/site-nav';
 
 export const metadata: Metadata = {
@@ -27,74 +27,74 @@ const RESUME_URL =
 
 export default function ProductAboutPage() {
   return (
-    <div className="ds-container ds-section">
-      <div className="ds-breadcrumbs">
-        <Link href="/product-design">Product Design</Link>
-        <span aria-hidden="true">/</span>
-        <span style={{ color: 'var(--text-muted)' }}>About</span>
-      </div>
-
-      <div className="ds-grid ds-grid--2" style={{ alignItems: 'start', gap: 'var(--space-2xl)' }}>
-        <div>
-          <p className="ds-eyebrow">Systema · About</p>
-          <h1 style={{ fontSize: 'var(--step-3)', margin: 'var(--space-2xs) 0 var(--space-md)' }}>
-            Larnelle Chambers
-          </h1>
-          <p
-            style={{
-              fontSize: 'var(--step-1)',
-              color: 'var(--text)',
-              lineHeight: 1.7,
-              marginBottom: 'var(--space-sm)',
-            }}
-          >
-            Product and systems designer with 7+ years of experience designing enterprise products,
-            banking systems, and design infrastructure — working at the intersection of user
-            experience, systems thinking, and product strategy.
-          </p>
-          <p
-            style={{ color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: 'var(--space-lg)' }}
-          >
-            Work spans UX research, interface design, design-systems architecture, and design
-            leadership — products used by millions across banking, fintech, and enterprise software.
-          </p>
-          <div style={{ display: 'flex', gap: 'var(--space-sm)', flexWrap: 'wrap' }}>
-            <a className="ds-btn ds-btn--primary" href={`mailto:${CONTACT_EMAIL}`}>
-              Get in touch
-            </a>
-            <a
-              className="ds-btn ds-btn--ghost"
-              href={RESUME_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View résumé →
-            </a>
+    <SceneScroller>
+      <SceneFrame
+        tone="product"
+        eyebrow="Systema // Operator Dossier"
+        title="Larnelle Chambers"
+        lede="Product and systems designer with 7+ years across enterprise products, banking systems, and design infrastructure — working at the intersection of user experience, systems thinking, and product strategy."
+        meta={[
+          { label: 'Experience', value: '7+ years' },
+          { label: 'Reach', value: 'Millions of users' },
+          { label: 'Sector', value: 'Banking / Enterprise' },
+        ]}
+        visual={
+          <div>
+            <p className="scene-frame__eyebrow">Capability matrix</p>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              {EXPERTISE.map((skill, index) => (
+                <li
+                  key={skill}
+                  style={{
+                    display: 'flex',
+                    gap: '14px',
+                    alignItems: 'baseline',
+                    padding: '9px 0',
+                    borderBottom: '1px solid rgba(125,167,217,0.14)',
+                    color: 'rgba(240,230,211,0.72)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.72rem',
+                    letterSpacing: '0.06em',
+                  }}
+                >
+                  <span style={{ color: 'rgba(125,167,217,0.8)', fontSize: '0.55rem' }}>
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  {skill}
+                </li>
+              ))}
+            </ul>
           </div>
+        }
+      >
+        <p className="ds-prose" style={{ maxWidth: '58ch', color: 'rgba(240,230,211,.6)' }}>
+          Work spans UX research, interface design, design-systems architecture, and design
+          leadership — products used by millions across banking, fintech, and enterprise software.
+        </p>
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 28 }}>
+          <a className="ds-btn ds-btn--primary" href={`mailto:${CONTACT_EMAIL}`}>
+            Get in touch
+          </a>
+          <a
+            className="ds-btn ds-btn--ghost"
+            href={RESUME_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View résumé →
+          </a>
         </div>
+      </SceneFrame>
 
-        <div>
-          <h2 className="ds-eyebrow" style={{ marginBottom: 'var(--space-sm)' }}>
-            Expertise
-          </h2>
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-            {EXPERTISE.map((skill) => (
-              <li
-                key={skill}
-                style={{
-                  padding: 'var(--space-2xs) 0',
-                  borderBottom: '1px solid var(--border)',
-                  color: 'var(--text-muted)',
-                }}
-              >
-                {skill}
-              </li>
-            ))}
-          </ul>
+      <section className="scene-frame scene-frame--product" aria-label="Mythology and timeline">
+        <div
+          style={{ width: 'min(1240px, 100%)', margin: '0 auto', position: 'relative', zIndex: 1 }}
+        >
+          <p className="scene-frame__eyebrow">Mythology // how the three realms connect</p>
+          <MythologyIndex />
+          <InteractiveTimeline />
         </div>
-      </div>
-      <MythologyIndex />
-      <InteractiveTimeline />
-    </div>
+      </section>
+    </SceneScroller>
   );
 }

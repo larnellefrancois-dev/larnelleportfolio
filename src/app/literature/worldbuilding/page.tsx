@@ -12,10 +12,16 @@ export const metadata: Metadata = {
 };
 
 export default function WorldbuildingPage() {
+  const anchorFor = (value: string) =>
+    `glossary-${value
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '')}`;
+
   return (
     <div className="literature-realm" style={{ fontFamily: 'var(--font-body-serif)' }}>
       <main>
-        <section style={{ padding: '64px 24px 80px', maxWidth: '900px', margin: '0 auto' }}>
+        <section className="worldbuilding-stage">
           <nav
             aria-label="Breadcrumb"
             style={{
@@ -87,6 +93,7 @@ export default function WorldbuildingPage() {
             {paleIntervalGlossary.map((entry, index) => (
               <MotionReveal
                 key={entry.term}
+                id={anchorFor(entry.term)}
                 delay={index * 35}
                 style={{
                   padding: '28px 0',

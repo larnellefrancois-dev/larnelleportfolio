@@ -1,21 +1,24 @@
 'use client';
 import React, { useState } from 'react';
-import MotionReveal from '@/components/motion/MotionReveal';
+import { SceneFrame, SceneScroller } from '@/components/cinematic/CinematicPrimitives';
 import { CONTACT_EMAIL } from '@/lib/site-nav';
+import { audioEngine } from '@/sound/AudioEngine';
 
 const INQUIRIES = [
-  { id: 'product', label: 'Product design work', subject: 'Product design inquiry' },
+  { id: 'product', label: 'Product design work', subject: 'Product design inquiry', wing: 'M·II' },
   {
     id: 'art',
     label: 'Art commission or collaboration',
     subject: 'Art commission / collaboration',
+    wing: 'M·I',
   },
   {
     id: 'literature',
     label: 'Literary / publishing inquiry',
     subject: 'Literary / publishing inquiry',
+    wing: 'M·III',
   },
-  { id: 'general', label: 'General contact', subject: 'Hello' },
+  { id: 'general', label: 'General contact', subject: 'Hello', wing: '◈' },
 ];
 
 export default function ContactPage() {
@@ -28,119 +31,90 @@ export default function ContactPage() {
     // No backend wired — hand off to the user's mail client, then confirm.
     const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(chosen.subject)}&body=${body}`;
+    audioEngine.play('confirm');
     setSubmitted(true);
   };
 
   return (
-    <div className="ds-container ds-container--narrow ds-section">
-      <MotionReveal variant="clip">
-        <p className="ds-eyebrow">Contact</p>
-        <h1 style={{ fontSize: 'var(--step-3)', margin: 'var(--space-2xs) 0 var(--space-sm)' }}>
-          Start a conversation
-        </h1>
-        <p className="ds-lede" style={{ marginBottom: 'var(--space-xl)' }}>
-          Product design work, art commissions, literary inquiries, or just to say hello — choose a
-          path and send a note.
+    <SceneScroller>
+      <SceneFrame
+        tone="product"
+        eyebrow="Uplink // Outbound Transmission"
+        title="Open a Channel"
+        lede="Product design work, art commissions, literary inquiries, or just a signal across the void — choose a wing and transmit."
+        meta={[
+          { label: 'Relay', value: 'Kingston' },
+          { label: 'Latency', value: '< 48 hrs' },
+          { label: 'Channel', value: 'Open' },
+        ]}
+        visual={
+          submitted ? (
+            <div className="contact-uplink__confirm" role="status">
+              <p className="scene-frame__eyebrow">TRANSMISSION STAGED</p>
+              <p style={{ color: 'rgba(240,230,211,0.8)', lineHeight: 1.7 }}>
+                Your message is ready in your mail client. If it didn’t open, signal{' '}
+                <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: 'var(--accent)' }}>
+                  {CONTACT_EMAIL}
+                </a>{' '}
+                directly.
+              </p>
+            </div>
+          ) : (
+            <form className="contact-uplink" onSubmit={handleSubmit} aria-label="Contact form">
+              <div className="contact-uplink__field">
+                <label htmlFor="c-name">Operator name</label>
+                <input
+                  id="c-name"
+                  required
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                />
+              </div>
+              <div className="contact-uplink__field">
+                <label htmlFor="c-email">Return frequency (email)</label>
+                <input
+                  id="c-email"
+                  type="email"
+                  required
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                />
+              </div>
+              <div className="contact-uplink__field">
+                <label htmlFor="c-inquiry">Destination wing</label>
+                <select
+                  id="c-inquiry"
+                  value={form.inquiry}
+                  onChange={(e) => setForm({ ...form, inquiry: e.target.value })}
+                >
+                  {INQUIRIES.map((i) => (
+                    <option key={i.id} value={i.id}>
+                      {i.wing} — {i.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="contact-uplink__field">
+                <label htmlFor="c-message">Message body</label>
+                <textarea
+                  id="c-message"
+                  required
+                  rows={6}
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                />
+              </div>
+              <button type="submit" className="ds-btn ds-btn--primary">
+                ◉ Transmit
+              </button>
+            </form>
+          )
+        }
+      >
+        <p className="ds-prose" style={{ maxWidth: '52ch', color: 'rgba(240,230,211,.6)' }}>
+          Do not transmit audio. Do not answer non-human signal returns. Plain text is fine.
         </p>
-      </MotionReveal>
-
-      {submitted ? (
-        <MotionReveal className="ds-card" style={{ padding: 'var(--space-lg)' }}>
-          <p role="status" style={{ fontSize: 'var(--step-1)', color: 'var(--text)' }}>
-            Thank you — your message is ready in your mail client. If it didn’t open, email{' '}
-            <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: 'var(--accent)' }}>
-              {CONTACT_EMAIL}
-            </a>{' '}
-            directly.
-          </p>
-        </MotionReveal>
-      ) : (
-        <MotionReveal
-          as="form"
-          onSubmit={handleSubmit}
-          style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}
-        >
-          <div>
-            <label htmlFor="c-name" style={labelStyle}>
-              Name
-            </label>
-            <input
-              id="c-name"
-              required
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              style={inputStyle}
-            />
-          </div>
-          <div>
-            <label htmlFor="c-email" style={labelStyle}>
-              Email
-            </label>
-            <input
-              id="c-email"
-              type="email"
-              required
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              style={inputStyle}
-            />
-          </div>
-          <div>
-            <label htmlFor="c-inquiry" style={labelStyle}>
-              Nature of inquiry
-            </label>
-            <select
-              id="c-inquiry"
-              value={form.inquiry}
-              onChange={(e) => setForm({ ...form, inquiry: e.target.value })}
-              style={inputStyle}
-            >
-              {INQUIRIES.map((i) => (
-                <option key={i.id} value={i.id}>
-                  {i.label}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label htmlFor="c-message" style={labelStyle}>
-              Message
-            </label>
-            <textarea
-              id="c-message"
-              required
-              rows={6}
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              style={{ ...inputStyle, resize: 'vertical' }}
-            />
-          </div>
-          <div>
-            <button type="submit" className="ds-btn ds-btn--primary">
-              Send message
-            </button>
-          </div>
-        </MotionReveal>
-      )}
-    </div>
+      </SceneFrame>
+    </SceneScroller>
   );
 }
-
-const labelStyle: React.CSSProperties = {
-  display: 'block',
-  fontFamily: 'var(--font-mono)',
-  fontSize: 'var(--step--1)',
-  letterSpacing: '0.1em',
-  textTransform: 'uppercase',
-  color: 'var(--text-muted)',
-  marginBottom: 'var(--space-3xs)',
-};
-const inputStyle: React.CSSProperties = {
-  width: '100%',
-  padding: '0.75em 1em',
-  borderRadius: 'var(--radius-md)',
-  border: '1px solid var(--border-strong)',
-  background: 'var(--surface)',
-  color: 'var(--text)',
-  font: 'inherit',
-};

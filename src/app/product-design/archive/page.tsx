@@ -15,16 +15,6 @@ export default function ProductDesignArchivePage() {
   return (
     <div className="systems-archive">
       <div className="systems-archive__grain" aria-hidden="true" />
-      <div className="systems-archive__header">
-        <div className="systems-archive__crumb">
-          <Link href="/product-design">Systems</Link>
-          <span aria-hidden="true">{'//'}</span>
-          <span>Archive</span>
-          <span aria-hidden="true">{'//'}</span>
-          <span>Portfolio 2024</span>
-        </div>
-        <p className="systems-archive__status">Accepting Commissions</p>
-      </div>
 
       <section className="systems-archive__intro">
         <h1>Systems Archive</h1>

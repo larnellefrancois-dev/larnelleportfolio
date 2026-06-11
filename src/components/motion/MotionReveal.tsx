@@ -11,7 +11,19 @@ export interface MotionRevealProps {
   variant?: MotionRevealVariant;
   className?: string;
   style?: React.CSSProperties;
-  as?: React.ElementType;
+  as?:
+    | 'div'
+    | 'section'
+    | 'article'
+    | 'nav'
+    | 'form'
+    | 'ul'
+    | 'li'
+    | 'span'
+    | 'header'
+    | 'footer'
+    | 'aside'
+    | 'figure';
 }
 
 export default function MotionReveal({
@@ -68,11 +80,14 @@ export default function MotionReveal({
     };
   }, [reduced]);
 
-  const Component = as;
+  // Narrowed to one HTML tag for type-checking: @react-three/fiber augments
+  // JSX.IntrinsicElements globally, which makes an open ElementType union
+  // collapse to `never` when rendered with HTML props.
+  const Component = as as 'div';
 
   return (
     <Component
-      ref={ref as React.Ref<never>}
+      ref={ref as React.Ref<HTMLDivElement>}
       {...rest}
       className={['motion-reveal', `motion-reveal--${variant}`, visible && 'is-visible', className]
         .filter(Boolean)

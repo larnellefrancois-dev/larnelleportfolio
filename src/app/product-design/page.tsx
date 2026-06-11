@@ -1,10 +1,8 @@
 import type { Metadata } from 'next';
 import React from 'react';
-import Link from 'next/link';
+import CinematicRouteLink from '@/components/motion/CinematicRouteLink';
 import { MotionReveal } from '@/components/motion';
-import SectionLanding from '@/components/templates/SectionLanding';
 import { DESIGN_ARCHIVE, PRODUCT_WORK } from '@/data/product-content';
-import { motionAssets } from '@/data/motion-assets';
 
 export const metadata: Metadata = {
   title: 'Larnelle Chambers — Product Design Portfolio',
@@ -13,89 +11,198 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://larnelle.me/product-design' },
 };
 
+function ProductSystemMotif() {
+  return (
+    <div className="product-system-motif">
+      <div className="product-system-motif__plane" aria-hidden="true">
+        {Array.from({ length: 18 }).map((_, index) => (
+          <span
+            key={index}
+            style={
+              {
+                '--i': index,
+                '--x': `${(index % 6) * 16 + 5}%`,
+                '--y': `${Math.floor(index / 6) * 24 + 8}%`,
+              } as React.CSSProperties
+            }
+          />
+        ))}
+      </div>
+      <div className="product-system-motif__scanner" aria-hidden="true" />
+      <div
+        className="product-system-motif__node product-system-motif__node--a"
+        aria-hidden="true"
+      />
+      <div
+        className="product-system-motif__node product-system-motif__node--b"
+        aria-hidden="true"
+      />
+      <div
+        className="product-system-motif__node product-system-motif__node--c"
+        aria-hidden="true"
+      />
+    </div>
+  );
+}
+
 export default function ProductDesignPage() {
   const featured = PRODUCT_WORK.filter((w) => w.featured);
   return (
-    <>
-      <SectionLanding
-        eyebrow="Systema · Product Design"
-        title="Designing clear, credible products at scale."
-        lede="Case studies, design systems, typography, interfaces, and visual systems. I help teams ship structured, accessible, trustworthy products — most recently across enterprise banking, design systems, and type design."
-        actions={[
-          { label: 'View case studies', href: '/product-design/case-studies', primary: true },
-          { label: 'Portfolio archive', href: '/product-design/archive' },
-        ]}
-        featuredTitle="Featured work"
-        featuredDesc="Selected projects across banking UX, design systems, typography, and platform design."
-        features={featured.map((w) => ({
-          title: w.title,
-          meta: `${w.client} · ${w.year}`,
-          excerpt: w.description,
-          href: w.href,
-          img: w.img,
-          alt: w.alt,
-          tags: w.tags,
-        }))}
-        cta={{
-          title: 'Have a product problem worth solving?',
-          desc: 'I take on a small number of product design and design-systems engagements.',
-          actions: [
-            { label: 'Start a conversation', href: '/contact', primary: true },
-            { label: 'Read the writing', href: '/product-design/writing' },
-          ],
-        }}
-        motionAsset={motionAssets.productSystem}
-      />
-
-      <section className="ds-section--tight">
-        <div className="ds-container">
-          <MotionReveal className="ds-section-intro">
-            <h2 className="ds-section-intro__title">Portfolio Archive</h2>
-            <p className="ds-section-intro__desc">
-              Earlier UI, web, brand, tourism, logistics, rideshare, and print explorations from the
-              2024 portfolio PDF.
-            </p>
-          </MotionReveal>
-          <div className="ds-grid ds-grid--3">
-            {DESIGN_ARCHIVE.slice(0, 3).map((item, index) => (
-              <MotionReveal
-                key={item.id}
-                as="article"
-                className="ds-card"
-                delay={index * 80}
-                variant="scale"
-              >
-                <div className="ds-card__media">
-                  <img src={item.img} alt={item.alt} loading="lazy" />
-                </div>
-                <div className="ds-card__body">
-                  <p className="ds-card__meta">
-                    {item.category} · {item.year}
-                  </p>
-                  <h3 className="ds-card__title">
-                    <Link className="ds-stretch" href={`/product-design/archive#${item.id}`}>
-                      {item.title}
-                    </Link>
-                  </h3>
-                  <p className="ds-card__excerpt">{item.description}</p>
-                  <div className="ds-card__footer">
-                    {item.tags.slice(0, 3).map((tag) => (
-                      <span key={tag} className="ds-tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </MotionReveal>
-            ))}
+    <main className="product-cinema">
+      <section
+        className="product-cinema__panel product-cinema__hero"
+        aria-labelledby="systems-title"
+      >
+        <ProductSystemMotif />
+        <div className="product-cinema__names" aria-hidden="true">
+          <span>Product</span>
+          <span>Architect</span>
+        </div>
+        <MotionReveal className="product-cinema__hero-copy" variant="clip">
+          <p className="product-cinema__kicker">SYSTEMA // PRODUCT DESIGN</p>
+          <h1 id="systems-title">Intent.</h1>
+          <p>
+            Case studies, design systems, typography, interfaces, and visual systems for teams that
+            need clarity under pressure.
+          </p>
+          <div className="product-cinema__actions">
+            <CinematicRouteLink
+              className="ds-btn ds-btn--primary"
+              href="/product-design/case-studies"
+              kind="tile"
+              title="Opening Case Studies"
+              subtitle="Systems / selected work"
+            >
+              View case studies
+            </CinematicRouteLink>
+            <CinematicRouteLink
+              className="ds-btn ds-btn--ghost"
+              href="/product-design/archive"
+              kind="tile"
+              title="Opening Systems Archive"
+              subtitle="Product and interface directory"
+            >
+              Portfolio archive
+            </CinematicRouteLink>
           </div>
-          <div style={{ marginTop: 'var(--space-lg)' }}>
-            <Link className="ds-btn ds-btn--ghost" href="/product-design/archive">
-              Browse full design archive
-            </Link>
+        </MotionReveal>
+        <div className="product-cinema__scroll" aria-hidden="true">
+          <span>Scroll</span>
+          <i />
+        </div>
+      </section>
+
+      <section
+        className="product-cinema__panel product-cinema__slice"
+        aria-label="Design discipline"
+      >
+        <div className="product-cinema__slice-window">
+          <ProductSystemMotif />
+          <div className="product-cinema__slice-copy">
+            <p className="product-cinema__kicker">INITIATIVE 02 // THE DISCIPLINE</p>
+            <h2>Surface is a signal.</h2>
+            <p>
+              The work is product logic first: exact hierarchy, believable interaction states,
+              accessibility, and systems that survive real teams.
+            </p>
           </div>
         </div>
       </section>
-    </>
+
+      <section className="product-cinema__panel product-cinema__manifesto">
+        <MotionReveal className="product-cinema__manifesto-copy" variant="clip">
+          <p className="product-cinema__kicker">INITIATIVE 03 // THE CRAFT</p>
+          <h2>
+            Uncompromising
+            <br />
+            systems.
+          </h2>
+          <p>
+            I build interfaces that demand attention without wasting it. Every pixel serves the
+            narrative, every state tells the user where they are, and every flow makes the system
+            easier to trust.
+          </p>
+        </MotionReveal>
+      </section>
+
+      <section className="product-cinema__panel product-cinema__work" id="work">
+        <div className="product-cinema__work-head">
+          <p className="product-cinema__kicker">INITIATIVE 04 // THE RESULT</p>
+          <h2>Case files 2023-2026</h2>
+          <CinematicRouteLink
+            className="ds-btn ds-btn--ghost"
+            href="/product-design/archive"
+            kind="tile"
+            title="Opening Systems Archive"
+            subtitle="Product and interface directory"
+          >
+            Browse full archive
+          </CinematicRouteLink>
+        </div>
+
+        <div className="product-cinema__billing">
+          {featured.slice(0, 4).map((work, index) => (
+            <MotionReveal
+              key={work.href}
+              as="article"
+              className="product-cinema__case-row"
+              delay={index * 80}
+              variant="clip"
+            >
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>
+                <CinematicRouteLink
+                  href={work.href}
+                  kind="tile"
+                  title={`Opening ${work.title}`}
+                  subtitle={`${work.client} / ${work.year}`}
+                >
+                  {work.title}
+                </CinematicRouteLink>
+              </h3>
+              <p>{work.description}</p>
+              <em>{work.tags.slice(0, 3).join(' / ')}</em>
+            </MotionReveal>
+          ))}
+
+          {DESIGN_ARCHIVE.slice(0, 3).map((item, index) => (
+            <MotionReveal
+              key={item.id}
+              as="article"
+              className="product-cinema__case-row product-cinema__case-row--archive"
+              delay={(index + 4) * 80}
+              variant="clip"
+            >
+              <span>{item.year}</span>
+              <h3>
+                <CinematicRouteLink
+                  href={`/product-design/archive#${item.id}`}
+                  kind="tile"
+                  title="Indexing System"
+                  subtitle={`${item.category} / ${item.year}`}
+                >
+                  {item.title}
+                </CinematicRouteLink>
+              </h3>
+              <p>{item.description}</p>
+              <em>{item.tags.slice(0, 3).join(' / ')}</em>
+            </MotionReveal>
+          ))}
+        </div>
+
+        <div className="product-cinema__closing">
+          <span>SYS.OP.00492.X</span>
+          <CinematicRouteLink
+            className="ds-btn ds-btn--primary"
+            href="/contact"
+            kind="tile"
+            title="Opening Contact"
+            subtitle="Transmission channel"
+          >
+            Start a conversation
+          </CinematicRouteLink>
+        </div>
+      </section>
+    </main>
   );
 }

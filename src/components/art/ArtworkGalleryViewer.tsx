@@ -3,6 +3,8 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import type { ArtworkItem } from '@/data/realms-content';
+import { useGameStore } from '@/state/gameStore';
+import { audioEngine } from '@/sound/AudioEngine';
 
 interface ArtworkGalleryViewerProps {
   artworks: ArtworkItem[];
@@ -18,9 +20,17 @@ export default function ArtworkGalleryViewer({ artworks }: ArtworkGalleryViewerP
     setMounted(true);
   }, []);
 
+  // Studying a work in the viewer counts toward the Curator achievement.
+  React.useEffect(() => {
+    if (activeWork) useGameStore.getState().recordArtworkViewed(String(activeWork.id));
+  }, [activeWork]);
+
+  const curator = useGameStore((s) => s.achievements.includes('curator'));
+
   const openWork = (index: number, trigger: HTMLButtonElement) => {
     lastTriggerRef.current = trigger;
     setActiveIndex(index);
+    audioEngine.play('confirm');
   };
 
   const closeViewer = React.useCallback(() => {
@@ -39,6 +49,7 @@ export default function ArtworkGalleryViewer({ artworks }: ArtworkGalleryViewerP
 
   const showRelativeWork = React.useCallback(
     (direction: -1 | 1) => {
+      audioEngine.play('hover');
       setActiveIndex((current) => {
         if (current === null) return current;
         return (current + direction + artworks.length) % artworks.length;
@@ -448,6 +459,41 @@ export default function ArtworkGalleryViewer({ artworks }: ArtworkGalleryViewerP
                   >
                     {activeWork.description ?? activeWork.alt}
                   </p>
+                  {curator && (
+                    <div
+                      style={{
+                        marginTop: '22px',
+                        padding: '16px',
+                        border: '1px dashed rgba(212,178,113,0.35)',
+                      }}
+                    >
+                      <p
+                        style={{
+                          fontFamily: "'Space Mono', monospace",
+                          fontSize: '0.55rem',
+                          letterSpacing: '0.24em',
+                          textTransform: 'uppercase',
+                          color: 'rgba(212,178,113,0.7)',
+                          marginBottom: '10px',
+                        }}
+                      >
+                        Curator layer · process notes
+                      </p>
+                      <p
+                        style={{
+                          fontFamily: "'Space Mono', monospace",
+                          fontSize: '0.68rem',
+                          lineHeight: 1.7,
+                          color: 'rgba(247,230,183,0.6)',
+                        }}
+                      >
+                        PLATE {String((activeIndex ?? 0) + 1).padStart(3, '0')} ·{' '}
+                        {activeWork.medium} · CATALOGUED {activeWork.year}. Surface worked in
+                        layered passes; the underdrawing remains deliberately visible where the
+                        light falls. Studio record retained in the physical archive.
+                      </p>
+                    </div>
+                  )}
                 </div>
               </aside>
             </div>

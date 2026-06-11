@@ -2,68 +2,79 @@
 
 import React from 'react';
 import CinematicRouteLink from '@/components/motion/CinematicRouteLink';
+import { useEngineStore } from '@/state/engineStore';
+import { audioEngine } from '@/sound/AudioEngine';
+import type { RealmId } from '@/data/discovery-map';
 
-const realms = [
+const REALM_BY_TYPE: Record<string, RealmId> = {
+  literature: 'literature',
+  art: 'art',
+  systems: 'product',
+};
+
+const scenes = [
   {
-    type: 'lit',
-    href: '/literature',
+    type: 'prologue',
+    numeral: '00',
+    title: 'L.F. Chambers',
+    subtitle: 'Image, interface, story, and playable archives.',
+    href: null,
+    cta: 'Scroll to enter',
+  },
+  {
+    type: 'literature',
     numeral: 'I',
     title: 'Literature',
-    subtitle: 'Fiction & Worldbuilding',
-    image: '/assets/images/veyrath-kaen-bloom.png',
-    alt: 'Pale Interval Veyrath bloom artwork with blue mineral light.',
-    metaLeft: ['Vol. 01 — Narrative', 'The Pale Interval'],
-    metaRight: ['Index: LT-892', 'Enter Chapter'],
-    transitionTitle: 'Opening Literature',
-    transitionSubtitle: 'Scriptorium / fiction and worldbuilding',
-    flashImages: [
-      '/assets/images/veyrath-kaen-bloom.png',
-      '/assets/motion/pale-interval-signal-loop.svg',
-      '/assets/hyperframes/veyrath-signal.svg',
-      '/assets/images/art/shine-archive.jpg',
-    ],
+    subtitle: 'The Pale Interval as a living world engine.',
+    href: '/literature',
+    cta: 'Enter Scriptorium',
   },
   {
     type: 'art',
-    href: '/art',
     numeral: 'II',
     title: 'Visual Arts',
-    subtitle: 'Canvas & Charcoal',
-    image: '/assets/images/art/nocturne-bloom.jpg',
-    alt: 'Black, white, and gold mixed-media portrait surrounded by flowers and wings.',
-    metaLeft: ['Exhibition — 02', 'Gallery Space'],
-    metaRight: ['Index: VA-414', 'View Canvas'],
-    transitionTitle: 'Opening Visual Arts',
-    transitionSubtitle: 'Visio / canvas and charcoal',
-    flashImages: [
-      '/assets/images/art/nocturne-bloom.jpg',
-      '/assets/images/art/green-butterfly-collar.jpg',
-      '/assets/images/art/shine-archive.jpg',
-      '/assets/images/art/crown-in-coral.jpg',
-    ],
+    subtitle: 'Portraits, studies, commissions, and ritual surface.',
+    href: '/art',
+    cta: 'Open Gallery',
   },
   {
-    type: 'design',
-    href: '/product-design',
+    type: 'systems',
     numeral: 'III',
-    title: 'Systems',
-    subtitle: 'Product & Interface',
-    image: '/assets/images/portfolio-shipme-ui.jpg',
-    alt: 'ShipMe mobile interface screens from the product design portfolio.',
-    metaLeft: ['Structure — 03', 'Logic & Form'],
-    metaRight: ['Index: PD-771', 'Analyze Logic'],
-    transitionTitle: 'Opening Systems',
-    transitionSubtitle: 'Systema / product and interface',
-    flashImages: [
-      '/assets/images/portfolio-shipme-ui.jpg',
-      '/assets/images/Personal-1775589530525.png',
-      '/assets/images/portfolio-web-design.jpg',
-      '/assets/motion/product-system-loop.svg',
-    ],
+    title: 'Systems Design',
+    subtitle: 'Product interfaces, archives, and operational clarity.',
+    href: '/product-design',
+    cta: 'Analyze Systems',
   },
 ];
 
+function ProceduralRealmMedia({ type }: { type: string }) {
+  return (
+    <div className={`home-journey__media home-journey__media--${type}`} aria-hidden="true">
+      <div className="home-journey__field" />
+      <div className="home-journey__orb home-journey__orb--a" />
+      <div className="home-journey__orb home-journey__orb--b" />
+      <div className="home-journey__signal" />
+      <div className="home-journey__glyphs">
+        {Array.from({ length: 9 }).map((_, index) => (
+          <span
+            key={index}
+            style={
+              {
+                '--i': index,
+                '--x': `${(index % 3) * 22 + 22}vw`,
+                '--y': `${Math.floor(index / 3) * 18 + 18}vh`,
+              } as React.CSSProperties
+            }
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function PortalHomepage() {
+  const setHubFocus = useEngineStore((s) => s.setHubFocus);
+
   React.useEffect(() => {
     const handlePointerMove = (event: PointerEvent) => {
       const x = event.clientX / window.innerWidth;
@@ -77,68 +88,79 @@ export default function PortalHomepage() {
   }, []);
 
   return (
-    <div className="home-triptych">
-      <header className="home-triptych__header">
-        <div className="home-triptych__identity">
+    <div className="home-journey">
+      <header className="home-journey__header">
+        <div className="home-journey__identity">
           <span>Archive</span>
           <b aria-hidden="true">{'//'}</b>
           <span>Portfolio</span>
           <b aria-hidden="true">{'//'}</b>
           <span>2026</span>
         </div>
-        <div className="home-triptych__status">Accepting Commissions</div>
+        <div className="home-journey__nav" aria-label="Realm shortcuts">
+          {scenes
+            .filter((scene) => scene.href)
+            .map((scene) => (
+              <a key={scene.type} href={`#${scene.type}`}>
+                {scene.title}
+              </a>
+            ))}
+        </div>
       </header>
 
-      <main className="home-triptych__main" aria-label="Portfolio realms">
-        <div className="home-triptych__grid">
-          {realms.map((realm) => (
-            <CinematicRouteLink
-              key={realm.type}
-              href={realm.href}
-              kind="realm"
-              className="home-triptych-card"
-              data-type={realm.type}
-              aria-label={`Explore ${realm.title}`}
-              title={realm.transitionTitle}
-              subtitle={realm.transitionSubtitle}
-              numeral={realm.numeral}
-              indexLabel={realm.metaRight[0].replace('Index: ', '')}
-              images={realm.flashImages}
+      <main className="home-journey__scroller" aria-label="Cinematic portfolio journey">
+        {scenes.map((scene) => {
+          const content = (
+            <>
+              <ProceduralRealmMedia type={scene.type} />
+              <span className="home-journey__line home-journey__line--top" aria-hidden="true" />
+              <span className="home-journey__line home-journey__line--bottom" aria-hidden="true" />
+              <div className="home-journey__content">
+                <span className="home-journey__chapter">{scene.numeral}</span>
+                <h1>{scene.title}</h1>
+                <p>{scene.subtitle}</p>
+                <span className="home-journey__cta">{scene.cta}</span>
+              </div>
+            </>
+          );
+
+          return (
+            <section
+              key={scene.type}
+              id={scene.type}
+              className={`home-journey__section home-journey__section--${scene.type}`}
+              onPointerEnter={() => {
+                if (scene.href) {
+                  setHubFocus(REALM_BY_TYPE[scene.type]);
+                  audioEngine.play('hover');
+                }
+              }}
+              onPointerLeave={() => setHubFocus(null)}
             >
-              <img className="home-triptych-card__img" src={realm.image} alt={realm.alt} />
-              <div className="home-triptych-card__tint" aria-hidden="true" />
-              <div className="home-triptych-card__frame" aria-hidden="true">
-                <span className="home-triptych-card__corner home-triptych-card__corner--tl" />
-                <span className="home-triptych-card__corner home-triptych-card__corner--tr" />
-                <span className="home-triptych-card__corner home-triptych-card__corner--bl" />
-                <span className="home-triptych-card__corner home-triptych-card__corner--br" />
-              </div>
-              <div className="home-triptych-card__header">
-                <span className="home-triptych-card__numeral">{realm.numeral}</span>
-                <span className="home-triptych-card__sigil" aria-hidden="true" />
-              </div>
-              <div className="home-triptych-card__body">
-                <h2 className="home-triptych-card__title">{realm.title}</h2>
-                <span className="home-triptych-card__subtitle">{realm.subtitle}</span>
-              </div>
-              <div className="home-triptych-card__footer">
-                <span>
-                  {realm.metaLeft.map((line) => (
-                    <b key={line}>{line}</b>
-                  ))}
-                </span>
-                <span>
-                  {realm.metaRight.map((line) => (
-                    <b key={line}>{line}</b>
-                  ))}
-                </span>
-              </div>
-            </CinematicRouteLink>
-          ))}
-        </div>
+              {scene.href ? (
+                <CinematicRouteLink
+                  href={scene.href}
+                  kind="realm"
+                  className="home-journey__link"
+                  title={`Opening ${scene.title}`}
+                  subtitle={scene.subtitle}
+                  numeral={scene.numeral}
+                  indexLabel={scene.type.toUpperCase()}
+                >
+                  {content}
+                </CinematicRouteLink>
+              ) : (
+                content
+              )}
+            </section>
+          );
+        })}
       </main>
 
-      <footer className="home-triptych__footer">© MMXXVI — Multidisciplinary Studio</footer>
+      <div className="home-journey__scroll" aria-hidden="true">
+        <span>Scroll</span>
+        <i />
+      </div>
     </div>
   );
 }

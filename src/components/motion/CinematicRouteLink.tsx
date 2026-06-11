@@ -4,8 +4,11 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import Link, { type LinkProps } from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { sectionFromPath, realmFromSection } from '@/lib/site-nav';
+import { useEngineStore } from '@/state/engineStore';
+import { audioEngine } from '@/sound/AudioEngine';
 
-type TransitionKind = 'realm' | 'archive';
+type TransitionKind = 'realm' | 'archive' | 'tile';
 
 interface CinematicRouteLinkProps extends Omit<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -36,6 +39,11 @@ function toHrefString(href: LinkProps['href']) {
 function toPathname(href: LinkProps['href']) {
   const hrefString = toHrefString(href);
   return hrefString.split(/[?#]/)[0] || '/';
+}
+
+function currentInternalHref() {
+  if (typeof window === 'undefined') return '/';
+  return `${window.location.pathname}${window.location.search}${window.location.hash}`;
 }
 
 function TransitionOverlay({
@@ -149,6 +157,7 @@ export default function CinematicRouteLink({
 
   React.useEffect(() => {
     setTransitioning(false);
+    useEngineStore.getState().setGateTarget(null);
   }, [pathname]);
 
   React.useEffect(() => {
@@ -177,7 +186,7 @@ export default function CinematicRouteLink({
 
     event.preventDefault();
 
-    if (toPathname(href) === pathname) {
+    if (hrefString === pathname || hrefString === currentInternalHref()) {
       setTransitioning(false);
       return;
     }
@@ -186,6 +195,10 @@ export default function CinematicRouteLink({
     if (releaseTimer.current) window.clearTimeout(releaseTimer.current);
 
     const pushDelay = reducedMotion ? 120 : kind === 'archive' ? 1350 : 1050;
+
+    // Let the 3D scene fly its camera while the overlay plays.
+    useEngineStore.getState().setGateTarget(realmFromSection(sectionFromPath(toPathname(href))));
+    audioEngine.play(kind === 'archive' ? 'declassify' : 'portal');
 
     setTransitioning(true);
     pushTimer.current = window.setTimeout(() => {

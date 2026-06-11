@@ -7,6 +7,42 @@ import type {
   ProtocolDocument,
   SurveyLocation,
 } from '@/data/realms-content';
+import { useGameStore } from '@/state/gameStore';
+import { audioEngine } from '@/sound/AudioEngine';
+
+const SCRAMBLE_GLYPHS = '█▓▒░ABCDEFGHIKLMNORSTVY0134579·—';
+
+/** Text that resolves left-to-right out of archive static. Skips itself for
+    reduced-motion users. */
+function useDecryptedText(value: string, durationMs = 620): string {
+  const [display, setDisplay] = React.useState(value);
+
+  React.useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setDisplay(value);
+      return;
+    }
+    let frame = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / durationMs);
+      const settled = Math.floor(value.length * t);
+      let out = value.slice(0, settled);
+      for (let i = settled; i < value.length; i++) {
+        out +=
+          value[i] === ' '
+            ? ' '
+            : SCRAMBLE_GLYPHS[Math.floor(Math.random() * SCRAMBLE_GLYPHS.length)];
+      }
+      setDisplay(out);
+      if (t < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [value, durationMs]);
+
+  return display;
+}
 
 type SceneTone = 'literature' | 'art' | 'product';
 
@@ -63,6 +99,29 @@ export function SceneFrame({
         {visual && <div className="scene-frame__visual">{visual}</div>}
       </div>
     </section>
+  );
+}
+
+export function NavCoreVisualizer() {
+  return (
+    <div className="nav-core-visual" aria-label="Animated NAIAD navigation core and Veyrath orbit">
+      <div className="nav-core-visual__stars" aria-hidden="true" />
+      <div className="nav-core-visual__orbit nav-core-visual__orbit--outer" aria-hidden="true" />
+      <div className="nav-core-visual__orbit nav-core-visual__orbit--inner" aria-hidden="true" />
+      <div className="nav-core-visual__planet" aria-hidden="true">
+        <span />
+      </div>
+      <div className="nav-core-visual__moon nav-core-visual__moon--one" aria-hidden="true" />
+      <div className="nav-core-visual__moon nav-core-visual__moon--two" aria-hidden="true" />
+      <div className="nav-core-visual__dashboard" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="nav-core-visual__wave" aria-hidden="true" />
+      <p className="nav-core-visual__label">NAIAD NAV CORE // VY-0031</p>
+    </div>
   );
 }
 
@@ -253,16 +312,40 @@ export function VeyrathOrbitEngine({
 }
 
 export function DossierViewer({ characters }: { characters: CharacterDossier[] }) {
-  const [activeSlug, setActiveSlug] = React.useState(characters[0]?.slug);
-  const active = characters.find((character) => character.slug === activeSlug) ?? characters[0];
+  // "The Knot" stays withheld until the Close Reader achievement unlocks it.
+  const closeReader = useGameStore((s) => s.achievements.includes('close-reader'));
+  const visible = React.useMemo(
+    () => (closeReader ? characters : characters.filter((c) => c.slug !== 'the-knot')),
+    [characters, closeReader]
+  );
+  const withheldCount = characters.length - visible.length;
+
+  const [activeSlug, setActiveSlug] = React.useState(visible[0]?.slug);
+  const active = visible.find((character) => character.slug === activeSlug) ?? visible[0];
+  const decryptedName = useDecryptedText(active?.name ?? '');
 
   if (!active) return null;
 
   return (
     <section className="dossier-viewer" aria-label="Classified character dossiers">
       <div className="dossier-viewer__portrait">
-        {active.portraitImg && (
-          <img src={active.portraitImg} alt={active.portraitAlt ?? active.name} />
+        {active.portraitImg ? (
+          <img
+            key={active.slug}
+            src={active.portraitImg}
+            alt={active.portraitAlt ?? active.name}
+            className="dossier-viewer__portrait-img"
+          />
+        ) : (
+          <div
+            className="dossier-viewer__signal-portrait"
+            aria-label={`${active.name} signal plate`}
+          >
+            <span />
+            <span />
+            <span />
+            <b>{active.name}</b>
+          </div>
         )}
         <div className="dossier-viewer__overlay" aria-hidden="true">
           <span>CLASSIFIED</span>
@@ -270,9 +353,11 @@ export function DossierViewer({ characters }: { characters: CharacterDossier[] }
           <span>DOSSIER</span>
         </div>
       </div>
-      <article className="dossier-viewer__record">
+      <article className="dossier-viewer__record" aria-live="polite">
         <p className="dossier-viewer__classification">{active.classification}</p>
-        <h2>{active.name}</h2>
+        <h2 aria-label={active.name}>
+          <span aria-hidden="true">{decryptedName}</span>
+        </h2>
         <p className="dossier-viewer__role">{active.role}</p>
         {active.quote && <blockquote>{active.quote}</blockquote>}
         <p>{active.description}</p>
@@ -289,17 +374,26 @@ export function DossierViewer({ characters }: { characters: CharacterDossier[] }
         )}
       </article>
       <div className="dossier-viewer__index">
-        {characters.map((character, index) => (
+        {visible.map((character, index) => (
           <button
             key={character.slug}
             type="button"
             aria-pressed={character.slug === active.slug}
-            onClick={() => setActiveSlug(character.slug)}
+            onClick={() => {
+              setActiveSlug(character.slug);
+              audioEngine.play('hover');
+            }}
           >
             <span>{String(index + 1).padStart(2, '0')}</span>
             {character.name}
           </button>
         ))}
+        {withheldCount > 0 && (
+          <button type="button" disabled aria-label="Dossier withheld — keep reading the excerpts">
+            <span>{String(visible.length + 1).padStart(2, '0')}</span>
+            ███ — SIGNAL WITHHELD
+          </button>
+        )}
       </div>
     </section>
   );
@@ -330,14 +424,73 @@ export function ArtifactViewer({
   );
 }
 
+/** Marks an excerpt as read (for the Close Reader achievement) once the
+    reader has had most of it on screen for a couple of seconds. */
+function ExcerptReadSensor({ excerptId }: { excerptId: string }) {
+  const ref = React.useRef<HTMLSpanElement>(null);
+
+  React.useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    let dwell: number | null = null;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && dwell === null) {
+          dwell = window.setTimeout(() => {
+            useGameStore.getState().recordExcerptRead(excerptId);
+            observer.disconnect();
+          }, 2200);
+        } else if (!entry.isIntersecting && dwell !== null) {
+          window.clearTimeout(dwell);
+          dwell = null;
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(node);
+    return () => {
+      if (dwell !== null) window.clearTimeout(dwell);
+      observer.disconnect();
+    };
+  }, [excerptId]);
+
+  return <span ref={ref} aria-hidden="true" />;
+}
+
 export function ExcerptSceneDeck({ excerpts }: { excerpts: LiteratureExcerpt[] }) {
+  // Cartographer clearance annotates the surface plate with survey marks.
+  const cartographer = useGameStore((s) => s.achievements.includes('cartographer'));
+
   return (
     <div className="excerpt-scenes">
       {excerpts.map((excerpt, index) => (
         <article className="excerpt-scene" key={excerpt.id}>
-          <div className="excerpt-scene__plate">
+          <ExcerptReadSensor excerptId={excerpt.id} />
+          <div className="excerpt-scene__plate" style={{ position: 'relative' }}>
             {excerpt.plateImg && (
               <img src={excerpt.plateImg} alt={excerpt.plateAlt ?? excerpt.title} />
+            )}
+            {cartographer && excerpt.plateImg?.includes('veyrath-surface') && (
+              <div
+                aria-label="Cartographer annotation layer"
+                style={{
+                  position: 'absolute',
+                  left: 10,
+                  bottom: 10,
+                  padding: '8px 12px',
+                  border: '1px dashed rgba(125,167,217,0.5)',
+                  background: 'rgba(5,6,15,0.78)',
+                  fontFamily: "'Space Mono', monospace",
+                  fontSize: '0.55rem',
+                  letterSpacing: '0.14em',
+                  color: 'rgba(125,167,217,0.9)',
+                  lineHeight: 1.8,
+                }}
+              >
+                CARTOGRAPHER OVERLAY · 8/8 SITES CHARTED
+                <br />
+                CAL-R → CSB-31B → VY-CB → VY-SM → VY-SP → VY-DW → VY-MK → VY-WP
+              </div>
             )}
           </div>
           <div className="excerpt-scene__copy">

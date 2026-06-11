@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import React from 'react';
 import SectionLanding from '@/components/templates/SectionLanding';
 import { HyperFrameLoreStrip } from '@/components/motion';
-import { motionAssets } from '@/data/motion-assets';
 
 export const metadata: Metadata = {
   title: 'L.F. Chambers — The Pale Interval and Literary Work',
@@ -104,8 +103,8 @@ export default function LiteraturePage() {
             meta: 'Dossiers',
             excerpt: 'Sela, Adra, Ithe, Lyren, Nae, Cael, Voss, Phoebe, Rao, Davi, and the Knot.',
             href: '/literature/characters',
-            img: '/assets/literature/character-sela-mares.svg',
-            alt: 'Generated dossier portrait plate for Sela Mares.',
+            img: '/assets/literature/character-profiles/sela-mares.jpg',
+            alt: 'Illustrated classified dossier portrait for Sela Mares.',
           },
           {
             title: 'Worldbuilding',
@@ -121,8 +120,8 @@ export default function LiteraturePage() {
             meta: 'L.F. Chambers',
             excerpt: 'On the work, the genre, and how to get in touch about it.',
             href: '/literature/author',
-            img: '/assets/literature/character-davi-mares.svg',
-            alt: 'Generated private-log dossier plate.',
+            img: '/assets/literature/character-profiles/davi-mares.jpg',
+            alt: 'Illustrated private-log dossier portrait for Davi Mares.',
           },
         ]}
         cta={{
@@ -134,7 +133,6 @@ export default function LiteraturePage() {
           ],
         }}
         motif={<LitMotif />}
-        motionAsset={motionAssets.paleSignal}
       />
       <div className="ds-container">
         <HyperFrameLoreStrip />

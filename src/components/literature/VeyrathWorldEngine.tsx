@@ -1,7 +1,10 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
 import { paleIntervalLocations, type RiskClass } from '@/data/realms-content';
+import { useGameStore } from '@/state/gameStore';
+import { audioEngine } from '@/sound/AudioEngine';
 
 const MONO = "'Space Mono', monospace";
 const SERIF = "'Cormorant Garamond', serif";
@@ -106,6 +109,12 @@ export default function VeyrathWorldEngine() {
   const location =
     paleIntervalLocations.find((loc) => loc.designation === activeLocation) ??
     paleIntervalLocations[0];
+
+  // Charting locations counts toward the Cartographer achievement; the one
+  // shown on load is already on the reader's screen, so it counts too.
+  useEffect(() => {
+    useGameStore.getState().recordLocationVisit(location.designation.toLowerCase());
+  }, [location.designation]);
 
   const pathPoints = useMemo(
     () =>
@@ -292,7 +301,10 @@ export default function VeyrathWorldEngine() {
                   <button
                     key={loc.designation}
                     type="button"
-                    onClick={() => setActiveLocation(loc.designation)}
+                    onClick={() => {
+                      setActiveLocation(loc.designation);
+                      audioEngine.play('hover');
+                    }}
                     aria-pressed={active}
                     aria-label={`Inspect ${loc.name}`}
                     style={{
@@ -423,6 +435,26 @@ export default function VeyrathWorldEngine() {
                 Clicker Rhythm
               </h3>
               <div
+                className="clicker-plate"
+                aria-label="Procedural illustration of Veyrath clickers"
+              >
+                <div className="clicker-plate__creature clicker-plate__creature--one">
+                  <i />
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="clicker-plate__creature clicker-plate__creature--two">
+                  <i />
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="clicker-plate__terrain" aria-hidden="true" />
+              </div>
+              <div
                 role="tablist"
                 aria-label="Clicker warning states"
                 style={{
@@ -468,6 +500,9 @@ export default function VeyrathWorldEngine() {
               <p style={{ fontFamily: SERIF, color: BODY, lineHeight: 1.6, margin: 0 }}>
                 {clickerStates[clickerIndex].meaning}
               </p>
+              <Link className="pi-engine-link" href="/literature/worldbuilding#glossary-clickers">
+                Open creature glossary
+              </Link>
             </article>
           </div>
         </div>
